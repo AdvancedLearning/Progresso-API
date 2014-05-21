@@ -1,0 +1,388 @@
+FORMAT: 1A
+HOST: http://api.progresso.net/v2
+
+# Progresso API
+Provides the ability to manage school information.
+
+# Group Employees
+Group of all employee-related resources
+
+## Employee Record [/employees/{id}]
++ Parameters
+    + id (required, number, `12345`) ... The unique identifier of the employee
+
+### Retrieve an employee [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+    
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "staffCode:             "sc123",
+                "title":                "Mr",
+                "surname":              "Bloggs",
+                "forname":              "Joe",
+                "Department":           "Math",
+                "Position":             "Teacher",
+                "legalSurname":         "Bloggs",
+                "legalForename":        "Joseph",
+                "formerSurname":        "",
+                "middleName":           "Bob",
+                "dateOfBirth":          "31-12-1968",
+                "Gender":               "M",
+                "startDate":            "28-02-2014",
+                "teacherNumber":        "12456",
+                "email":                "joe.bloggs@theschool.edu",
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                        }],
+                "status":               "active",
+                "niNumber":             "NI1234HJGJ34",
+                qtStatus:               "",
+                qtsRoute:               "",
+                dateOfQTS:              "",
+                HTLA:                   "",
+                dateOfHTLAStatus:       "",
+                languageDetails:        [{}],
+                qualificationDetails:   [{
+                                            qualificationCode:  "",
+                                            subject1:           "",
+                                            subject2:           "",
+                                            classOfDegree:      "",
+                                            verified:           ""
+                                        }],
+                nationality:            "",
+                ethnicity:              "",
+                religion:               "",
+                laStartDate:            "",
+                disability:             ""
+            }
+
+### Update an employee [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+
+            {
+                "staffCode:             "sc123",
+                "title":                "Mr",
+                "surname":              "Bloggs",
+                "forname":              "Joe",
+                "Department":           "Math",
+                "Position":             "Teacher",
+                "legalSurname":         "Bloggs",
+                "legalForename":        "Joseph",
+                "formerSurname":        "",
+                "middleName":           "Bob",
+                "dateOfBirth":          "31-12-1968",
+                "Gender":               "M",
+                "startDate":            "28-02-2014",
+                "teacherNumber":        "12456",
+                "email":                "joe.bloggs@theschool.edu",
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                        }],
+                "status":               "active",
+                "niNumber":             "NI1234HJGJ34",
+                qtStatus:               "",
+                qtsRoute:               "",
+                dateOfQTS:              "",
+                HTLA:                   "",
+                dateOfHTLAStatus:       "",
+                languageDetails:        [{}],
+                qualificationDetails:   [{
+                                            qualificationCode:  "",
+                                            subject1:           "",
+                                            subject2:           "",
+                                            classOfDegree:      "",
+                                            verified:           ""
+                                        }],
+                nationality:            "",
+                ethnicity:              "",
+                religion:               "",
+                laStartDate:            "",
+                disability:             ""
+            }
+
++ Response 204
+
+
+## Employees Collection [/employees{?status}{?since}]
+Collection of all employees for a school
+
+### Retrieve collection of employees [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Parameters
+    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
+    + since (optional, string, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "employeeId":           12345,
+                "staffCode:             "sc123",
+                "title":                "Mr",
+                "surname":              "Bloggs",
+                "forname":              "Joe",
+                "Department":           "Math",
+                "Position":             "Teacher",
+                "legalSurname":         "Bloggs",
+                "legalForename":        "Joseph",
+                "formerSurname":        "",
+                "middleName":           "Bob",
+                "dateOfBirth":          "31-12-1968",
+                "Gender":               "M",
+                "startDate":            "28-02-2014",
+                "teacherNumber":        "12456",
+                "email":                "joe.bloggs@theschool.edu",
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                        }],
+                "status":               "active",
+                "niNumber":             "NI1234HJGJ34",
+                qtStatus:               "",
+                qtsRoute:               "",
+                dateOfQTS:              "",
+                HTLA:                   "",
+                DateOfHTLAStatus:       "",
+                LanguageDetails:        [{}],
+                QualificationDetails:   [{
+                                            qualificationCode:  "",
+                                            subject1:           "",
+                                            subject2:           "",
+                                            classOfDegree:      "",
+                                            verified:           ""
+                                        }],
+                nationality:            "",
+                ethnicity:              "",
+                religion:               "",
+                laStartDate:            "",
+                disability:             ""
+            },
+            {
+                "employeeId":           12345,
+                "staffCode:             "sc123",
+                "title":                "Mrs",
+                "surname":              "Doe",
+                "forname":              "Jane",
+                "Department":           "Math",
+                "Position":             "Teacher",
+                "legalSurname":         "Doe",
+                "legalForename":        "Jane",
+                "formerSurname":        "Smith",
+                "middleName":           "Bob",
+                "dateOfBirth":          "31-12-1968",
+                "Gender":               "F",
+                "startDate":            "28-02-2014",
+                "teacherNumber":        "12456",
+                "email":                "joe.bloggs@theschool.edu",
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015556655",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075556655",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "3 The Street",
+                                            "postCode": "DD55 38DD
+                                        }],
+                "status":               "active",
+                "niNumber":             "NI123JHJGJ34",
+                qtStatus:               "",
+                qtsRoute:               "",
+                dateOfQTS:              "",
+                HTLA:                   "",
+                DateOfHTLAStatus:       "",
+                LanguageDetails:        [{}],
+                QualificationDetails:   [{
+                                            qualificationCode:  "",
+                                            subject1:           "",
+                                            subject2:           "",
+                                            classOfDegree:      "",
+                                            verified:           ""
+                                        }],
+                nationality:            "",
+                ethnicity:              "",
+                religion:               "",
+                laStartDate:            "",
+                disability:             ""
+            }]
+
+
+# Group Learners
+Group of Learner-related resources
+
+## Learners Collection [/learners{?regGroup}{?year}{?course}]
++ Parameters
+    + regGroup (optional, string, `10A`) ... Learners within a registration group
+    + year (optional, string, `7`) ... Learners within a year
+    + course (optional, string, `KS3`) ... Learners within a course
+    
+### Retrieve a collection of learners [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "learnerId":       12345,
+                "learnerCode":     "2013-00132",
+                "UPN":             "U1234567890A",
+                "ULN":             "",
+                "Forename":        "Jonny",
+                "Surname":         "Doe",
+                "LegalForename":   "John",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "20/04/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "Male",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Providede by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "015556655",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "3 The Street",
+                                        "postCode": "DD55 38DD
+                                    }],
+                "status":           "active",
+                
+            }]
+
+## Learner Record [/learners/{id}]
++ Parameters
+    + id (required, int, `12345`) ... The unique identifier of the learner
+    
+### Retrieve a learner [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "learnerId":       12345,
+                "learnerCode":     "2013-00132",
+                "UPN":             "G999900210101",
+                "ULN":             "1234567890",
+                "Forename":        "Jonny",
+                "Surname":         "Doe",
+                "LegalForename":   "John",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "20/04/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "Male",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Providede by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "015556655",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "3 The Street",
+                                        "postCode": "DD55 38DD
+                                    }],
+                "status":           "active",
+                
+            }]
+
+
+
