@@ -79,11 +79,6 @@ Group of all employee-related resources
             }
 
 
-
-
-
-
-
 ## Employees Collection [/employees{?status}{?since}]
 Collection of all employees for a school
 
@@ -1239,4 +1234,137 @@ Update one to many learner records
                 
 
             }]
+
+# Group Groups
+Group of all Group-related resources
+
+## Groups Collection [/groups{?groupStartDate}{?groupEndDate}{?type}{?since}]
+
++ Parameters
+    + groupStartDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
+    + groupEndDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
+    + type (optional, string, `teachingGroup`) ... Type of Group to Return
+    + since (optional, string, `01-04-2014T18:00:00`) ... Groups modified since date provided
+    
+### Retrieve a collection of Groups [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "groupCode":    "9A",
+                "course":       "Key Stage 4"
+                "dateFrom":     ""
+                "dateTo":       ""
+                "employeeId":   [{
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00001"},
+                                {""}],
+                "groupId":      000001
+                "name":         "9A",
+                "size":         30
+                "subjectCode":  ""
+                "subjectName":  ""
+                "type":         "RegistrationGroup",
+                "Year":         "10"
+            },
+            {
+                "groupCode":    "10AR/1",
+                "course":       "Key Stage 4"
+                "dateFrom":     ""
+                "dateTo":       ""
+                "employeeId":   [{
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00001",
+                                },
+                                {
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00002",
+                                }],
+                "groupId":      000002
+                "name":         "10Art 1",
+                "size":         29
+                "subjectCode":  "AR"
+                "subjectName":  "Art"
+                "type":         "TeachingGroup",
+                "Year":         "10"
+            },
+            
+## Create/Update Group [/groups]
+### Create Group [PUT]
+Create one or many groups
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+             [{
+                "groupCode":    "9A",
+                "course":       "Key Stage 4"
+                "dateFrom":     ""
+                "dateTo":       ""
+                "employee":   [{
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00001"},
+                                {""}],
+                "name":         "9A",
+                "size":         30
+                "subjectCode":  ""
+                "subjectName":  ""
+                "type":         "RegistrationGroup",
+                "Year":         "10"
+            },
+            {
+                "groupCode":    "10SC/1",
+                "course":       "Key Stage 4"
+                "dateFrom":     ""
+                "dateTo":       ""
+                "employee":   [{
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00001"},
+                                {""}],
+                "name":         "10 Science 1",
+                "size":         30
+                "subjectCode":  "SC"
+                "subjectName":  "Science"
+                "type":         "TeachingGroup",
+                "Year":         "10"
+            }]
+
+
++ Response 200
+    + Body
+    
+            [{
+                "groupId":      000001
+                "groupCode":    "9B"
+             },
+            {
+                "groupId":      000002
+                "groupCode":    "10SC/1"
+            }]
+
+
+
+
+
+
+
+
+
+
 
