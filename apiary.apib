@@ -390,7 +390,7 @@ Update one to many employee records
 # Group Contacts
 Group of all contact-related resources
 
-## Learners Collection [/contacts{?Priority}{?Responsibility}]
+## Contacts Collection [/contacts{?Priority}{?Responsibility}]
 + Parameters
     + Priority (optional, int, `1`) ... Contacts with a Priority
     + Responsibility (optional, string, `true`) ... Contacts with Parental Responsibility
@@ -407,7 +407,288 @@ Group of all contact-related resources
 + Response 200 (application/json)
 
     + Body
+    
+            [{
+                "title":                "Mr"
+                "surname":              "King"
+                "forename":             "Ice"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "ice.king@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     true
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            },
+            {
+                "title":                "Mr"
+                "surname":              "Princess"
+                "forename":             "Fire"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "fire.princess@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     false
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            }]
+            
+            
+## Create/Update Contact Records [/contacts]
+### Create Contact [PUT]
+Create one to many contact records            
+            
++ Request (application/json)
 
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "title":                "Mr"
+                "surname":              "King"
+                "forename":             "Ice"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "ice.king@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     true
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            },
+            {
+                "title":                "Mr"
+                "surname":              "Princess"
+                "forename":             "Fire"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "fire.princess@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     false
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            }]
+    
+
+
++ Response 200
+    + Body
+    
+            [{
+                "contactId":            000001
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "phoneId":  00004
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "phoneId":  00005
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                            "AddressId":  00003
+                                        }],
+            },
+                "contactId":            000002
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "phoneId":  00006
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "phoneId":  00007
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                            "AddressId":  00004
+                                        }],
+            }]
+
+
+### Update Contact [POST]
+Update one to many contact records            
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "contactId":            000001
+                "title":                "Mr"
+                "surname":              "King"
+                "forename":             "Ice"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "ice.king@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     true
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "phoneId":  ""
+                                            "type":     "Home",
+                                            "number":   "0133321111111",
+                                            "smsFlag":  false
+                                        },{
+                                             "phoneId":  00005
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "smsFlag":  false
+                                        }],
+                "addressDetails":       [{
+                                            "AddressId":  ""
+                                            "type":     "Work",
+                                            "address":  "Newly Created Address",
+                                            "postCode": "DE56 6DH
+                                        }],
+            },
+            {
+                "title":                "Mr"
+                "surname":              "Princess"
+                "forename":             "Fire"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "updated@emailaddress.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     false
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{}],
+                "addressDetails":       [{}],
+            }]
+    
+
+
++ Response 200
+    + Body
+    
+            [{
+                "contactId":            000001
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                            "AddressId":  00007
+                                        }],
+            },
+                "contactId":            000002
+                
+            }]
+            
 
 # Group Learners
 Group of all learner-related resources
