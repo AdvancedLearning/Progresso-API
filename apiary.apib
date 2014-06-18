@@ -393,11 +393,20 @@ Group of all contact-related resources
 ## Learners Collection [/contacts{?Priority}{?Responsibility}]
 + Parameters
     + Priority (optional, int, `1`) ... Contacts with a Priority
-    + Responsibility (optional, string, true) ... Contacts with Parental Responsibility
+    + Responsibility (optional, string, `true`) ... Contacts with Parental Responsibility
     
-### 
+### Retrieve a collection of contacts [GET]
 
++ Request
 
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Response 200 (application/json)
+
+    + Body
 
 
 # Group Learners
