@@ -211,6 +211,8 @@ Collection of all employees for a school
 
 ### Create Employee [PUT]
 
+
+
 + Request (application/json)
 
     + Headers
@@ -408,7 +410,9 @@ Collection of all employees for a school
                 
             }]
 
-# Group CreatePeople
+# Group Create People
+
+## Create Employee Record [/create/people/employees/]
 
 ### Create Employee [PUT]
 
@@ -543,3 +547,128 @@ Collection of all employees for a school
                                         }]
 
 
+## Create Employee Record [/create/people/learners/]
+
+### Create Learner [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "learnerId":       00001,
+                "learnerCode":     "2013-00132",
+                "UPN":             "G999900210101",
+                "ULN":             "1234567890",
+                "Forename":        "Jonny",
+                "Surname":         "Doe",
+                "LegalForename":   "John",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "20/04/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "M",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Providede by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "015556655",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "18 The Lanes",
+                                        "postCode": "DD55 38DD
+                                    }],
+                "status":           "active",
+                
+            },
+            {
+                "learnerId":       00002,
+                "learnerCode":     "2013-00133",
+                "UPN":             "A12331AA13",
+                "ULN":             "9876543210",
+                "Forename":        "Milli",
+                "Surname":         "Doe",
+                "LegalForename":   "Jane",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "30/06/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "F",
+                "RegGroup":        "7L3",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Provided by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "11111111",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "071111111",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "3 The Lanes",
+                                        "postCode": "DD56 38DD
+                                    }],
+                "status":           "active",
+                }]
+
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode:             "JBl",
+                "learnerId":           "000001"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "11111111",
+                                            "phoneId":  "000051",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "071111111",
+                                            "phoneId":  "00006",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "phoneId":  "00003"
+                                        },
+            {
+                "LearnerCode:             "JDo",
+                "LearnerId":           "000002"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "phoneId":  "00007",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "phoneId":  "00008",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "AddressId":  "00004"
+                                        }]
