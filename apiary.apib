@@ -412,7 +412,7 @@ Collection of all employees for a school
 
 # Group Create People
 
-## Create Employee Record [/create/people/employees/]
+## Create Employee Records [/create/people/employees/]
 
 ### Create Employee [PUT]
 
@@ -489,7 +489,7 @@ Collection of all employees for a school
                                         },{
                                             "type":     "Work",
                                             "number":   "987654321",
-                                            "smsFlag":  true
+                                            "smsFlag":  false
                                         }],
                 "addressDetails":       [{
                                             "type":     "Home",
@@ -515,39 +515,160 @@ Collection of all employees for a school
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
-                                            "phoneId":  "00001",
+                                            "phoneId":  00001,
                                         },{
                                             "type":     "Mobile",
                                             "number":   "075555555",
-                                            "phoneId":  "00002",
+                                            "phoneId":  00002,
                                         }],
                 "addressDetails":       [{
                                             "type":     "Home",
                                             "address":  "1 The Street",
                                             "postCode": "DD55 36DD
-                                            "phoneId":  "00001"
+                                            "AddressId":  00001
                                         },
             {
                 "staffCode:             "JDo",
                 "EmployeeId":           "000002"
                 "phoneDetails":         [{
                                             "type":     "Home",
-                                            "number":   "015555555",
-                                            "phoneId":  "00002",
+                                            "number":   "123456789",
+                                            "phoneId":  00002,
                                         },{
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "phoneId":  "00003",
+                                            "type":     "work",
+                                            "number":   "987654321",
+                                            "phoneId":  00003,
                                         }],
                 "addressDetails":       [{
                                             "type":     "Home",
                                             "address":  "1 The Street",
                                             "postCode": "DD55 36DD
-                                            "AddressId":  "00002"
+                                            "AddressId":  00002
                                         }]
 
+## Create Contact Records [/create/people/contacts/]
 
-## Create Employee Record [/create/people/learners/]
+### Create Contact [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "title":                "Mr"
+                "surname":              "King"
+                "forename":             "Ice"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "ice.king@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     true
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            },
+            {
+                "title":                "Mr"
+                "surname":              "Princess"
+                "forename":             "Fire"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "fire.princess@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     false
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            }]
+    
+
+
++ Response 200
+    + Body
+    
+            [{
+                "contactId":            000001
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "phoneId":  00004
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "phoneId":  00005
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                            "AddressId":  00003
+                                        }],
+            },
+                "contactId":            000002
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "phoneId":  00006
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "phoneId":  00007
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                            "AddressId":  00004
+                                        }],
+            }]
+
+## Create Learner Records [/create/people/learners/]
 
 ### Create Learner [PUT]
 
@@ -595,6 +716,11 @@ Collection of all employees for a school
                                         "postCode": "DD55 38DD
                                     }],
                 "status":           "active",
+                "contacts":         [{
+                                        "contactId":    00001
+                                        "relationship":  "Father"
+                                        
+                                        
                 
             },
             {
