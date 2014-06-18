@@ -1131,14 +1131,38 @@ Update one to many learner records
                                         "otherHomeAddressLink":     false
                                         "sendSMS":                  true
                                     }]
+                },
+                {
+                "learnerCode":     "2013-00134",
+                "UPN":             "",
+                "ULN":             "",
+                "Forename":        "In",
+                "Surname":         "Valid",
+                "LegalForename":   "In",
+                "LegalSurname":    "Valid",
+                "DateOfBirth":     "",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "F",
+                "RegGroup":        "7L3",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Provided by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{}],
+                "addressDetails":   [{}],
+                "status":           "",
+                "contacts":         [{}]
                 }]
                 
 + Response 200
     + Body
     
             [{
-                "learnerCode:             "JBl",
-                "learnerId":           "000001"
+                "Status":               "Success",
+                "learnerCode:           "2013-00132",
+                "learnerId":            "000001"
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "11111111",
@@ -1160,6 +1184,7 @@ Update one to many learner records
                                         }]
             },
             {
+                "Status":               "Success",
                 "LearnerCode:             "JDo",
                 "LearnerId":           "000002"
                 "phoneDetails":         [{
@@ -1185,5 +1210,32 @@ Update one to many learner records
                                             "contactId":            000002
                                             "learnerContactRelId":  000003
                                         }]
+            },
+            {
+                "Status":           "Failure",
+                "learnerCode":     "2013-00134",
+                "UPN":             "",
+                "ULN":             "",
+                "Forename":        "In",
+                "Surname":         "Valid",
+                "LegalForename":   "In",
+                "LegalSurname":    "Valid",
+                "DateOfBirth":     "",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "F",
+                "RegGroup":        "7L3",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Provided by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{}],
+                "addressDetails":   [{}],
+                "status":           "",
+                "contacts":         [{}]
+                "Reason":           [{"Invalid Date of Birth"},
+                                    {"Invalid status"}]
+
             }]
 
