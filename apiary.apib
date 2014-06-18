@@ -771,6 +771,40 @@ Collection of all employees for a school
                                         "postCode": "DD56 38DD
                                     }],
                 "status":           "active",
+                "contacts":         [{
+                                        "contactId":                00001
+                                        "relationship":             "Step Father"
+                                        "writtenCommunication":     ""
+                                        "priority":                 2
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Secondary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   false
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  false
+                                    },
+                                    {
+                                        "contactId":                00002
+                                        "relationship":             "Mother"
+                                        "writtenCommunication":     ""
+                                        "priority":                 1
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Primary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   true
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  true
+                                    }]
                 }]
 
 + Response 200
@@ -817,4 +851,12 @@ Collection of all employees for a school
                                             "postCode": "DD55 36DD
                                             "AddressId":  "00004"
                                         },
+                "contacts":             [{
+                                            "contactId":            000001
+                                            "learnerContactRelId":  000002
+                                        },
+                                        {
+                                            "contactId":            000002
+                                            "learnerContactRelId":  000003
+                                        }]
             }]
