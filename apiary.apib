@@ -101,7 +101,7 @@ Collection of all employees for a school
     
             [{
                 "employeeId":           12345,
-                "staffCode:             "sc123",
+                "staffCode:             "JBl",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -152,8 +152,8 @@ Collection of all employees for a school
                 disability:             ""
             },
             {
-                "employeeId":           12345,
-                "staffCode:             "sc123",
+                "employeeId":           54321,
+                "staffCode:             "JDo",
                 "title":                "Mrs",
                 "surname":              "Doe",
                 "forname":              "Jane",
@@ -1322,7 +1322,6 @@ Create one or many groups
                                     "EmployeeId":   "00001"},
                                 {""}],
                 "name":         "9A",
-                "size":         30
                 "subjectCode":  ""
                 "subjectName":  ""
                 "type":         "RegistrationGroup",
@@ -1338,7 +1337,6 @@ Create one or many groups
                                     "EmployeeId":   "00001"},
                                 {""}],
                 "name":         "10 Science 1",
-                "size":         30
                 "subjectCode":  "SC"
                 "subjectName":  "Science"
                 "type":         "TeachingGroup",
@@ -1357,6 +1355,49 @@ Create one or many groups
                 "groupId":      000002
                 "groupCode":    "10SC/1"
             }]
+
+
+### Create Group [POST]
+Update one or many groups
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+             [{
+                "groupId":      000001
+                "groupCode":    "9B",
+                "course":       "Key Stage 4"
+                "dateFrom":     ""
+                "dateTo":       ""
+                "employee":   [{
+                                    "StaffCode":    "JDo",
+                                    "EmployeeId":   "00001"},
+                                {
+                                    "employeeId":           54321,
+                                    "staffCode:             "JDo"
+                                }],
+                "name":         "9A",
+                "subjectCode":  ""
+                "subjectName":  ""
+                "type":         "RegistrationGroup",
+                "Year":         "9"
+            }]
+
+
++ Response 200
+    + Body
+    
+            [{
+                "groupId":      000001
+                "groupCode":    "9B"
+             }]
 
 
 
