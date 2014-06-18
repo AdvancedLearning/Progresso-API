@@ -209,10 +209,97 @@ Collection of all employees for a school
                 disability:             ""
             }]
 
-## Employess Collection [/employees]
+## Create/Update Employee Records [/employees]
 ### Create Employee [PUT]
+Create one to many employee records
 
++ Request (application/json)
 
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+
+            {
+                "staffCode:             "sc123",
+                "title":                "Mr",
+                "surname":              "Bloggs",
+                "forname":              "Joe",
+                "Department":           "Math",
+                "Position":             "Teacher",
+                "legalSurname":         "Bloggs",
+                "legalForename":        "Joseph",
+                "formerSurname":        "",
+                "middleName":           "Bob",
+                "dateOfBirth":          "31-12-1968",
+                "Gender":               "M",
+                "startDate":            "28-02-2014",
+                "leftDate"              "21-06-2014",
+                "teacherNumber":        "12456",
+                "email":                "joe.bloggs@theschool.edu",
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                        }],
+                "status":               "active",
+                "NINumber":             "NI1234HJGJ34",
+                qtStatus:               "",
+                qtsRoute:               "",
+                dateOfQTS:              "",
+                HTLA:                   "",
+                dateOfHTLAStatus:       "",
+                languageDetails:        [{}],
+                qualificationDetails:   [{
+                                            qualificationCode:  "",
+                                            subject1:           "",
+                                            subject2:           "",
+                                            classOfDegree:      "",
+                                            verified:           ""
+                                        }],
+                nationality:            "",
+                ethnicity:              "",
+                religion:               "",
+                laStartDate:            "",
+                disability:             ""
+            }
+
++ Response 200
+    + Body
+    
+            [{
+                "staffCode:             "sc123",
+                "EmployeeId":           "000001"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "phoneId":  "00001",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "phoneId":  "00002",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "phoneId":  "00001"
+                                        }],
+
+### Update Employee Records [POST]
+Update one to many employee records
 
 + Request (application/json)
 
