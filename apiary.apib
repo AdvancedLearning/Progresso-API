@@ -312,6 +312,7 @@ Update one to many employee records
     + Body
 
             {
+                "employeeId":           000001
                 "staffCode:             "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
@@ -368,8 +369,8 @@ Update one to many employee records
     + Body
     
             [{
+                "EmployeeId":           "000001",
                 "staffCode:             "sc123",
-                "EmployeeId":           "000001"
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
@@ -693,11 +694,11 @@ Update one to many contact records
 # Group Learners
 Group of all learner-related resources
 
-## Learners Collection [/learners{?regGroup}{?year}{?course}]
+## Learners Collection [/learners{?status}{?since}]
 + Parameters
-    + regGroup (optional, string, `10A`) ... Learners within a registration group
-    + year (optional, string, `7`) ... Learners within a year
-    + course (optional, string, `KS3`) ... Learners within a course
+    + status (optional, string, `active`) ... Learners within a registration group
+    + since (optional, string, `01-04-2014T18:00:00`) ... Learners within a year
+    
     
 ### Retrieve a collection of learners [GET]
 
@@ -803,4 +804,386 @@ Group of all learner-related resources
                 
             }]
 
+
+## Create/Update Learner Records [/learners]
+### Create Learner [PUT]
+Create one to many learner records            
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+             [{
+                "learnerCode":     "2013-00132",
+                "UPN":             "G999900210101",
+                "ULN":             "1234567890",
+                "Forename":        "Jonny",
+                "Surname":         "Doe",
+                "LegalForename":   "John",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "20/04/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "M",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Providede by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "015556655",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "18 The Lanes",
+                                        "postCode": "DD55 38DD
+                                    }],
+                "status":           "active",
+                "contacts":         [{
+                                        "contactId":                00001
+                                        "relationship":             "Father"
+                                        "writtenCommunication":     ""
+                                        "priority":                 1
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Primary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   true
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  true
+                                    }]
+                                        
+                                        
+                
+            },
+            {
+                "learnerCode":     "2013-00133",
+                "UPN":             "A12331AA13",
+                "ULN":             "9876543210",
+                "Forename":        "Milli",
+                "Surname":         "Doe",
+                "LegalForename":   "Jane",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "30/06/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "F",
+                "RegGroup":        "7L3",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Provided by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "11111111",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "071111111",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "3 The Lanes",
+                                        "postCode": "DD56 38DD
+                                    }],
+                "status":           "active",
+                "contacts":         [{
+                                        "contactId":                00001
+                                        "relationship":             "Step Father"
+                                        "writtenCommunication":     ""
+                                        "priority":                 2
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Secondary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   false
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  false
+                                    },
+                                    {
+                                        "contactId":                00002
+                                        "relationship":             "Mother"
+                                        "writtenCommunication":     ""
+                                        "priority":                 1
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Primary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   true
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  true
+                                    }]
+                }]
+
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode:             "JBl",
+                "learnerId":           "000001"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "11111111",
+                                            "phoneId":  "000051",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "071111111",
+                                            "phoneId":  "00006",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "phoneId":  "00003"
+                                        },
+                "contacts":             [{
+                                            "contactId":            000001
+                                            "learnerContactRelId":  000001
+                                        }]
+            },
+            {
+                "LearnerCode:             "JDo",
+                "LearnerId":           "000002"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "phoneId":  "00007",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "phoneId":  "00008",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "AddressId":  "00004"
+                                        },
+                "contacts":             [{
+                                            "contactId":            000001
+                                            "learnerContactRelId":  000002
+                                        },
+                                        {
+                                            "contactId":            000002
+                                            "learnerContactRelId":  000003
+                                        }]
+            }]
+
+### Update Learner [POST]
+Update one to many learner records            
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "learnerCode":     "2013-00132",
+                "UPN":             "G999900210101",
+                "ULN":             "1234567890",
+                "Forename":        "Jonny",
+                "Surname":         "Doe",
+                "LegalForename":   "John",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "20/04/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "M",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Providede by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "phoneId":  "000051",
+                                        "type":     "Home",
+                                        "number":   "015556655",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "18 The Lanes",
+                                        "postCode": "DD55 38DD
+                                    }],
+                "status":           "active",
+                "contacts":         [{
+                                        "contactId":                00001
+                                        "relationship":             "Father"
+                                        "writtenCommunication":     ""
+                                        "priority":                 1
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Primary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   true
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  true
+                                    }]
+                                        
+                                        
+                
+            },
+            {
+                "learnerCode":     "2013-00133",
+                "UPN":             "A12331AA13",
+                "ULN":             "9876543210",
+                "Forename":        "Milli",
+                "Surname":         "Doe",
+                "LegalForename":   "Jane",
+                "LegalSurname":    "Doe",
+                "DateOfBirth":     "30/06/2002",
+                "Year":            "Year 7",
+                "Course":          "Key Stage 3",
+                "DateOfEntry":     "03/09/2013",
+                "Gender":          "F",
+                "RegGroup":        "7L3",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Provided by the parent",
+                "EnrolementStatus":"Current",
+                "NCYear":          "Year 7",
+                "PhoneDetails":    [{
+                                        "type":     "Home",
+                                        "number":   "11111111",
+                                        "smsFlag":  false
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "071111111",
+                                        "smsFlag":  true
+                                    }],
+                "addressDetails":   [{
+                                        "type":     "Home",
+                                        "address":  "3 The Lanes",
+                                        "postCode": "DD56 38DD
+                                    }],
+                "status":           "active",
+                "contacts":         [{
+                                        "contactId":                00001
+                                        "relationship":             "Step Father"
+                                        "writtenCommunication":     ""
+                                        "priority":                 2
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Secondary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   false
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  false
+                                    },
+                                    {
+                                        "contactId":                00002
+                                        "relationship":             "Mother"
+                                        "writtenCommunication":     ""
+                                        "priority":                 1
+                                        "contactPrioritySource":    ""
+                                        "emergencyContactLevel":    "Primary"
+                                        "nextOfKin":                false
+                                        "addressDisclosure":        false
+                                        "addressTransferred":       false
+                                        "parentalResponsibility":   true
+                                        "feePayer":                 false
+                                        "parentalPortal":           true
+                                        "homeAddressLink":          true
+                                        "otherHomeAddressLink":     false
+                                        "sendSMS":                  true
+                                    }]
+                }]
+                
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode:             "JBl",
+                "learnerId":           "000001"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "11111111",
+                                            "phoneId":  "000051",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "071111111",
+                                            "phoneId":  "00006",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "phoneId":  "00003"
+                                        },
+                "contacts":             [{
+                                            "contactId":            000001
+                                            "learnerContactRelId":  000001
+                                        }]
+            },
+            {
+                "LearnerCode:             "JDo",
+                "LearnerId":           "000002"
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "015555555",
+                                            "phoneId":  "00007",
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "075555555",
+                                            "phoneId":  "00008",
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "1 The Street",
+                                            "postCode": "DD55 36DD
+                                            "AddressId":  "00004"
+                                        },
+                "contacts":             [{
+                                            "contactId":            000001
+                                            "learnerContactRelId":  000002
+                                        },
+                                        {
+                                            "contactId":            000002
+                                            "learnerContactRelId":  000003
+                                        }]
+            }]
 
