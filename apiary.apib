@@ -4,7 +4,7 @@ HOST: http://api.progresso.net/v2
 # Progresso API
 Provides the ability to manage school information.
 
-# Group GetPeople
+# Group Employees
 Group of all employee-related resources
 
 ## Employee Record [/employees/{id}]
@@ -299,6 +299,8 @@ Collection of all employees for a school
                                         }],
 
 
+# Group Learners
+Group of all learner-related resources
 
 ## Learners Collection [/learners{?regGroup}{?year}{?course}]
 + Parameters
@@ -641,7 +643,104 @@ Collection of all employees for a school
                                             "AddressId":  00002
                                         }]
 
+
+### Employee [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+
+
++ Response 200
+    + Body
+
+
 ## Contact Records [/people/contacts/]
+
+### Contact [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
++ Response 200
+    + Body
+    
+            [{
+                "title":                "Mr"
+                "surname":              "King"
+                "forename":             "Ice"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "ice.king@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     true
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "013332552552",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "07707707707",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "18 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            },
+            {
+                "title":                "Mr"
+                "surname":              "Princess"
+                "forename":             "Fire"
+                "middleName":           ""
+                "gender":               "M"
+                "email":                "fire.princess@home.com"
+                "language":             "English"
+                "occupation":           ""
+                "nationality":          "UK"
+                "isMedicalContact":     false
+                "workEmail":            ""
+                "employer":             ""
+                "translatorReqiured":   false
+                "exPupil":              false
+                "medicalType":          ""
+                "visaNumber":           ""
+                "memberOfArmedForces":  false
+                "phoneDetails":         [{
+                                            "type":     "Home",
+                                            "number":   "01332225225",
+                                            "smsFlag":  false
+                                        },{
+                                            "type":     "Mobile",
+                                            "number":   "0777707777",
+                                            "smsFlag":  true
+                                        }],
+                "addressDetails":       [{
+                                            "type":     "Home",
+                                            "address":  "20 The Avenue",
+                                            "postCode": "DE56 6DH
+                                        }],
+            }]
 
 ### Contact [PUT]
 
