@@ -1287,38 +1287,161 @@ Update one to many learner records
                                         }],
                     
             
-            
-            
             },
             {
                "learnerCode":          "2013-00133",
                 "learnerId":             000002,
                 "allergies":              [{
-                
+                                                "Wheat":        "true"
                 
                                           {],
-                "foodPreference":        [{
-                
-                
-                
-                                        }],
+                "foodPreference":        [{ }],
                 "dietaryNotes":         "",
                 "disabilities":           [{
-                
-                
+                                                "Not Collected": "true"
                                           }],
                 "disabilityNotes":      "",
-                "medicalConditions":    [{
+                "medicalConditions":    [{ }],
+                "medicalEvents":        [{}],
+            
+            }]
+            
+## Create/Update Learner Health Details [/learnerHealth]
+### Create Learner Health [PUT]
+Create one to many learner health records            
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+           
+            {
+               "learnerCode":          "2013-00133",
+                "learnerId":             000002,
+                "allergies":              [{
+                                                "Wheat":        "true"
                 
+                                          {],
+                "foodPreference":        [{ }],
+                "dietaryNotes":         "",
+                "disabilities":           [{
+                                                "Not Collected": "true"
+                                          }],
+                "disabilityNotes":      "",
+                 "medicalConditions":    [{
+                                                "Condition":    "Asthma",
+                                                "InfoDate":     "19/06/2014",
+                                                "Notes":        "Asthma Attack - Added",
                 
                                         }],
                 "medicalEvents":        [{
-                
-                
+                                                "events Type":          "Allergic Reaction",
+                                                "from Date":            "19/06/2014"
+                                                "to Date":              "19/06/2014"
+                                                "incident Location":    "Office",
+                                                "notes":                "Eggs"
+
                                         }],
             
-            }]
+            }
+
++ Response 200
+    + Body
     
+            [{
+                "Status":               "Success",
+                "learnerCode:           "2013-00132",
+                "learnerId":            "000001"
+                "medicalConditions":    [{
+                                                "Condition":    "Asthma",
+                                                "InfoDate":     "19/06/2014",
+                                                "Notes":        "Asthma Attack - Added",
+                                                "conditionId":  000001
+                
+                                        }],
+                "medicalEvents":        [{
+                                                "events Type":          "Allergic Reaction",
+                                                "from Date":            "19/06/2014"
+                                                "to Date":              "19/06/2014"
+                                                "incident Location":    "Office",
+                                                "notes":                "Eggs"
+                                                "MedicalEventId":          000001
+                                        }],
+
+
+### Update Learner Health [POST]
+Update one to many learner heatlh records            
+            
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+           
+            {
+               "learnerCode":          "2013-00133",
+                "learnerId":             000002,
+                "allergies":              [{
+                                                "Wheat":        "true"
+                
+                                          {],
+                "foodPreference":        [{ }],
+                "dietaryNotes":         "",
+                "disabilities":           [{
+                                                "Not Collected": "true"
+                                          }],
+                "disabilityNotes":      "",
+                 "medicalConditions":    [{
+                                                "conditionId":  000001
+                                                "Condition":    "Asthma",
+                                                "InfoDate":     "19/06/2014",
+                                                "Notes":        "Asthma Attack - Updated",
+                
+                                        }],
+                "medicalEvents":        [{
+                                                "MedicalEventId":          000001
+                                                "events Type":          "Allergic Reaction",
+                                                "from Date":            "19/06/2014"
+                                                "to Date":              "19/06/2014"
+                                                "incident Location":    "Office",
+                                                "notes":                "Eggs"
+
+                                        }],
+            
+            }
+
++ Response 200
+    + Body
+    
+            [{
+                "Status":               "Success",
+                "learnerCode:           "2013-00132",
+                "learnerId":            "000001"
+                "medicalConditions":    [{
+                                                "Condition":    "Asthma",
+                                                "InfoDate":     "19/06/2014",
+                                                "Notes":        "Asthma Attack - Updated",
+                                                "conditionId":  000001
+                
+                                        }],
+                "medicalEvents":        [{
+                                                "events Type":          "Allergic Reaction",
+                                                "from Date":            "19/06/2014"
+                                                "to Date":              "19/06/2014"
+                                                "incident Location":    "Office",
+                                                "notes":                "Eggs"
+                                                "conditionId":          000002
+                                        }],
+
 
 
 # Group Groups
