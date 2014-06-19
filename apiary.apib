@@ -1308,7 +1308,7 @@ Update one to many learner records
             
 ## Create/Update Learner Health Details [/learnerHealth]
 ### Create Learner Health [PUT]
-Create one to many learner health records            
+Create one to many learner health records
             
 + Request (application/json)
 
@@ -1387,7 +1387,7 @@ Update one to many learner heatlh records
 
     + Body
            
-            {
+            [{
                "learnerCode":          "2013-00133",
                 "learnerId":             000002,
                 "allergies":              [{
@@ -1417,7 +1417,7 @@ Update one to many learner heatlh records
 
                                         }],
             
-            }
+            }]
 
 + Response 200
     + Body
@@ -1442,6 +1442,49 @@ Update one to many learner heatlh records
                                                 "conditionId":          000002
                                         }],
 
+
+## Create/Update Learner Attendance [/learnerAttendance]
+### Create Learner Attendance [PUT]
+Create Attendance for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+           
+            [{
+                "learnerCode":          "2013-00001",
+                "attendanceStartDate":  "16-06-2014",
+                "rollCallSessionStart": "AM",
+                "AttendanceString":     "/\/\/\/\/\##IIII/\/\/\",
+            },
+            {
+                "learnerCode":          "2013-00001",
+                "attendanceStartDate":  "16-06-2014",
+                "rollCallSessionStart": "AM",
+                "AttendanceString":     "BBBB/\/\/\##/\/\/\/\/\",
+                
+            }
+            
+            }]
+
++ Response 200
+    + Body
+    
+            [{
+                 "learnerCode":          "2013-00001",
+                 "status":             "success"
+            },
+            {
+                "learnerCode":          "2013-00001",
+                 "status":             "success"
+                
+            }]
 
 
 # Group Groups
