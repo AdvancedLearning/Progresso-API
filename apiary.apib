@@ -101,7 +101,7 @@ Collection of all employees for a school
     
             [{
                 "employeeId":           12345,
-                "staffCode:             "JBl",
+                "staffCode":             "JBl",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -153,7 +153,7 @@ Collection of all employees for a school
             },
             {
                 "employeeId":           54321,
-                "staffCode:             "JDo",
+                "staffCode":             "JDo",
                 "title":                "Mrs",
                 "surname":              "Doe",
                 "forname":              "Jane",
@@ -219,7 +219,7 @@ Create one to many employee records
     + Body
 
             {
-                "staffCode:             "sc123",
+                "staffCode":             "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -275,7 +275,7 @@ Create one to many employee records
     + Body
     
             [{
-                "staffCode:             "sc123",
+                "staffCode":             "sc123",
                 "EmployeeId":           "000001"
                 "phoneDetails":         [{
                                             "type":     "Home",
@@ -290,8 +290,9 @@ Create one to many employee records
                                             "type":     "Home",
                                             "address":  "1 The Street",
                                             "postCode": "DD55 36DD
-                                            "phoneId":  "00001"
-                                        }],
+                                            "addressId":  "00001"
+                                        }]
+            }]
 
 ### Update Employee Records [POST]
 Update one to many employee records
@@ -308,7 +309,7 @@ Update one to many employee records
 
             {
                 "employeeId":           000001
-                "staffCode:             "sc123",
+                "staffCode":             "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -380,7 +381,8 @@ Update one to many employee records
                                             "address":  "1 The Street",
                                             "postCode": "DD55 36DD
                                             "phoneId":  "00001"
-                                        }],
+                                        }]
+            }]
 
 
 # Group Contacts
@@ -487,6 +489,7 @@ Create one to many contact records
     + Body
     
             [{
+                "contactCode":          "3447"
                 "title":                "Mr"
                 "surname":              "King"
                 "forename":             "Ice"
@@ -520,6 +523,7 @@ Create one to many contact records
                                         }],
             },
             {
+                "contactCode":          "3448"
                 "title":                "Mr"
                 "surname":              "Princess"
                 "forename":             "Fire"
@@ -559,6 +563,7 @@ Create one to many contact records
     + Body
     
             [{
+                "contactCode":          "3447"
                 "contactId":            000001
                 "phoneDetails":         [{
                                             "type":     "Home",
@@ -576,6 +581,7 @@ Create one to many contact records
                                             "AddressId":  00003
                                         }],
             },
+                "contactCode":          "3448"
                 "contactId":            000002
                 "phoneDetails":         [{
                                             "type":     "Home",
