@@ -308,7 +308,7 @@ Update one to many employee records
     + Body
 
             {
-                "employeeId":           000001
+                "employeeId":           000001,
                 "staffCode":             "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
@@ -322,7 +322,7 @@ Update one to many employee records
                 "dateOfBirth":          "31-12-1968",
                 "Gender":               "M",
                 "startDate":            "28-02-2014",
-                "leftDate"              "21-06-2014",
+                "leftDate":              "21-06-2014",
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
@@ -341,24 +341,24 @@ Update one to many employee records
                                         }],
                 "status":               "active",
                 "NINumber":             "NI1234HJGJ34",
-                qtStatus:               "",
-                qtsRoute:               "",
-                dateOfQTS:              "",
-                HTLA:                   "",
-                dateOfHTLAStatus:       "",
-                languageDetails:        [{}],
-                qualificationDetails:   [{
-                                            qualificationCode:  "",
-                                            subject1:           "",
-                                            subject2:           "",
-                                            classOfDegree:      "",
-                                            verified:           ""
+                "qtStatus":               "",
+                "qtsRoute":               "",
+                "dateOfQTS":              "",
+                "HTLA":                   "",
+                "dateOfHTLAStatus":       "",
+                "languageDetails":        [{}],
+                "qualificationDetails":   [{
+                                            "qualificationCode":  "",
+                                            "subject1":           "",
+                                            "subject2":           "",
+                                            "classOfDegree":      "",
+                                            "verified":           ""
                                         }],
-                nationality:            "",
-                ethnicity:              "",
-                religion:               "",
-                laStartDate:            "",
-                disability:             ""
+                "nationality":            "",
+                "ethnicity":              "",
+                "religion":               "",
+                "laStartDate":            "",
+                "disability":             ""
             }
 
 + Response 200
@@ -366,15 +366,15 @@ Update one to many employee records
     
             [{
                 "EmployeeId":           "000001",
-                "staffCode:             "sc123",
+                "staffCode":             "sc123",
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
-                                            "phoneId":  "00001",
+                                            "phoneId":  "00001"
                                         },{
                                             "type":     "Mobile",
                                             "number":   "075555555",
-                                            "phoneId":  "00002",
+                                            "phoneId":  "00002"
                                         }],
                 "addressDetails":       [{
                                             "type":     "Home",
