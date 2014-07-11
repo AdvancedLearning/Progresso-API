@@ -1401,7 +1401,7 @@ Update one to many learner heatlh records
                 "allergies":              [{
                                                 "Wheat":        "true"
                 
-                                          {],
+                                          }],
                 "foodPreference":        [{ }],
                 "dietaryNotes":         "",
                 "disabilities":           [{
@@ -1409,21 +1409,21 @@ Update one to many learner heatlh records
                                           }],
                 "disabilityNotes":      "",
                  "medicalConditions":    [{
-                                                "conditionId":  000001
+                                                "conditionId":  000001,
                                                 "Condition":    "Asthma",
                                                 "InfoDate":     "19/06/2014",
-                                                "Notes":        "Asthma Attack - Updated",
+                                                "Notes":        "Asthma Attack - Updated"
                 
                                         }],
                 "medicalEvents":        [{
-                                                "MedicalEventId":          000001
+                                                "MedicalEventId":          000001,
                                                 "events Type":          "Allergic Reaction",
-                                                "from Date":            "19/06/2014"
-                                                "to Date":              "19/06/2014"
+                                                "from Date":            "19/06/2014",
+                                                "to Date":              "19/06/2014",
                                                 "incident Location":    "Office",
                                                 "notes":                "Eggs"
 
-                                        }],
+                                        }]
             
             }]
 
@@ -1432,8 +1432,8 @@ Update one to many learner heatlh records
     
             [{
                 "Status":               "Success",
-                "learnerCode:           "2013-00132",
-                "learnerId":            "000001"
+                "learnerCode":           "2013-00132",
+                "learnerId":            "000001",
                 "medicalConditions":    [{
                                                 "Condition":    "Asthma",
                                                 "InfoDate":     "19/06/2014",
@@ -1443,13 +1443,13 @@ Update one to many learner heatlh records
                                         }],
                 "medicalEvents":        [{
                                                 "events Type":          "Allergic Reaction",
-                                                "from Date":            "19/06/2014"
-                                                "to Date":              "19/06/2014"
+                                                "from Date":            "19/06/2014",
+                                                "to Date":              "19/06/2014",
                                                 "incident Location":    "Office",
-                                                "notes":                "Eggs"
+                                                "notes":                "Eggs",
                                                 "conditionId":          000002
-                                        }],
-
+                                        }]
+            }]
 
 ## Create/Update Learner Attendance [/learnerAttendance]
 ### Create Learner Attendance [PUT]
@@ -1526,8 +1526,8 @@ Group of all Group-related resources
                 "dateTo":       "",
                 "employeeId":   [{
                                     "StaffCode":    "JDo",
-                                    "EmployeeId":   "00001"},
-                                {""}],
+                                    "EmployeeId":   "00001"}
+                                ],
                 "groupId":      000001,
                 "name":         "9A",
                 "size":         30,
@@ -1543,11 +1543,11 @@ Group of all Group-related resources
                 "dateTo":       "",
                 "employeeId":   [{
                                     "StaffCode":    "JDo",
-                                    "EmployeeId":   "00001",
+                                    "EmployeeId":   "00001"
                                 },
                                 {
                                     "StaffCode":    "JDo",
-                                    "EmployeeId":   "00002",
+                                    "EmployeeId":   "00002"
                                 }],
                 "groupId":      000002,
                 "name":         "10Art 1",
@@ -1556,7 +1556,7 @@ Group of all Group-related resources
                 "subjectName":  "Art",
                 "type":         "TeachingGroup",
                 "Year":         "10"
-            },
+            }]
             
 ## Create/Update Group [/groups]
 ### Create Group [PUT]
