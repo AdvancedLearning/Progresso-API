@@ -1264,13 +1264,13 @@ Update one to many learner records
                 "learnerCode":          "2013-00132",
                 "learnerId":             000001,
                 "allergies":              [{
-                                                "Egg":          "true",
+                                                "Egg":          "true"
                                             },
                                             {
                                                 "Shellfish":    "true"
                                           }],
                 "foodPreference":        [{
-                                                "DairyFree":    "true",
+                                                "DairyFree":    "true"
 
                                         }],
                 "dietaryNotes":         "",
@@ -1282,17 +1282,17 @@ Update one to many learner records
                 "medicalConditions":    [{
                                                 "Condition":    "Asthma",
                                                 "InfoDate":     "19/06/2014",
-                                                "Notes":        "Asthma Attack",
+                                                "Notes":        "Asthma Attack"
                 
                                         }],
                 "medicalEvents":        [{
                                                 "events Type":          "Allergic Reaction",
-                                                "from Date":            "19/06/2014"
-                                                "to Date":              "19/06/2014"
+                                                "from Date":            "19/06/2014",
+                                                "to Date":              "19/06/2014",
                                                 "incident Location":    "Office",
                                                 "notes":                "Eggs"
 
-                                        }],
+                                        }]
                     
             
             },
@@ -1302,7 +1302,7 @@ Update one to many learner records
                 "allergies":              [{
                                                 "Wheat":        "true"
                 
-                                          {],
+                                          }],
                 "foodPreference":        [{ }],
                 "dietaryNotes":         "",
                 "disabilities":           [{
@@ -1310,7 +1310,7 @@ Update one to many learner records
                                           }],
                 "disabilityNotes":      "",
                 "medicalConditions":    [{ }],
-                "medicalEvents":        [{}],
+                "medicalEvents":        [{}]
             
             }]
             
@@ -1334,7 +1334,7 @@ Create one to many learner health records
                 "allergies":              [{
                                                 "Wheat":        "true"
                 
-                                          {],
+                                          }],
                 "foodPreference":        [{ }],
                 "dietaryNotes":         "",
                 "disabilities":           [{
@@ -1344,17 +1344,17 @@ Create one to many learner health records
                  "medicalConditions":    [{
                                                 "Condition":    "Asthma",
                                                 "InfoDate":     "19/06/2014",
-                                                "Notes":        "Asthma Attack - Added",
+                                                "Notes":        "Asthma Attack - Added"
                 
                                         }],
                 "medicalEvents":        [{
                                                 "events Type":          "Allergic Reaction",
-                                                "from Date":            "19/06/2014"
-                                                "to Date":              "19/06/2014"
+                                                "from Date":            "19/06/2014",
+                                                "to Date":              "19/06/2014",
                                                 "incident Location":    "Office",
                                                 "notes":                "Eggs"
 
-                                        }],
+                                        }]
             
             }
 
@@ -1363,8 +1363,8 @@ Create one to many learner health records
     
             [{
                 "Status":               "Success",
-                "learnerCode:           "2013-00132",
-                "learnerId":            "000001"
+                "learnerCode":           "2013-00132",
+                "learnerId":            "000001",
                 "medicalConditions":    [{
                                                 "Condition":    "Asthma",
                                                 "InfoDate":     "19/06/2014",
@@ -1374,13 +1374,13 @@ Create one to many learner health records
                                         }],
                 "medicalEvents":        [{
                                                 "events Type":          "Allergic Reaction",
-                                                "from Date":            "19/06/2014"
-                                                "to Date":              "19/06/2014"
+                                                "from Date":            "19/06/2014",
+                                                "to Date":              "19/06/2014",
                                                 "incident Location":    "Office",
-                                                "notes":                "Eggs"
-                                                "MedicalEventId":          000001
-                                        }],
-
+                                                "notes":                "Eggs",
+                                                "MedicalEventId":        000001
+                                        }]
+            }]
 
 ### Update Learner Health [POST]
 Update one to many learner heatlh records            
