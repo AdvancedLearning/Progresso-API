@@ -1499,7 +1499,7 @@ Create Attendance for one to many learners
 Group of all Group-related resources
 
 ## Groups Collection [/groups{?groupStartDate}{?groupEndDate}{?type}{?since}]
-
+### Get Groups [GET]
 + Parameters
     + groupStartDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
     + groupEndDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
@@ -1664,7 +1664,27 @@ Update one or many groups
 
 
 
+# Group Academic Data
+Group of all Academic Resources
 
+## AcademicYear [/AcademicYear/{id?}]
+
+
++ Parameters
+    + id (required, number, `12345`) ... The unique identifier of the employee
+
+### Retrieve AcadmicYear [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+    
+
++ Response 200 (application/json)
 
 
 
