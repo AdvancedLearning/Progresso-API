@@ -1499,7 +1499,7 @@ Create Attendance for one to many learners
 Group of all Group-related resources
 
 ## Groups Collection [/groups{?groupStartDate}{?groupEndDate}{?type}{?since}]
-### Get Groups [GET]
+
 + Parameters
     + groupStartDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
     + groupEndDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
@@ -1656,6 +1656,7 @@ Update one or many groups
     
             [{
                 "status":       "success",
+                "details":      "Update Successful"
                 "groupId":      000001,
                 "groupCode":    "9B"
              }]
@@ -1667,11 +1668,10 @@ Update one or many groups
 # Group Academic Data
 Group of all Academic Resources
 
-## AcademicYear [/AcademicYear/{id?}]
-
+## AcademicYear [/academicYear/{?id}]
 
 + Parameters
-    + id (required, number, `12345`) ... The unique identifier of the employee
+    + id (optional, number, `12345`) ... The unique identifier of the employee
 
 ### Retrieve AcadmicYear [GET]
 
@@ -1682,10 +1682,117 @@ Group of all Academic Resources
             partnerToken: validPartnerToken
             schoolId: validSchoolId
         
-    
 
 + Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "name":             "Academic Year 2014/2015",
+                "startDate":        "01/09/2014",
+                "endDate":          "31/08/2015"
+                
+             },
+            {
+                "academicYearId":   2
+                "name":             "Academic Year 2013/2014",
+                "startDate":        "01/09/2013",
+                "endDate":          "31/08/2014"
+                
+            }]
 
+
+## Create/Update Academic Years [/academicYear]
+### Create Academic Year [PUT]
+Create one to many academic years
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "name":             "Academic Year 2014/2015",
+                "startDate":        "01/09/2014",
+                "endDate":          "31/08/2015"
+                
+             },
+            {
+                "name":             "Academic Year 2013/2014",
+                "startDate":        "01/09/2013",
+                "endDate":          "31/08/2014"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "name":             "Academic Year 2014/2015",
+                "startDate":        "01/09/2014",
+                "endDate":          "31/08/2015"
+                
+             },
+            {
+                "academicYearId":   2
+                "name":             "Academic Year 2013/2014",
+                "startDate":        "01/09/2013",
+                "endDate":          "31/08/2014"
+                
+            }]
+
+
+### Create Academic Year [POST]
+Update one to many academic years
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "academicYearId":   1
+                "name":             "AC 2014/2015",
+                "startDate":        "01/09/2014",
+                "endDate":          "31/08/2015"
+                
+             },
+            {
+                "academicYearId":   32132
+                "name":             "AC 2013/2014",
+                "startDate":        "01/09/2013",
+                "endDate":          "31/08/2014"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "status":           true
+                "details":          "Update Successful"
+                
+             },
+            {
+                "academicYearId":   32132
+                "status":           false
+                "details":          "Invalid academicYearId"
+                
+            }]
 
 
 
