@@ -1671,7 +1671,7 @@ Group of all Academic Resources
 ## AcademicYear [/academicYear/{?id}]
 
 + Parameters
-    + id (optional, number, `12345`) ... The unique identifier of the employee
+    + id (optional, number, `12345`) ... The unique identifier of the Academic Year
 
 ### Retrieve AcadmicYear [GET]
 
@@ -1749,7 +1749,7 @@ Create one to many academic years
             }]
 
 
-### Create Academic Year [POST]
+### Update Academic Year [POST]
 Update one to many academic years
 
 + Request (application/json)
@@ -1795,5 +1795,139 @@ Update one to many academic years
             }]
 
 
+## Academic Terms [/academicTerms/{?id}{?AcYearId}]
 
++ Parameters
+    + id (optional, number, `12345`) ... The unique identifier of the Academic Term
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve AcadmicTerms [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "academicTermId":   1
+                "name":             "Autumn",
+                "startDate":        "01/09/2014",
+                "endDate":          "19/12/2014"
+                
+             },
+            {
+                "academicYearId":   1
+                "academicTermId":   2
+                "name":             "Spring",
+                "startDate":        "05/01/2015",
+                "endDate":          "10/04/2015"
+                
+            }]
+
+## Create/Update Academic Terms [/academicTerms]
+### Create Academic Term [PUT]
+Create one to many academic terms
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "academicYearId":   1
+                "name":             "Autumn",
+                "startDate":        "01/09/2014",
+                "endDate":          "19/12/2014"
+                
+             },
+            {
+               "academicYearId":   1
+                "name":             "Spring",
+                "startDate":        "05/01/2015",
+                "endDate":          "10/04/2015"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "academicTermId":   1
+                "name":             "Autumn",
+                "startDate":        "01/09/2014",
+                "endDate":          "19/12/2014"
+                
+             },
+            {
+                "academicYearId":   1
+                "academicTermId":   2
+                "name":             "Spring",
+                "startDate":        "05/01/2015",
+                "endDate":          "10/04/2015"
+                
+            }]
+
+
+### Update Academic Term [POST]
+Update one to many academic terms
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "academicTermId":   1
+                "name":             "Autumn",
+                "startDate":        "05/09/2014",
+                "endDate":          "19/12/2014"
+                
+             },
+            {
+               "academicTermId":   2
+                "name":             "Spring",
+                "startDate":        "05/01/2015",
+                "endDate":          "10/04/2015"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "academicTermId":   1
+                "name":             "Autumn",
+                "startDate":        "01/09/2014",
+                "endDate":          "19/12/2014"
+                
+             },
+            {
+                "academicYearId":   1
+                "academicTermId":   2
+                "name":             "Spring",
+                "startDate":        "05/01/2015",
+                "endDate":          "10/04/2015"
+                
+            }]
 
