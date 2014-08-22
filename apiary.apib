@@ -97,7 +97,7 @@ Collection of all employees for a school
 
 + Parameters
     + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
-    + since (optional, string, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
 
 + Response 200 (application/json)
 
@@ -704,7 +704,7 @@ Group of all learner-related resources
 ## Learners Collection [/learners{?status}{?since}]
 + Parameters
     + status (optional, string, `active`) ... Learners within a registration group
-    + since (optional, string, `01-04-2014T18:00:00`) ... Learners within a year
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Learners within a year
     
     
 ### Retrieve a collection of learners [GET]
@@ -1249,7 +1249,7 @@ Update one to many learner records
             
 ## Learner Health Details [/learnerHealth{?since}]
 + Parameters
-    + since (optional, string, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
 ### Retrieve a learner Health Details [GET]
 
@@ -1505,10 +1505,10 @@ Group of all Group-related resources
 ## Groups Collection [/groups{?groupStartDate}{?groupEndDate}{?type}{?since}]
 
 + Parameters
-    + groupStartDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
-    + groupEndDate (optional, string, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
+    + groupStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
+    + groupEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
     + type (optional, string, `teachingGroup`) ... Type of Group to Return
-    + since (optional, string, `01-04-2014T18:00:00`) ... Groups modified since date provided
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Groups modified since date provided
     
 ### Retrieve a collection of Groups [GET]
 
