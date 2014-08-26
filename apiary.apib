@@ -2087,3 +2087,268 @@ Update one to many academic terms
                 
             }]
 
+## Terms Breaks [/termBreaks/{?id}{?AcYearId}]
+
++ Parameters
+    + id (optional, number, `12345`) ... The unique identifier of the Term Break
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve TermBreaks [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "TermBreakId":   1
+                "name":             "Spring Half Term",
+                "startDate":        "25/05/2014",
+                "endDate":          "01/06/2014"
+                
+             },
+            {
+                "academicYearId":   1
+                "TermBreakId":   2
+                "name":             "Autumn Half Term",
+                "startDate":        "26/10/2013",
+                "endDate":          "02/11/2013"
+                
+            }]
+
+
+## Create/Update Academic Terms [/termBreaks]
+### Create Term Breaks [POST]
+Create one to many terms breaks
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "academicYearId":   1
+                 "name":             "Spring Half Term",
+                "startDate":        "25/05/2014",
+                "endDate":          "01/06/2014"
+                
+             },
+            {
+               "academicYearId":   1
+                "name":             "Autumn Half Term",
+                "startDate":        "26/10/2013",
+                "endDate":          "02/11/2013"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicYearId":   1
+                "academicTermId":   1
+                 "name":             "Spring Half Term",
+                "startDate":        "25/05/2014",
+                "endDate":          "01/06/2014"
+                
+             },
+            {
+                "academicYearId":   1
+                "academicTermId":   2
+                "name":             "Autumn Half Term",
+                "startDate":        "26/10/2013",
+                "endDate":          "02/11/2013"
+                
+            }]
+
+
+### Update Term Breaks [PUT]
+Update one to many terms breaks
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "academicTermId":   1
+                "name":             "Spring Half Term",
+                "startDate":        "23/05/2014",
+                "endDate":          "01/06/2014"
+                
+             },
+            {
+               "academicTermId":   2
+                 "name":             "Autumn Half Term",
+                "startDate":        "26/10/2013",
+                "endDate":          "02/11/2013"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "academicTermId":   1
+                "name":             "Spring Half Term",
+                "startDate":        "23/05/2014",
+                "endDate":          "01/06/2014"
+                
+             },
+            {
+                "academicTermId":   2
+                 "name":             "Autumn Half Term",
+                "startDate":        "26/10/2013",
+                "endDate":          "05/11/2013"
+                
+            }]
+
+
+## Week Structure [/weekStructure/{?AcYearId}]
+
++ Parameters
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve WeekStructure [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "AcYearId":             1
+                "name":                 "Sunday",
+                "workingNonWorking":    "Non-Working Day"
+             },
+            {
+                "AcYearId":             1
+                "name":                 "Monday",
+                "workingNonWorking":    "Full Working Day"
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Tuesday",
+                "workingNonWorking":    " Half Working Day - AM"
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Wednesday",
+                "workingNonWorking":    "Half Working Day - PM"
+                
+            }]
+
+## Create/Update Week Structure [/weekStructure]
+### Create Week Structure [PUT]
+Set one to many days of a Week Structure
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "AcYearId":             1
+                "name":                 "Sunday",
+                "workingNonWorking":    "Non-Working Day"
+             },
+            {
+                "AcYearId":             1
+                "name":                 "Monday",
+                "workingNonWorking":    "Full Working Day"
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Tuesday",
+                "workingNonWorking":    "Full Working Day"
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Wednesday",
+                "workingNonWorking":    "Half Working Day - AM"
+                
+            }]
+            
++ Response 200 (application/json)
+    + Body
+        
+            [{
+                "AcYearId":             1
+                "name":                 "Sunday",
+                "workingNonWorking":    "Non-Working Day"
+                "status":               true
+             },
+            {
+                "AcYearId":             1
+                "name":                 "Monday",
+                "workingNonWorking":    "Full Working Day"
+                "status":               true
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Tuesday",
+                "workingNonWorking":    "Full Working Day"
+                "status":               true
+                
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Wednesday",
+                "workingNonWorking":    "Half Working Day - AM"
+                "status":               true
+            }]
+
+## Academic Calendar Events [/academicCalendarEvents/{?id}{?AcYearId}]
+
++ Parameters
+    + id (optional, number, `12345`) ... The unique identifier of the Academic Calendar Event
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve WeekStructure [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
