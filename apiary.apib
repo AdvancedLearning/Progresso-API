@@ -417,7 +417,7 @@ Update one to many employee records
                                             "number":   "075555555",
                                             "phoneId":  "00002"
                                         }],
-                "addressDetails":       [{
+                "UKaddressDetails":       [{
                                             "country":  "United Kingdom",
                                             "type":     "Home",
                                             "flat":     "3a",
@@ -2310,27 +2310,27 @@ Set one to many days of a Week Structure
             [{
                 "AcYearId":             1
                 "name":                 "Sunday",
-                "workingNonWorking":    "Non-Working Day"
+                "workingNonWorking":    "Non-Working Day",
                 "status":               true
              },
             {
                 "AcYearId":             1
                 "name":                 "Monday",
-                "workingNonWorking":    "Full Working Day"
+                "workingNonWorking":    "Full Working Day",
                 "status":               true
                 
             },
             {
                 "AcYearId":             1
                 "name":                 "Tuesday",
-                "workingNonWorking":    "Full Working Day"
+                "workingNonWorking":    "Full Working Day",
                 "status":               true
                 
             },
             {
                 "AcYearId":             1
                 "name":                 "Wednesday",
-                "workingNonWorking":    "Half Working Day - AM"
+                "workingNonWorking":    "Half Working Day - AM",
                 "status":               true
             }]
 
@@ -2340,7 +2340,7 @@ Set one to many days of a Week Structure
     + id (optional, number, `12345`) ... The unique identifier of the Academic Calendar Event
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
-### Retrieve WeekStructure [GET]
+### Retrieve Calendar Events [GET]
 
 + Request
 
@@ -2352,3 +2352,20 @@ Set one to many days of a Week Structure
 
 + Response 200 (application/json)
     + Body
+            
+            [{
+                "AcYearId":             1
+                "name":                 "Inset Day",
+                "category":             "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "fullHalfDay":          "Full Day"
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Teacher Training",
+                "category":             "Only staff should attend",
+                "startDate":            03-09-2014,
+                "endDate":              03-09-2014,
+                "fullHalfDay":          "Half Day AM"
+            }]
