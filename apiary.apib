@@ -2476,12 +2476,12 @@ Update one to many Academic Calendar Events
                 "calendarEventId":      0003
             }]
 
-## CourseYears [/courseYear/{?AcYearId}]
+## Courses [/courses/{?AcYearId}]
 
 + Parameters
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
-### Retrieve WeekStructure [GET]
+### Retrieve Courses  [GET]
 
 + Request
 
@@ -2495,30 +2495,73 @@ Update one to many Academic Calendar Events
     + Body
     
             [{
-                "acYearId":         1,
+               "acYearId":          1,
                 "courseCode":       "KS3",
                 "courseName":       "Key Stage 3",
-                "yearCode":         "Y7",
-                "yearName":         "Year 7"
-            },
-            {
-                "acYearId":         1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "yearCode":         "Y8",
-                "yearName":         "Year 8"
+                "courseId":         0001
             },
             {
                 "acYearId":         1,
                 "courseCode":       "KS4",
                 "courseName":       "Key Stage 4",
-                "yearCode":         "Y10",
-                "yearName":         "Year 10"
+                "courseId":         0002
+
             }]
+
+
+## CourseYears [/courseYear/{?AcYearId}]
+
++ Parameters
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve CourseYears Association [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+               "acYearId":          1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "courseId":         0001,
+                "yearCode":         "Y7",
+                "yearName":         "Year 7",
+                "yearId":           0001,
+                "couseYearId":      0001
+            },
+            {
+                "acYearId":         1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "courseId":         0001,
+                "yearCode":         "Y8",
+                "yearName":         "Year 8",
+                "yearId":           0002,
+                "couseYearId":      0002
+            },
+            {
+                "acYearId":         1,
+                "courseCode":       "KS4",
+                "courseName":       "Key Stage 4",
+                "courseId":         0002,
+                "yearCode":         "Y10",
+                "yearName":         "Year 10",
+                "yearId":           0004,
+                "couseYearId":      0003
+            }]
+
 
 ## Create/Update CourseYears [/courseYear]
 ### Create CourseYears [POST]
-Create one to many Course and Years
+Create association of one to many Course to Years
 
 + Request (application/json)
 
@@ -2533,20 +2576,29 @@ Create one to many Course and Years
 
             [{
                 "acYearId":         1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "yearCode":         "Y7",
-                "yearName":         "Year 7"
+                "courseId":         0001,
+                "yearId":           0001
             },
             {
                 "acYearId":         1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "yearCode":         "Y8",
-                "yearName":         "Year 8"
+                "courseId":         0002,
+                "yearId":           0004
             }]
             
 + Response 200 (application/json)
     + Body
     
             [{
+                "acYearId":         1,
+                "courseId":         0001,
+                "yearId":           0001,
+                "courseYearId":     0001
+            },
+            {
+                "acYearId":         1,
+                "courseId":         0002,
+                "yearId":           0004,
+                "courseYearId":     0002
+
+            }]
+                
