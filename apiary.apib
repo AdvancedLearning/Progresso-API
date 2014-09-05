@@ -2268,7 +2268,7 @@ Update one to many terms breaks
             }]
 
 ## Create/Update Week Structure [/weekStructure]
-### Create Week Structure [PUT]
+### Set Week Structure [PUT]
 Set one to many days of a Week Structure
 
 + Request (application/json)
@@ -2362,6 +2362,7 @@ Set one to many days of a Week Structure
                 "startDate":            02-09-2014,
                 "endDate":              02-09-2014,
                 "fullHalfDay":          "Full Day"
+                "calendarEventId":      0001
             },
             {
                 "AcYearId":             1
@@ -2370,4 +2371,105 @@ Set one to many days of a Week Structure
                 "startDate":            03-09-2014,
                 "endDate":              03-09-2014,
                 "fullHalfDay":          "Half Day AM"
+                "calendarEventId":      0002
+            }]
+
+
+## Create/Update Academic Calendar Events [/academicCalendarEvents]
+### Create Academic Calendar Events [POST]
+Create one to many Academic Calendar Events
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "AcYearId":             1
+                "name":                 "Inset Day",
+                "category":             "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "fullHalfDay":          "Full Day"
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Teacher Training",
+                "category":             "Only staff should attend",
+                "startDate":            03-09-2014,
+                "endDate":              03-09-2014,
+                "fullHalfDay":          "Half Day AM"
+            }]
+            
+    
++ Response 200 (application/json)
+    
+    + Body
+        
+            [{
+                "name":                 "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "calendarEventId":      0003
+            },
+            {
+                "name":                 "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "calendarEventId":      0003
+            }]
+
+### Update Academic Calendar Events [PUT]
+Update one to many Academic Calendar Events
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "AcYearId":             1
+                "name":                 "Inset Day",
+                "category":             "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "fullHalfDay":          "Full Day"
+            },
+            {
+                "AcYearId":             1
+                "name":                 "Teacher Training",
+                "category":             "Only staff should attend",
+                "startDate":            03-09-2014,
+                "endDate":              03-09-2014,
+                "fullHalfDay":          "Half Day AM"
+            }]
+            
+    
++ Response 200 (application/json)
+    
+    + Body
+        
+            [{
+                "name":                 "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "calendarEventId":      0003
+            },
+            {
+                "name":                 "Inset Day",
+                "startDate":            02-09-2014,
+                "endDate":              02-09-2014,
+                "calendarEventId":      0003
             }]
