@@ -2495,9 +2495,58 @@ Update one to many Academic Calendar Events
     + Body
     
             [{
-                "acYearId":         1
-                "courseCode":
-                "courseName":
-                "yearCode":
-                "yearName":
+                "acYearId":         1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "yearCode":         "Y7",
+                "yearName":         "Year 7"
+            },
+            {
+                "acYearId":         1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "yearCode":         "Y8",
+                "yearName":         "Year 8"
+            },
+            {
+                "acYearId":         1,
+                "courseCode":       "KS4",
+                "courseName":       "Key Stage 4",
+                "yearCode":         "Y10",
+                "yearName":         "Year 10"
+            }]
+
+## Create/Update CourseYears [/courseYear]
+### Create CourseYears [POST]
+Create one to many Course and Years
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+
+    + Body
+
+            [{
+                "acYearId":         1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "yearCode":         "Y7",
+                "yearName":         "Year 7"
+            },
+            {
+                "acYearId":         1,
+                "courseCode":       "KS3",
+                "courseName":       "Key Stage 3",
+                "yearCode":         "Y8",
+                "yearName":         "Year 8"
+            }]
+            
++ Response 200 (application/json)
+    + Body
     
+            [{
