@@ -1071,6 +1071,8 @@ Create one to many learner records
     + Body
     
             [{
+                "status":               true,
+                "details":              successfully 
                 "learnerCode":             "JBl",
                 "learnerId":           "000001",
                 "phoneDetails":         [{
@@ -2473,3 +2475,29 @@ Update one to many Academic Calendar Events
                 "endDate":              02-09-2014,
                 "calendarEventId":      0003
             }]
+
+## CourseYears [/courseYear/{?AcYearId}]
+
++ Parameters
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
+### Retrieve WeekStructure [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "acYearId":         1
+                "courseCode":
+                "courseName":
+                "yearCode":
+                "yearName":
+    
