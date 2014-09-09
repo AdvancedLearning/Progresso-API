@@ -1311,7 +1311,7 @@ Update one to many learner records
     + Body
     
             [{
-                "Status":               "Success",
+                "Status":               true,
                 "learnerCode":           "2013-00132",
                 "learnerId":            "000001",
                 "phoneDetails":         [{
@@ -1341,7 +1341,7 @@ Update one to many learner records
                                         }]
             },
             {
-                "Status":               "Success",
+                "Status":               true,
                 "LearnerCode":           "2013-00133",
                 "LearnerId":           "000002",
                 "phoneDetails":         [{
@@ -1375,9 +1375,8 @@ Update one to many learner records
                                         }]
             },
             {
-                "Status":           "Failure",
-                "Reason":           [{"reason":"Invalid Date of Birth"},
-                                    {"reason":"Invalid status"}],
+                "status":           false,
+                "details":           {"Invalid Date of Birth,Invalid status"},
                 "learnerCode":     "2013-00134",
                 "UPN":             "",
                 "ULN":             "",
