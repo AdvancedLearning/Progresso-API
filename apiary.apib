@@ -437,10 +437,10 @@ Update one to many employee records
 # Group Contacts
 Group of all contact-related resources
 
-## Contacts Collection [/contacts{?Priority}{?Responsibility}]
+## Contacts Collection [/contacts{?id}]
 + Parameters
-    + Priority (optional, int, `1`) ... Contacts with a Priority
-    + Responsibility (optional, string, `true`) ... Contacts with Parental Responsibility
+    + id (optional, int, `1`) ... Contacts with the id
+
     
 ### Retrieve a collection of contacts [GET]
 
@@ -1401,6 +1401,49 @@ Update one to many learner records
                 
 
             }]
+
+
+## Learner Contacts [/learnerContacts{?since}]
++ Parameters
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    
+### Retrieve a learner Contacts [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+            
++ Response 200 (application/json)
+
+    + Body
+
+            [{
+                
+                "learnerCode":     "2013-00132",
+                "UPN":             "G999900210101",
+                "contacts":         [{
+                                        "contactId":                00001,
+                                        "relationship":             "Father",
+                                        "writtenCommunication":     "",
+                                        "priority":                 1,
+                                        "contactPrioritySource":    "",
+                                        "emergencyContactLevel":    "Primary",
+                                        "nextOfKin":                false,
+                                        "addressDisclosure":        false,
+                                        "addressTransferred":       false,
+                                        "parentalResponsibility":   true,
+                                        "feePayer":                 false,
+                                        "parentalPortal":           true,
+                                        "homeAddressLink":          true,
+                                        "otherHomeAddressLink":     false,
+                                        "sendSMS":                  true
+                                    }]
+            }]
+
+
             
 ## Learner Health Details [/learnerHealth{?since}]
 + Parameters
