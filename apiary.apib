@@ -434,6 +434,50 @@ Update one to many employee records
             }]
 
 
+## Employees Contacts [/employeeContacts{?status}{?since}]
+Collection of all employees contacts for a school
+
+### Retrieve collection of employees [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Parameters
+    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
+
++ Response 200
+    + Body
+    
+            [{
+                "EmployeeId":           "000001",
+                "staffCode":             "sc123",
+                "contacts": 
+                            [{
+                                        "contactId":    00001,
+                                        "forename":     "",
+                                        "surname":      "",
+                                        "relationship": "Partner",
+                                        "priority":     1,
+                                        "emergency":    "primary"
+                                    `   "nextOfKin":    true
+                            },
+                            {  
+                                        "contactId":    00002,
+                                        "forename":     "",
+                                        "surname":      "",
+                                        "relationship": "Other",
+                                        "priority":     2,
+                                        "emergency":    ""
+                                    `   "nextOfKin":    false
+                            }]
+            }]
+    
+
 # Group Contacts
 Group of all contact-related resources
 
@@ -972,7 +1016,7 @@ Create one to many learner records
                                     }],
                 "status":           "active",
                 "contacts":         [{
-                                        "contactId":                00001,
+                                        "contactId":                00004,
                                         "relationship":             "Father",
                                         "writtenCommunication":     "",
                                         "priority":                 1,
@@ -1403,11 +1447,14 @@ Update one to many learner records
             }]
 
 
-## Learner Contacts [/learnerContacts{?since}]
+## Learner Contacts [/learnerContacts{?since}{?status}{?responsibility}{?priority}]
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
+    + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
+    + priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
     
-### Retrieve a learner Contacts [GET]
+### Retrieve a Contacts associated to a learner [GET]
 
 + Request
 
@@ -1423,14 +1470,38 @@ Update one to many learner records
             [{
                 
                 "learnerCode":     "2013-00132",
+                "learnerId":       0001,
                 "UPN":             "G999900210101",
                 "contacts":         [{
+                                        "learnerContactRelId":      000003
                                         "contactId":                00001,
+                                        "forename":                 "",
+                                        "surename":                 "",
                                         "relationship":             "Father",
                                         "writtenCommunication":     "",
                                         "priority":                 1,
                                         "contactPrioritySource":    "",
                                         "emergencyContactLevel":    "Primary",
+                                        "nextOfKin":                false,
+                                        "addressDisclosure":        false,
+                                        "addressTransferred":       false,
+                                        "parentalResponsibility":   true,
+                                        "feePayer":                 false,
+                                        "parentalPortal":           true,
+                                        "homeAddressLink":          true,
+                                        "otherHomeAddressLink":     false,
+                                        "sendSMS":                  true
+                                    },
+                                    {
+                                        "learnerContactRelId":      000004
+                                        "contactId":                00006,
+                                        "forename":                 "",
+                                        "surename":                 "",
+                                        "relationship":             "Mother",
+                                        "writtenCommunication":     "",
+                                        "priority":                 2,
+                                        "contactPrioritySource":    "",
+                                        "emergencyContactLevel":    "",
                                         "nextOfKin":                false,
                                         "addressDisclosure":        false,
                                         "addressTransferred":       false,
