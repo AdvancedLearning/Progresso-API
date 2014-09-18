@@ -437,7 +437,7 @@ Update one to many employee records
 ## Employees Contacts [/employeeContacts{?status}{?since}]
 Collection of all employees contacts for a school
 
-### Retrieve collection of employees [GET]
+### Retrieve collection of employees contacts [GET]
 
 + Request
 
@@ -477,6 +477,45 @@ Collection of all employees contacts for a school
                             }]
             }]
     
+
+## Create/Update Employee Contact Association [/employeeContacts]
+### Create Employee Contact Association [POST]
+Associate Employee to one to multiple contacts
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "EmployeeId":           "000001",
+                "staffCode":             "sc123",
+                "contacts": 
+                            [{
+                                        "contactId":    00001,
+                                        "forename":     "",
+                                        "surname":      "",
+                                        "relationship": "Partner",
+                                        "priority":     1,
+                                        "emergency":    "primary"
+                                    `   "nextOfKin":    true
+                            },
+                            {  
+                                        "contactId":    00002,
+                                        "forename":     "",
+                                        "surname":      "",
+                                        "relationship": "Other",
+                                        "priority":     2,
+                                        "emergency":    ""
+                                    `   "nextOfKin":    false
+                            }]
+            }]
+
 
 # Group Contacts
 Group of all contact-related resources
