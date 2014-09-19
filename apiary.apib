@@ -1826,6 +1826,56 @@ Create Attendance for one to many learners
             }]
 
 
+## Learner Exclusions [/learnerExclusions{?since}]
++ Parameters
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    
+### Retrieve a learner Exclusion Details [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+            
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "exclusions":       [{
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    }]
+            ]}
+                
+
+
 # Group Groups
 Group of all Group-related resources
 
