@@ -1848,6 +1848,7 @@ Create Attendance for one to many learners
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
                 "exclusions":       [{
+                                        "exclusionId":  0001,
                                         "category":     "",
                                         "reason":       "",
                                         "startDate":    "",
@@ -1874,6 +1875,137 @@ Create Attendance for one to many learners
                                     }]
             ]}
                 
+## Create/Update Learner Exclusions [/learnerExclusions]
+### Create Learner Exclusions [POST]
+Create Exclusions for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "exclusions":       [{
+                                        "exclusionId":  0
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    },
+                                    {
+                                        "exclusionId":  0,
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    },]
+            },
+            {
+                "learnerCode":      "2013-00002",
+                "learnerId":       0002,
+                "exclusions":       [{
+                                        "exclusionId":  0
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    }
+            
+            }]
+
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "exclusions":       [{
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  1
+                                    },
+                                    {
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  2
+                                    }]
+            },
+            {
+                "learnerCode":      "2013-00002",
+                "learnerId":       0002,
+                "exclusions":       [{
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  3
+                                    }]
+            }]
+
+
 
 
 # Group Groups
