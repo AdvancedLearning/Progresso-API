@@ -2006,6 +2006,136 @@ Create Exclusions for one to many learners
                                     }]
             }]
 
+### Update Learner Exclusions [PUT]
+Update Exclusions for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "exclusions":       [{
+                                        "exclusionId":  1
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    },
+                                    {
+                                        "exclusionId":  2,
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    },]
+            },
+            {
+                "learnerCode":      "2013-00002",
+                "learnerId":       0002,
+                "exclusions":       [{
+                                        "exclusionId":  3
+                                        "category":     "",
+                                        "reason":       "",
+                                        "startDate":    "",
+                                        "endDate":      "",
+                                        "startSession": "",
+                                        "endSession":   "",
+                                        "notes":        "",
+                                        "totalDays":    5,
+                                        "totalSessions":10,
+                                        "LAC":          false,
+                                        "headNotified": "",
+                                        "govMeeting":   "",
+                                        "provisionStartDate":   "",
+                                        "provisionDetails":     "",
+                                        "appeal":           true,
+                                        "appealDate":       "",
+                                        "appealCutOff":     "",
+                                        "exclusionHearing": "",
+                                        "outcome":          "",
+                                        "reintregationMeetingDate": "",
+                                        "reintregationNotes":      "",
+                                        "reinstatementDate":        "",
+                                        "reinstatementNotes":       ""
+                                    }
+            
+            }]
+
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "exclusions":       [{
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  1
+                                    },
+                                    {
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  2
+                                    }]
+            },
+            {
+                "learnerCode":      "2013-00002",
+                "learnerId":       0002,
+                "exclusions":       [{
+                                    "status":   true,
+                                    "details":  "",
+                                     "exclusionId":  3
+                                    }]
+            }]
+
+
 ## Learner SEN Provisions [/learnerSENProvisions{?startDate}{?endDate}]
 + Parameters
     + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
@@ -2050,6 +2180,99 @@ Create Exclusions for one to many learners
                                     "endDate":              ""
                                 }]
                 }]
+                
+                
+## Create/Update Learner SEN Provisions [/learnerSENProvision]
+### Create Learner SEN Provisions [POST]
+Create SEN Provisions for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "provisions":   [{
+                                    "provisionId":          0
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+            }]
+              
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "provisions":   [{
+                                    "status":               true,
+                                    "details":              ""
+                                    "provisionId":          00001
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+             }]                  
+
+### Update Learner SEN Provisions [PUT]
+Update SEN Provisions for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "provisions":   [{
+                                    "provisionId":          0001
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+            }]
+              
++ Response 200
+    + Body
+    
+            [{
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "provisions":   [{
+                                    "status":               true,
+                                    "details":              ""
+                                    "provisionId":          00001
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+             }] 
+
 
 # Group Groups
 Group of all Group-related resources
