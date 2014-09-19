@@ -1826,9 +1826,10 @@ Create Attendance for one to many learners
             }]
 
 
-## Learner Exclusions [/learnerExclusions{?since}]
+## Learner Exclusions [/learnerExclusions{?startDate}{?endDate}]
 + Parameters
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + endDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
 ### Retrieve a learner Exclusion Details [GET]
 
@@ -2005,8 +2006,50 @@ Create Exclusions for one to many learners
                                     }]
             }]
 
+## Learner SEN Provisions [/learnerSENProvisions{?startDate}{?endDate}]
++ Parameters
+    + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + endDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    
+### Retrieve a learner SEN Provision Details [GET]
 
++ Response 200 (application/json)
 
+    + Body 
+            
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":       0001,
+                "provisions":   [{
+                                    "provisionId":          00001
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                },
+                                {
+                                    "provisionId":          00002
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+                },
+                {
+                "learnerCode":      "2013-00002",
+                "learnerId":       0002,
+                "provisions":   [{
+                                    "provisionId":          00003
+                                    "provisionTypeCode":    "",
+                                    "provisionTypeName":    "",
+                                    "startDate":            "",
+                                    "reviewDate":           "",
+                                    "endDate":              ""
+                                }]
+                }]
 
 # Group Groups
 Group of all Group-related resources
@@ -2173,8 +2216,6 @@ Update one or many groups
                 "groupId":      000001,
                 "groupCode":    "9B"
              }]
-
-
 
 
 
