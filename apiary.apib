@@ -2427,15 +2427,108 @@ Create SEN Major Needs for one to many learners
                 "learnerId":        0001,
                 "siblings":   [{
                                     "learnerCode":      "2013-00002",
-                                    "learnerId":        0002,
+                                    "learnerId":        0002
                                 },
                                 {
                                     "learnerCode":      "2013-00003",
-                                    "learnerId":        0003,
+                                    "learnerId":        0003
                                 
                                 }]
             }]
+            
+## Create/Update Learner Sibling Association [/learnerSiblings]
+### Create Learner Sibling Association [POST]
 
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+                "learnerId":        0001,
+                "siblings":   [{
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "learnerId":        0003
+                                
+                                }]
+            
+            }]
+            
+            
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+                "learnerId":        0001,
+                "siblings":   [{
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0003
+                                
+                                }]
+            
+            }]
+
+
+### Update Learner Sibling Association [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+                "learnerId":        0001,
+                "siblings":   [{
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "learnerId":        0003
+                                
+                                }]
+            
+            }]
+            
+            
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+                "learnerId":        0001,
+                "siblings":   [{
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0003
+                                
+                                }]
+            
+            }]
 
 # Group Groups
 Group of all Group-related resources
