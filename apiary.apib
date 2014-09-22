@@ -2290,7 +2290,7 @@ Update SEN Provisions for one to many learners
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
                 "majorNeeds":   [{
-                                    "majorNeedId":          00001
+                                    "leanerMajorNeedId":          00001
                                     "majorNeedCode":        "SLD",
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            1
@@ -2301,6 +2301,93 @@ Update SEN Provisions for one to many learners
 ## Create/Update Learner SEN Major Needs [/learnerSENMajorNeeds]
 ### Create Learner SEN Major Needs [POST]
 Create SEN Major Needs for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":        0001,
+                "majorNeeds":   [{
+                                    "majorNeedId":          0
+                                    "majorNeedCode":        "SLD",
+                                    "majorNeedDescription": "Severe Learning Difficulty ",
+                                    "ranking":            1
+                                }]
+            
+            
+            
+            }]
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":        0001,
+                "majorNeeds":   [{
+                                    "leanerMajorNeedId":          00005
+                                    "majorNeedCode":        "SLD",
+                                    "majorNeedDescription": "Severe Learning Difficulty ",
+                                    "ranking":            1
+                                }]
+            }]
+            
+
+### Update Learner SEN Major Needs [PUT]
+Create SEN Major Needs for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+          
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":        0001,
+                "majorNeeds":   [{
+                                    "learnerMajorNeedId":          00005
+                                    "majorNeedCode":        "SLD",
+                                    "majorNeedDescription": "Severe Learning Difficulty ",
+                                    "ranking":            2
+                                }]
+            
+            
+            
+            }]
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":        0001,
+                "majorNeeds":   [{
+                                    "learnerMajorNeedId":          00005
+                                    "majorNeedCode":        "SLD",
+                                    "majorNeedDescription": "Severe Learning Difficulty ",
+                                    "ranking":            2
+                                }]
+            }]
+
 
 # Group Groups
 Group of all Group-related resources
