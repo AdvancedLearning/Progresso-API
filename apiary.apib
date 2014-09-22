@@ -2143,6 +2143,13 @@ Update Exclusions for one to many learners
     
 ### Retrieve a learner SEN Provision Details [GET]
 
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
 + Response 200 (application/json)
 
     + Body 
@@ -2281,6 +2288,13 @@ Update SEN Provisions for one to many learners
     
 ### Retrieve a learner SEN Major Need Details [GET]
 
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
 + Response 200 (application/json)
 
     + Body 
@@ -2385,6 +2399,40 @@ Create SEN Major Needs for one to many learners
                                     "majorNeedCode":        "SLD",
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            2
+                                }]
+            }]
+
+
+## Learner Siblings [/learnerSiblings{?learnerId}]
+
++ Parameters
+    + learnerId (optional, int, `00001`) ... Return siblings of a learner
+
+### Return a list of siblings associated to one of more learners [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            [{
+            
+                "learnerCode":      "2013-00001",
+                "learnerId":        0001,
+                "siblings":   [{
+                                    "learnerCode":      "2013-00002",
+                                    "learnerId":        0002,
+                                },
+                                {
+                                    "learnerCode":      "2013-00003",
+                                    "learnerId":        0003,
+                                
                                 }]
             }]
 
