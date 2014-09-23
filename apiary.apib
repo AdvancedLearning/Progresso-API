@@ -1008,6 +1008,29 @@ Update one to many contract records
                                     }]
             }]
 
+## Employees Contract Roles [/employeeContractRoles{?employee}]
+Collection of all employee roles for employee contracts within a school
+
+### Retrieve collection of employee contracts [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Parameters
+
+    + employee (optional, int, `0001``) ... Optional filter to an Employee
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+
+
 # Group Contacts
 Group of all contact-related resources
 
