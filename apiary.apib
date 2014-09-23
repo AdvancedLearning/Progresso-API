@@ -537,9 +537,9 @@ Associate Employee to one to multiple contacts
 
 
 ## Employees Checks [/employeeChecks{?verficationStartDate}{?verficationEndDate}{?checkType}{?employee}]
-Collection of all employees for a school
+Collection of all employee checks for employees within a school
 
-### Retrieve collection of employees [GET]
+### Retrieve collection of employee checks [GET]
 
 + Request
 
@@ -750,8 +750,8 @@ Create Employee checks for one to multiple contacts
 
             }]
 
-### Create Employee Checks [PUT]
-Create Employee checks for one to multiple contacts
+### Update Employee Checks [PUT]
+Update Employee checks for one to multiple contacts
 
 
 + Request (application/json)
@@ -828,7 +828,185 @@ Create Employee checks for one to multiple contacts
 
 
 
+## Employees Contracts [/employeeContracts{?employee}]
+Collection of all employee checks for employees within a school
 
+### Retrieve collection of employee contracts [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Parameters
+
+    + employee (optional, int, `0001``) ... Optional filter to an Employee
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "employeeId":       00001,
+                "staffCode":        "sc123",
+                "contracts":        [{
+                                        contractId":       0001    
+                                        "type":         "PRM",
+                                        "name":         "Main Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "AHT",
+                                        "postName":     "Assistant Head",
+                                        "dailyRate":    true
+                                        "Base Pay":     36588.00
+                                         "origin":       "Other",
+                                        "destination":  ""                           
+                                    }]
+            },
+            {
+                "employeeId":       00002,
+                "staffCode":        "ad456",
+                "contracts":        [{
+                                        contractId":    0002    
+                                        "type":         "FXT",
+                                        "name":         "Sum Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2014",
+                                        "postCode":     "SUP",
+                                        "postName":     "Support Staff",
+                                        "dailyRate":    true,
+                                        "basePay":     15588.00,
+                                        "origin":       "Other",
+                                        "destination":  ""
+                            
+                                    },
+                                    {
+                                        "contractId":    0003    
+                                        "type":         "FXT",
+                                        "name":         "Sum Contract",
+                                        "startDate":    "01-09-2014",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "SUP",
+                                        "postName":     "Support Staff",
+                                        "dailyRate":    true,
+                                        "basePay":     15588.00,
+                                        "origin":       "Other",
+                                        "destination":  ""
+                                    
+                                    }]
+             }]  
+
+## Create/Update Employee Contracts [/employeeContracts]
+### Create Contract [POST]
+Create one to many contract records  
+
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "employeeId":       00001,
+                "contracts":        [{
+                                        contractId":       0,    
+                                        "type":         "PRM",
+                                        "name":         "Main Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "AHT",
+                                        "postName":     "Assistant Head",
+                                        "dailyRate":    true
+                                        "Base Pay":     36588.00
+                                         "origin":       "Other",
+                                        "destination":  ""                           
+                                    }]
+            }]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "status":           true,
+                "details":          "saved successfully"
+                "employeeId":       00001,
+                "contracts":        [{
+                                        contractId":     0001    
+                                        "type":         "PRM",
+                                        "name":         "Main Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "AHT",
+                                        "postName":     "Assistant Head",
+                                        "dailyRate":    true
+                                        "Base Pay":     36588.00
+                                         "origin":       "Other",
+                                        "destination":  ""                           
+                                    }]
+            }]
+            
+            
+### Update Contract [PUT]
+Update one to many contract records  
+
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+    
+            [{
+                "employeeId":       00001,
+                "contracts":        [{
+                                        contractId":       0,    
+                                        "type":         "PRM",
+                                        "name":         "Main Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "AHT",
+                                        "postName":     "Assistant Head",
+                                        "dailyRate":    true
+                                        "Base Pay":     36588.00
+                                         "origin":       "Other",
+                                        "destination":  ""                           
+                                    }]
+            }]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "status":           true,
+                "details":          "saved successfully"
+                "employeeId":       00001,
+                "contracts":        [{
+                                        contractId":     0001    
+                                        "type":         "PRM",
+                                        "name":         "Main Contract",
+                                        "startDate":    "01-09-2013",
+                                        "endDate":      "31-08-2015",
+                                        "postCode":     "AHT",
+                                        "postName":     "Assistant Head",
+                                        "dailyRate":    true
+                                        "Base Pay":     36588.00
+                                         "origin":       "Other",
+                                        "destination":  ""                           
+                                    }]
+            }]
 
 # Group Contacts
 Group of all contact-related resources
@@ -1186,6 +1364,8 @@ Update one to many contact records
                 "contactId":            000002
                 
             }]
+
+
             
 
 # Group Learners
