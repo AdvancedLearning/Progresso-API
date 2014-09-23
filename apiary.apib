@@ -520,70 +520,20 @@ Associate Employee to one to multiple contacts
                  "details":              "Update Successful"
                 "contacts": 
                             [{
-                                "employeeContactId":    0001,
+                              
                                 "contactId":            00001,
                                 "status":              true
                                 "details":              "Update Successful"
                             },
                             {  
-                                "employeeContactId":    0001,
+                                
                                 "contactId":            00001,
                                  "status":              true
                                 "details":              "Update Successful"
                             }]
             }]
                             
-### Create Employee Contact Association [PUT]
-Update the Association of Employee to one to multiple contacts
 
-+ Request (application/json)
-
-    + Headers
-        
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
-        
-
-    + Body
-    
-            [{
-                "EmployeeId":           "000001",
-                "contacts": 
-                            [{
-                                        "contactId":    00001,
-                                        "relationship": "Partner",
-                                        "priority":     1,
-                                        "emergency":    "primary"
-                                    `   "nextOfKin":    false
-                            },
-                            {  
-                                        "contactId":    00002,
-                                        "relationship": "Other",
-                                        "priority":     2,
-                                        "emergency":    ""
-                                    `   "nextOfKin":    false
-                            }]
-            }]
-
-+ Response 200
-    + Body
-    
-            [{
-                "EmployeeId":           "000001",
-                "contacts": 
-                            [{
-                                "employeeContactId":    0001,
-                                "contactId":            00001,
-                                 "status":              true
-                                "details":              "Update Successful"
-                            },
-                            {  
-                                "employeeContactId":    0001,
-                                "contactId":            00001,
-                                 "status":              true
-                                "details":              "Update Successful"
-                            }]
-            }]
 
 
 ## Employees Checks [/employeeChecks{?verficationStartDate}{?verficationEndDate}{?checkType}{?employee}]
