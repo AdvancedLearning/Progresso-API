@@ -584,6 +584,59 @@ Update the Association of Employee to one to multiple contacts
             }]
 
 
+## Employees Checks [/employeeChecks{?verficationStartDate}{?verficationEndDate}{?checkType}{?employee}]
+Collection of all employees for a school
+
+### Retrieve collection of employees [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Parameters
+    + verficationStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to Checks with a verification date after a date
+    + verficationEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to Checks with a verification date before a date
+    + checkType (optional, string, `List99``) ... Optional filter to Check type
+    + employee (optional, int, `0001``) ... Optional filter to an Employee
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "enpkoyeeId":       0001,
+                "staffCode":             "sc123",     
+                "checks":       [{
+                                        "ADD":  [{
+                                                    "verificationDate":     "12-09-2013",
+                                                    "expiryDate":           "12-09-2014",
+                                                    "checkedByCode":            "JD",
+                                                    "checkedByName":            "John Doe",
+                                                    "position":             "Headteacher",
+                                                    "evidence":             "Certificate Provided"
+                                                }],
+                                        "AGN":  [{ 
+                                                    "agencyName":           "",
+                                                    "paperworkDate":       "12-09-2013"
+                                                }],
+                                        "DBS":  [{  }],
+                                        "GTC":  [{  }],
+                                        "ID":  [{  }],
+                                        "List99":  [{  }],
+                                        "MED":  [{  }],
+                                        "Qual":  [{  }],
+                                        "RED":  [{  }],
+                                        "RTW":  [{  }]
+                                }]
+            
+            
+            
+            }]
+
+
 # Group Contacts
 Group of all contact-related resources
 
