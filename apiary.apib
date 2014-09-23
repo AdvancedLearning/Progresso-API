@@ -434,7 +434,7 @@ Update one to many employee records
             }]
 
 
-## Employees Contacts [/employeeContacts{?status}{?since}]
+## Employees Contacts [/employeeContacts{?status}]
 Collection of all employees contacts for a school
 
 ### Retrieve collection of employees contacts [GET]
@@ -448,7 +448,7 @@ Collection of all employees contacts for a school
 
 + Parameters
     + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
+
 
 + Response 200
     + Body
