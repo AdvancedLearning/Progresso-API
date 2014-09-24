@@ -953,7 +953,7 @@ Collection of all employee checks for employees within a school
                                                         "NIRate":           "Contracted In",
                                                         "superannuation":   "Teachers Superannuation",
                                                         "costCentre":       "TEACH (Teaching Staff)",
-                                                        "ledgerCode":       "A040 (Teachers Salaries"
+                                                        "ledgerCode":       "A040 (Teachers Salaries)"
                                                         "salaries":         [{
                                                                                 "effectiveFrom":        "",
                                                                                 "effectiveTo":          "",
@@ -996,7 +996,6 @@ Create one to many contract records
                                         "postCode":     "AHT",
                                         "postName":     "Assistant Head",
                                         "dailyRate":    true
-                                        "Base Pay":     36588.00
                                          "origin":       "Other",
                                         "destination":  ""                           
                                     }]
@@ -1019,7 +1018,6 @@ Create one to many contract records
                                         "postCode":     "AHT",
                                         "postName":     "Assistant Head",
                                         "dailyRate":    true
-                                        "Base Pay":     36588.00
                                          "origin":       "Other",
                                         "destination":  ""                           
                                     }]
@@ -1080,10 +1078,10 @@ Update one to many contract records
                                     }]
             }]
 
-## Employees Contract Roles [/employeeContractRoles{?employee}]
+## Employees Contract Roles [/employeeContractRoles]
 Collection of all employee roles for employee contracts within a school
 
-### Retrieve collection of employee contracts [GET]
+### Create Roles for employee contracts [PUT]
 
 + Request
 
@@ -1092,15 +1090,27 @@ Collection of all employee roles for employee contracts within a school
             partnerToken: validPartnerToken
             schoolId: validSchoolId
 
-+ Parameters
 
-    + employee (optional, int, `0001``) ... Optional filter to an Employee
 
 + Response 200 (application/json)
 
     + Body
     
             [{
+                "employeeId":       00001,
+                "contractId":       00001,
+                "roles":    [{
+                                "role":             "Teaching Assistant",
+                                "hoursPerWeek":     32.50,
+                                "FTEHours":         32.50,
+                                "weeksPerYear":     52.14,
+                                "payrollNumber":    123456,
+                                "NIRate":           "Contracted In",
+                                "superannuation":   "Teachers Superannuation",
+                                "costCentre":       "TEACH",
+                                "ledgerCode":       "A040"
+                            }]
+            }]
 
 
 # Group Contacts
