@@ -1239,7 +1239,57 @@ Collection of all employee roles for employee contracts within a school
             }]
             
             
+## Employees Qualifications [/employeeQualifications{?employeeId}]
+### Retrive a list of employee qualifications [GET]
 
++ Parameters
+    + employeeId (optional, int, `1`) ... Contacts with the id
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
++ Response 200 (application/json)
+
+    + Body
+           
+              [{
+                    "employeeId":       00001,
+                    "staffCode":        "sc123",
+                    "qualifications":   [{
+                                            "qualificationCode":    "",
+                                            "subject1":             "",
+                                            "subject2":             "",
+                                            "classOfDegree":        "",
+                                            "verified":             ""
+                                        },
+                                        {
+                                            "qualificationCode":    "",
+                                            "subject1":             "",
+                                            "subject2":             "",
+                                            "classOfDegree":        "",
+                                            "verified":             ""                                        
+                                        }]
+            
+              },
+             {
+                    "employeeId":       00001,
+                    "staffCode":        "sc123",
+                    "qualifications":   [{
+                                            "qualificationCode":    "",
+                                            "subject1":             "",
+                                            "subject2":             "",
+                                            "classOfDegree":        "",
+                                            "verified":             ""
+                                        }                
+             
+             
+             
+             }]
+    
 # Group Contacts
 Group of all contact-related resources
 
