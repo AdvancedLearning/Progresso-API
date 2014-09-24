@@ -766,7 +766,7 @@ Update Employee checks for one to multiple contacts
     
             [{
                 "employeeId":       0001,
-                "checks":       [{
+               
                                         "ADD":  [{ }],
                                         "AGN":  [{ }],
                                         "DBS":  [{ }],
@@ -788,7 +788,7 @@ Update Employee checks for one to multiple contacts
                                         "Qual": [{ }],
                                         "RED":  [{ }],
                                         "RTW":  [{ }]
-                                }]
+                               
             }]
 
 + Response 200 (application/json)
@@ -1103,23 +1103,55 @@ Collection of all employee roles for employee contracts within a school
                 "employeeId":       00001,
                 "contractId":       00001,
                 "roles":    [{
-                                "roleId":           0001,
-                                role":             "Teaching Assistant",
-                                "hoursPerWeek":     32.50,
-                                "FTEHours":         32.50,
-                                "weeksPerYear":     52.14,
-                                "payrollNumber":    123456,
-                                "NIRate":           "Contracted In",
-                                "superannuation":   "Teachers Superannuation",
-                                "costCentre":       "TEACH",
-                                "ledgerCode":       "A040"
+                                "roleId":           0001
+                            },
+                            {
+                                "roleId":           0002
                             }]
             }]
 
 + Response 200 (application/json)
 
+    + Body
+    
+            [{
+                "employeeId":       00001,
+                "contractId":       00001,
+                "roles":    [{
+                                "status":           true,
+                                "details":          "Saved Succesfully",
+                                "roleId":           0001,
+                                "contractRoleId":   0001
+                            },
+                            {
+                                "status":           true,
+                                "details":          "Saved Succesfully",
+                                "roleId":           0002,
+                                "contractRoleId":   0002
+                            }]
+            }]
 
 
+## Create/Update Employees Contract Roles [/employeeRoleSalary]
+Collection of all employee roles for employee contracts within a school
+
+### Create Roles for employee contracts [POST]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+    
+            [{
+                "employeeId":       0001,
+                "roleId":
+            
+            
+            }]
 
 # Group Contacts
 Group of all contact-related resources
