@@ -1103,11 +1103,34 @@ Collection of all employee roles for employee contracts within a school
                 "employeeId":       00001,
                 "contractId":       00001,
                 "roles":    [{
-                                "roleId":           0001
-                            },
-                            {
-                                "roleId":           0002
+                                "roleId":           0
+                                role":             "Teaching Assistant",
+                                "hoursPerWeek":     32.50,
+                                "FTEHours":         32.50,
+                                "weeksPerYear":     52.14,
+                                "payrollNumber":    123456,
+                                "NIRate":           "Contracted In",
+                                "superannuation":   "Teachers Superannuation",
+                                "costCentre":       "TEACH",
+                                "ledgerCode":       "A040"
                             }]
+            },
+            {
+                "employeeId":       00002,
+                "contractId":       00002,
+                "roles":    [{
+                                "roleId":           0,
+                                "role":             "Teaching Assistant",
+                                "hoursPerWeek":     32.50,
+                                "FTEHours":         32.50,
+                                "weeksPerYear":     52.14,
+                                "payrollNumber":    123456,
+                                "NIRate":           "Contracted In",
+                                "superannuation":   "Teachers Superannuation",
+                                "costCentre":       "TEACH",
+                                "ledgerCode":       "A040"
+                            }]
+            
             }]
 
 + Response 200 (application/json)
@@ -1121,12 +1144,18 @@ Collection of all employee roles for employee contracts within a school
                                 "status":           true,
                                 "details":          "Saved Succesfully",
                                 "roleId":           0001,
+                                "role":             "Teaching Assistant",
                                 "contractRoleId":   0001
-                            },
-                            {
+                            }]
+            },
+            {
+                "employeeId":       00002,
+                "contractId":       00002,
+                "roles":    [{
                                 "status":           true,
                                 "details":          "Saved Succesfully",
                                 "roleId":           0002,
+                                "role":             "Teaching Assistant",
                                 "contractRoleId":   0002
                             }]
             }]
