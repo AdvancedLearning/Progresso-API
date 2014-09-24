@@ -1148,10 +1148,54 @@ Collection of all employee roles for employee contracts within a school
     
             [{
                 "employeeId":       0001,
-                "roleId":
+                "roleId":           0001,
+                "salary":           [{
+                                        "salaryId":      0001
+                
+                                    }]
             
+            
+            },
+            {
+                "employeeId":       0002,
+                "roleId":           0003,
+                "salary":           [{
+                                        "salaryId":      0002
+                
+                                    }]
             
             }]
+            
+            
++ response 200 (application/json)
+
+    + Body
+    
+            [{
+                "employeeId":       0001,
+                "roleId":           0001,
+                "salary":           [{
+                                        "status":           true,
+                                        "details":          "Saved Succesfully",
+                                        "salaryId":         0001,
+                                        "roleSalaryId":     0001
+                                    }]
+            
+            
+            },
+            {
+                "employeeId":       0002,
+                "roleId":           0003,
+                "salary":           [{
+                                        "status":           true,
+                                        "details":          "Saved Succesfully",
+                                        "salaryId":         0002,
+                                        "roleSalaryId":     0002
+                                    }]
+            
+            }]
+            
+            
 
 # Group Contacts
 Group of all contact-related resources
