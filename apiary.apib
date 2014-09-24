@@ -864,7 +864,8 @@ Collection of all employee checks for employees within a school
                                          "origin":       "Other",
                                         "destination":  ""                           
                                         "roles":    [{
-                                                        "role":             "Teaching Assistant",
+                                                        "roleId":           0001,
+                                                        role":             "Teaching Assistant",
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
                                                         "weeksPerYear":     52.14,
@@ -874,6 +875,7 @@ Collection of all employee checks for employees within a school
                                                         "costCentre":       "TEACH (Teaching Staff)",
                                                         "ledgerCode":       "A040 (Teachers Salaries"
                                                         "salaries":         [{
+                                                                                "salaryId":             00001,
                                                                                 "effectiveFrom":        "",
                                                                                 "effectiveTo":          "",
                                                                                 "payScale":             "",
@@ -885,6 +887,7 @@ Collection of all employee checks for employees within a school
                                                                                 "basePay":              ""
                                                                             }]
                                                         "allowance":        [{
+                                                                                "allowanceId":          1,
                                                                                "effectiveFrom":         "",
                                                                                "effectiveTo":           "",
                                                                                 "category":             "",
@@ -910,6 +913,7 @@ Collection of all employee checks for employees within a school
                                         "origin":       "Other",
                                         "destination":  "",
                                         "roles":    [{
+                                                        "roleId":           0002,
                                                         "role":             "Teaching Assistant",
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
@@ -920,6 +924,7 @@ Collection of all employee checks for employees within a school
                                                         "costCentre":       "TEACH (Teaching Staff)",
                                                         "ledgerCode":       "A040 (Teachers Salaries"
                                                         "salaries":         [{
+                                                                                "salaryId":             00002,
                                                                                 "effectiveFrom":        "",
                                                                                 "effectiveTo":          "",
                                                                                 "payScale":             "",
@@ -945,7 +950,8 @@ Collection of all employee checks for employees within a school
                                         "origin":       "Other",
                                         "destination":  ""
                                         "roles":    [{
-                                                        "role":             "Teaching Assistant",
+                                                        "roleId":           0003,
+                                                        role":             "Teaching Assistant",
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
                                                         "weeksPerYear":     52.14,
@@ -955,6 +961,7 @@ Collection of all employee checks for employees within a school
                                                         "costCentre":       "TEACH (Teaching Staff)",
                                                         "ledgerCode":       "A040 (Teachers Salaries)"
                                                         "salaries":         [{
+                                                                                "salaryId":             00003,
                                                                                 "effectiveFrom":        "",
                                                                                 "effectiveTo":          "",
                                                                                 "payScale":             "",
@@ -1078,10 +1085,10 @@ Update one to many contract records
                                     }]
             }]
 
-## Employees Contract Roles [/employeeContractRoles]
+## Create/Update Employees Contract Roles [/employeeContractRoles]
 Collection of all employee roles for employee contracts within a school
 
-### Create Roles for employee contracts [PUT]
+### Create Roles for employee contracts [POST]
 
 + Request
 
@@ -1090,17 +1097,14 @@ Collection of all employee roles for employee contracts within a school
             partnerToken: validPartnerToken
             schoolId: validSchoolId
 
-
-
-+ Response 200 (application/json)
-
     + Body
     
             [{
                 "employeeId":       00001,
                 "contractId":       00001,
                 "roles":    [{
-                                "role":             "Teaching Assistant",
+                                "roleId":           0001,
+                                role":             "Teaching Assistant",
                                 "hoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
                                 "weeksPerYear":     52.14,
@@ -1111,6 +1115,10 @@ Collection of all employee roles for employee contracts within a school
                                 "ledgerCode":       "A040"
                             }]
             }]
+
++ Response 200 (application/json)
+
+
 
 
 # Group Contacts
