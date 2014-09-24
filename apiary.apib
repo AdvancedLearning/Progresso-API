@@ -1296,7 +1296,7 @@ Collection of all employee roles for employee contracts within a school
 
 
 ## Employees Qualifications [/employeeQualifications]
-### Retrive a list of employee qualifications [PUT]
+### Create employee qualifications [POST]
 
 + Request
 
@@ -1334,7 +1334,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
     
-              [{
+            [{
                     "employeeId":       00001,
                     "qualifications":   [{
                                             "status":           true,
@@ -1352,13 +1352,69 @@ Collection of all employee roles for employee contracts within a school
                                             "qualificationId":      2,                                        
                                             "qualificationCode":    "BAG: Bachelor of Agriculture ",
 
+                                        }]            
+            }]
+            
+
+### Create employee qualifications [PUT]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+           
+              [{
+                    "employeeId":       00001,
+                    "qualifications":   [{
+                                            "qualificationId":      1,
+                                            "qualificationCode":    "BEng: BEng",
+                                            "subject1":             "A400: Clinical Dentistry",
+                                            "subject2":             "B400: Nutrition",
+                                            "classOfDegree":        "5: Third Degree honours",
+                                            "verified":             true
+                                        }]
+            },
+            {
+                    "employeeId":       00002,
+                    "qualifications":   [{
+                                            "qualificationId":      2,                                        
+                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
+                                            "subject1":             "B100: Anatomy, Physiology and Pathology ",
+                                            "subject2":             "A400: Clinical Dentistry ",
+                                            "classOfDegree":        "2: Upper Second Class honours",
+                                            "verified":             true  
                                         }            
             }]
-            
-            
-            
-            
+
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                    "employeeId":       00001,
+                    "qualifications":   [{
+                                            "status":           true,
+                                            "details":          "Saved Succesfully",
+                                            "qualificationId":      1,
+                                            "qualificationCode":    "BEng: BEng",
+
+                                        }]
+            },
+            {
+                    "employeeId":       00002,
+                    "qualifications":   [{
+                                            "status":           true,
+                                            "details":          "Saved Succesfully",
+                                            "qualificationId":      2,                                        
+                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
+
+                                        }]            
             }]
+
     
 # Group Contacts
 Group of all contact-related resources
