@@ -3160,10 +3160,9 @@ Update SEN Provisions for one to many learners
              }] 
 
 
-## Learner SEN Major Needs [/learnerSENMajorNeeds{?startDate}{?endDate}]
+## Learner SEN Major Needs [/learnerSENMajorNeeds{?status}]
 + Parameters
-    + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
-    + endDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+        + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
     
 ### Retrieve a learner SEN Major Need Details [GET]
 
