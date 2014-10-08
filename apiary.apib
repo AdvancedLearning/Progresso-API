@@ -997,7 +997,6 @@ Create one to many contract records
                                         "startDate":    "01-09-2013",
                                         "endDate":      "31-08-2015",
                                         "postCode":     "AHT",
-                                        "postName":     "Assistant Head",
                                         "dailyRate":    true
                                          "origin":       "Other",
                                         "destination":  ""                           
@@ -1019,7 +1018,6 @@ Create one to many contract records
                                         "startDate":    "01-09-2013",
                                         "endDate":      "31-08-2015",
                                         "postCode":     "AHT",
-                                        "postName":     "Assistant Head",
                                         "dailyRate":    true
                                          "origin":       "Other",
                                         "destination":  ""                           
@@ -1050,7 +1048,6 @@ Update one to many contract records
                                         "startDate":    "01-09-2013",
                                         "endDate":      "31-08-2015",
                                         "postCode":     "AHT",
-                                        "postName":     "Assistant Head",
                                         "dailyRate":    true
                                         "Base Pay":     36588.00
                                          "origin":       "Other",
@@ -1073,7 +1070,6 @@ Update one to many contract records
                                         "startDate":    "01-09-2013",
                                         "endDate":      "31-08-2015",
                                         "postCode":     "AHT",
-                                        "postName":     "Assistant Head",
                                         "dailyRate":    true
                                         "Base Pay":     36588.00
                                          "origin":       "Other",
@@ -4685,6 +4681,66 @@ Create on to many Day Compositions Periods
             }]
 
 
+### Create Day Compositions Periods [PUT]
+Update on to many Day Compositions Periods
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Request (application/json)
+    + Body
+    
+            [{
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 0,
+                "weekDay":                  "Monday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 0,
+                "weekDay":                  "Tuesday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            }]
+
+
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 1,
+                "weekDay":                  "Monday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 2,
+                "weekDay":                  "Tuesday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            }]
 
 
 
