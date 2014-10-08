@@ -4442,8 +4442,8 @@ Create one to many Timetable Sources
             }]
 
 
-### Create Timetable Sources [PUT]
-Create one to many Timetable Sources
+### Update Timetable Sources [PUT]
+Update one to many Timetable Sources
 
 + Request (application/json)
 
@@ -4455,7 +4455,7 @@ Create one to many Timetable Sources
     + Body
 
             [{
-                "timetableSourceId":        0
+                "timetableSourceId":        1
                 "code":                     "2014/2015",
                 "name":                     "Updated Timetable for 2014/2015",
                 "startDate":                "01/09/2014",
@@ -4471,23 +4471,117 @@ Create one to many Timetable Sources
     + Body
     
             [{
-                "status":           true
-                "details":          "Update Successful"
+                "status":                   true
+                "details":                  "Update Successful"
                 "timetableSourceId":        1
                 "code":                     "2014/2015"
             }]
 
 
 
+## Day Compositions Periods [/dayCompositions/{?AcYearId}{?TTSourceId}]
+
++ Parameters
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+    + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
+
+### Retrieve Timetable Sources Association [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "timetableSourceId":        1,
+                "dayCompositionId":         1,
+                "Name":                    "Day Comp 2014/2015"
+             },
+            {
+                "timetableSourceId":        1,
+                "dayCompositionId":         2,
+                "Name":                    "Day Comp 2014/2015 For KS5"
+             }]
+
+
+## Create/Update Day Compositions [/dayCompositions]
+### Create Day Compositions [POST]
+Create one to many Day Compositions
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+
+            [{           
+                "timetableSourceId":        1,
+                "dayCompositionId":         ,
+                "Name":                    "Day Comp 2014/2015"
 
 
 
 
 
 
+## Day Compositions Periods [/dayCompositionsPeriods/{?AcYearId}{?TTSourceId}]
 
++ Parameters
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+    + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
+### Retrieve Timetable Sources Association [GET]
 
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "weekDay":                  "Monday",
+                "periodId":                 1,
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "weekDay":                  "Monday",
+                "periodId":                 2,
+            `   "periodCode":               "P2",
+                "periodName":               "Period 2",
+                "startTime:"                "09:50",
+                "endTime":                  "10:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "weekDay":                  "Monday",
+                "periodId":                 3,
+            `   "periodCode":               "P3",
+                "periodName":               "Period 3",
+                "startTime:"                "11:10",
+                "endTime":                  "12:10"
+            }]
 
 
 
