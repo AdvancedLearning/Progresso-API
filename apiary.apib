@@ -4525,12 +4525,51 @@ Create one to many Day Compositions
 
             [{           
                 "timetableSourceId":        1,
-                "dayCompositionId":         ,
+                "dayCompositionId":         0,
                 "Name":                    "Day Comp 2014/2015"
+            }]
 
 
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":                    true,
+                "details":                  "Create Successful",  
+                "timetableSourceId":        1,
+                "dayCompositionId":         1,
+                "Name":                    "Day Comp 2014/2015"
+            }]
+
+### Update Day Compositions [PUT]
+Update one to many Day Compositions
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+
+            [{           
+                "timetableSourceId":        1,
+                "dayCompositionId":         1,
+                "Name":                    "Day Comp 2014/2015 Updated"
+            }]
 
 
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":                    true,
+                "details":                  "Create Successful",  
+                "timetableSourceId":        1,
+                "dayCompositionId":         1,
+                "Name":                    "Day Comp 2014/2015 Updated"
+            }]
 
 
 ## Day Compositions Periods [/dayCompositionsPeriods/{?AcYearId}{?TTSourceId}]
