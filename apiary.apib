@@ -4622,9 +4622,67 @@ Update one to many Day Compositions
                 "endTime":                  "12:10"
             }]
 
+##Create/Update Day Compositions Periods [/dayCompositionsPeriods/]
+### Create Day Compositions Periods [POST]
+Create on to many Day Compositions Periods
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Request (application/json)
+    + Body
+    
+            [{
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 0,
+                "weekDay":                  "Monday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 0,
+                "weekDay":                  "Tuesday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            }]
 
 
 
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 1,
+                "weekDay":                  "Monday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            },
+            {
+                "dayCompositionId":         1,
+                "timetableSourceId":        1,
+                "periodId":                 2,
+                "weekDay":                  "Tuesday",
+            `   "periodCode":               "P1",
+                "periodName":               "Period 1",
+                "startTime:"                "08:30",
+                "endTime":                  "09:50"
+            }]
 
 
 
