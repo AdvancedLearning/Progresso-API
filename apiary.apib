@@ -3716,6 +3716,172 @@ Update one or many groups
 
 
             }]
+            
+## Create/Update Group Association [/groupAssociation]
+### Create Group Association [POST]
+Create Group Association for one to many Learners and Groups
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+
+            [{
+                   "groupId":   1,
+                    "learners":   [{
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    0,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+                                },
+                                {
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    0,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+
+                                }]
+            },
+            {
+                   "groupId":   2,
+                    "learners":   [{
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    0,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+                                },
+                                {
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    0,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+
+                                }]
+
+            }]
+
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                   "groupId":   1,
+                    "status":       "success",
+                    "details":      "Action Successful",
+                    "learners":   [{
+                                        "status":       "success",
+                                        "details":      "Create Successful",
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    1
+
+                                },
+                                {
+                                        "status":       "success",
+                                        "details":      "Create Successful",
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    2
+
+
+                                }]
+            },
+            {
+                   "groupId":   2,
+                    "status":       "success",
+                    "details":      "Action Successful",see                   
+                    "learners":   [{
+                                        "status":       "success",
+                                        "details":      "Create Successful",
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    3
+
+                                },
+                                {
+                                        "status":       "success",
+                                        "details":      "Create Successful",                                
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    4
+
+                                }]            
+        
+             }]
+
+### Update Group Association [PUT]
+Update Group Association for one to many Learners and Groups
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+    + Body
+
+            [{
+                   "groupId":   1,
+                    "learners":   [{
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    1,
+                                        "startDate":                "10-09-2014",
+                                        "endDate":                  "30-08-2015"
+                                }]
+            },
+            {
+                   "groupId":   2,
+                    "learners":   [{
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    3,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+                                },
+                                {
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    4,
+                                        "startDate":                "01-09-2014",
+                                        "endDate":                  "30-08-2015"
+
+                                }]
+
+            }]
+
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                   "groupId":   1,
+                    "status":       "success",
+                    "details":      "Action Successful",
+                    "learners":   [{
+                                        "status":       "success",
+                                        "details":      "Update Successful",
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    1
+
+                                }]
+            },
+            {
+                   "groupId":   2,
+                    "status":       "success",
+                    "details":      "Action Successful",see                   
+                    "learners":   [{
+                                        "status":       "success",
+                                        "details":      "Update Successful",
+                                        "learnerId":                1,
+                                        "learnerGroupLearnerId":    3
+
+                                },
+                                {
+                                        "status":       "success",
+                                        "details":      "Update Successful",                                
+                                        "learnerId":                2,
+                                        "learnerGroupLearnerId":    4
+
+                                }]            
+        
+             }]
 
 # Group Academic Data
 Group of all Academic Resources
