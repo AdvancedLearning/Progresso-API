@@ -1009,9 +1009,11 @@ Create one to many contract records
     
             [{
                 "status":           true,
-                "details":          "saved successfully"
+                "details":          "saved successfully",
                 "employeeId":       00001,
                 "contracts":        [{
+                                        "status":           true,
+                                        "details":          "",
                                         contractId":     1    
                                         "type":         "PRM",
                                         "name":         "Main Contract",
@@ -2650,8 +2652,8 @@ Update one to many learner heatlh records
                                         }]
             }]
 
-## Create/Update Learner Attendance [/learnerAttendance]
-### Create Learner Attendance [POST]
+## Create/Update Learner Attendance [/learnerRollCallAttendance]
+### Create Learner Roll Call Attendance [POST]
 Create Attendance for one to many learners
 
 + Request (application/json)
@@ -2668,13 +2670,13 @@ Create Attendance for one to many learners
                 "learnerCode":          "2013-00001",
                 "attendanceStartDate":  "16-06-2014",
                 "rollCallSessionStart": "AM",
-                "AttendanceString":     "/\/\/\/\/\##IIII/\/\/\",
+                "AttendanceString":     "/\/\/\/\/\##IIII/\/\/\"
             },
             {
-                "learnerCode":          "2013-00001",
+                "learnerCode":          "2013-00002",
                 "attendanceStartDate":  "16-06-2014",
                 "rollCallSessionStart": "AM",
-                "AttendanceString":     "BBBB/\/\/\##/\/\/\/\/\",
+                "AttendanceString":     "BBBB/\/\/\##/\/\/\/\/\"
                 
             }
             
@@ -2688,7 +2690,97 @@ Create Attendance for one to many learners
                  "status":             "success"
             },
             {
+                "learnerCode":          "2013-00002",
+                 "status":             "success"
+                
+            }]
+
+
+## Create/Update Learner Attendance [/learnerLessonAttendanceByPeriod]
+### Create Learner Lesson Attendance By Period [POST]
+Create Lesson Attendance for one to many learners using Timetable Period
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+           
+            [{
                 "learnerCode":          "2013-00001",
+                "iteration":            1,
+                "periodId":             1,
+                "attendanceCode":       "/"
+            },
+            {
+                "learnerCode":          "2013-00002",
+                "iteration":            1,
+                "periodId":             1,
+                "attendanceCode":       "N"
+            }
+            
+            }]
+
++ Response 200
+    + Body
+    
+            [{
+                 "learnerCode":          "2013-00001",
+                 "status":             "success"
+            },
+            {
+                "learnerCode":          "2013-00002",
+                 "status":             "success"
+                
+            }]
+
+
+## Create/Update Learner Attendance [/learnerLessonAttendanceByLessonTime]
+### Create Learner Lesson Attendance by Time [POST]
+Create Attendance for one to many learners using date and time of lesson
+
++ Request (application/json)
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
+    + Body
+           
+            [{
+                "learnerCode":          "2013-00001",
+                "date":                 "16-06-2014",
+                "startTime":            "09:00",
+                "finishTime":           "10:00",
+                "attendanceCode":       "/"            
+
+            },
+            {
+
+                "learnerCode":          "2013-00002",
+                "date":                 "16-06-2014",
+                "startTime":            "09:00",
+                "finishTime":           "10:00",
+                "attendanceCode":       "N"
+            }
+            
+            }]
+
++ Response 200
+    + Body
+    
+            [{
+                 "learnerCode":          "2013-00001",
+                 "status":             "success"
+            },
+            {
+                "learnerCode":          "2013-00002",
                  "status":             "success"
                 
             }]
