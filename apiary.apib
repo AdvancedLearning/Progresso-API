@@ -3660,6 +3660,33 @@ Update one or many groups
              }]
 
 
+## Group Association [/groupAssociation/{?groupId}{?since}{?groupStartDate}{?groupEndDate}]
+
++ Parameters
+    + groupId (optional, number, `12345`) ... The unique identifier of a Learner Group
+    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified.
+    + groupStartDate (optional, dateTime, `01-04-2014`) ... Optional filter to retrieve all groups with a start date after specified date
+    + groupEndDate (optional, dateTime, `01-04-2014`) ... Optional filter to retrieve all groups with an end date before specified date.
+
+### Retrieve Learner Group Association [GET]
+
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                                
+
+
+            }]
 
 # Group Academic Data
 Group of all Academic Resources
