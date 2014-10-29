@@ -1,8 +1,38 @@
 FORMAT: 1A
-HOST: http://api.progresso.net/v2
+HOST: http://muffin-api.progresso.net/v2
 
 # Progresso API
 Provides the ability to manage school information.
+
+# Authorization
+Methods for security and access
+
+## Access Tokens [/Token]
+
+### Request token [POST]
+
++ Request
+
+    + Headers
+    
+            Content-Type: "application/x-www-form-urlencoded"
+            
+    + Body
+    
+            grant_type=password&username=[USERNAME]&password=[URI_ENCODED_PASSWORD]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "access_token":     "access_token_for_api_calls",
+                "schoolId":         "schooId_token_valid_for",
+                "companyId":        "current_company_id",
+                "userId":           "progresso_user_id_for_token"
+            }
+
+
 
 # Group Employees
 Group of all employee-related resources
@@ -1409,7 +1439,7 @@ Collection of all employee roles for employee contracts within a school
 # Group Contacts
 Group of all contact-related resources
 
-## Contacts Collection [/contacts{?id}]
+## Contacts Collection [/contacts/{id}]
 + Parameters
     + id (optional, int, `1`) ... Contacts with the id
 
@@ -1420,8 +1450,7 @@ Group of all contact-related resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorisation: "Bearer [CURRENT_TOKEN]"
 
 + Response 200 (application/json)
 
