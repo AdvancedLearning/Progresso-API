@@ -4,7 +4,8 @@ HOST: https://muffin-api.progresso.net/v2
 # Progresso API
 Provides the ability to manage school information.
 
-# Authorization
+
+# Group Authorization
 Methods for security and access
 
 ## Access Tokens [/Token]
@@ -1440,8 +1441,10 @@ Collection of all employee roles for employee contracts within a school
 Group of all contact-related resources
 
 ## Contacts Collection [/contacts/{id}]
+Get all or single contact
+
 + Parameters
-    + id (optional, int, `1`) ... Contacts with the id
+    + id (optional, int, `12345`) ... Contact with the id
 
     
 ### Retrieve a collection of contacts [GET]
@@ -1450,7 +1453,7 @@ Group of all contact-related resources
 
     + Headers
         
-            Authorisation: "Bearer [CURRENT_TOKEN]"
+            Authorisation: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
 
