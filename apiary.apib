@@ -5003,28 +5003,24 @@ Create on to many Day Compositions Periods
     + Body
     
             [{
+                "status":                    true,
+                "details":                  "Create Successful",  
                 "dayCompositionId":         1,
-                "timetableSourceId":        1,
                 "periodId":                 1,
                 "weekDay":                  "Monday",
-            `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
+            `   "periodCode":               "P1"
             },
             {
+                "status":                    true,
+                "details":                  "Create Successful",  
                 "dayCompositionId":         1,
-                "timetableSourceId":        1,
                 "periodId":                 2,
                 "weekDay":                  "Tuesday",
             `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
             }]
 
 
-### Create Day Compositions Periods [PUT]
+### Update Day Compositions Periods [PUT]
 Update on to many Day Compositions Periods
 
 + Request
@@ -5041,32 +5037,6 @@ Update on to many Day Compositions Periods
             [{
                 "dayCompositionId":         1,
                 "timetableSourceId":        1,
-                "periodId":                 0,
-                "weekDay":                  "Monday",
-            `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
-            },
-            {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "periodId":                 0,
-                "weekDay":                  "Tuesday",
-            `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
-            }]
-
-
-
-+ Response 200 (application/json)
-    + Body
-    
-            [{
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
                 "periodId":                 1,
                 "weekDay":                  "Monday",
             `   "periodCode":               "P1",
@@ -5086,17 +5056,149 @@ Update on to many Day Compositions Periods
             }]
 
 
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":                   true,
+                "details":                  "Update Successful",  
+                "dayCompositionId":         1,
+                "periodId":                 1,
+                "weekDay":                  "Monday",
+            `   "periodCode":               "P1"
+            },
+            {
+                "status":                   true,
+                "details":                  "Update Successful",  
+                "dayCompositionId":         1,
+                "periodId":                 2,
+                "weekDay":                  "Tuesday",
+            `   "periodCode":               "P1",
+            }]
+
+
 # Group Physical
-Group of all Timetable Resources
+Group of all Physical Resources
+
+## Rooms  [/rooms/{?roomId}]
+
++ Parameters
+    + roomId (optional, number, `12345`) ... The unique identifier of a room
+
+### Retrieve Rooms [GET]
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "roomId":               1,
+                "roomCode":             "A1",
+                "roomName":             "A1",
+                "site":                 "Main",
+                "roomCategory":         "DTN",
+                "roomType":             "Detention",
+                "associatedEquipment":  [{
+                                                "equipmentId":  "OHP",
+                                                "equipmentName":  "Over Head Projector"
+                                        }]
+
+            },
+            {
+                "roomId":               2,
+                "roomCode":             "A2",
+                "roomName":             "A2",
+                "site":                 "Main",
+                "roomCategory":         "",
+                "roomType":             "",
+                "associatedEquipment":  [{}]
+
+            }]
+
+### Create Rooms [POST]
+Create one to many Rooms
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Request (application/json)
+    + Body
+
+            [{
+                "roomId":               0,
+                "roomCode":             "A3",
+                "roomName":             "A3",
+                "site":                 "Main",
+                "roomCategory":         "DTN",
+                "roomType":             "Detention",
+                "associatedEquipment":  [{
+                                                "equipmentId":  "OHP",
+                                                "equipmentName":  "Over Head Projector"
+                                        }]
+            }]
 
 
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":               true,
+                "details":              "Update Successful", 
+                "roomId":               1,
+                "roomCode":             "A3"
+
+            }]
 
 
+### Update Rooms [PUT]
+Update one to many Rooms
+
++ Request
+
+    + Headers
+        
+            partnerToken: validPartnerToken
+            schoolId: validSchoolId
+        
+
++ Request (application/json)
+    + Body
+
+            [{
+                "roomId":               1,
+                "roomCode":             "A3",
+                "roomName":             "A3-0",
+                "site":                 "Main",
+                "roomCategory":         "DTN",
+                "roomType":             "Detention",
+                "associatedEquipment":  [{
+                                                "equipmentId":  "OHP",
+                                                "equipmentName":  "Over Head Projector"
+                                        }]
+            }]
 
 
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":               true,
+                "details":              "Update Successful", 
+                "roomId":               1,
+                "roomCode":             "A3"
 
-
-
-
-
+            }]
 
