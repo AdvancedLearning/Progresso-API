@@ -48,8 +48,7 @@ Group of all employee-related resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
     
 
@@ -131,8 +130,7 @@ Collection of all employees for a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
     + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
@@ -268,8 +266,7 @@ Create one to many employee records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -369,8 +366,7 @@ Update one to many employee records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -474,8 +470,7 @@ Collection of all employees contacts for a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
     + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
@@ -517,8 +512,7 @@ Associate Employee to one to multiple contacts
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -576,8 +570,7 @@ Collection of all employee checks for employees within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
     + verficationStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to Checks with a verification date after a date
@@ -710,8 +703,7 @@ Create Employee checks for one to multiple contacts
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -788,8 +780,7 @@ Update Employee checks for one to multiple contacts
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -867,12 +858,11 @@ Collection of all employee checks for employees within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
 
-    + employee (optional, int, `0001``) ... Optional filter to an Employee
+    + employee (optional, int, `12345`) ... Optional filter to an Employee
 
 + Response 200 (application/json)
 
@@ -1013,8 +1003,7 @@ Create one to many contract records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -1063,8 +1052,7 @@ Update one to many contract records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -1112,8 +1100,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
     
@@ -1188,8 +1175,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
     
@@ -1270,8 +1256,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
 
@@ -1323,8 +1308,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
            
@@ -1383,8 +1367,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
            
@@ -5019,6 +5002,31 @@ Update on to many Day Compositions Periods
                 "weekDay":                  "Tuesday",
             `   "periodCode":               "P1",
             }]
+
+
+
+## Timetable Events  [/ttEvents/{ttSourceId}{startDate}{endDate}{?dayCompositionId}]
+
++ Parameters
+    + ttSourceId (required, number, `12345`) ... The unique identifier of a timetable source
+    + startDate (required, date, `12345`) ...    Filter date for timetable events
+    + endDate (required, date, `12345`) ...    Filter date for timetable events
+    + dayCompositionId (optional, number, `12345`) ...    Filter for events from a single day composition
+
+### Retrieve Rooms [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+    + Body
+    
+
+
 
 
 # Group Physical
