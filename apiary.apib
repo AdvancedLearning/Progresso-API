@@ -898,7 +898,7 @@ Collection of all employee checks for employees within a school
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
                                                         "weeksPerYear":     52.14,
-                                                        "payrollNumber":    123456,
+                                                        "payrollNumber":    "123456",
                                                         "NIRate":           "Contracted In",
                                                         "superannuation":   "Teachers Superannuation",
                                                         "costCentre":       "TEACH (Teaching Staff)",
@@ -946,11 +946,11 @@ Collection of all employee checks for employees within a school
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
                                                         "weeksPerYear":     52.14,
-                                                        "payrollNumber":    123456,
+                                                        "payrollNumber":    "123456",
                                                         "NIRate":           "Contracted In",
                                                         "superannuation":   "Teachers Superannuation",
                                                         "costCentre":       "TEACH (Teaching Staff)",
-                                                        "ledgerCode":       "A040 (Teachers Salaries"
+                                                        "ledgerCode":       "A040 (Teachers Salaries)"
                                                         "salaries":         [{
                                                                                 "salaryId":             00002,
                                                                                 "effectiveFrom":        "01-09-2014",
@@ -982,7 +982,7 @@ Collection of all employee checks for employees within a school
                                                         "hoursPerWeek":     32.50,
                                                         "FTEHours":         32.50,
                                                         "weeksPerYear":     52.14,
-                                                        "payrollNumber":    123456,
+                                                        "payrollNumber":    "123456",
                                                         "NIRate":           "Contracted In",
                                                         "superannuation":   "Teachers Superannuation",
                                                         "costCentre":       "TEACH (Teaching Staff)",
@@ -1126,7 +1126,7 @@ Collection of all employee roles for employee contracts within a school
                                 "hoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
                                 "weeksPerYear":     52.14,
-                                "payrollNumber":    123456,
+                                "payrollNumber":    "123456",
                                 "NIRate":           "Contracted In",
                                 "superannuation":   "Teachers Superannuation",
                                 "costCentre":       "TEACH",
@@ -1142,7 +1142,7 @@ Collection of all employee roles for employee contracts within a school
                                 "hoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
                                 "weeksPerYear":     52.14,
-                                "payrollNumber":    123456,
+                                "payrollNumber":    "123456",
                                 "NIRate":           "Contracted In",
                                 "superannuation":   "Teachers Superannuation",
                                 "costCentre":       "TEACH",
@@ -1179,7 +1179,7 @@ Collection of all employee roles for employee contracts within a school
             }]
 
 
-## Create/Update Employees Contract Roles [/employeeRoleSalary]
+## Create/Update Employees Salary [/employeeRoleSalary]
 Collection of all employee roles for employee contracts within a school
 
 ### Create Roles for employee contracts [POST]
@@ -1547,8 +1547,7 @@ Create one to many contact records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -1698,8 +1697,7 @@ Update one to many contact records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -1813,8 +1811,7 @@ Group of all learner-related resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -1873,8 +1870,7 @@ Group of all learner-related resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -1932,8 +1928,7 @@ Create one to many learner records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2148,8 +2143,7 @@ Update one to many learner records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2422,8 +2416,7 @@ Update one to many learner records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -2488,8 +2481,7 @@ Update one to many learner records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -2555,8 +2547,7 @@ Create one to many learner health records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2622,8 +2613,7 @@ Update one to many learner heatlh records
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2692,8 +2682,7 @@ Create Attendance for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2736,8 +2725,7 @@ Create Lesson Attendance for one to many learners using Timetable Period
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2779,8 +2767,7 @@ Create Attendance for one to many learners using date and time of lesson
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -2829,8 +2816,7 @@ Create Attendance for one to many learners using date and time of lesson
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -2876,8 +2862,7 @@ Create Exclusions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3005,8 +2990,7 @@ Update Exclusions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3139,8 +3123,7 @@ Update Exclusions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
 
@@ -3189,8 +3172,7 @@ Create SEN Provisions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3236,8 +3218,7 @@ Update SEN Provisions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3287,8 +3268,7 @@ Update SEN Provisions for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
 
@@ -3315,8 +3295,7 @@ Create SEN Major Needs for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3360,8 +3339,7 @@ Create SEN Major Needs for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3409,8 +3387,7 @@ Create SEN Major Needs for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
 
@@ -3438,8 +3415,7 @@ Create SEN Major Needs for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3485,8 +3461,7 @@ Create SEN Major Needs for one to many learners
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3542,8 +3517,7 @@ Group of all Group-related resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
             
 + Response 200 (application/json)
 
@@ -3596,8 +3570,7 @@ Create one or many groups
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3654,8 +3627,7 @@ Update one or many groups
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
     + Body
@@ -3707,8 +3679,7 @@ Update one or many groups
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
 
 + Response 200 (application/json)
@@ -3756,8 +3727,7 @@ Create Group Association for one to many Learners and Groups
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -3846,8 +3816,7 @@ Update Group Association for one to many Learners and Groups
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -3929,8 +3898,7 @@ Group of all Academic Resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -3960,8 +3928,7 @@ Create one to many academic years
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4006,8 +3973,7 @@ Update one to many academic years
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4057,8 +4023,7 @@ Update one to many academic years
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4089,8 +4054,7 @@ Create one to many academic terms
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4139,8 +4103,7 @@ Update one to many academic terms
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4193,8 +4156,7 @@ Update one to many academic terms
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4226,8 +4188,7 @@ Create one to many terms breaks
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4276,8 +4237,7 @@ Update one to many terms breaks
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4328,8 +4288,7 @@ Update one to many terms breaks
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4367,8 +4326,7 @@ Set one to many days of a Week Structure
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4440,8 +4398,7 @@ Set one to many days of a Week Structure
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4475,8 +4432,7 @@ Create one to many Academic Calendar Events
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4524,8 +4480,7 @@ Update one to many Academic Calendar Events
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4577,8 +4532,7 @@ Update one to many Academic Calendar Events
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4610,8 +4564,7 @@ Update one to many Academic Calendar Events
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4657,8 +4610,7 @@ Create association of one to many Course to Years
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 
@@ -4707,8 +4659,7 @@ Group of all Timetable Resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4734,8 +4685,7 @@ Create one to many Timetable Sources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -4788,8 +4738,7 @@ Update one to many Timetable Sources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -4830,8 +4779,7 @@ Update one to many Timetable Sources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4857,8 +4805,7 @@ Create one to many Day Compositions
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -4887,8 +4834,7 @@ Update one to many Day Compositions
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
 
@@ -4923,8 +4869,7 @@ Update one to many Day Compositions
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -4969,8 +4914,7 @@ Create on to many Day Compositions Periods
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Request (application/json)
@@ -5027,8 +4971,7 @@ Update on to many Day Compositions Periods
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Request (application/json)
@@ -5092,8 +5035,7 @@ Group of all Physical Resources
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Response 200 (application/json)
@@ -5130,8 +5072,7 @@ Create one to many Rooms
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Request (application/json)
@@ -5170,8 +5111,7 @@ Update one to many Rooms
 
     + Headers
         
-            partnerToken: validPartnerToken
-            schoolId: validSchoolId
+            Authorization: Bearer [CURRENT_TOKEN]
         
 
 + Request (application/json)
