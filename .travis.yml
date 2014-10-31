@@ -9,3 +9,6 @@ notifications:
       secure: KAiQkuLaNkd/XZljQCn0kaTjmKCONGSiBhJZObrwc0l0IWmgsljsG1z2FHEvpIBz8avZsNNxH/KhCvZMTjyFb2RITFHzjHugsnilSlj96ZzUjhIiTVdxZt2dWpmISrOXi96x+swRTtnKxP6GAwI9g4YW5Rn2An3r/GssX3LA9Wg=
     template:
     - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}'
+before_install:
+- openssl aes-256-cbc -K $encrypted_9958467afed6_key -iv $encrypted_9958467afed6_iv
+  -in config.js.enc -out config.js -d
