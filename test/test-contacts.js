@@ -18,14 +18,14 @@ describe('contacts', function() {
   });
 
 //  it('should retrieve a list of all contacts',function(done) {
-//    contacts.get(config.target, authinfo.access_token, undefined, function(error, res, body){
+//    contacts.get(authinfo.access_token, undefined, function(error, res, body){
 //      res.statusCode.should.eql(200);
 //      done();
 //    });
 //  });
 
   it('should retrieve a single contact', function(done) {
-    contacts.get(config.target, authinfo.access_token, config.contacts.contactId, function(err, res, body){
+    contacts.get(authinfo.access_token, config.contacts.contactId, function(err, res, body){
       res.statusCode.should.eql(200);
       done();
     });
