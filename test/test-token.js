@@ -1,28 +1,33 @@
-/* jslint node: true */
+/* jslint node: true, mocha: true */
 // test/test-token.js
 
+var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
 
-exports.testTokenSuccess = function(test) {
-  apitoken.get(config.target, config.username, config.password, function(error, res, body){
-    test.expect(5);
-    test.ok(res.statusCode == 200, "Expecting response code of 200 not " + res.statusCode + ". Additional info: " + body.error);
-    test.ok(body.schoolId == "10410");
-    test.ok(body.companyId == "1000");
-    test.ok(body.userId == "44184");
-    test.ok(body.access_token);
-    test.done();
-  });
-};
+describe('token', function(){
+  this.timeout(5000);
 
-exports.testTokenBadPassword = function(test) {
-  apitoken.get(config.target, config.username, 'BadPassword', function(error, res, body){
-    test.expect(3);
-    test.ok(res.statusCode == 400);
-    test.ok(body.error == 'invalid_grant');
-    test.ok(body.error_description == 'The user name or password is invalid.');
-    test.done();
+  it('should issue a token for a valid username and password', function(done){
+    apitoken.get(config.target, config.username, config.password, function(err, res, body){
+      res.statusCode.should.eql(200);
+      body.schoolId.should.eql('10410');
+      body.companyId.should.eql('1000');
+      body.userId.should.eql('44184');
+      should.exist(body.access_token);
+      done();
+    });
   });
-};
+
+  it('should not issue a token when send a bad password', function(done) {
+    apitoken.get(config.target, config.username, 'BadPassword', function(err, res, body){
+      res.statusCode.should.eql(400);
+      body.error.should.eql('invalid_grant');
+      body.error_description.should.eql('The user name or password is invalid.');
+      done();
+    });
+  });
+
+});
+
 
