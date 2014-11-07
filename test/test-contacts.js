@@ -30,4 +30,12 @@ describe('contacts', function() {
       done();
     });
   });
+
+  it('should fail for an invalid contact', function(done) {
+    contacts.single(authinfo.access_token, '1', function(err, res, body){
+      res.statusCode.should.eql(401);
+      done();
+    });
+  });
+
 });
