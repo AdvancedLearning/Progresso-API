@@ -1,6 +1,7 @@
 /* jslint node: true, mocha: true */
 // test/test-token.js
 
+require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
@@ -11,9 +12,9 @@ describe('token', function(){
   it('should issue a token for a valid username and password', function(done){
     apitoken.get(config.target, config.username, config.password, function(err, res, body){
       res.statusCode.should.eql(200);
-      body.schoolId.should.eql('10410');
-      body.companyId.should.eql('1000');
-      body.userId.should.eql('44184');
+      should.exists(body.schoolId);
+      should.exists(body.companyId);
+      should.exists(body.userId);
       should.exist(body.access_token);
       done();
     });

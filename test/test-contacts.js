@@ -1,6 +1,7 @@
 /* jslint node: true, mocha: true */
 // test/test-token.js
 
+require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
