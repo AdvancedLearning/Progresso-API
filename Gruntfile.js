@@ -18,14 +18,14 @@ module.exports = function (grunt) {
           reporter: 'spec',
         }
       },
-      localcov: {
+      coverage: {
         options: {
           reporter: 'html-cov',
           output: 'coverage.html',
           instrument: false,
         }
       },
-      coverage: {
+      coveralls: {
         options: {
           coveralls: true,
           instrument: false
@@ -38,6 +38,6 @@ module.exports = function (grunt) {
   });
 
   // available tasks
-  grunt.registerTask('default', ['jshint','mochacov:test','']);
-  grunt.registerTask('travis', ['jshint','mochacov']);
+  grunt.registerTask('default', ['jshint','mochacov:test','mochacov:coverage']);
+  grunt.registerTask('travis', ['jshint','mochacov:test','mochacov:coveralls']);
 };
