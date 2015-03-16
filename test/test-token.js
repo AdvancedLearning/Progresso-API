@@ -12,9 +12,9 @@ describe('token', function(){
   it('should issue a token for a valid username and password', function(done){
     apitoken.get(config.target, config.username, config.password, function(err, res, body){
       res.statusCode.should.eql(200);
-      should.exists(body.schoolId);
-      should.exists(body.companyId);
-      should.exists(body.userId);
+
+      should.exists(body.token_type);
+      should.exists(body.expires_in);
       should.exist(body.access_token);
       done();
     });
@@ -23,8 +23,10 @@ describe('token', function(){
   it('should not issue a token when send a bad password', function(done) {
     apitoken.get(config.target, config.username, 'BadPassword', function(err, res, body){
       res.statusCode.should.eql(400);
-      body.error.should.eql('invalid_grant');
-      body.error_description.should.eql('The user name or password is invalid.');
+
+      var msg = JSON.parse(body);
+      msg.error.should.eql('invalid_grant');
+      msg.error_description.should.eql('The user name or password is invalid.');
       done();
     });
   });
