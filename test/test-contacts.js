@@ -9,7 +9,7 @@ var contacts = require('../lib/contacts');
 var authinfo;
 
 describe('contacts', function() {
-  this.timeout(5000);
+  this.timeout(20000);
 
   before(function(done){
     apitoken.get(config.target, config.username, config.password, function(error, res, body){
@@ -18,12 +18,12 @@ describe('contacts', function() {
     });
   });
 
-//  it('should retrieve a list of all contacts',function(done) {
-//    contacts.all(authinfo.access_token, undefined, function(error, res, body){
-//      res.statusCode.should.eql(200);
-//      done();
-//    });
-//  });
+  it('should retrieve a list of all contacts',function(done) {
+    contacts.all(authinfo.access_token, undefined, function(error, res, body){
+      res.statusCode.should.eql(200);
+      done();
+    });
+  });
 
   it('should retrieve a single contact', function(done) {
     contacts.single(authinfo.access_token, config.contacts.contactId, function(err, res, body){

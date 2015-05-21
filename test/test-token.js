@@ -6,8 +6,8 @@ var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
 
-describe('token', function(){
-  this.timeout(5000);
+describe('token', function () {
+  this.timeout(10000);
 
   it('should issue a token for a valid username and password', function(done){
     apitoken.get(config.target, config.username, config.password, function(err, res, body){
