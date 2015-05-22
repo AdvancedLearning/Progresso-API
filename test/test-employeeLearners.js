@@ -5,7 +5,7 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var employees = require('../lib/employeeContacts');
+var employees = require('../lib/Learners');
 var authinfo;
 
 describe('Learners', function () {
@@ -18,17 +18,11 @@ describe('Learners', function () {
     });
   });
     
-  it('should retrieve a collection of active Learners', function (done) {
-    employees.get(authinfo.access_token, 'active', function (error, res, body) {
+  it('should retrieve a collection of active employee contacts', function (done) {
+    employees.get(authinfo.access_token, config.learners.learnerId, config.learners.status, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
     });
   });
   
-  it('should create contact', function (done) {
-    employees.get(authinfo.access_token, config.contacts.data, function (error, res, body) {
-      res.statusCode.should.eql(200);
-            done();
-    });
-  });
   });
