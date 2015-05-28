@@ -5,10 +5,11 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var employees = require('../lib/Learners');
+var employees = require('../lib/LearnerContacts');
 var authinfo;
+var x;
 
-describe('Learners', function () {
+describe('LearnerContacts', function () {
   this.timeout(30000);
 
   before(function (done) {
@@ -18,11 +19,13 @@ describe('Learners', function () {
     });
   });
     
-  it('should retrieve a collection of active employee contacts', function (done) {
-    employees.get(authinfo.access_token, config.learners.learnerId, config.learners.status, function (error, res, body) {
+  it('should retrieve a contact associated to a learner', function (done) {
+    employees.get(authinfo.access_token, config.learnerContacts.since, config.learnerContacts.status, config.learnerContacts.responsibility, config.learnerContacts.priority, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
     });
   });
+  
+
   
   });

@@ -9,7 +9,7 @@ var contacts = require('../lib/contacts');
 var authinfo;
 
 describe('contacts', function() {
-  this.timeout(20000);
+  this.timeout(30000);
 
   before(function(done){
     apitoken.get(config.target, config.username, config.password, function(error, res, body){

@@ -9,21 +9,20 @@ var employees = require('../lib/employeeQualifications');
 var authinfo;
 
 describe('employeeQualifications', function () {
-    this.timeout(30000);
+  this.timeout(30000);
 
-    before(function(done){
-        apitoken.get(config.target, config.username, config.password, function(error, res, body){
-            authinfo = body;
-            done();
-        });
+  before(function (done) {
+    apitoken.get(config.target, config.username, config.password, function (error, res, body) {
+      authinfo = body;
+      done();
     });
+  });
     
-    it('should retrieve a employee Qualifications',function(done) {
-    employees.get(authinfo.access_token, config.employeeQualifications.employeeId, function(error, res, body){
-            console.log(res);    
+  it('should retrieve a employee Qualifications', function (done) {
+    employees.get(authinfo.access_token, config.employeeQualifications.employeeId, function (error, res, body) {
       res.statusCode.should.eql(200);
-            done();
-        });
+      done();
     });
+  });
     
 });
