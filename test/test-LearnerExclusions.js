@@ -20,6 +20,8 @@ describe('LearnerExclusions', function () {
     
   it('should retrieve a learner exclusion details', function (done) {
     employees.get(authinfo.access_token, config.learnerExclusions.startdate, config.learnerExclusions.enddate, function (error, res, body) {
+      console.warn(error);
+      console.warn(res);
       res.statusCode.should.eql(200);
       done();
     });

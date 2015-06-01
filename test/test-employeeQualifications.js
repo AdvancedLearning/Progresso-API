@@ -25,4 +25,11 @@ describe('employeeQualifications', function () {
     });
   });
     
+  it('should create an employee Qualification', function (done) {
+    employees.get(authinfo.access_token, config.employeeQualifications.data, function (error, res, body) {
+      res.statusCode.should.eql(200);
+      done();
+    });
+  });
+  
 });
