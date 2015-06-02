@@ -9,8 +9,8 @@ var apitoken = require('../lib/token');
 describe('token', function () {
   this.timeout(10000);
 
-  it('should issue a token for a valid username and password', function(done){
-    apitoken.get(config.target, config.username, config.password, function(err, res, body){
+  it('should issue a token for a valid username and password', function (done) {
+    apitoken.get(config.target, config.username, config.password, function (err, res, body) {
       res.statusCode.should.eql(200);
 
       should.exists(body.token_type);
@@ -20,8 +20,8 @@ describe('token', function () {
     });
   });
 
-  it('should not issue a token when send a bad password', function(done) {
-    apitoken.get(config.target, config.username, 'BadPassword', function(err, res, body){
+  it('should not issue a token when send a bad password', function (done) {
+    apitoken.get(config.target, config.username, 'BadPassword', function (err, res, body) {
       res.statusCode.should.eql(400);
 
       var msg = JSON.parse(body);
