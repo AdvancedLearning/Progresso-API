@@ -5,10 +5,10 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var employees = require('../lib/LearnerExclusions');
+var lib = require('../lib/Groups');
 var authinfo;
 
-describe('LearnerExclusions', function () {
+describe('Groups Collection', function () {
   this.timeout(30000);
 
   before(function (done) {
@@ -18,9 +18,8 @@ describe('LearnerExclusions', function () {
     });
   });
     
-  it('should retrieve a learner exclusion details', function (done) {
-    employees.get(authinfo.access_token, config.learnerExclusions.startdate, config.learnerExclusions.enddate, function (error, res, body) {
-      res.write(response.statusCode.toString());
+  it('should retrieve a collection of Groups', function (done) {
+    lib.get(authinfo.access_token, config.groupCollection.groupStartDate, config.groupCollection.groupEndDate, config.groupCollection.type, config.groupCollection.since, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
     });

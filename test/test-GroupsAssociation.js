@@ -5,10 +5,10 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var lib = require('../lib/LearnerExclusions');
+var lib = require('../lib/groupsAssociation');
 var authinfo;
 
-describe('LearnerExclusions', function () {
+describe('Groups Association', function () {
   this.timeout(30000);
 
   before(function (done) {
@@ -18,8 +18,8 @@ describe('LearnerExclusions', function () {
     });
   });
     
-  it('should retrieve a learner exclusion details', function (done) {
-    lib.get(authinfo.access_token, config.learnerExclusions.startdate, config.learnerExclusions.enddate, function (error, res, body) {
+  it('should retrieve learner group association', function (done) {
+    lib.get(authinfo.access_token, config.groupAssociation.groupId, config.groupAssociation.since, config.groupAssociation.groupStartDate, config.groupAssociation.groupEndDate, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
     });

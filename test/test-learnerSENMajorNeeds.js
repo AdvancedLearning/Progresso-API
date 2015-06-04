@@ -26,9 +26,25 @@ describe('learnerSENMajorNeeds', function () {
   });
   
   it('should create a learner SEN Major needs', function (done) {
-    learnerSENMajorNeeds.post(authinfo.access_token, learnerSENMajorNeeds.data, function (error, res, body) {
+    learnerSENMajorNeeds.post(authinfo.access_token, function (error, res, body) {
+      body = {
+        learnerCode:      '2013-00001',
+        learnerId:        '0001',
+        majorNeeds:   {
+          majorNeedId:          '0',
+          majorNeedCode:        'SLD',
+          majorNeedDescription: 'Severe Learning Difficulty ',
+          ranking:            '1'
+        }
+      };
+      res.statusCode.should.eql(200);
       done();
     });
   });
+  
+  
+  
+  
+  
     
 });
