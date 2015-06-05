@@ -18,7 +18,7 @@ describe('employeeQualifications', function () {
     });
   });
 
-  it('should retrieve a employee Qualifications', function (done) {
+  it('should retrieve an employee Qualifications', function (done) {
     employees.get(authinfo.access_token, config.employeeQualifications.employeeId, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
