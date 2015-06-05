@@ -5,10 +5,10 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var lib = require('../lib/dayCompositions');
+var lib = require('../lib/dayCompositionsPeriods');
 var authinfo;
 
-describe('Day Compositions', function () {
+describe('Day Compositions Period', function () {
   this.timeout(30000);
 
   before(function (done) {
@@ -19,7 +19,7 @@ describe('Day Compositions', function () {
   });
     
   it('should retrieve timetable sources association', function (done) {
-    lib.get(authinfo.access_token, config.dayCompositions.sourceId, function (error, res, body) {
+    lib.get(authinfo.access_token, config.dayCompositionsPeriod.TTSourceId, function (error, res, body) {
       res.statusCode.should.eql(200);
       done();
     });
