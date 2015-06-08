@@ -35,9 +35,12 @@ describe('Learners', function () {
   
   it('should create a learner record', function (done) {
     employees.post(authinfo.access_token, config.learnerbody.data, function (error, res, body) {
+      console.log('Status:', res.statusCode);
+      console.log('Headers:', JSON.stringify(res.headers));
+      console.log('Method:', res.method);
       res.statusCode.should.eql(200);
-      done();
+      done(error);
     });
   });
   
-  });
+});

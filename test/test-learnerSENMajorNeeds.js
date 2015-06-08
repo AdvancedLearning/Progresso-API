@@ -8,6 +8,7 @@ var apitoken = require('../lib/token');
 var learnerSENMajorNeeds = require('../lib/learnerSENMajorNeeds');
 var authinfo;
 
+
 describe('learnerSENMajorNeeds', function () {
   this.timeout(30000);
 
@@ -26,17 +27,10 @@ describe('learnerSENMajorNeeds', function () {
   });
   
   it('should create a learner SEN Major needs', function (done) {
-    learnerSENMajorNeeds.post(authinfo.access_token, function (error, res, body) {
-      body = {
-        learnerCode:      '2013-00001',
-        learnerId:        '0001',
-        majorNeeds:   {
-          majorNeedId:          '0',
-          majorNeedCode:        'SLD',
-          majorNeedDescription: 'Severe Learning Difficulty ',
-          ranking:            '1'
-        }
-      };
+    learnerSENMajorNeeds.post(authinfo.access_token, config.learnerSENMajorNeeds.body, function (error, res, body) {
+      console.log('Status:', res.statusCode);
+      console.log('Headers:', JSON.stringify(res.headers));
+      console.log('Method:', res.method);
       res.statusCode.should.eql(200);
       done();
     });

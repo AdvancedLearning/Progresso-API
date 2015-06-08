@@ -20,6 +20,9 @@ describe('LearnerExclusions', function () {
     
   it('should retrieve a learner exclusion details', function (done) {
     lib.get(authinfo.access_token, config.learnerExclusions.startdate, config.learnerExclusions.enddate, function (error, res, body) {
+      console.log('Status:', res.statusCode);
+      console.log('Headers:', JSON.stringify(res.headers));
+      console.log('Method:', res.method);
       res.statusCode.should.eql(200);
       done();
     });

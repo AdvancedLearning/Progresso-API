@@ -5,11 +5,11 @@ require('../coverage/blanket');
 var should = require('should');
 var config = require('../config.js');
 var apitoken = require('../lib/token');
-var employees = require('../lib/employeeChecks');
+var lib = require('../lib/site');
 var authinfo;
 
-describe('employeeChecks', function () {
-  this.timeout(20000);
+describe('Sites', function () {
+  this.timeout(30000);
 
   before(function (done) {
     apitoken.get(config.target, config.username, config.password, function (error, res, body) {
@@ -18,12 +18,13 @@ describe('employeeChecks', function () {
     });
   });
     
-  it('should retrieve a collection of active employee checks', function (done) {
-    employees.get(authinfo.access_token, config.employeeChecks.status, config.employees.employeeId, function (error, res, body) {
+  it('should retrieve sites', function (done) {
+    lib.get(authinfo.access_token, config.site.siteId, function (error, res, body) {
+      var j = JSON.parse(res);
+      console.log(j);
       res.statusCode.should.eql(200);
-      console.log('Status in config =' + config.employeeChecks.status);
       done();
     });
   });
-
+  
 });

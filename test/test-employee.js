@@ -8,8 +8,9 @@ var apitoken = require('../lib/token');
 var employees = require('../lib/employees');
 var authinfo;
 
+
 describe('employees', function () {
-  this.timeout(20000);
+  this.timeout(30000);
 
   before(function (done) {
     apitoken.get(config.target, config.username, config.password, function (error, res, body) {
@@ -47,8 +48,10 @@ describe('employees', function () {
   });
  
   it('should create an employee', function (done) {
-    employees.post(authinfo.access_token, config.employees.data, function (error, res, body) {
-      console.info(res);
+    employees.post(authinfo.access_token, config.employees.body, function (error, res, body) {
+      console.log('Status:', res.statusCode);
+      console.log('Headers:', JSON.stringify(res.headers));
+      console.log('Method:', res.method);
       res.statusCode.should.eql(200);
       done();
     });
