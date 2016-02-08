@@ -381,6 +381,8 @@ Required parameters are:
     + Body
     
             {
+                "Status":               true,
+                "Details":              "Saved successfully",
                 "EmployeeId":           1,
                 "staffCode":            "sc123",
                 "phoneDetails":         [{
@@ -727,7 +729,7 @@ Collection of all employee checks for employees within a school
 
 ## Create/Update Employee Checks [/employeeChecks]
 ### Create Employee Checks [POST]
-Create Employee checks for one to multiple contacts
+Create Employee checks for one to multiple employees
 
 + Request (application/json)
 
@@ -2694,9 +2696,10 @@ Create one to many learner health records
             }
 
 + Response 200
+
     + Body
     
-            [{
+            {
                 "status":               true,
                 "learnerCode":           "2013-00132",
                 "learnerId":            "000001",
@@ -2715,7 +2718,7 @@ Create one to many learner health records
                                                 "notes":                "Eggs",
                                                 "MedicalEventId":        000001
                                         }]
-            }]
+            }
 
 ### Update Learner Health [PUT]
 Update one to many learner heatlh records            
