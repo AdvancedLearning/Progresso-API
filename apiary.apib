@@ -1,14 +1,34 @@
 FORMAT: 1A
-HOST: https://muffin-api.progresso.net/v2
+HOST: https://uat-api.progresso.net/v2/
+
 
 # Progresso API
 Provides the ability to manage school information.
 
+**Please Note**
 
-# Group Authorization
-Methods for security and access
+There are various sections in this documentation which are marked as **Proposed**.
+These are areas which are or will be under development in the near future. Once areas/methods are complete they will be marked as Available.
+
+If you have any comments or suggestions please contact:
+            **sally.robinson@advancedcomputersoftware.com**
+
+
+# Group Authorisation
+Method for security and access.
+
+The UserId and Password will be issued to the Partner by the educational establishment and are establishment specific.
+
+**Passwords which contain special characters will need to be encoded prior to use
 
 ## Access Tokens [/Token]
+The Access Token used is an OAuth token and has an automatic expiry.
+
+Required parameters are:
+
+- Username
+- Password
+  - NB: Passwords which contain special characters MUST be encoded
 
 ### Request token [POST]
 
@@ -27,22 +47,26 @@ Methods for security and access
     + Body
     
             {
-                "access_token":     "access_token_for_api_calls",
-                "schoolId":         "schooId_token_valid_for",
-                "companyId":        "current_company_id",
-                "userId":           "progresso_user_id_for_token"
+                "access_token": "63AUHWsGVEDIEl8",
+                "token_type": "bearer",
+                "expires_in": 86399,
+                ".issued": "Wed, 30 Dec 2015 11:22:48 GMT",
+                ".expires": "Thu, 31 Dec 2015 11:22:48 GMT"
             }
 
-
-
-# Group Employees
-Group of all employee-related resources
+# Group Employees Collection
+Methods for all employee-related resources
 
 ## Employee Record [/employees/{id}]
-+ Parameters
-    + id (required, number, `12345`) ... The unique identifier of the employee
+View a single employee record
 
-### Retrieve employee [GET]
+Required parameters are:
+
+- Employee Id
++ Parameters
+    + id (required, number, `54321`) ... The unique identifier of the employee
+
+### View an employee record [GET]
 
 + Request
 
@@ -57,7 +81,8 @@ Group of all employee-related resources
     + Body
     
             {
-                "staffCode":             "sc123",
+                "employeeId":           12345,
+                "staffCode":            "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -67,25 +92,27 @@ Group of all employee-related resources
                 "legalForename":        "Joseph",
                 "formerSurname":        "",
                 "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968",
-                "Gender":               "M",
-                "startDate":            "28-02-2014",
+                "dateOfBirth":          "31-12-1968 00:00:00",
+                "Gender":               "1",
+                "startDate":            "28-02-2014 00:00:00",
+                "leftDate":             "31-08-2015 00:00:00"
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
-                                            "phoneId":  00001
-                                            "type":     "Home",
+                                            "type":     "H",                                        "phoneId":  1
                                             "number":   "015555555",
-                                            "smsFlag":  false
+                                            "smsFlag":  false,
+                                            "phoneId":  1234567
+                                            
                                         },{
-                                            "phoneId":  00002
-                                            "type":     "Mobile",
+                                            "type":     "M",                                        "phoneId":  1
                                             "number":   "075555555",
-                                            "smsFlag":  true
+                                            "smsFlag":  ftrue,
+                                            "phoneId":  1234568
                                         }],
                 "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "country":  "GBR",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
@@ -93,38 +120,47 @@ Group of all employee-related resources
                                             "town":     "Derby",
                                             "county":   "Derbyshire"
                                             "postCode": "DD55 36DD"
+                                            "addressId": 123456
                                         }],
                 "status":               "active",
                 "niNumber":             "NI1234HJGJ34",
-                "qtStatus":               "",
-                "qtsRoute":               "",
+                "qtStatus":               "True",
+                "qtsRoute":               "OTTP",
                 "dateOfQTS":              "",
-                "HTLA":                   "",
+                "HTLA":                   "False",
                 "dateOfHTLAStatus":       "",
                 "languageDetails":        [{
-                                            "type":     "Home",
-                                            "code":     "Swedish",
-                                            "level":    "Advanced"
+                                            "Code":     "CHI",
+                                            "Type":     "SH",
+                                            "Level":    "5",
+                                            "LanguageUsageId": 434000
                                         }],
                 "qualificationDetails":   [{
-                                            "qualificationCode":  "",
+                                            "qualificationCode":  "BEDO",
                                             "subject1":           "",
                                             "subject2":           "",
-                                            "classOfDegree":      "",
-                                            "verified":           ""
+                                            "classOfDegree":      "3",
+                                            "verified":           "False"
+                                            "EmployeeQualificationId": 24534
                                         }],
                 "nationality":            "",
-                "ethnicity":              "",
+                "ethnicity":              "WBRI",
                 "religion":               "",
                 "laStartDate":            "",
-                "disability":             ""
+                "disability":             "NO"
             }
 
 
-## Employees Collection [/employees{?status}{?since}]
-Collection of all employees for a school
+## Employee Basic Records [/employees{?status}{?since}]
+Returns all employees basic records for a school
 
-### Retrieve collection of employees [GET]
+Optional parameters:
+
+- Status = "active", "left" or "draft"
+
+- Since = use date format mm-dd-yyyy
+
+### Retrieve one to many basic employee records [GET]
 
 + Request
 
@@ -133,14 +169,14 @@ Collection of all employees for a school
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
+    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left | draft].
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "employeeId":           12345,
                 "staffCode":             "JBl",
                 "title":                "Mr",
@@ -152,52 +188,55 @@ Collection of all employees for a school
                 "legalForename":        "Joseph",
                 "formerSurname":        "",
                 "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968",
-                "Gender":               "M",
-                "startDate":            "28-02-2014",
+                "dateOfBirth":          "31-12-1968 00:00:00",
+                "Gender":               "1",
+                "startDate":            "28-02-2014 00:00:00",
+                "leftDate":             "31-12-2015 00:00:00",
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
                                             
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "number":   "015555555",
-                                            "smsFlag":  false
+                                            "smsFlag":  false,
+                                            "phoneId":  12334
                                         },{
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "075555555",
-                                            "smsFlag":  true
+                                            "smsFlag":  true,
+                                            "phoneid":  212121
                                         }],
                 "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "country":  "GBR",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
                                             "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                                            "postCode": "DD55 36DD",
+                                            "AddressId":345345
                                         }],
                 "status":               "active",
                 "niNumber":             "NI1234HJGJ34",
-                "qtStatus":               "",
+                "qtStatus":               "False",
                 "qtsRoute":               "",
                 "dateOfQTS":              "",
-                "HTLA":                   "",
+                "HTLA":                   "False",
                 "DateOfHTLAStatus":       "",
-                "LanguageDetails":        [{}],
-                "QualificationDetails":   [{
-                                            "qualificationCode":  "",
-                                            "subject1":           "",
-                                            "subject2":           "",
-                                            "classOfDegree":      "",
-                                            "verified":           ""
-                                        }],
-                "nationality":            "",
-                "ethnicity":              "",
-                "religion":               "",
+                "LanguageDetails":        [{
+                                            "Code":     "ENG",
+                                            "Type":     "H",
+                                            "Level":    "4",
+                                            "LanguageUsageId": 434000
+                                            }],
+                "QualificationDetails":   null
+                "nationality":            "GBR",
+                "ethnicity":              "WBRI",
+                "religion":               "MU",
                 "laStartDate":            "",
-                "disability":             ""
+                "disability":             "No"
             },
             {
                 "employeeId":           54321,
@@ -214,53 +253,59 @@ Collection of all employees for a school
                 "dateOfBirth":          "31-12-1968",
                 "Gender":               "F",
                 "startDate":            "28-02-2014",
+                "leftDate":             ""
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "number":   "015556655",
-                                            "smsFlag":  false
+                                            "smsFlag":  false,
+                                            "phoneId":  3425245
                                         },{
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "075556655",
-                                            "smsFlag":  true
+                                            "smsFlag":  true,
+                                            "phoneid":  546456456
                                         }],
                 "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "country":  "GBR",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                                            "county":   "Derbyshire",
+                                            "postCode": "DD55 36DD",
+                                            "AddressId":6456747
                                         }],
                 "status":               "active",
                 "niNumber":             "NI123JHJGJ34",
-                "qtStatus":               "",
+                "qtStatus":               "false",
                 "qtsRoute":               "",
                 "dateOfQTS":              "",
-                "HTLA":                   "",
+                "HTLA":                   "false",
                 "DateOfHTLAStatus":       "",
-                "LanguageDetails":        [{}],
-                "QualificationDetails":   [{
-                                            "qualificationCode":  "",
-                                            "subject1":           "",
-                                            "subject2":           "",
-                                            "classOfDegree":      "",
-                                            "verified":           ""
-                                        }],
+                "LanguageDetails":        null,
+                "QualificationDetails":   null,
                 "nationality":            "",
                 "ethnicity":              "",
                 "religion":               "",
                 "laStartDate":            "",
-                "disability":             ""
-            }]
+                "disability":             "No"
+            }
+
 
 ## Create/Update Employee Records [/employees]
-### Create Employee [POST]
-Create one to many employee records
+Create one to many basic employee records
+
+Required parameters are:
+- Staff Code    
+- Forname         
+- Surname      
+
+    
+### Create Basic Employees [POST]
 
 + Request (application/json)
 
@@ -271,8 +316,8 @@ Create one to many employee records
 
     + Body
 
-            [{
-                "staffCode":             "sc123",
+            {
+                "staffCode":            "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -285,14 +330,15 @@ Create one to many employee records
                 "dateOfBirth":          "31-12-1968",
                 "Gender":               "M",
                 "startDate":            "28-02-2014",
-                "leftDate":              "21-06-2014",
+                "leftDate":             "21-06-2014",
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
                                             "smsFlag":  false
-                                        },{
+                                        },
+                                        {
                                             "type":     "Mobile",
                                             "number":   "075555555",
                                             "smsFlag":  true
@@ -305,7 +351,7 @@ Create one to many employee records
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
-                                            "county":   "Derbyshire"
+                                            "county":   "Derbyshire",
                                             "postCode": "DD55 36DD"
                                         }],
                 "status":               "active",
@@ -328,14 +374,15 @@ Create one to many employee records
                 "religion":               "",
                 "laStartDate":            "",
                 "disability":             ""
-            }]
+            }
 
-+ Response 200
++ Response 200 (application/json)
+
     + Body
     
-            [{
-                "staffCode":             "sc123",
-                "EmployeeId":           "000001",
+            {
+                "EmployeeId":           1,
+                "staffCode":            "sc123",
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
@@ -357,7 +404,7 @@ Create one to many employee records
                                             "postCode": "DD55 36DD"
                                             "addressId":  "00001"
                                         }]
-            }]
+            }
 
 ### Update Employee Records [PUT]
 Update one to many employee records
@@ -371,9 +418,9 @@ Update one to many employee records
 
     + Body
 
-            [{
+            {
                 "employeeId":           000001,
-                "staffCode":             "sc123",
+                "staffCode":            "sc123",
                 "title":                "Mr",
                 "surname":              "Bloggs",
                 "forname":              "Joe",
@@ -386,7 +433,7 @@ Update one to many employee records
                 "dateOfBirth":          "31-12-1968",
                 "Gender":               "M",
                 "startDate":            "28-02-2014",
-                "leftDate":              "21-06-2014",
+                "leftDate":             "21-06-2014",
                 "teacherNumber":        "12456",
                 "email":                "joe.bloggs@theschool.edu",
                 "phoneDetails":         [{
@@ -406,13 +453,13 @@ Update one to many employee records
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
-                                            "county":   "Derbyshire"
+                                            "county":   "Derbyshire",
                                             "postCode": "DD55 36DD"
                                         }],
                 "status":               "active",
                 "NINumber":             "NI1234HJGJ34",
-                "qtStatus":               "",
-                "qtsRoute":               "",
+                "qtStatus":             "",
+                "qtsRoute":             "",
                 "dateOfQTS":              "",
                 "HTLA":                   "",
                 "dateOfHTLAStatus":       "",
@@ -429,14 +476,14 @@ Update one to many employee records
                 "religion":               "",
                 "laStartDate":            "",
                 "disability":             ""
-            }]
+            }
 
 + Response 200
     + Body
     
             [{
-                "EmployeeId":           "000001",
-                "staffCode":             "sc123",
+                "EmployeeId":           12345,
+                "staffCode":            "sc123",
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "015555555",
@@ -454,8 +501,8 @@ Update one to many employee records
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                                            "county":   "Derbyshire",
+                                            "postCode": "DD55 36DD",
                                             "addressId":  "00001"
                                         }]
             }]
@@ -480,7 +527,7 @@ Collection of all employees contacts for a school
     + Body
     
             [{
-                "EmployeeId":           "000001",
+                "EmployeeId":           12345,
                 "staffCode":             "sc123",
                 "contacts": 
                             [{
@@ -489,7 +536,7 @@ Collection of all employees contacts for a school
                                         "surname":      "",
                                         "relationship": "Partner",
                                         "priority":     1,
-                                        "emergency":    "primary"
+                                        "emergency":    "primary",
                                     `   "nextOfKin":    true
                             },
                             {  
@@ -498,7 +545,7 @@ Collection of all employees contacts for a school
                                         "surname":      "",
                                         "relationship": "Other",
                                         "priority":     2,
-                                        "emergency":    ""
+                                        "emergency":    "",
                                     `   "nextOfKin":    false
                             }]
             }]
@@ -506,7 +553,7 @@ Collection of all employees contacts for a school
 
 ## Create/Update Employee Contact Association [/employeeContacts]
 ### Create Employee Contact Association [POST]
-Associate Employee to one to multiple contacts
+Associate Employee to one/multiple contacts
 
 + Request (application/json)
 
@@ -518,7 +565,7 @@ Associate Employee to one to multiple contacts
     + Body
     
             [{
-                "EmployeeId":           "000001",
+                "EmployeeId":           12345,
                 "contacts": 
                             [{
                                         "contactId":    00001,
@@ -539,10 +586,10 @@ Associate Employee to one to multiple contacts
 + Response 200
     + Body
     
-            [{
-                "EmployeeId":           "000001",
-                "status":              true
-                 "details":              "Update Successful"
+            {
+                "EmployeeId":           12345,
+                "status":               true,
+                "details":              "Update Successful",
                 "contacts": 
                             [{
                               
@@ -556,12 +603,10 @@ Associate Employee to one to multiple contacts
                                  "status":              true
                                 "details":              "Update Successful"
                             }]
-            }]
+            }
                             
 
-
-
-## Employees Checks [/employeeChecks{?verficationStartDate}{?verficationEndDate}{?employee}]
+## Employees Checks [/employeeChecks{?status}{?employee}]
 Collection of all employee checks for employees within a school
 
 ### Retrieve collection of employee checks [GET]
@@ -573,131 +618,116 @@ Collection of all employee checks for employees within a school
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + verficationStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to Checks with a verification date after a date
-    + verficationEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to Checks with a verification date before a date
+    + status (optional, boolean, `true`)... Option filter for active Employees
     + employee (optional, int, `0001``) ... Optional filter to an Employee
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
-                "employeeId":       0001,
-                "staffCode":             "sc123",     
-
-                                        "ADD":  [{
-                                                    "checkId":              1,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                }],
-                                        "AGN":  [{ 
-                                                    "checkId":              2,
-                                                    "agencyName":           "",
-                                                    "paperworkDate":       "12-09-2013"
-                                                }],
-                                        "DBS":  [{
-                                                    "checkId":              3,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    "clearenceLevel":       "Enhanced check",
-                                                    "result":               "Pass",
-                                                    "requestDate":          "12-09-2013",
-                                                    "reviewDate":           "12-09-2013",
-                                                    "disclousureReference": "T000135"
-                                                
-                                                
-                                                }],
-                                        "GTC":  [{ 
-                                                    "checkId":              4,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                
-                                                }],
-                                        "ID":  [{ 
-                                                    "checkId":              5,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                
-                                                }],
-                                        "List99":  [{ 
-                                                    
-                                                    "checkId":              6,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "list99Clearence":      "Pass",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                    }],
-                                        "MED":  [{ 
-                                                    "checkId":              7,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                
-                                                }],
-                                        "Qual":  [{
-                                                    "checkId":              8,
-                                                     "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                        
-                                                }],
-                                        "RED":  [{ 
-                                                    "checkId":              9,
-                                                     "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                }],
-                                        "RTW":  [{ 
-                                                    "checkId":              10,
-                                                     "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                
-                                                }]
-
-            
-            
-            
-            }]
+            {
+                "employeeId":           0001,
+                "staffCode":            "sc123",     
+                "ADD":                  [{
+                                            "checkId":              1,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedById":          123456
+                                            "checkedByCode":        "JD",
+                                            "checkedByName":        "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "AGN":                  [{ 
+                                            "checkId":              2,
+                                            "agencyName":           "",
+                                            "paperworkDate":       "12-09-2013"
+                                        }],
+                "DBS":                  [{
+                                            "checkId":              3,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedById":          123456
+                                            "checkedByCode":        "JD",
+                                            "checkedByName":        "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                            "clearenceLevel":       "Enhanced check",
+                                            "result":               "Pass",
+                                            "requestDate":          "12-09-2013",
+                                            "reviewDate":           "12-09-2013",
+                                            "disclousureReference": "T000135"
+                                        }],
+                "GTC":                  [{ 
+                                            "checkId":              4,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "ID":                   [{ 
+                                            "checkId":              5,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "List99":               [{ 
+                                            "checkId":              6,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "list99Clearence":      "Pass",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "MED":                  [{ 
+                                            "checkId":              7,
+                                            "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "Qual":                 [{
+                                            "checkId":              8,
+                                             "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "RED":                  [{ 
+                                            "checkId":              9,
+                                             "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }],
+                "RTW":                  [{ 
+                                            "checkId":              10,
+                                             "verificationDate":     "12-09-2013",
+                                            "expiryDate":           "12-09-2014",
+                                            "checkedByCode":            "JD",
+                                            "checkedByName":            "John Doe",
+                                            "position":             "Headteacher",
+                                            "evidence":             "Certificate Provided"
+                                        }]
+            }
 
 
 ## Create/Update Employee Checks [/employeeChecks]
 ### Create Employee Checks [POST]
 Create Employee checks for one to multiple contacts
-
 
 + Request (application/json)
 
@@ -723,8 +753,7 @@ Create Employee checks for one to multiple contacts
                                                     "verificationDate":     "12-09-2013",
                                                     "expiryDate":           "12-09-2014",
                                                     "list99Clearence":      "Pass",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
+                                                    "checkedById:"          123456
                                                     "position":             "Headteacher",
                                                     "evidence":             "Certificate Provided"
                                                     
@@ -741,7 +770,7 @@ Create Employee checks for one to multiple contacts
 
     + Body
     
-            [{
+            {
             
                 "status":       true,
                 "details":      "Create Succesful",
@@ -758,8 +787,7 @@ Create Employee checks for one to multiple contacts
                                                     "verificationDate":     "12-09-2013",
                                                     "expiryDate":           "12-09-2014",
                                                     "list99Clearence":      "Pass",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
+                                                    "checkedById":          123456,
                                                     "position":             "Headteacher",
                                                     "evidence":             "Certificate Provided"
                                                     
@@ -770,7 +798,7 @@ Create Employee checks for one to multiple contacts
                                         "RTW":  [{ }]
                     
 
-            }]
+            }
 
 ### Update Employee Checks [PUT]
 Update Employee checks for one to multiple contacts
@@ -799,8 +827,7 @@ Update Employee checks for one to multiple contacts
                                                     "verificationDate":     "12-09-2013",
                                                     "expiryDate":           "12-09-2014",
                                                     "list99Clearence":      "Pass",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
+                                                    "checkedById"           12345,
                                                     "position":             "Headteacher",
                                                     "evidence":             "Certificate Provided"
                                                     
@@ -816,7 +843,7 @@ Update Employee checks for one to multiple contacts
 
     + Body
     
-            [{
+            {
             
                 "status":       true,
                 "details":      "Create Succesful",
@@ -833,8 +860,7 @@ Update Employee checks for one to multiple contacts
                                                     "verificationDate":     "12-09-2013",
                                                     "expiryDate":           "12-09-2014",
                                                     "list99Clearence":      "Pass",
-                                                    "checkedByCode":            "JD",
-                                                    "checkedByName":            "John Doe",
+                                                    "checkedById":          123456
                                                     "position":             "Headteacher",
                                                     "evidence":             "Certificate Provided"
                                                     
@@ -845,7 +871,7 @@ Update Employee checks for one to multiple contacts
                                         "RTW":  [{ }]
                                 }]
 
-            }]
+            }
 
 
 
@@ -868,7 +894,7 @@ Collection of all employee checks for employees within a school
 
     + Body
     
-            [{
+            {
                 "employeeId":       00001,
                 "staffCode":        "sc123",
                 "contracts":        [{
@@ -897,23 +923,24 @@ Collection of all employee checks for employees within a school
                                                                                 "salaryId":             00001,
                                                                                 "effectiveFrom":        "01-09-2014",
                                                                                 "effectiveTo":          "31-08-2015",         "",
-                                                                                "payScale":             "",
+                                                                                "payScaleCode":             "",
+                                                                                "payScaleName":             "",
                                                                                 "regionalSpine":        "",
                                                                                 "point":                "",
                                                                                 "safeguardedSalary":    true,
                                                                                 "includeInPensionCalc": false,
                                                                                 "includeInNICalc":      true,
                                                                                 "basePay":              ""
-                                                                            }]
+                                                                            }],
                                                         "allowance":        [{
                                                                                 "allowanceId":          1,
                                                                                 "effectiveFrom":        "01-09-2014",
                                                                                 "effectiveTo":          "31-08-2015",
                                                                                 "category":             "",
                                                                                 "amount":               ""
-                                                                            }]
+                                                                            }],
                                                         
-                                                    }]
+                                                    }],
                                     }]
             },
             {
@@ -945,7 +972,8 @@ Collection of all employee checks for employees within a school
                                                                                 "salaryId":             00002,
                                                                                 "effectiveFrom":        "01-09-2014",
                                                                                 "effectiveTo":          "31-08-2015",
-                                                                                "payScale":             "",
+                                                                                "payScaleCode":             "",
+                                                                                "payScaleName":             "",
                                                                                 "regionalSpine":        "",
                                                                                 "point":                "",
                                                                                 "safeguardedSalary":    true,
@@ -981,18 +1009,18 @@ Collection of all employee checks for employees within a school
                                                                                 "salaryId":             00003,
                                                                                 "effectiveFrom":        "01-09-2014",
                                                                                  "effectiveTo":          "31-08-2015",
-                                                                                "payScale":             "",
+                                                                                "payScaleCode":             "",
+                                                                                "payScaleName":             "",
                                                                                 "regionalSpine":        "",
                                                                                 "point":                "",
                                                                                 "safeguardedSalary":    true,
                                                                                 "includeInPensionCalc": false,
                                                                                 "includeInNICalc":      true,
                                                                                 "basePay":              ""
-                                                                            }]
-                                                    }]                                        
-                                    
+                                                                            }],
+                                                    }],                                        
                                     }]
-             }]  
+            }
 
 ## Create/Update Employee Contracts [/employeeContracts]
 ### Create Contract [POST]
@@ -1008,7 +1036,7 @@ Create one to many contract records
 
     + Body
     
-            [{
+            {
                 "employeeId":       00001,
                 "contracts":        [{
                                         contractId":       0,    
@@ -1021,13 +1049,13 @@ Create one to many contract records
                                          "origin":       "Other",
                                         "destination":  ""                           
                                     }]
-            }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "status":           true,
                 "details":          "saved successfully",
                 "employeeId":       00001,
@@ -1041,7 +1069,7 @@ Create one to many contract records
                                         "endDate":      "31-08-2015",
                        
                                     }]
-            }]
+            }
             
             
 ### Update Contract [PUT]
@@ -1057,7 +1085,7 @@ Update one to many contract records
 
     + Body
     
-            [{
+            {
                 "employeeId":       00001,
                 "contracts":        [{
                                         contractId":       1,    
@@ -1071,13 +1099,13 @@ Update one to many contract records
                                          "origin":       "Other",
                                         "destination":  ""                           
                                     }]
-            }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "status":           true,
                 "details":          "saved successfully"
                 "employeeId":       00001,
@@ -1089,7 +1117,7 @@ Update one to many contract records
                                         "endDate":      "31-08-2015",
                         
                                     }]
-            }]
+            }
 
 ## Create/Update Employees Contract Roles [/employeeContractRoles]
 Collection of all employee roles for employee contracts within a school
@@ -1104,7 +1132,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
     
-            [{
+            {
                 "employeeId":       00001,
                 "contractId":       00001,
                 "roles":    [{
@@ -1136,13 +1164,13 @@ Collection of all employee roles for employee contracts within a school
                                 "ledgerCode":       "A040"
                             }]
             
-            }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "employeeId":       00001,
                 "contractId":       00001,
                 "roles":    [{
@@ -1163,13 +1191,13 @@ Collection of all employee roles for employee contracts within a school
                                 "role":             "Teaching Assistant",
 
                             }]
-            }]
+            }
 
 
 ## Create/Update Employees Salary [/employeeRoleSalary]
 Collection of all employee roles for employee contracts within a school
 
-### Create Roles for employee contracts [POST]
+### Create Salaries for Roles for employees [POST]
 
 + Request
 
@@ -1179,14 +1207,15 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
     
-            [{
+            {
                 "employeeId":       0001,
                 "roleId":           0001,
                 "salary":           [{
-                                        "salaryId":      0
+                                        "salaryId":             0,
                                         "effectiveFrom":        "01-09-2014",
                                         "effectiveTo":          "31-08-2015",
-                                        "payScale":             "",
+                                        "payScaleCode":             "",
+                                        "payScaleName":             "",
                                         "regionalSpine":        "",
                                         "point":                "",
                                         "safeguardedSalary":    true,
@@ -1202,7 +1231,7 @@ Collection of all employee roles for employee contracts within a school
                 "employeeId":       0002,
                 "roleId":           0003,
                 "salary":           [{
-                                        "salaryId":      0
+                                        "salaryId":             0,
                                         "effectiveFrom":        "01-09-2014",
                                         "effectiveTo":          "31-08-2015",
                                         "payScale":             "",
@@ -1214,21 +1243,21 @@ Collection of all employee roles for employee contracts within a school
                                         "basePay":              15000.25
                                     }]
             
-            }]
+            }
             
             
-+ response 200 (application/json)
++ Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                 "employeeId":       0001,
                 "roleId":           0001,
                 "salary":           [{
                                         "status":           true,
                                         "details":          "Saved Succesfully",
-                                        "salaryId":         0001,
-                                        "roleSalaryId":     0001
+                                        "salaryId":         1,
+                                        "roleSalaryId":     1
                                     }]
             
             
@@ -1239,15 +1268,92 @@ Collection of all employee roles for employee contracts within a school
                 "salary":           [{
                                         "status":           true,
                                         "details":          "Saved Succesfully",
-                                        "salaryId":         0002,
-                                        "roleSalaryId":     0002
+                                        "salaryId":         2,
+                                        "roleSalaryId":     2
                                     }]
             
-            }]
+            }
+
+
+### Update Salaries for Roles for employees  [PUT]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
+    + Body
+    
+            {
+                "employeeId":       0001,
+                "roleId":           0001,
+                "salary":           [{
+                                        "salaryId":             1,
+                                        "effectiveFrom":        "01-09-2014",
+                                        "effectiveTo":          "31-08-2015",
+                                        "payScaleCode":             "",
+                                        "payScaleName":             "",
+                                        "regionalSpine":        "",
+                                        "point":                "",
+                                        "safeguardedSalary":    true,
+                                        "includeInPensionCalc": false,
+                                        "includeInNICalc":      true,
+                                        "basePay":              15000.25
+                
+                                    }]
             
+            
+            },
+            {
+                "employeeId":       0002,
+                "roleId":           0003,
+                "salary":           [{
+                                        "salaryId":             2,
+                                        "effectiveFrom":        "01-09-2014",
+                                        "effectiveTo":          "31-08-2015",
+                                        "payScale":             "",
+                                        "regionalSpine":        "",
+                                        "point":                "",
+                                        "safeguardedSalary":    true,
+                                        "includeInPensionCalc": false,
+                                        "includeInNICalc":      true,
+                                        "basePay":              15000.25
+                                    }]
+            
+            }
+            
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "employeeId":       0001,
+                "roleId":           0001,
+                "salary":           [{
+                                        "status":           true,
+                                        "details":          "Updated Succesfully",
+                                        "salaryId":         1,
+                                        "roleSalaryId":     1
+                                    }]
+            
+            
+            },
+            {
+                "employeeId":       0002,
+                "roleId":           0003,
+                "salary":           [{
+                                        "status":           true,
+                                        "details":          "Updated Succesfully",
+                                        "salaryId":         2,
+                                        "roleSalaryId":     2
+                                    }]
+            
+            }
             
 ## Employees Qualifications [/employeeQualifications{?employeeId}]
-### Retrive a list of employee qualifications [GET]
+### Retrive a list of employees and their qualifications [GET]
 
 + Parameters
     + employeeId (optional, int, `1`) ... Contacts with the id
@@ -1262,7 +1368,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
            
-              [{
+              {
                     "employeeId":       00001,
                     "staffCode":        "sc123",
                     "qualifications":   [{
@@ -1297,11 +1403,11 @@ Collection of all employee roles for employee contracts within a school
              
              
              
-             }]
+             }
 
 
 
-## Employees Qualifications [/employeeQualifications]
+## Create/Update Employees Qualifications [/employeeQualifications]
 ### Create employee qualifications [POST]
 
 + Request
@@ -1312,7 +1418,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
            
-              [{
+            {
                     "employeeId":       00001,
                     "qualifications":   [{
                                             "qualificationId":      0,
@@ -1333,13 +1439,13 @@ Collection of all employee roles for employee contracts within a school
                                             "classOfDegree":        "2: Upper Second Class honours",
                                             "verified":             true  
                                         }            
-            }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
-            [{
+            {
                     "employeeId":       00001,
                     "qualifications":   [{
                                             "status":           true,
@@ -1358,10 +1464,10 @@ Collection of all employee roles for employee contracts within a school
                                             "qualificationCode":    "BAG: Bachelor of Agriculture ",
 
                                         }]            
-            }]
+            }
             
 
-### Create employee qualifications [PUT]
+### Update employee qualifications [PUT]
 
 + Request
 
@@ -1398,7 +1504,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
     
-            [{
+            {
                     "employeeId":       00001,
                     "qualifications":   [{
                                             "status":           true,
@@ -1417,14 +1523,17 @@ Collection of all employee roles for employee contracts within a school
                                             "qualificationCode":    "BAG: Bachelor of Agriculture ",
 
                                         }]            
-            }]
+            }
 
     
 # Group Contacts
 Group of all contact-related resources
 
 ## Contacts Collection [/contacts/{id}]
-Get all or single contact
+Get all or a single contact
+
+Optional Parameter
+- Id - Contact Id
 
 + Parameters
     + id (optional, int, `12345`) ... Contact with the id
@@ -1442,7 +1551,9 @@ Get all or single contact
 
     + Body
     
-            [{
+            {
+                "ContactId":            1,
+                "ContactCode":          ""'
                 "title":                "Mr",
                 "surname":              "King",
                 "forename":             "Ice",
@@ -1451,7 +1562,7 @@ Get all or single contact
                 "email":                "ice.king@home.com",
                 "language":             "English",
                 "occupation":           "",
-                "nationality":          "UK",
+                "nationality":          "GBR",
                 "isMedicalContact":     true,
                 "workEmail":            "",
                 "employer":             "",
@@ -1463,25 +1574,29 @@ Get all or single contact
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "013332552552",
-                                            "smsFlag":  false
+                                            "smsFlag":  false,
+                                            "PhoneId":  1
                                         },{
                                             "type":     "Mobile",
                                             "number":   "07707707707",
-                                            "smsFlag":  true
+                                            "smsFlag":  true,
+                                            "PhoneId":  2
                                         }],
                 "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "country":  "GBR",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
                                             "locality": "Belper",
                                             "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                                            "county":   "Derbyshire",
+                                            "postCode": "DD55 36DD",
+                                            "AddressId":1
                                         }]
             },
             {
+                "ContactId":            2,
                 "title":                "Mr",
                 "surname":              "Princess",
                 "forename":             "Fire",
@@ -1502,15 +1617,17 @@ Get all or single contact
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "01332225225",
-                                            "smsFlag":  false
+                                            "smsFlag":  false,
+                                            "Phoneid":  3
                                         },{
                                             "type":     "Mobile",
                                             "number":   "0777707777",
-                                            "smsFlag":  true
+                                            "smsFlag":  true,
+                                            "PhoneId":  3
                                         }],
                 "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "country":  "UGBR",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
@@ -1518,24 +1635,30 @@ Get all or single contact
                                             "town":     "Derby",
                                             "county":   "Derbyshire"
                                             "postCode": "DD55 36DD"
+                                            "AddressId":2
                                         }]
-            }]
+            }
             
             
 ## Create/Update Contact Records [/contacts]
+
 ### Create Contact [POST]
-Create one to many contact records            
+
+Create one to many contact records  
+
+Minimum Parameters
+- Surname
+- Forename
             
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
 
     + Body
     
-            [{
+            {
                 "contactCode":          "3447", ...this is user field to match what is returned
                 "title":                "Mr",
                 "surname":              "King",
@@ -1614,7 +1737,7 @@ Create one to many contact records
                                             "county":   "Derbyshire"
                                             "postCode": "DD55 36DD"
                                         }]
-            }]
+            }
     
 
 
@@ -1685,7 +1808,7 @@ Update one to many contact records
 
     + Body
     
-            [{
+            {
                 "contactId":            000001,
                 "title":                "Mr",
                 "surname":              "King",
@@ -1749,7 +1872,7 @@ Update one to many contact records
                 "memberOfArmedForces":  false,
                 "phoneDetails":         [{}],
                 "addressDetails":       [{}]
-            }]
+            }
     
 
 
@@ -1770,26 +1893,24 @@ Update one to many contact records
                                             "postCode": "DD55 36DD"
                                             "AddressId":  00007
                                         }]
-            },
-            {
                 "contactId":            000002
-                
-            }]
+            },
+            ]
 
 
             
 
 # Group Learners
-Group of all learner-related resources
 
-## Learners Collection [/learners{?status}{?since}]
-+ Parameters
-    + status (optional, string, `active`) ... Learners within a registration group
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Learners within a year
-    
-    
+## Learners Collection [/Learners{?status}{?since}]
+
+Collection of all learner-related resources
+
 ### Retrieve a collection of learners [GET]
 
++ Parameters
+    + since (optional, dateTime, `01-04-2014T18:00:00`)
+    
 + Request
 
     + Headers
@@ -1801,53 +1922,57 @@ Group of all learner-related resources
     + Body
     
             [{
-                "learnerId":       12345,
-                "learnerCode":     "2013-00132",
+                "LearnerId":       12345,
+                "LearnerCode":     "2013-00132",
                 "UPN":             "U1234567890A",
-                "ULN":             "",
-                "Forename":        "Jonny",
+                "ULN":             "1425863727",
                 "Surname":         "Doe",
-                "LegalForename":   "John",
+                "Forename":        "Jonny",
                 "LegalSurname":    "Doe",
-                "DateOfBirth":     "20-04-2002",
-                "Year":            "Year 7",
-                "Course":          "Key Stage 3",
-                "DateOfEntry":     "03-09-2013",
-                "Gender":          "Male",
+                "LegalForename":   "John",
+                "DateOfBirth":     "20-04-2002 00:00:00",
+                "Year":            "7",
+                "Course":          "KS3",
+                "DateOfEntry":     "03-09-2013 00:00:00",
+                "Gender":          "M",
                 "RegGroup":        "7L2",
                 "Ethnicity":       "AOWB",
-                "EthnicitySource": "Providede by the parent",
-                "EnrolementStatus":"Current",
-                "NCYear":          "Year 7",
+                "EthnicitySource": "Pr",
+                "EnrolementStatus":"C",
+                "NCYear":          "7",
+                "Status":          "Active",
                 "PhoneDetails":    [{
-                                        "type":     "Home",
-                                        "number":   "015556655",
-                                        "smsFlag":  false
+                                        "Type":     "H",
+                                        "Number":   "015556655",
+                                        "SMSFlag":  false,
+                                        "PhoneId":  123456
                                     },{
                                         "type":     "Mobile",
                                         "number":   "075556655",
                                         "smsFlag":  true
                                     }],
-                "addressDetails":   [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                    }],
-                "status":           "active"
-                
-            }]
+                "AddressDetails":   [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire",
+                                            "PostCode": "DD55 36DD",
+                                            "AddressId":1234569
+                                    }]
+            },
+            ]
 
 ## Learner Record [/learners/{id}]
+
+
+### Retrieve a learner [GET]
+
 + Parameters
     + id (required, int, `12345`) ... The unique identifier of the learner
-    
-### Retrieve a learner [GET]
 
 + Request
 
@@ -1859,7 +1984,7 @@ Group of all learner-related resources
 
     + Body
     
-            [{
+            {
                 "learnerId":       12345,
                 "learnerCode":     "2013-00132",
                 "UPN":             "G999900210101",
@@ -1900,7 +2025,7 @@ Group of all learner-related resources
                                     }],
                 "status":           "active"
                 
-            }]
+            }
 
 
 ## Create/Update Learner Records [/learners]
@@ -1916,7 +2041,8 @@ Create one to many learner records
 
     + Body
     
-             [{
+            {
+                "SourceId":        "001230",   **Proposed** 
                 "learnerCode":     "2013-00132",
                 "UPN":             "G999900210101",
                 "ULN":             "1234567890",
@@ -2049,9 +2175,10 @@ Create one to many learner records
                                         "otherHomeAddressLink":     false,
                                         "sendSMS":                  true
                                     }]
-                }]
+            }
 
 + Response 200
+
     + Body
     
             [{
@@ -2131,7 +2258,7 @@ Update one to many learner records
 
     + Body
     
-            [{
+            {
                 "learnerCode":     "2013-00132",
                 "UPN":             "G999900210101",
                 "ULN":             "1234567890",
@@ -2289,6 +2416,7 @@ Update one to many learner records
                 "status":           "",
                 "contacts":         [{}]
                 }]
+            }
                 
 + Response 200
     + Body
@@ -2387,13 +2515,13 @@ Update one to many learner records
 
 
 ## Learner Contacts [/learnerContacts{?since}{?status}{?responsibility}{?priority}]
+### Retrieve a Contacts associated to a learner [GET]
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
     + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
     + priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
-    
-### Retrieve a Contacts associated to a learner [GET]
+
 
 + Request
 
@@ -2455,10 +2583,10 @@ Update one to many learner records
 
             
 ## Learner Health Details [/learnerHealth{?since}]
+### Retrieve a learner Health Details [GET]
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
-### Retrieve a learner Health Details [GET]
 
 + Request
 
@@ -2470,7 +2598,7 @@ Update one to many learner records
 
     + Body 
             
-            [{
+            {
                 "learnerCode":          "2013-00132",
                 "learnerId":             000001,
                 "allergies":              [{
@@ -2520,7 +2648,7 @@ Update one to many learner records
                 "medicalConditions":    [{ }],
                 "medicalEvents":        [{}]
             
-            }]
+            }
             
 ## Create/Update Learner Health Details [/learnerHealth]
 ### Create Learner Health [POST]
@@ -2770,8 +2898,6 @@ Create Attendance for one to many learners using date and time of lesson
                 "startTime":            "09:00",
                 "finishTime":           "10:00",
                 "attendanceCode":       "N"
-            }
-            
             }]
 
 + Response 200
@@ -2789,11 +2915,11 @@ Create Attendance for one to many learners using date and time of lesson
 
 
 ## Learner Exclusions [/learnerExclusions{?startDate}{?endDate}]
+### Retrieve a learner Exclusion Details [GET]
 + Parameters
     + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     + endDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
-### Retrieve a learner Exclusion Details [GET]
 
 + Request
 
@@ -2805,7 +2931,7 @@ Create Attendance for one to many learners using date and time of lesson
 
     + Body 
             
-            [{
+            {
             
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
@@ -2835,7 +2961,7 @@ Create Attendance for one to many learners using date and time of lesson
                                         "reinstatementDate":        "",
                                         "reinstatementNotes":       ""
                                     }]
-            ]}
+            }
                 
 ## Create/Update Learner Exclusions [/learnerExclusions]
 ### Create Learner Exclusions [POST]
@@ -3096,11 +3222,9 @@ Update Exclusions for one to many learners
 
 
 ## Learner SEN Provisions [/learnerSENProvisions{?status}]
-+ Parameters
-    + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
-   
-    
 ### Retrieve a learner SEN Provision Details [GET]
++ Parameters
+    + status (optional, string, `Active`) ... The staus of Learner e.g. Active, Draft, Left
 
 + Request
 
@@ -3144,7 +3268,8 @@ Update Exclusions for one to many learners
                                     "reviewDate":           "01/01/2015",
                                     "endDate":              "30/08/2015"
                                 }]
-                }]
+                }
+                ]
                 
                 
 ## Create/Update Learner SEN Provisions [/learnerSENProvision]
@@ -3467,7 +3592,7 @@ Create SEN Major Needs for one to many learners
 
     + Body 
             
-            [{
+            {
                 "learnerId":        0001,
                 "siblings":   [{
                                     "status":           true,
@@ -3481,7 +3606,70 @@ Create SEN Major Needs for one to many learners
                                 
                                 }]
             
-            }]
+            }
+
+
+## **Proposed Changes** Learners Collection [/Learners{?status}{DateModified}]
+After feedback from Partners and changes of internal requirements more fields are to be added to the existing GET Learners method.
+This section is work in progress and subject to change.
+
+### Retrieve a collection of learners [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "LearnerId":       12345,
+                "LearnerCode":     "2013-00132",
+                "UPN":             "U1234567890A",
+                "ULN":             "1425863727",
+                "Surname":         "Doe",
+                "Forename":        "Jonny",
+                "LegalSurname":    "Doe",
+                "LegalForename":   "John",
+                "DateOfBirth":     "20-04-2002 00:00:00",
+                "Year":            "7",
+                "Course":          "KS3",
+                "DateOfEntry":     "03-09-2013 00:00:00",
+                "Gender":          "M",
+                "RegGroup":        "7L2",
+                "Ethnicity":       "AOWB",
+                "EthnicitySource": "Pr",
+                "EnrolementStatus":"C",
+                "NCYear":          "7",
+                "Status":          "Active",
+                "PhoneDetails":    [{
+                                        "Type":     "H",
+                                        "Number":   "015556655",
+                                        "SMSFlag":  false,
+                                        "PhoneId":  123456
+                                    },{
+                                        "type":     "Mobile",
+                                        "number":   "075556655",
+                                        "smsFlag":  true
+                                    }],
+                "AddressDetails":   [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire",
+                                            "PostCode": "DD55 36DD",
+                                            "AddressId":1234569
+                                    }]
+            },
+            ]
+
 
 # Group Groups
 Group of all Group-related resources
@@ -3491,8 +3679,9 @@ Group of all Group-related resources
 + Parameters
     + groupStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
     + groupEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
-    + type (optional, string, `teachingGroup`) ... Type of Group to Return
+    + type (optional, string, `TeachingGroup`) ... Type of Group to Return
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Groups modified since date provided
+
     
 ### Retrieve a collection of Groups [GET]
 
@@ -3506,21 +3695,21 @@ Group of all Group-related resources
 
     + Body
     
-            [{
+            {
                 "groupCode":    "9A",
                 "course":       "Key Stage 4",
-                "dateFrom":     "",
-                "dateTo":       "",
+                "dateFrom":     "01-09-2015 00:00:00",
+                "dateTo":       "30-08-2016 00:00:00",
                 "employeeId":   [{
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   "00001"}
                                 ],
                 "groupId":      000001,
-                "name":         "9A",
+                "Groupname":         "9A",
                 "size":         30,
                 "subjectCode":  "",
                 "subjectName":  "",
-                "type":         "RegistrationGroup",
+                "Type":         "RegistrationGroup",
                 "Year":         "10"
             },
             {
@@ -3537,15 +3726,18 @@ Group of all Group-related resources
                                     "EmployeeId":   "00002"
                                 }],
                 "groupId":      000002,
-                "name":         "10Art 1",
+                "Groupname":         "10Art 1",
                 "size":         29,
                 "subjectCode":  "AR",
                 "subjectName":  "Art",
                 "type":         "TeachingGroup",
                 "Year":         "10"
-            }]
+            }
+
             
 ## Create/Update Group [/groups]
+
+
 ### Create Group [POST]
 Create one or many groups
             
@@ -3560,14 +3752,14 @@ Create one or many groups
     
              [{
                 "groupCode":    "9A",
-                "course":       "Key Stage 4",
-                "dateFrom":     "",
-                "dateTo":       "",
+                "course":       "KS4",
+                "dateFrom":     "01-09-2015 00:00:00",
+                "dateTo":       "30-08-2016 00:00:00",
                 "employee":   [{
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   "00001"}
                                 ],
-                "name":         "9A",
+                "Name":         "9A",
                 "subjectCode":  "",
                 "subjectName":  "",
                 "type":         "RegistrationGroup",
@@ -3576,13 +3768,13 @@ Create one or many groups
             {
                 "groupCode":    "10SC/1",
                 "course":       "Key Stage 4",
-                "dateFrom":     "",
-                "dateTo":       "",
+                "dateFrom":     "01-09-2015 00:00:00",
+                "dateTo":       "30-08-2016 00:00:00",
                 "employee":   [{
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   "00001"}
                                 ],
-                "name":         "10 Science 1",
+                "Name":         "10 Science 1",
                 "subjectCode":  "SC",
                 "subjectName":  "Science",
                 "type":         "TeachingGroup",
@@ -3593,17 +3785,21 @@ Create one or many groups
 + Response 200
     + Body
     
-            [{
+            {
+                "Details":      "Saved successfully",
+                "Status":       "True",
                 "groupId":      000001,
                 "groupCode":    "9B"
              },
             {
+                "Details":      "Saved successfully",
+                "Status":       "True",
                 "groupId":      000002,
                 "groupCode":    "10SC/1"
-            }]
+            }
 
 
-### Create Group [PUT]
+### Update Group [PUT]
 Update one or many groups
             
 + Request (application/json)
@@ -3623,7 +3819,7 @@ Update one or many groups
                 "dateTo":       "",
                 "employee":   [{
                                     "StaffCode":    "JDo",
-                                    "EmployeeId":   "00001"},
+                                    "EmployeeId":   00001},
                                 {
                                     "employeeId":           54321,
                                     "staffCode":             "JDo"
@@ -3639,12 +3835,12 @@ Update one or many groups
 + Response 200
     + Body
     
-            [{
-                "status":       "success",
-                "details":      "Update Successful"
+            {
+                "status":       true,
+                "details":      "Saved Successfully"
                 "groupId":      000001,
                 "groupCode":    "9B"
-             }]
+             }
 
 
 ## Group Association [/groupAssociation/{?groupId}{?since}{?groupStartDate}{?groupEndDate}]
@@ -3668,8 +3864,8 @@ Update one or many groups
 + Response 200 (application/json)
     + Body
     
-            [{
-                   "groupId":   1,
+            {
+                    "groupId":   1,
                     "learners":   [{
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    1,
@@ -3685,7 +3881,7 @@ Update one or many groups
                                 }]
             },
             {
-                   "groupId":   2,
+                    "groupId":   2,
                     "learners":   [{
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    3,
@@ -3699,13 +3895,14 @@ Update one or many groups
                                         "endDate":                  "30-08-2015"
 
                                 }]
-
-
-            }]
+            }
             
 ## Create/Update Group Association [/groupAssociation]
+
+
 ### Create Group Association [POST]
 Create Group Association for one to many Learners and Groups
+
 + Request (application/json)
 
     + Headers
@@ -3715,16 +3912,14 @@ Create Group Association for one to many Learners and Groups
     + Body
 
             [{
-                   "groupId":   1,
+                    "groupId":   1,
                     "learners":   [{
                                         "learnerId":                1,
-                                        "learnerGroupLearnerId":    0,
                                         "startDate":                "01-09-2014",
                                         "endDate":                  "30-08-2015"
                                 },
                                 {
                                         "learnerId":                2,
-                                        "learnerGroupLearnerId":    0,
                                         "startDate":                "01-09-2014",
                                         "endDate":                  "30-08-2015"
 
@@ -3734,13 +3929,11 @@ Create Group Association for one to many Learners and Groups
                    "groupId":   2,
                     "learners":   [{
                                         "learnerId":                1,
-                                        "learnerGroupLearnerId":    0,
                                         "startDate":                "01-09-2014",
                                         "endDate":                  "30-08-2015"
                                 },
                                 {
                                         "learnerId":                2,
-                                        "learnerGroupLearnerId":    0,
                                         "startDate":                "01-09-2014",
                                         "endDate":                  "30-08-2015"
 
@@ -3750,22 +3943,23 @@ Create Group Association for one to many Learners and Groups
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                   "groupId":   1,
-                    "status":       "success",
-                    "details":      "Action Successful",
+            {
+                   "GroupId":       1,
+                    "status":       true,
+                    "details":      "Saved successfully",
                     "learners":   [{
-                                        "status":       "success",
-                                        "details":      "Create Successful",
+                                        "status":       true,
+                                        "details":      "Saved successfully",
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    1
 
                                 },
                                 {
-                                        "status":       "success",
-                                        "details":      "Create Successful",
+                                        "status":       true,
+                                        "details":      "Saved successfully",
                                         "learnerId":                2,
                                         "learnerGroupLearnerId":    2
 
@@ -3773,25 +3967,25 @@ Create Group Association for one to many Learners and Groups
                                 }]
             },
             {
-                   "groupId":   2,
-                    "status":       "success",
-                    "details":      "Action Successful",see                   
+                    "groupId":      2,
+                    "status":       true,
+                    "details":      "Saved successfully",                  
                     "learners":   [{
-                                        "status":       "success",
-                                        "details":      "Create Successful",
+                                        "status":       true,
+                                        "details":      "Saved successfully",
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    3
 
                                 },
                                 {
-                                        "status":       "success",
-                                        "details":      "Create Successful",                                
+                                        "status":       true,
+                                        "details":      "Saved successfully",                                
                                         "learnerId":                2,
                                         "learnerGroupLearnerId":    4
 
                                 }]            
         
-             }]
+             }
 
 ### Update Group Association [PUT]
 Update Group Association for one to many Learners and Groups
@@ -3800,7 +3994,8 @@ Update Group Association for one to many Learners and Groups
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-
+            
+            
     + Body
 
             [{
@@ -3832,40 +4027,41 @@ Update Group Association for one to many Learners and Groups
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                   "groupId":   1,
-                    "status":       "success",
-                    "details":      "Action Successful",
+            {
+                    "groupId":      1,
+                    "status":       true,
+                    "details":      "Saved successfully",
                     "learners":   [{
-                                        "status":       "success",
-                                        "details":      "Update Successful",
+                                        "status":       true,
+                                        "details":      "Saved successfully",
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    1
 
                                 }]
             },
             {
-                   "groupId":   2,
+                    "groupId":      2,
                     "status":       "success",
                     "details":      "Action Successful",see                   
                     "learners":   [{
-                                        "status":       "success",
-                                        "details":      "Update Successful",
+                                        "status":       true,
+                                        "details":      "Saved successfully",
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    3
 
                                 },
                                 {
-                                        "status":       "success",
-                                        "details":      "Update Successful",                                
+                                        "status":       true,
+                                        "details":      "Saved successfully",                                
                                         "learnerId":                2,
                                         "learnerGroupLearnerId":    4
 
                                 }]            
         
-             }]
+             }
 
 # Group Academic Data
 Group of all Academic Resources
@@ -3885,25 +4081,27 @@ Group of all Academic Resources
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "academicYearId":   1
-                "name":             "Academic Year 2014/2015",
-                "startDate":        "01-09-2014",
-                "endDate":          "31-08-2015"
+            {
+                "AcademicYearId":   1
+                "Name":             "Academic Year 2014/2015",
+                "StartDate":        "01-09-2014",
+                "EndDate":          "31-08-2015"
                 
              },
             {
-                "academicYearId":   2
-                "name":             "Academic Year 2013/2014",
-                "startDate":        "01/09/2013",
-                "endDate":          "31/08/2014"
+                "AcademicYearId":   2
+                "Name":             "Academic Year 2013/2014",
+                "StartDate":        "01/09/2013",
+                "EndDate":          "31/08/2014"
                 
-            }]
+            }
 
 
 ## Create/Update Academic Years [/academicYear]
+
 ### Create Academic Year [POST]
 Create one to many academic years
 
@@ -3912,8 +4110,6 @@ Create one to many academic years
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
 
     + Body
 
@@ -3931,13 +4127,15 @@ Create one to many academic years
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "academicYearId":   1
                 "name":             "Academic Year 2014/2015",
                 "startDate":        "01/09/2014",
-                "endDate":          "31/08/2015"
+                "endDate":          "31/08/2015",
+                "Status":           "Saved successfully"
                 
              },
             {
@@ -3945,11 +4143,13 @@ Create one to many academic years
                 "name":             "Academic Year 2013/2014",
                 "startDate":        "01/09/2013",
                 "endDate":          "31/08/2014"
+                "Status":           "Saved successfully"
                 
-            }]
+            }
 
 
 ### Update Academic Year [PUT]
+
 Update one to many academic years
 
 + Request (application/json)
@@ -3958,8 +4158,6 @@ Update one to many academic years
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
-
     + Body
 
             [{
@@ -3978,20 +4176,21 @@ Update one to many academic years
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "academicYearId":   1
                 "status":           true
-                "details":          "Update Successful"
+                "details":          "Saved successfully"
                 
              },
             {
                 "academicYearId":   32132
-                "status":           false
-                "details":          "Invalid academicYearId"
+                "status":           true
+                "details":          "Saved successfully"
                 
-            }]
+            }
 
 
 ## Academic Terms [/academicTerms/{?id}{?AcYearId}]
@@ -4010,9 +4209,10 @@ Update one to many academic years
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "academicYearId":   1
                 "academicTermId":   1
                 "name":             "Autumn",
@@ -4027,10 +4227,12 @@ Update one to many academic years
                 "startDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
-            }]
+            }
 
 ## Create/Update Academic Terms [/academicTerms]
+
 ### Create Academic Term [POST]
+
 Create one to many academic terms
 
 + Request (application/json)
@@ -4059,27 +4261,33 @@ Create one to many academic terms
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "academicYearId":   1
-                "academicTermId":   1
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "academicYearId":   1,
+                "academicTermId":   1,
                 "name":             "Autumn",
                 "startDate":        "01/09/2014",
                 "endDate":          "19/12/2014"
                 
              },
             {
+                "Status":           true,
+                "Details":          "Saved successfully",
                 "academicYearId":   1
                 "academicTermId":   2
                 "name":             "Spring",
                 "startDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
-            }]
+            }
 
 
 ### Update Academic Term [PUT]
+
 Update one to many academic terms
 
 + Request (application/json)
@@ -4088,8 +4296,6 @@ Update one to many academic terms
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
-
     + Body
 
             [{
@@ -4108,9 +4314,10 @@ Update one to many academic terms
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "academicYearId":   1
                 "academicTermId":   1
                 "name":             "Autumn",
@@ -4125,15 +4332,16 @@ Update one to many academic terms
                 "startDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
-            }]
+            }
+            
 
-## Terms Breaks [/termBreaks/{?AcYearId}{?id}]
+## Term Breaks [/termBreaks/{?AcYearId}{?id}]
 
 + Parameters
     + id (optional, number, `12345`) ... The unique identifier of the Term Break
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
-### Retrieve TermBreaks [GET]
+### Retrieve Term Breaks [GET]
 
 + Request
 
@@ -4147,24 +4355,28 @@ Update one to many academic terms
     
             [{
                 "academicYearId":   1
-                "TermBreakId":   1
+                "TermBreakId":      1
                 "name":             "Spring Half Term",
-                "startDate":        "25/05/2014",
-                "endDate":          "01/06/2014"
+                "startDate":        "2014-04-25",
+                "endDate":          "2014-06-01"
                 
              },
             {
                 "academicYearId":   1
-                "TermBreakId":   2
+                "TermBreakId":      2
                 "name":             "Autumn Half Term",
-                "startDate":        "26/10/2013",
-                "endDate":          "02/11/2013"
+                "startDate":        "2013-10-26",
+                "endDate":          "2013-11-01"
                 
             }]
 
 
-## Create/Update Academic Terms [/termBreaks]
+## Create/Update Term Breaks [/termBreaks]
+
+
 ### Create Term Breaks [POST]
+
+
 Create one to many terms breaks
 
 + Request (application/json)
@@ -4178,42 +4390,48 @@ Create one to many terms breaks
     + Body
 
             [{
-                "academicYearId":   1
-                 "name":             "Spring Half Term",
-                "startDate":        "25/05/2014",
-                "endDate":          "01/06/2014"
+                "AcademicYearId":   1
+                "Name":            "Spring Half Term",
+                "startDate":        "2014-05-25",
+                "endDate":          "2014-06-01"
                 
              },
             {
-               "academicYearId":   1
+                "AcademicYearId":   1
                 "name":             "Autumn Half Term",
-                "startDate":        "26/10/2013",
-                "endDate":          "02/11/2013"
+                "startDate":        "2013-10-26",
+                "endDate":          "2013-11-02"
                 
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "academicYearId":   1
-                "academicTermId":   1
-                 "name":             "Spring Half Term",
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1
+                "TermBreakId":      1
+                "name":             "Spring Half Term",
                 "startDate":        "25/05/2014",
                 "endDate":          "01/06/2014"
                 
              },
             {
-                "academicYearId":   1
-                "academicTermId":   2
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1
+                "TermBreakId":      2
                 "name":             "Autumn Half Term",
                 "startDate":        "26/10/2013",
                 "endDate":          "02/11/2013"
                 
-            }]
+            }
 
 
 ### Update Term Breaks [PUT]
+
 Update one to many terms breaks
 
 + Request (application/json)
@@ -4227,38 +4445,45 @@ Update one to many terms breaks
     + Body
 
             [{
-                "academicTermId":   1
-                "name":             "Spring Half Term",
-                "startDate":        "23/05/2014",
-                "endDate":          "01/06/2014"
+                "AcademicYearId":   1
+                "TermBreakId":      1
+                "Name":             "Spring Half Term",
+                "StartDate":        "2014-05-25",
+                "EndDate":          "2014-06-01"
                 
              },
             {
-               "academicTermId":   2
+               "TermBreakId":   2
                  "name":             "Autumn Half Term",
-                "startDate":        "26/10/2013",
-                "endDate":          "02/11/2013"
+                "startDate":        "2013-10-26",
+                "endDate":          "2013-11-02"
                 
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "academicTermId":   1
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1
+                "TermBreakId":      1
                 "name":             "Spring Half Term",
-                "startDate":        "23/05/2014",
-                "endDate":          "01/06/2014"
+                "startDate":        "25-05-2014",
+                "endDate":          "01-06-2014"
                 
              },
             {
-                "academicTermId":   2
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1
+                "TermBreakId":      2
                  "name":             "Autumn Half Term",
-                "startDate":        "26/10/2013",
-                "endDate":          "05/11/2013"
+                "startDate":        "26-10-2013",
+                "endDate":          "02-11-2013"
                 
-            }]
-
+            }
 
 ## Week Structure [/weekStructure/{?AcYearId}]
 
@@ -4273,19 +4498,19 @@ Update one to many terms breaks
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "AcYearId":             1
                 "name":                 "Sunday",
-                "workingNonWorking":    "Non-Working Day"
+                "workingNonWorking":    "NWD"
              },
             {
                 "AcYearId":             1
                 "name":                 "Monday",
-                "workingNonWorking":    "Full Working Day"
+                "workingNonWorking":    "FWD"
                 
             },
             {
@@ -4299,9 +4524,10 @@ Update one to many terms breaks
                 "name":                 "Wednesday",
                 "workingNonWorking":    "Half Working Day - PM"
                 
-            }]
+            }
 
-## Create/Update Week Structure [/weekStructure]
+## ** Proposed ** Update Week Structure [/weekStructure]
+
 ### Set Week Structure [PUT]
 Set one to many days of a Week Structure
 
@@ -4310,8 +4536,6 @@ Set one to many days of a Week Structure
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
 
     + Body
 
@@ -4371,6 +4595,11 @@ Set one to many days of a Week Structure
 
 ## Academic Calendar Events [/academicCalendarEvents/{?AcYearId}{?id}]
 
+Optional parameters are:
+
+- AcYearId - Academic Year Id
+- Id - Calendar Event Id
+
 + Parameters
     + id (optional, number, `12345`) ... The unique identifier of the Academic Calendar Event
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
@@ -4385,29 +4614,32 @@ Set one to many days of a Week Structure
         
 
 + Response 200 (application/json)
+
     + Body
             
-            [{
+            {
                 "AcYearId":             1
                 "name":                 "Inset Day",
-                "category":             "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "fullHalfDay":          "Full Day"
+                "category":             "IN",
+                "startDate":            "2014-09-02",
+                "endDate":              "2014-09-02",
+                "fullHalfDay":          "FD"
                 "calendarEventId":      0001
             },
             {
                 "AcYearId":             1
                 "name":                 "Teacher Training",
-                "category":             "Only staff should attend",
-                "startDate":            03-09-2014,
-                "endDate":              03-09-2014,
-                "fullHalfDay":          "Half Day AM"
+                "category":             "#",
+                "startDate":            "2014-09-03",
+                "endDate":              "2014-09-03",
+                "fullHalfDay":          "HDA"
                 "calendarEventId":      0002
-            }]
+            }
 
 
 ## Create/Update Academic Calendar Events [/academicCalendarEvents]
+
+
 ### Create Academic Calendar Events [POST]
 Create one to many Academic Calendar Events
 
@@ -4416,45 +4648,48 @@ Create one to many Academic Calendar Events
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
+            
 
     + Body
-
-            [{
-                "AcYearId":             1
-                "name":                 "Inset Day",
-                "category":             "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "fullHalfDay":          "Full Day"
+    
+            {
+                "AcYearId":             1,
+                "Name":                 "Half day pm",
+                "Category":             "IN",
+                "StartDate":            "2016-10-03",
+                "EndDate":              "2016-10-03",
+                "FullHalfDay":          "HDP"
             },
             {
                 "AcYearId":             1
                 "name":                 "Teacher Training",
-                "category":             "Only staff should attend",
-                "startDate":            03-09-2014,
-                "endDate":              03-09-2014,
-                "fullHalfDay":          "Half Day AM"
-            }]
+                "category":             "O~",
+                "StartDate":            "2016-09-05",
+                "EndDate":              "2016-09-05",
+                "FullHalfDay":          "FD"
+            }
             
     
 + Response 200 (application/json)
     
     + Body
-        
-            [{
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
                 "name":                 "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
+                "startDate":            "02-09-2014",
+                "endDate":              "02-09-2014",
                 "calendarEventId":      0003
             },
             {
+                "Status":               true,
+                "Details":              "Saved successfully",
                 "name":                 "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "calendarEventId":      0003
-            }]
+                "startDate":            "20-09-2014",
+                "endDate":              "20-09-2014",
+                "calendarEventId":      0004
+            }
 
 ### Update Academic Calendar Events [PUT]
 Update one to many Academic Calendar Events
@@ -4465,8 +4700,6 @@ Update one to many Academic Calendar Events
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
-
     + Body
 
             [{
@@ -4506,6 +4739,9 @@ Update one to many Academic Calendar Events
 
 ## Courses [/courses/{?AcYearId}]
 
+Optional Parameters
+- AcYearId - Academic Year Id
+
 + Parameters
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
@@ -4519,9 +4755,10 @@ Update one to many Academic Calendar Events
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                "acYearId":          1,
                 "courseCode":       "KS3",
                 "courseName":       "Key Stage 3",
@@ -4533,11 +4770,14 @@ Update one to many Academic Calendar Events
                 "courseName":       "Key Stage 4",
                 "courseId":         0002
 
-            }]
+            }
 
 
 ## CourseYears [/courseYear/{?AcYearId}]
 
+Optional Parameters
+- AcYearId - Academic Year Id
+    
 + Parameters
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
@@ -4551,9 +4791,10 @@ Update one to many Academic Calendar Events
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                "acYearId":          1,
                 "courseCode":       "KS3",
                 "courseName":       "Key Stage 3",
@@ -4582,11 +4823,13 @@ Update one to many Academic Calendar Events
                 "yearName":         "Year 10",
                 "yearId":           0004,
                 "couseYearId":      0003
-            }]
+            }
 
 
 ## Create/Update CourseYears [/courseYear]
+
 ### Create CourseYears [POST]
+
 Create association of one to many Course to Years
 
 + Request (application/json)
@@ -4600,41 +4843,44 @@ Create association of one to many Course to Years
     + Body
 
             [{
-                "acYearId":         1,
-                "courseId":         0001,
-                "yearId":           0001
+                "AcademicYearId":   1,
+                "CourseId":         0001,
+                "YearTypeId":       0001
             },
             {
-                "acYearId":         1,
-                "courseId":         0002,
-                "yearId":           0004
+                "AcademicYearId":   1,
+                "CourseId":         0002,
+                "YearTypeId":       0004
             }]
             
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "acYearId":         1,
-                "courseId":         0001,
-                "yearId":           0001,
-                "courseYearId":     0001
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1,
+                "CourseId":         0001,
+                "YearTypeId":       0001,
+                "CourseYearId":     0001
             },
             {
-                "acYearId":         1,
-                "courseId":         0002,
-                "yearId":           0004,
-                "courseYearId":     0002
-
-            }]
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "AcademicYearId":   1,
+                "CourseId":         0002,
+                "YearTypeId":       0004,
+                "CourseYearId":     0003
+            }
             
 
 # Group Timtetable
 Group of all Timetable Resources
 
-## Timetable Sources [/TTSource/{?AcYearId}]
+## Timetable Sources [/TTSources?]
 
-+ Parameters
-    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
 
 ### Retrieve Timetable Sources Association [GET]
 
@@ -4651,16 +4897,16 @@ Group of all Timetable Resources
             [{
                 "timetableSourceId":        0001
                 "code":                     "2014/2015",
-                "name":                     "Timetable for 2014/2015",
-                "startDate":                "01/09/2014",
-                "endDate":                  "30/08/2015",
+                "name":                     "TT 2014/2015",
+                "startDate":                "2015/09/01",
+                "endDate":                  "2016/08/30",
                 "timetableIterations":      52,
                 "splitCoverEvents" :        false,
                 "splitMultiplePeriods":     false,
-                "academicYear":             1
+
             }]
 
-## Create/Update Timetable Sources [/TTSources]
+## Create/Update Timetable Sources [/TTSources/]
 ### Create Timetable Sources [POST]
 Create one to many Timetable Sources
 
@@ -4673,27 +4919,13 @@ Create one to many Timetable Sources
     + Body
 
             [{
-                "timetableSourceId":        0
-                "code":                     "2014/2015",
-                "name":                     "Timetable for 2014/2015",
-                "startDate":                "01/09/2014",
-                "endDate":                  "30/08/2015",
-                "timetableIterations":      52,
-                "splitCoverEvents" :        false,
-                "splitMultiplePeriods":     false,
-                "academicYear":             1
-            },
-            {
-                "timetableSourceId":        0
                 "code":                     "2015/2016",
-                "name":                     "Timetable for 2015/2016",
-                "startDate":                "01/09/2015",
-                "endDate":                  "30/08/2016",
+                "name":                     "TT 2015/2016",
+                "startDate":                "2015/09/01",
+                "endDate":                  "2016/08/31",
                 "timetableIterations":      52,
                 "splitCoverEvents" :        false,
                 "splitMultiplePeriods":     false,
-                "academicYear":             2
-
             }]
 
 
@@ -4701,16 +4933,10 @@ Create one to many Timetable Sources
     + Body
     
             [{
-                "status":           true
-                "details":          "Create Successful"
-                "timetableSourceId":        1
-                "code":                     "2014/2015"
-            },
-            {
-                "status":           true
-                "details":          "Create Successful"
-                "timetableSourceId":        2
-                "code":                     "2015/2016"
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "TimetableSourceId":        1,
+                "Code":                     "2015/2016"
             }]
 
 
@@ -4726,37 +4952,35 @@ Update one to many Timetable Sources
     + Body
 
             [{
-                "timetableSourceId":        1
-                "code":                     "2014/2015",
-                "name":                     "Updated Timetable for 2014/2015",
-                "startDate":                "01/09/2014",
-                "endDate":                  "30/08/2015",
+                "timetableSourceId":        1,
+                "code":                     "2015/2016",
+                "name":                     "Updated",
+                "startDate":                "2015/09/01",
+                "endDate":                  "2016/08/31",
                 "timetableIterations":      52,
                 "splitCoverEvents" :        false,
                 "splitMultiplePeriods":     false,
-                "academicYear":             1
             }]
-
 
 + Response 200 (application/json)
     + Body
     
             [{
-                "status":                   true
-                "details":                  "Update Successful"
-                "timetableSourceId":        1
-                "code":                     "2014/2015"
+                "Status":                   true
+                "Details":                  "Saved successfully"
+                "TimetableSourceId":        1
+                "code":                     "2015/2016"
             }]
 
 
 
-## Day Compositions  [/dayCompositions/{?AcYearId}{?TTSourceId}]
+## Day Compositions  [/dayCompositions/{?TimetableSourceId}]
 
 + Parameters
-    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
-    + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
-### Retrieve Timetable Sources Association [GET]
+    + TimetableSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
+
+### Retrieve Day Compositions [GET]
 
 + Request
 
@@ -4780,7 +5004,13 @@ Update one to many Timetable Sources
              }]
 
 
-## Create/Update Day Compositions [/dayCompositions]
+## Create/Update Day Compositions [/dayCompositions/TimetableSourceId]
+
++ Parameters
+    
+    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a Timetable Source
+
+
 ### Create Day Compositions [POST]
 Create one to many Day Compositions
 
@@ -4794,8 +5024,7 @@ Create one to many Day Compositions
 
             [{           
                 "timetableSourceId":        1,
-                "dayCompositionId":         0,
-                "Name":                    "Day Comp 2014/2015"
+                "Name":                    "DC 2014/2015"
             }]
 
 
@@ -4803,15 +5032,19 @@ Create one to many Day Compositions
     + Body
     
             [{
-                "status":                    true,
-                "details":                  "Create Successful",  
+                "status":                   true,
+                "details":                  "Saved successfully",  
                 "timetableSourceId":        1,
                 "dayCompositionId":         1,
-                "Name":                    "Day Comp 2014/2015"
+                "Name":                     "DC 2014/2015"
             }]
 
 ### Update Day Compositions [PUT]
 Update one to many Day Compositions
+
++ Parameters
+    
+    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a Timetable Source
 
 + Request (application/json)
 
@@ -4824,7 +5057,7 @@ Update one to many Day Compositions
             [{           
                 "timetableSourceId":        1,
                 "dayCompositionId":         1,
-                "Name":                    "Day Comp 2014/2015 Updated"
+                "Name":                    "DC 2014/2015 Updated"
             }]
 
 
@@ -4832,21 +5065,21 @@ Update one to many Day Compositions
     + Body
     
             [{
-                "status":                    true,
-                "details":                  "Create Successful",  
+                "status":                   true,
+                "details":                  "Saved successfully",  
                 "timetableSourceId":        1,
                 "dayCompositionId":         1,
-                "Name":                    "Day Comp 2014/2015 Updated"
+                "Name":                     "DC 2014/2015 Updated"
             }]
 
 
-## Day Compositions Periods [/dayCompositionsPeriods/{?AcYearId}{?TTSourceId}]
+## Day Compositions Periods [/dayCompositionsPeriods/{?TimetableSourceId}]
 
 + Parameters
-    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
-    + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
-### Retrieve Timetable Sources Association [GET]
+    + TimetableSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
+
+### Retrieve Day Composition Periods [GET]
 
 + Request
 
@@ -4906,7 +5139,6 @@ Create on to many Day Compositions Periods
             [{
                 "dayCompositionId":         1,
                 "timetableSourceId":        1,
-                "periodId":                 0,
                 "weekDay":                  "Monday",
             `   "periodCode":               "P1",
                 "periodName":               "Period 1",
@@ -4916,7 +5148,6 @@ Create on to many Day Compositions Periods
             {
                 "dayCompositionId":         1,
                 "timetableSourceId":        1,
-                "periodId":                 0,
                 "weekDay":                  "Tuesday",
             `   "periodCode":               "P1",
                 "periodName":               "Period 1",
@@ -4931,7 +5162,7 @@ Create on to many Day Compositions Periods
     
             [{
                 "status":                    true,
-                "details":                  "Create Successful",  
+                "details":                  "Saved successfully",  
                 "dayCompositionId":         1,
                 "periodId":                 1,
                 "weekDay":                  "Monday",
@@ -4939,7 +5170,7 @@ Create on to many Day Compositions Periods
             },
             {
                 "status":                    true,
-                "details":                  "Create Successful",  
+                "details":                  "Saved successfully",  
                 "dayCompositionId":         1,
                 "periodId":                 2,
                 "weekDay":                  "Tuesday",
@@ -4988,7 +5219,7 @@ Update on to many Day Compositions Periods
     
             [{
                 "status":                   true,
-                "details":                  "Update Successful",  
+                "details":                  "Saved successfully",  
                 "dayCompositionId":         1,
                 "periodId":                 1,
                 "weekDay":                  "Monday",
@@ -4996,7 +5227,7 @@ Update on to many Day Compositions Periods
             },
             {
                 "status":                   true,
-                "details":                  "Update Successful",  
+                "details":                  "Saved successfully",  
                 "dayCompositionId":         1,
                 "periodId":                 2,
                 "weekDay":                  "Tuesday",
@@ -5005,15 +5236,15 @@ Update on to many Day Compositions Periods
 
 
 
-## Timetable Events  [/ttEvents/{ttSourceId}{startDate}{endDate}{?dayCompositionId}]
+## Timetable Events  [/ttEvents/{TimetableSourceId}{startDate}{endDate}{?dayCompositionId}]
 
 + Parameters
-    + ttSourceId (required, number, `12345`) ... The unique identifier of a timetable source
-    + startDate (required, date, `12345`) ...    Filter date for timetable events
-    + endDate (required, date, `12345`) ...    Filter date for timetable events
+    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a timetable source
+    + startDate (required, date, `2015/09/09`) ...    Filter date for timetable events
+    + endDate (required, date, `2015/09/09`) ...    Filter date for timetable events
     + dayCompositionId (optional, number, `12345`) ...    Filter for events from a single day composition
 
-### Retrieve Rooms [GET]
+### Retrieve Timetable Events [GET]
 
 + Request
 
@@ -5024,7 +5255,54 @@ Update on to many Day Compositions Periods
 
 + Response 200 (application/json)
     + Body
+            
+            [{
+                "eventId":          1,
+                "day"  :            "Monday",
+                "startTime":        "08:50",
+                "finishTime":       "09:00",
+                "employees":        [{  
+                                        "employeeId":  123456,
+                                        "employeeCode": "ABC"
+                                    }],
+                "groups":           [{  
+                                        "groupId":      123456,
+                                        "groupCode":    "Aba"
+                                    }],
+                "subjects/NCAType": [{
+                                        "subject/NCAType":      "Tutor Time"
+                                    }],
+                "rooms":            [{  
+                                        "room":     "A1"
+                                    }],
+                "duration":         10,
+                "eventType":        "Timetable",
+                "NonContactType":   ""
+            },
+            {
+                "eventId":          2,
+                "day"  :            "Monday",
+                "startTime":        "09:00",
+                "finishTime":       "10:00",
+                "employees":        [{  
+                                        "employeeId":  465789,
+                                        "employeeCode": "DEF"
+                                    }],
+                "groups":           [{  
+                                        "groupId":      45601,
+                                        "groupCode":    "7-Mat"
+                                    }],
+                "subjects": [{
+                                        "subject/NCAType":      "Mathematics"
+                                    }],
+                "rooms":            [{  
+                                        "room":     "B2"
+                                    }],
+                "duration":         60,
+                "eventType":        "Timetable",
+                "NonContactType":   ""
     
+            }]
 
 
 
@@ -5039,6 +5317,9 @@ Group of all Physical Resources
 
 ### Retrieve Rooms [GET]
 
+Optionl Parameter
+- RoomId - Unique Id of the Room
+
 + Request
 
     + Headers
@@ -5047,17 +5328,19 @@ Group of all Physical Resources
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "roomId":               1,
                 "roomCode":             "A1",
                 "roomName":             "A1",
                 "site":                 "Main",
                 "roomCategory":         "DTN",
                 "roomType":             "Detention",
+                "capacity":             30'
                 "associatedEquipment":  [{
-                                                "equipmentId":  "OHP",
+                                                "equipmentCode":  "OHP",
                                                 "equipmentName":  "Over Head Projector"
                                         }]
 
@@ -5070,10 +5353,15 @@ Group of all Physical Resources
                 "roomCategory":         "",
                 "roomType":             "",
                 "associatedEquipment":  [{}]
+                "capacity":             30
 
-            }]
+            }
+
+##Create/Update Rooms [/rooms/]
+
 
 ### Create Rooms [POST]
+
 Create one to many Rooms
 
 + Request
@@ -5087,16 +5375,16 @@ Create one to many Rooms
     + Body
 
             [{
-                "roomId":               0,
                 "roomCode":             "A3",
                 "roomName":             "A3",
                 "site":                 "Main",
                 "roomCategory":         "DTN",
                 "roomType":             "Detention",
                 "associatedEquipment":  [{
-                                                "equipmentId":  "OHP",
+                                                "equipmentCode":  "OHP",
                                                 "equipmentName":  "Over Head Projector"
-                                        }]
+                                        }],
+                "capacity":             30
             }]
 
 
@@ -5105,7 +5393,7 @@ Create one to many Rooms
     
             [{
                 "status":               true,
-                "details":              "Update Successful", 
+                "details":              "Saved Successfully", 
                 "roomId":               1,
                 "roomCode":             "A3"
 
@@ -5133,20 +5421,223 @@ Update one to many Rooms
                 "roomCategory":         "DTN",
                 "roomType":             "Detention",
                 "associatedEquipment":  [{
-                                                "equipmentId":  "OHP",
+                                                "equipmentCode":  "OHP",
                                                 "equipmentName":  "Over Head Projector"
-                                        }]
+                                        }],
+                "capacity":             30                                        
             }]
 
 
 + Response 200 (application/json)
     + Body
     
-            [{
+            [
                 "status":               true,
                 "details":              "Update Successful", 
                 "roomId":               1,
                 "roomCode":             "A3"
 
-            }]
+            }
 
+## Sites  [/site/{?siteId}]
+
++ Parameters
+    + siteId (optional, number, `12345`) ... The unique identifier of a room
+
+### Retrieve Site [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+    + Body
+    
+            [{          
+                "siteId":       1,
+                "siteCode":     "Main site",
+                "siteName":     "The Main Site of School"
+
+            }]
+            
+##Create/Update Site [/site/]
+### Create Site [POST]
+Create one to many Site
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Request (application/json)
+    + Body
+
+            [{
+                "siteId":       0,
+                "siteCode":     "Main site",
+                "siteName":     "The Main Site of School"           
+            
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            [{
+                "status":               true,
+                "details":              "Create Successful", 
+                "siteId":               1,
+                "siteCode":             "Main site"
+
+            }]
+            
+### Update Site [PUT]
+Update one to many Sites
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Request (application/json)
+    + Body
+
+            [{
+                "siteId":       1,
+                "siteCode":     "Main site 2",
+                "siteName":     "The Main Site of School"           
+            
+            }]
+            
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "status":               true,
+                "details":              "Update Successful", 
+                "siteId":               1,
+                "siteCode":             "Main site 2"
+
+            }
+            
+# Group **PROPOSED Methods** Behaviour
+The whole **Behaviour** section is under development and unavailable at present. 
+This documentation is subject to change and fields included are not final.
+
+## Behaviour Collection [/behaviour]
+
+
+## Behaviour Structure Collection [/behaviour/structure]
+
+### Get behaviour structure [GET]
+**PROPOSED GET METHOD - PROAPI-2**
+
+Retrieves the current behaviour structure. Response codes used are:
+
+- 200: Returns with data
+- 204: No behaviour structure
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            "Categories":   [{
+                            "Code":           "CAT1",
+                            "Description":    "Category 1"
+                        },{
+                            "Code":           "CAT2",
+                            "Description":    "Category 2"
+                        },{
+                            "Code":           "CAT3",
+                            "Description":    "Category 3"
+                        },{
+                            "Code":           "CAT4",
+                            "Description":    "Category 4"
+                        }]
+            "Types":        [{
+                            "Code":            "01Conf,
+                            "Description":     "Confontational",
+                            "Points":          "2",
+                            "Behaviour":       "Negative",
+                            "Category":        "CAT1",
+                            "Severity":        "High"
+                        },{
+                            "Code":            "02CLWK,
+                            "Description":     "Classwork",
+                            "Points":          "3",
+                            "Behaviour":       "Positive",
+                            "Category":        "CAT1",
+                            "Severity":        "Low"
+                        }]
+            "Severities":   [{
+                            "Code":             "S1",
+                            "Description":      "Low"
+                        },{
+                            "Code":             "S2",
+                            "Description":      "Meidum"
+                        },{
+                            "Code":             "S3",
+                            "Description":      "High"        
+                        }]
+            "Actions":      [{
+                            "Code":             "01DET",
+                            "Description":      "Think Tank",
+                            "Behaviour":        "Negative",
+                            "BehviourType":     "Confrontational"
+                        },{
+                            "Code":             "02REW",
+                            "Description":      "Reward Point",
+                            "Behaviour":        "Positive",
+                            "BehviourType":     "Classwork"
+                        }]
+            "Rules":        [{
+                            "RuleName":         "Reward",
+                            "Status":           "Active",
+                            "RuleCriteria":     "Behaviour",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":    "Classwork",
+                            "BehaviourCategory":"",
+                            "BehaviourSeverity":"",
+                            "Occurred":         "2",
+                            "TimePeriod":       "Week",
+                            "IsRecursive":      "",
+                            "Consequences":     "Reward Point",
+                            "Points":           "2",
+                            "AddLearnerChar":   "Y",
+                            [{
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 3",
+                                "AndOr":            "Or"
+                            },{
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 4",
+                                "AndOr":            ""
+                            }]
+                        }]
+            "MasterData":   [{
+                            "Item":             "Detention Type"
+                            [{
+                                "Code":             "TT",
+                                "Description":      "Think Tank"
+                            },{
+                                "Code":             "OOD",
+                                "Description":      "One off Detention"
+                            }]
+                        }] 
+
+
++ Response 204
