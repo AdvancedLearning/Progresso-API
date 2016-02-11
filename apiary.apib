@@ -2865,7 +2865,7 @@ Create Lesson Attendance for one to many learners using Timetable Period
 
     + Body
     
-            [{
+            {
                  "learnerCode":          "2013-00001",
                  "status":             "success"
             },
@@ -2873,11 +2873,13 @@ Create Lesson Attendance for one to many learners using Timetable Period
                 "learnerCode":          "2013-00002",
                  "status":             "success"
                 
-            }]
+            }
 
 
 ## Create/Update Learner Attendance [/learnerLessonAttendanceByLessonTime]
+
 ### Create Learner Lesson Attendance by Time [POST]
+
 Create Attendance for one to many learners using date and time of lesson
 
 + Request (application/json)
@@ -2987,7 +2989,6 @@ Create Exclusions for one to many learners
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
                 "exclusions":       [{
-                                        "exclusionId":  0
                                         "category":     "",
                                         "reason":       "",
                                         "startDate":    "",
@@ -3013,7 +3014,6 @@ Create Exclusions for one to many learners
                                         "reinstatementNotes":       ""
                                     },
                                     {
-                                        "exclusionId":  0,
                                         "category":     "",
                                         "reason":       "",
                                         "startDate":    "",
@@ -3043,30 +3043,29 @@ Create Exclusions for one to many learners
                 "learnerCode":      "2013-00002",
                 "learnerId":       0002,
                 "exclusions":       [{
-                                        "exclusionId":  0
-                                        "category":     "",
-                                        "reason":       "",
-                                        "startDate":    "",
-                                        "endDate":      "",
-                                        "startSession": "",
-                                        "endSession":   "",
-                                        "notes":        "",
-                                        "totalDays":    5,
-                                        "totalSessions":10,
+                                        "category":     "FIXD",
+                                        "reason":       "DB",
+                                        "startDate":    "2015-11-25",
+                                        "endDate":      "2015-11-27",
+                                        "startSession": "AM",
+                                        "endSession":   "PM",
+                                        "notes":        "Consistently failing to produce work in lessons",
+                                        "totalDays":    3,
+                                        "totalSessions":6,
                                         "LAC":          false,
-                                        "headNotified": "",
-                                        "govMeeting":   "",
-                                        "provisionStartDate":   "",
-                                        "provisionDetails":     "",
-                                        "appeal":           true,
-                                        "appealDate":       "",
-                                        "appealCutOff":     "",
-                                        "exclusionHearing": "",
-                                        "outcome":          "",
-                                        "reintregationMeetingDate": "",
-                                        "reintregationNotes":      "",
-                                        "reinstatementDate":        "",
-                                        "reinstatementNotes":       ""
+                                        "headNotified": null,
+                                        "govMeeting":   null,
+                                        "provisionStartDate":   null,
+                                        "provisionDetails":     null"",
+                                        "appeal":           false,
+                                        "appealDate":       null,
+                                        "appealCutOff":     null,
+                                        "exclusionHearing": null,
+                                        "outcome":          null,
+                                        "reintregationMeetingDate": null,
+                                        "reintregationNotes":      null,
+                                        "reinstatementDate":        null,
+                                        "reinstatementNotes":       null
                                     }
             
             }]
@@ -3079,12 +3078,12 @@ Create Exclusions for one to many learners
                 "learnerId":       0001,
                 "exclusions":       [{
                                     "status":   true,
-                                    "details":  "",
+                                    "details":  "Saved successfully",
                                      "exclusionId":  1
                                     },
                                     {
                                     "status":   true,
-                                    "details":  "",
+                                    "details":  "Saved successfully",
                                      "exclusionId":  2
                                     }]
             },
@@ -3093,7 +3092,7 @@ Create Exclusions for one to many learners
                 "learnerId":       0002,
                 "exclusions":       [{
                                     "status":   true,
-                                    "details":  "",
+                                    "details":  "Saved successfully",
                                      "exclusionId":  3
                                     }]
             }]
@@ -3172,34 +3171,34 @@ Update Exclusions for one to many learners
                 "learnerId":       0002,
                 "exclusions":       [{
                                         "exclusionId":  3
-                                        "category":     "",
-                                        "reason":       "",
-                                        "startDate":    "",
+                                        "category":     "PRM",
+                                        "reason":       "DB",
+                                        "startDate":    "2015-12-10",
                                         "endDate":      "",
-                                        "startSession": "",
+                                        "startSession": "AM",
                                         "endSession":   "",
                                         "notes":        "",
-                                        "totalDays":    5,
-                                        "totalSessions":10,
+                                        "totalDays":    null,
+                                        "totalSessions":null,
                                         "LAC":          false,
-                                        "headNotified": "",
-                                        "govMeeting":   "",
-                                        "provisionStartDate":   "",
-                                        "provisionDetails":     "",
+                                        "headNotified": null,
+                                        "govMeeting":   null,
+                                        "provisionStartDate":   null,
+                                        "provisionDetails":     null,
                                         "appeal":           true,
-                                        "appealDate":       "",
-                                        "appealCutOff":     "",
-                                        "exclusionHearing": "",
-                                        "outcome":          "",
-                                        "reintregationMeetingDate": "",
-                                        "reintregationNotes":      "",
-                                        "reinstatementDate":        "",
-                                        "reinstatementNotes":       ""
-                                    }
-            
+                                        "appealDate":       null,
+                                        "appealCutOff":     null,
+                                        "exclusionHearing": null,
+                                        "outcome":          null,
+                                        "reintregationMeetingDate": null,
+                                        "reintregationNotes":      null,
+                                        "reinstatementDate":        null,
+                                        "reinstatementNotes":       null
+                                    }]
             }]
 
 + Response 200
+
     + Body
     
             [{
