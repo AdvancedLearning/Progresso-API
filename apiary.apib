@@ -3201,7 +3201,7 @@ Update Exclusions for one to many learners
 
     + Body
     
-            [{
+            {
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
                 "exclusions":       [{
@@ -3223,10 +3223,11 @@ Update Exclusions for one to many learners
                                     "details":  "",
                                      "exclusionId":  3
                                     }]
-            }]
+            }
 
 
 ## Learner SEN Provisions [/learnerSENProvisions{?status}]
+
 ### Retrieve a learner SEN Provision Details [GET]
 + Parameters
     + status (optional, string, `Active`) ... The staus of Learner e.g. Active, Draft, Left
@@ -3277,8 +3278,10 @@ Update Exclusions for one to many learners
                 ]
                 
                 
-## Create/Update Learner SEN Provisions [/learnerSENProvision]
+## Create/Update Learner SEN Provisions [/learnerSENProvisions]
+
 ### Create Learner SEN Provisions [POST]
+
 Create SEN Provisions for one to many learners
 
 + Request (application/json)
@@ -3290,41 +3293,37 @@ Create SEN Provisions for one to many learners
 
     + Body
           
-            [{
+            {
             
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
                 "provisions":   [{
-                                    "provisionId":          0
-                                    "provisionTypeCode":    "",
-                                    "provisionTypeName":    "",
-                                    "startDate":            "",
+                                    "provisionTypeCode":    "A",
+                                    "provisionTypeName":    "School Action",
+                                    "startDate":            "2015-11-25",
                                     "reviewDate":           "",
                                     "endDate":              ""
                                 }]
-            }]
+            }
               
 + Response 200
+
     + Body
     
-            [{
+            {
                 "learnerCode":      "2013-00001",
                 "learnerId":       0001,
                 "status":           true,
-                "details":          "",
+                "details":          "Saved successfully",
                 "provisions":   [{
                                     "status":               true,
-                                    "details":              ""
+                                    "details":              "Saved successfully",
                                     "provisionId":          00001
-                                    "provisionTypeCode":    "",
-                                    "provisionTypeName":    "",
-                                    "startDate":            "",
-                                    "reviewDate":           "",
-                                    "endDate":              ""
                                 }]
-             }]                  
+            }
 
 ### Update Learner SEN Provisions [PUT]
+
 Update SEN Provisions for one to many learners
 
 + Request (application/json)
@@ -3351,9 +3350,10 @@ Update SEN Provisions for one to many learners
             }]
               
 + Response 200
+
     + Body
     
-            [{
+            {
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
                 "status":           true,
@@ -3368,14 +3368,15 @@ Update SEN Provisions for one to many learners
                                     "reviewDate":           "",
                                     "endDate":              ""
                                 }]
-             }] 
+            }
 
 
 ## Learner SEN Major Needs [/learnerSENMajorNeeds{?status}]
+
+### Retrieve a learner SEN Major Need Details [GET]
+
 + Parameters
     + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
-    
-### Retrieve a learner SEN Major Need Details [GET]
 
 + Request
 
@@ -3387,7 +3388,7 @@ Update SEN Provisions for one to many learners
 
     + Body 
             
-            [{
+            {
             
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
@@ -3397,11 +3398,13 @@ Update SEN Provisions for one to many learners
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            1
                                 }]
-            }]
+            }
 
 
 ## Create/Update Learner SEN Major Needs [/learnerSENMajorNeeds]
+
 ### Create Learner SEN Major Needs [POST]
+
 Create SEN Major Needs for one to many learners
 
 + Request (application/json)
@@ -3418,21 +3421,22 @@ Create SEN Major Needs for one to many learners
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
                 "majorNeeds":   [{
-                                    "majorNeedId":          0
-                                    "majorNeedCode":        "SLD",
-                                    "majorNeedDescription": "Severe Learning Difficulty ",
-                                    "ranking":            1
-                                }]
-            
-            
-            
+                                    "majorNeedCode":        "SPLD",
+                                    "majorNeedDescription": "Specific Learning Difficulty ",
+                                    "ranking":              1
+                                },{
+                                    "MajorNeedCode":        "SEMH",
+                                    "MajorNeedDescription": "Social, Emotional and Mental Health",
+                                    "Ranking":              2
+                                }
             }]
+
 
 + Response 200 (application/json)
 
     + Body 
             
-            [{
+            {
             
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
@@ -3442,10 +3446,11 @@ Create SEN Major Needs for one to many learners
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            1
                                 }]
-            }]
+            }
             
 
 ### Update Learner SEN Major Needs [PUT]
+
 Create SEN Major Needs for one to many learners
 
 + Request (application/json)
@@ -3476,7 +3481,7 @@ Create SEN Major Needs for one to many learners
 
     + Body 
             
-            [{
+            {
             
                 "learnerCode":      "2013-00001",
                 "learnerId":        0001,
@@ -3486,7 +3491,7 @@ Create SEN Major Needs for one to many learners
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            2
                                 }]
-            }]
+            }
 
 
 ## Learner Siblings [/learnerSiblings{?learnerId}]
