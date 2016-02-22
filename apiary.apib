@@ -5546,12 +5546,12 @@ This documentation is subject to change and fields included are not final.
 ## Behaviour Structure Collection [/bmstructure/]
 
 ### Get behaviour structure [GET]
-**PROPOSED GET METHOD - PROAPI-15**
+**PROPOSED GET METHOD - PROAPI-24**
 
 Retrieves the current behaviour structure. Response codes used are:
 
 - 200: Returns with data
-- 204: No behaviour structure
+- 204: No data available
 
 + Request
 
@@ -5560,6 +5560,132 @@ Retrieves the current behaviour structure. Response codes used are:
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200 (application/json)
+
+    + Body
+    
+             {
+            "Categories":   [{
+                            "CategoryId":     00001,
+                            "Code":           "CAT1",
+                            "Description":    "Category 1"
+                        },{
+                            "CategoryId":     00002,
+                            "Code":           "CAT2",
+                            "Description":    "Category 2"
+                        },{
+                            "CategoryId":     00003,
+                            "Code":           "CAT3",
+                            "Description":    "Category 3"
+                        },{
+                            "CategoryId":     00004,
+                            "Code":           "CAT4",
+                            "Description":    "Category 4"
+                        }],
+            "Types":        [{
+                            "TypeId":          0001,
+                            "Code":            "01Conf,
+                            "Description":     "Confrontational",
+                            "Points":          "2",
+                            "Behaviour":       "Negative",
+                            "Category":        "CAT1",
+                            "Severity":        "High"
+                        },{
+                            "TypeId":          0002,
+                            "Code":            "02CLWK,
+                            "Description":     "Classwork",
+                            "Points":          "3",
+                            "Behaviour":       "Positive",
+                            "Category":        "CAT1",
+                            "Severity":        "Low"
+                        }]
+            "Severities":   [{
+                            "SeverityId":       0001
+                            "Code":             "S1",
+                            "Description":      "Low"
+                        },{
+                            "SeverityId":       0002,
+                            "Code":             "S2",
+                            "Description":      "Medium"
+                        },{
+                            "SeverityId":       0003,
+                            "Code":             "S3",
+                            "Description":      "High"        
+                        }]
+            "Actions":      [{
+                            "ActionId":         0001,
+                            "Code":             "01DET",
+                            "Description":      "Think Tank",
+                            "Behaviour":        "Negative",
+                            "BehaviourType":     "Confrontational"
+                        },{
+                            "ActionId":         0002,
+                            "Code":             "02REW",
+                            "Description":      "Reward Point",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":     "Classwork"
+                        }]
+            "Rules":        [{
+                            "RuleId":           0001,
+                            "RuleName":         "Reward",
+                            "Status":           "Active",
+                            "RuleCriteria":     "Behaviour",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":    "Classwork",
+                            "BehaviourCategory":"",
+                            "BehaviourSeverity":"",
+                            "Occurred":         "2",
+                            "TimePeriod":       "Week",
+                            "IsRecursive":      "",
+                            "Consequences":     "Reward Point",
+                            "Points":           "2",
+                            "AddLearnerChar":   "Y",
+                            [{
+                                "CharacteristicId": 0001,
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 3",
+                                "AndOr":            "Or"
+                            },{
+                                "CharacteristicId": 0002,
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 4",
+                                "AndOr":            ""
+                            }]
+                        }]
+            "Detention Type":[{
+                                "DetentionTypeId":  0001,
+                                "Code":             "TT",
+                                "Description":      "Think Tank"
+                            },{
+                                "DetentionTypeId":  0002,
+                                "Code":             "OOD",
+                                "Description":      "One off Detention"
+                         }]
+            "Location":     [{
+                                "LocationId":       0001,
+                                "Code":             "CLS",
+                                "Description":      "Classroom"
+                            },{
+                                "LocationId":       0002,
+                                "Code":             "SBS",
+                                "Description":      "School Bus"      
+                        }]
+            }
+
+
++ Response 204 (application/json)
+
+### Create Behaviour Structure [POST]
+**PROPOSED POST METHOD - PROAPI-15**
+
+Creates a new Behaviour Management Structure
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
     
@@ -5597,7 +5723,7 @@ Retrieves the current behaviour structure. Response codes used are:
                             "Description":      "Low"
                         },{
                             "Code":             "S2",
-                            "Description":      "Meidum"
+                            "Description":      "Medium"
                         },{
                             "Code":             "S3",
                             "Description":      "High"        
@@ -5606,12 +5732,12 @@ Retrieves the current behaviour structure. Response codes used are:
                             "Code":             "01DET",
                             "Description":      "Think Tank",
                             "Behaviour":        "Negative",
-                            "BehviourType":     "Confrontational"
+                            "BehaviourType":     "Confrontational"
                         },{
                             "Code":             "02REW",
                             "Description":      "Reward Point",
                             "Behaviour":        "Positive",
-                            "BehviourType":     "Classwork"
+                            "BehaviourType":     "Classwork"
                         }]
             "Rules":        [{
                             "RuleName":         "Reward",
@@ -5642,7 +5768,7 @@ Retrieves the current behaviour structure. Response codes used are:
             "Detention Type":[{
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
-                                },{
+                            },{
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
                          }]
@@ -5654,6 +5780,90 @@ Retrieves the current behaviour structure. Response codes used are:
                                 "Description":      "School Bus"      
                         }]
             }
+      
++ Response 200 (application/json)
 
-
-+ Response 204
+    + Body
+    
+            {
+            "Categories":   [{
+                            "CategoryId":     0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "CategoryId":     0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "CategoryId":     0003,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "CategoryId":     0004,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        }],
+            "Types":        [{
+                            "TypeId":         0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "TypeId":         0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        }]
+            "Severities":   [{
+                            "SeverityId":     0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "SeverityId":     0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "SeverityId":     0003,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"    
+                        }]
+            "Actions":      [{
+                            "ActionId":       0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "ActionId":       0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        }]
+            "Rules":        [{
+                            "RuleId":         0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                            [{
+                                "CharacteristicIdId":       0001,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"
+                            },{
+                                "CharacteristicIdId":       0002,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"
+                            }]
+                        }]
+            "Detention Type":[{
+                                "DetentionTypeId":          0001,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"
+                            },{
+                                "DetentionTypeId":          0002,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"
+                         }]
+            "Location":     [{
+                                "LocationId":               0001,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"
+                            },{
+                                "LocationId":               0001,
+                                "Status":                   "true",
+                                "Details":                  "Saved Successfully"   
+                        }]
+            }
