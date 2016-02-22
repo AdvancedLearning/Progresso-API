@@ -5543,10 +5543,10 @@ This documentation is subject to change and fields included are not final.
 ## Behaviour Collection [/behaviour]
 
 
-## Behaviour Structure Collection [/behaviour/structure]
+## Behaviour Structure Collection [/bmstructure/]
 
 ### Get behaviour structure [GET]
-**PROPOSED GET METHOD - PROAPI-2**
+**PROPOSED GET METHOD - PROAPI-15**
 
 Retrieves the current behaviour structure. Response codes used are:
 
@@ -5563,6 +5563,7 @@ Retrieves the current behaviour structure. Response codes used are:
 
     + Body
     
+            {
             "Categories":   [{
                             "Code":           "CAT1",
                             "Description":    "Category 1"
@@ -5575,10 +5576,10 @@ Retrieves the current behaviour structure. Response codes used are:
                         },{
                             "Code":           "CAT4",
                             "Description":    "Category 4"
-                        }]
+                        }],
             "Types":        [{
                             "Code":            "01Conf,
-                            "Description":     "Confontational",
+                            "Description":     "Confrontational",
                             "Points":          "2",
                             "Behaviour":       "Negative",
                             "Category":        "CAT1",
@@ -5638,16 +5639,21 @@ Retrieves the current behaviour structure. Response codes used are:
                                 "AndOr":            ""
                             }]
                         }]
-            "MasterData":   [{
-                            "Item":             "Detention Type"
-                            [{
+            "Detention Type":[{
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
-                            },{
+                                },{
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
-                            }]
-                        }] 
+                         }]
+            "Location":     [{
+                                "Code":             "CLS",
+                                "Description":      "Classroom"
+                            },{
+                                "Code":             "SBS",
+                                "Description":      "School Bus"      
+                        }]
+            }
 
 
 + Response 204
