@@ -2949,7 +2949,7 @@ Create Attendance for one to many learners using date and time of lesson
                 "learnerId":       0001,
                 "exclusions":       [{
                                         "exclusionId":  0001,
-                                        "category":     "",
+                                        "category":     "FIXD",
                                         "reason":       "",
                                         "startDate":    "",
                                         "endDate":      "",
@@ -3644,11 +3644,13 @@ This section is work in progress and subject to change.
         
             Authorization: Bearer [CURRENT_TOKEN]
             
+            
 + Response 200 (application/json)
 
     + Body
     
             {
+            "SourceId":           "abc123",
             "LearnerId":          443756,   
             "LearnerCode":        "2010-0001",
             "Surname":            "Sterling",
@@ -3659,8 +3661,8 @@ This section is work in progress and subject to change.
             "DateOfBirth":        "04-08-1998 00:00:00",
             "LegalSurname":       "Sterling",
             "LegalForename":      "Geoffrey",
-            "MiddleName:          "James",
-            "FormerSurname:       "Silver",
+            "MiddleName":         "James",
+            "FormerSurname":      "Silver",
             "EmailAddress":       "a.b@c.co.uk",
             "Gender":             "M",
             "Notes":              "Lorem Ipsum",
@@ -3767,6 +3769,8 @@ This section is work in progress and subject to change.
                                 "ranking":              1
                                 }]
             }
+
++ Response 204 (application/json)
 
 
 # Group Groups
