@@ -5912,6 +5912,13 @@ Retrieves the current behaviour structure. Response codes used are:
 
 Creates a new Behaviour Management Structure
 
++ Mandatory Parameters:
+        
+- Types:
+    - Code  (required, string, `ABLAN`) ... Unique code for the type of behaviour
+    - Description (required, string, 'Abusive/Threating Language') ... Description of the type of behaviour
+    - Points (required, int, '1') ... Number of points, defaults to zero
+
 + Request
 
     + Headers
@@ -6098,3 +6105,95 @@ Creates a new Behaviour Management Structure
                                 "Details":                  "Saved Successfully"   
                         }]
             }
+
+### Update Behaviour Structure [PUT]
+**PROPOSED POST METHOD - PROAPI-29**
+
+Updates an Behaviour Management Structure
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
+    + Body
+    
+                {
+            "Categories":   [{
+                            "Code":           "CAT4",
+                            "Description":    "Category 4"
+                        },{
+                            "Code":           "CAT5",
+                            "Description":    "Category 5"
+                        }],
+            "Types":        [{
+                            "Code":            "03Conf,
+                            "Description":     "Confrontational",
+                            "Points":          "2",
+                            "Behaviour":       "Negative",
+                            "Category":        "CAT1",
+                            "Severity":        "High"
+                        }]
+            "Severities":   [{
+                            "Code":             "S1",
+                            "Description":      "Low"
+                        },{
+                            "Code":             "S2",
+                            "Description":      "Medium"
+                        },{
+                            "Code":             "S3",
+                            "Description":      "High"        
+                        }]
+            "Actions":      [{
+                            "Code":             "01DET",
+                            "Description":      "Think Tank",
+                            "Behaviour":        "Negative",
+                            "BehaviourType":     "Confrontational"
+                        },{
+                            "Code":             "02REW",
+                            "Description":      "Reward Point",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":     "Classwork"
+                        }]
+            "Rules":        [{
+                            "RuleName":         "Reward",
+                            "Status":           "Active",
+                            "RuleCriteria":     "Behaviour",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":    "Classwork",
+                            "BehaviourCategory":"",
+                            "BehaviourSeverity":"",
+                            "Occurred":         "2",
+                            "TimePeriod":       "Week",
+                            "IsRecursive":      "",
+                            "Consequences":     "Reward Point",
+                            "Points":           "2",
+                            "AddLearnerChar":   "Y",
+                            [{
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 3",
+                                "AndOr":            "Or"
+                            },{
+                                "Characteristic":   "Course",
+                                "Operator":         "Equal",
+                                "Value":            "Key Stage 4",
+                                "AndOr":            ""
+                            }]
+                        }]
+        "Detention Type":[{
+                                "Code":             "TT",
+                                "Description":      "Think Tank"
+                            },{
+                                "Code":             "OOD",
+                                "Description":      "One off Detention"
+                         }]
+        "Location":     [{
+                                "Code":             "CLS",
+                                "Description":      "Classroom"
+                            },{
+                                "Code":             "SBS",
+                                "Description":      "School Bus"      
+                        }]
+      }
