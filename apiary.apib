@@ -5914,8 +5914,9 @@ Creates a new Behaviour Management Structure
 
 Mandatory Parameters:
         
--Types:
-    - Code  (required, string, `ABLAN`) ... Unique code for the type of behaviour
+- Types:
+
+    - Code  (required, string, 'ABLAN') ... Unique code for the type of behaviour
     
     - Description (required, string, 'Abusive/Threating Language') ... Description of the type of behaviour
     
@@ -6121,81 +6122,78 @@ Updates an Behaviour Management Structure
 
     + Body
     
-                {
+            {
             "Categories":   [{
-                            "Code":           "CAT4",
-                            "Description":    "Category 4"
+                            "CategoryId":       0001,
+                            "Code":             "ABL",
+                            "Description":      "Abusive Language"
                         },{
-                            "Code":           "CAT5",
-                            "Description":    "Category 5"
+                            "CategoryId":       0002,
+                            "Code":             "BUL",
+                            "Description":      "Bullying"
                         }],
             "Types":        [{
-                            "Code":            "03Conf,
-                            "Description":     "Confrontational",
-                            "Points":          "2",
-                            "Behaviour":       "Negative",
-                            "Category":        "CAT1",
-                            "Severity":        "High"
+                            "TypeId":           0001,  
+                            "Code":             "Conf,
+                            "Description":      "Confrontational",
+                            "Points":           "2",
+                            "Behaviour":        "Negative",
+                            "Category":         "BUL",
+                            "Severity":         "High"
+                        }],
+            "Severities":   [{
+                            "SeverityId":       0001,
+                            "Code":             "S1",
+                            "Description":      "1"
+                        },{
+                            "SeverityId":       0002,
+                            "Code":             "S2",
+                            "Description":      "2"
+                        },{
+                            "SeverityId":       0003,
+                            "Code":             "S3",
+                            "Description":      "3"        
+                        }],
+            "Actions":      [{}],
+            "Rules":        [{}],
+            "Detention Type":[{}],
+            "Location":     [{}]
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+            "Categories":   [{
+                            "CategoryId":     0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        },{
+                            "CategoryId":     0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
+                        }],
+            "Types":        [{
+                            "TypeId":         0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
                         }]
             "Severities":   [{
-                            "Code":             "S1",
-                            "Description":      "Low"
+                            "SeverityId":     0001,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
                         },{
-                            "Code":             "S2",
-                            "Description":      "Medium"
+                            "SeverityId":     0002,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"
                         },{
-                            "Code":             "S3",
-                            "Description":      "High"        
-                        }]
-            "Actions":      [{
-                            "Code":             "01DET",
-                            "Description":      "Think Tank",
-                            "Behaviour":        "Negative",
-                            "BehaviourType":     "Confrontational"
-                        },{
-                            "Code":             "02REW",
-                            "Description":      "Reward Point",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":     "Classwork"
-                        }]
-            "Rules":        [{
-                            "RuleName":         "Reward",
-                            "Status":           "Active",
-                            "RuleCriteria":     "Behaviour",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":    "Classwork",
-                            "BehaviourCategory":"",
-                            "BehaviourSeverity":"",
-                            "Occurred":         "2",
-                            "TimePeriod":       "Week",
-                            "IsRecursive":      "",
-                            "Consequences":     "Reward Point",
-                            "Points":           "2",
-                            "AddLearnerChar":   "Y",
-                            [{
-                                "Characteristic":   "Course",
-                                "Operator":         "Equal",
-                                "Value":            "Key Stage 3",
-                                "AndOr":            "Or"
-                            },{
-                                "Characteristic":   "Course",
-                                "Operator":         "Equal",
-                                "Value":            "Key Stage 4",
-                                "AndOr":            ""
-                            }]
-                        }]
-        "Detention Type":[{
-                                "Code":             "TT",
-                                "Description":      "Think Tank"
-                            },{
-                                "Code":             "OOD",
-                                "Description":      "One off Detention"
-                         }]
-        "Location":     [{
-                                "Code":             "CLS",
-                                "Description":      "Classroom"
-                            },{
-                                "Code":             "SBS",
-                                "Description":      "School Bus"      
-                        }]
-      }
+                            "SeverityId":     0003,
+                            "Status":         "true",
+                            "Details":        "Saved Successfully"    
+                        }],
+            "Actions":      [{}],
+            "Rules":        [{}],
+            "Detention Type":[{}],
+            "Location":     [{}]
+            }
