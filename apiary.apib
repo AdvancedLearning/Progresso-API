@@ -1,5 +1,4 @@
 FORMAT: 1A
-HOST: https://uat-api.progresso.net/v2/
 
 
 # Progresso API
@@ -5629,28 +5628,33 @@ This section is work in progress and subject to change.
 
 + Response 204 (application/json)
 
-##LearnerOtherDetails [/LearnerOtherDetails{learnerId}{learnerCode}{status}{DateModified}]
 
-+ Parameters
-
-    + learnerId     (optional, int, `00001`) ... the unique identifier of the learner
-    + learnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
-    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
-    
 ### Create a collection of Learner Details [POST]
 
 **Proposed Changes PROAPI-32**
 
 Create one or more Learner detail records
 
-    + Surname, Forename, Learner Code, Date of Birth are mandatory fields
-    + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
-    + Phone is not mandatory but if included: Type and Number are mandatory
-    + Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
-    + Language is not mandatory but if included: TypeCode and LangCode are mandatory
-    + SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
-    + SENMajorNeeds is not mandatory but if included: MajorNeed Code and Ranking are mandatory
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
+Mandatory fields:
+
+- Surname, Forename, Learner Code, Date of Birth are mandatory fields
+    
+- Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+    
+- Phone is not mandatory but if included: Type and Number are mandatory
+    
+- Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
+    
+- Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    
+- SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
+    
+- SENMajorNeeds is not mandatory but if included: MajorNeedCode and Ranking are mandatory
 
 
 + Request (application/json)
@@ -5720,7 +5724,7 @@ Create one or more Learner detail records
                                     "SendSMS":                  true
                                 }],
             "Siblings":         [{
-                                    "learnerCode":  "2014-0002"
+                                    "LearnerCode":  "2014-0002"
                                 }],
             "PartTime":           "N",
             "EnrolementStatus":   "C",
@@ -5810,11 +5814,28 @@ Create one or more Learner detail records
                                     "Status":       true,
                                     "Details":      "Saved successfully"
                                 }]
-            }            
+            } 
+            
+
+##LearnerOtherDetails [/LearnerOtherDetails{learnerId}{learnerCode}{status}{DateModified}]
+
++ Parameters
+
+    + learnerId     (optional, int, `00001`) ... the unique identifier of the learner
+    + learnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
+    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
+    + status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
+    
+           
 
 ### Retrieve a collection of Learner Other Details [GET]
 
 **Proposed Changes PROAPI-26**
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
 
 + Request
 
@@ -5879,11 +5900,11 @@ Create one or more Learner detail records
                                 "FYEndDate":    "2014-12-14"
                             }],
             "PupilPremiums":{
-                            "CurrentDeprivationEver6":  true,
-                            "CurrentServiceChild":      false,
-                            "CurrentAdoptedfromCare":   false,
-                            "CurrentLookedAfter":       false,
-                            "CurrentPupilPremium":      true
+                                "CurrentDeprivationEver6":  true,
+                                "CurrentServiceChild":      false,
+                                "CurrentAdoptedfromCare":   false,
+                                "CurrentLookedAfter":       false,
+                                "CurrentPupilPremium":      true
                             [{
                                 "Deprivation":      true,
                                 "AdoptedFromCare":  false,
@@ -5949,7 +5970,9 @@ This will data for Bahviour Events
 ### Get behaviour structure [GET]
 **PROPOSED GET METHOD - PROAPI-24**
 
-Retrieves the current behaviour structure. Response codes used are:
+Retrieves the current behaviour structure. 
+
+Response codes used are:
 
 - 200: Returns with data
 - 204: No data available
@@ -5964,82 +5987,82 @@ Retrieves the current behaviour structure. Response codes used are:
 
     + Body
     
-             {
+            {
             "Categories":   [{
-                            "CategoryId":     00001,
-                            "Code":           "CAT1",
-                            "Description":    "Category 1"
-                        },{
-                            "CategoryId":     00002,
-                            "Code":           "CAT2",
-                            "Description":    "Category 2"
-                        },{
-                            "CategoryId":     00003,
-                            "Code":           "CAT3",
-                            "Description":    "Category 3"
-                        },{
-                            "CategoryId":     00004,
-                            "Code":           "CAT4",
-                            "Description":    "Category 4"
-                        }],
+                                "CategoryId":     00001,
+                                "Code":           "CAT1",
+                                "Description":    "Category 1"
+                            },{
+                                "CategoryId":     00002,
+                                "Code":           "CAT2",
+                                "Description":    "Category 2"
+                            },{
+                                "CategoryId":     00003,
+                                "Code":           "CAT3",
+                                "Description":    "Category 3"
+                            },{
+                                "CategoryId":     00004,
+                                "Code":           "CAT4",
+                                "Description":    "Category 4"
+                            }],
             "Types":        [{
-                            "TypeId":          0001,
-                            "Code":            "01Conf,
-                            "Description":     "Confrontational",
-                            "Points":          "2",
-                            "Behaviour":       "Negative",
-                            "Category":        "CAT1",
-                            "Severity":        "High"
-                        },{
-                            "TypeId":          0002,
-                            "Code":            "02CLWK,
-                            "Description":     "Classwork",
-                            "Points":          "3",
-                            "Behaviour":       "Positive",
-                            "Category":        "CAT1",
-                            "Severity":        "Low"
-                        }]
+                                "TypeId":          0001,
+                                "Code":            "01Conf",
+                                "Description":     "Confrontational",
+                                "Points":          "2",
+                                "Behaviour":       "Negative",
+                                "Category":        "CAT1",
+                                "Severity":        "High"
+                            },{
+                                "TypeId":          0002,
+                                "Code":            "02CLWK",
+                                "Description":     "Classwork",
+                                "Points":          "3",
+                                "Behaviour":       "Positive",
+                                "Category":        "CAT1",
+                                "Severity":        "Low"
+                            }],
             "Severities":   [{
-                            "SeverityId":       0001
-                            "Code":             "S1",
-                            "Description":      "Low"
-                        },{
-                            "SeverityId":       0002,
-                            "Code":             "S2",
-                            "Description":      "Medium"
-                        },{
-                            "SeverityId":       0003,
-                            "Code":             "S3",
-                            "Description":      "High"        
-                        }]
+                                "SeverityId":       0001
+                                "Code":             "S1",
+                                "Description":      "Low"
+                            },{
+                                "SeverityId":       0002,
+                                "Code":             "S2",
+                                "Description":      "Medium"
+                            },{
+                                "SeverityId":       0003,
+                                "Code":             "S3",
+                                "Description":      "High"        
+                            }]
             "Actions":      [{
-                            "ActionId":         0001,
-                            "Code":             "01DET",
-                            "Description":      "Think Tank",
-                            "Behaviour":        "Negative",
-                            "BehaviourType":     "Confrontational"
-                        },{
-                            "ActionId":         0002,
-                            "Code":             "02REW",
-                            "Description":      "Reward Point",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":     "Classwork"
-                        }]
+                                "ActionId":         0001,
+                                "Code":             "01DET",
+                                "Description":      "Think Tank",
+                                "Behaviour":        "Negative",
+                                "BehaviourType":     "Confrontational"
+                            },{
+                                "ActionId":         0002,
+                                "Code":             "02REW",
+                                "Description":      "Reward Point",
+                                "Behaviour":        "Positive",
+                                "BehaviourType":     "Classwork"
+                            }]
             "Rules":        [{
-                            "RuleId":           0001,
-                            "RuleName":         "Reward",
-                            "Status":           "Active",
-                            "RuleCriteria":     "Behaviour",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":    "Classwork",
-                            "BehaviourCategory":"",
-                            "BehaviourSeverity":"",
-                            "Occurred":         "2",
-                            "TimePeriod":       "Week",
-                            "IsRecursive":      "",
-                            "Consequences":     "Reward Point",
-                            "Points":           "2",
-                            "AddLearnerChar":   "Y",
+                                "RuleId":           0001,
+                                "RuleName":         "Reward",
+                                "Status":           "Active",
+                                "RuleCriteria":     "Behaviour",
+                                "Behaviour":        "Positive",
+                                "BehaviourType":    "Classwork",
+                                "BehaviourCategory":"",
+                                "BehaviourSeverity":"",
+                                "Occurred":         "2",
+                                "TimePeriod":       "Week",
+                                "IsRecursive":      "",
+                                "Consequences":     "Reward Point",
+                                "Points":           "2",
+                                "AddLearnerChar":   "Y"
                             [{
                                 "CharacteristicId": 0001,
                                 "Characteristic":   "Course",
@@ -6053,8 +6076,8 @@ Retrieves the current behaviour structure. Response codes used are:
                                 "Value":            "Key Stage 4",
                                 "AndOr":            ""
                             }]
-                        }]
-            "Detention Type":[{
+                            }],
+            "DetentionType":[{
                                 "DetentionTypeId":  0001,
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
@@ -6062,7 +6085,7 @@ Retrieves the current behaviour structure. Response codes used are:
                                 "DetentionTypeId":  0002,
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
-                         }]
+                            }],
             "Location":     [{
                                 "LocationId":       0001,
                                 "Code":             "CLS",
@@ -6071,7 +6094,7 @@ Retrieves the current behaviour structure. Response codes used are:
                                 "LocationId":       0002,
                                 "Code":             "SBS",
                                 "Description":      "School Bus"      
-                        }]
+                            }]
             }
 
 
@@ -6102,68 +6125,68 @@ Mandatory Parameters:
     
             {
             "Categories":   [{
-                            "Code":           "CAT1",
-                            "Description":    "Category 1"
-                        },{
-                            "Code":           "CAT2",
-                            "Description":    "Category 2"
-                        },{
-                            "Code":           "CAT3",
-                            "Description":    "Category 3"
-                        },{
-                            "Code":           "CAT4",
-                            "Description":    "Category 4"
-                        }],
+                                "Code":           "CAT1",
+                                "Description":    "Category 1"
+                            },{
+                                "Code":           "CAT2",
+                                "Description":    "Category 2"
+                            },{
+                                "Code":           "CAT3",
+                                "Description":    "Category 3"
+                            },{
+                                "Code":           "CAT4",
+                                "Description":    "Category 4"
+                            }],
             "Types":        [{
-                            "Code":            "01Conf,
-                            "Description":     "Confrontational",
-                            "Points":          "2",
-                            "Behaviour":       "Negative",
-                            "Category":        "CAT1",
-                            "Severity":        "High"
-                        },{
-                            "Code":            "02CLWK,
-                            "Description":     "Classwork",
-                            "Points":          "3",
-                            "Behaviour":       "Positive",
-                            "Category":        "CAT1",
-                            "Severity":        "Low"
-                        }]
+                                "Code":            "01Conf,
+                                "Description":     "Confrontational",
+                                "Points":          "2",
+                                "Behaviour":       "Negative",
+                                "Category":        "CAT1",
+                                "Severity":        "High"
+                            },{
+                                "Code":            "02CLWK,
+                                "Description":     "Classwork",
+                                "Points":          "3",
+                                "Behaviour":       "Positive",
+                                "Category":        "CAT1",
+                                "Severity":        "Low"
+                            }]
             "Severities":   [{
-                            "Code":             "S1",
-                            "Description":      "Low"
-                        },{
-                            "Code":             "S2",
-                            "Description":      "Medium"
-                        },{
-                            "Code":             "S3",
-                            "Description":      "High"        
-                        }]
+                                "Code":             "S1",
+                                "Description":      "Low"
+                            },{
+                                "Code":             "S2",
+                                "Description":      "Medium"
+                            },{ 
+                                "Code":             "S3",
+                                "Description":      "High"        
+                            }]
             "Actions":      [{
-                            "Code":             "01DET",
-                            "Description":      "Think Tank",
-                            "Behaviour":        "Negative",
-                            "BehaviourType":     "Confrontational"
-                        },{
-                            "Code":             "02REW",
-                            "Description":      "Reward Point",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":    "Classwork"
-                        }]
+                                "Code":             "01DET",
+                                "Description":      "Think Tank",
+                                "Behaviour":        "Negative",
+                                "BehaviourType":     "Confrontational"
+                            },{
+                                "Code":             "02REW",
+                                "Description":      "Reward Point",
+                                "Behaviour":        "Positive",
+                                "BehaviourType":    "Classwork"
+                            }]
             "Rules":        [{
-                            "RuleName":         "Reward",
-                            "Status":           "Active",
-                            "RuleCriteria":     "Behaviour",
-                            "Behaviour":        "Positive",
-                            "BehaviourType":    "Classwork",
-                            "BehaviourCategory":"",
-                            "BehaviourSeverity":"",
-                            "Occurred":         "2",
-                            "TimePeriod":       "Week",
-                            "IsRecursive":      "",
-                            "Consequences":     "Reward Point",
-                            "Points":           "2",
-                            "AddLearnerChar":   "Y"
+                                "RuleName":         "Reward",
+                                "Status":           "Active",
+                                "RuleCriteria":     "Behaviour",
+                                "Behaviour":        "Positive",
+                                "BehaviourType":    "Classwork",
+                                "BehaviourCategory":"",
+                                "BehaviourSeverity":"",
+                                "Occurred":         "2",
+                                "TimePeriod":       "Week",
+                                "IsRecursive":      "",
+                                "Consequences":     "Reward Point",
+                                "Points":           "2",
+                                "AddLearnerChar":   "Y"
                             [{
                                 "Characteristic":   "Course",
                                 "Operator":         "Equal",
@@ -6278,6 +6301,7 @@ Mandatory Parameters:
                                 "Details":                  "Saved Successfully"   
                         }]
             }
+            
 
 ### Update Behaviour Structure [PUT]
 **PROPOSED POST METHOD - PROAPI-29**
