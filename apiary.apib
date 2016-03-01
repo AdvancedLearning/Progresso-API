@@ -5128,6 +5128,7 @@ Create on to many Day Compositions Periods
 
 
 ### Update Day Compositions Periods [PUT]
+
 Update on to many Day Compositions Periods
 
 + Request
@@ -5136,8 +5137,8 @@ Update on to many Day Compositions Periods
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Request (application/json)
+
     + Body
     
             [{
@@ -5145,9 +5146,9 @@ Update on to many Day Compositions Periods
                 "timetableSourceId":        1,
                 "periodId":                 1,
                 "weekDay":                  "Monday",
-            `   "periodCode":               "P1",
+                "periodCode":               "P1",
                 "periodName":               "Period 1",
-                "startTime:"                "08:30",
+                "startTime":                "08:30",
                 "endTime":                  "09:50"
             },
             {
@@ -5155,45 +5156,52 @@ Update on to many Day Compositions Periods
                 "timetableSourceId":        1,
                 "periodId":                 2,
                 "weekDay":                  "Tuesday",
-            `   "periodCode":               "P1",
+                "periodCode":               "P1",
                 "periodName":               "Period 1",
-                "startTime:"                "08:30",
+                "startTime":                "08:30",
                 "endTime":                  "09:50"
-            }]
-
+            }
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "status":                   true,
-                "details":                  "Saved successfully",  
-                "dayCompositionId":         1,
-                "periodId":                 1,
-                "weekDay":                  "Monday",
-            `   "periodCode":               "P1"
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",  
+                "DayCompositionId":         1,
+                "PeriodId":                 1,
+                "WeekDay":                  "Monday",
+                "PeriodCode":               "P1"
             },
             {
-                "status":                   true,
-                "details":                  "Saved successfully",  
-                "dayCompositionId":         1,
-                "periodId":                 2,
-                "weekDay":                  "Tuesday",
-            `   "periodCode":               "P1",
-            }]
+                "Status":                   true,
+                "Details":                  "Saved successfully",  
+                "DayCompositionId":         1,
+                "PeriodId":                 2,
+                "WeekDay":                  "Tuesday",
+                "PeriodCode":               "P1"
+            }
 
 
 
 ## Timetable Events  [/ttEvents/{TimetableSourceId}{startDate}{endDate}{?dayCompositionId}]
 
 + Parameters
+
     + TimetableSourceId (required, number, `12345`) ... The unique identifier of a timetable source
-    + startDate (required, date, `2015/09/09`) ...    Filter date for timetable events
-    + endDate (required, date, `2015/09/09`) ...    Filter date for timetable events
+    + startDate (required, date, `2015-09-09`) ...    Filter date for timetable events
+    + endDate (required, date, `2015-09-09`) ...    Filter date for timetable events
     + dayCompositionId (optional, number, `12345`) ...    Filter for events from a single day composition
 
+
 ### Retrieve Timetable Events [GET]
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
 
 + Request
 
@@ -5203,57 +5211,57 @@ Update on to many Day Compositions Periods
         
 
 + Response 200 (application/json)
+
     + Body
             
-            [{
-                "eventId":          1,
-                "day"  :            "Monday",
-                "startTime":        "08:50",
-                "finishTime":       "09:00",
-                "employees":        [{  
-                                        "employeeId":  123456,
-                                        "employeeCode": "ABC"
+            {
+                "EventId":          1,
+                "Day"  :            "Monday",
+                "StartTime":        "08:50",
+                "FinishTime":       "09:00",
+                "Employees":        [{  
+                                        "EmployeeId":   123456,
+                                        "EmployeeCode": "ABC"
                                     }],
-                "groups":           [{  
-                                        "groupId":      123456,
-                                        "groupCode":    "Aba"
+                "Groups":           [{  
+                                        "GroupId":      123456,
+                                        "GroupCode":    "Aba"
                                     }],
-                "subjects/NCAType": [{
-                                        "subject/NCAType":      "Tutor Time"
+                "Subjects/NCAType": [{
+                                        "Subject/NCAType":  "Tutor Time"
                                     }],
-                "rooms":            [{  
-                                        "room":     "A1"
+                "Rooms":            [{  
+                                        "Room":         "A1"
                                     }],
-                "duration":         10,
-                "eventType":        "Timetable",
+                "Duration":         10,
+                "EventType":        "Timetable",
                 "NonContactType":   ""
             },
             {
-                "eventId":          2,
-                "day"  :            "Monday",
-                "startTime":        "09:00",
-                "finishTime":       "10:00",
-                "employees":        [{  
-                                        "employeeId":  465789,
-                                        "employeeCode": "DEF"
+                "EventId":          2,
+                "Day":              "Monday",
+                "StartTime":        "09:00",
+                "FinishTime":       "10:00",
+                "Employees":        [{  
+                                        "EmployeeId":   465789,
+                                        "EmployeeCode": "DEF"
                                     }],
-                "groups":           [{  
-                                        "groupId":      45601,
-                                        "groupCode":    "7-Mat"
+                "Groups":           [{  
+                                        "GroupId":      45601,
+                                        "GroupCode":    "7-Mat"
                                     }],
-                "subjects": [{
-                                        "subject/NCAType":      "Mathematics"
+                "Subjects": [{
+                                        "Subject/NCAType":  "Mathematics"
                                     }],
-                "rooms":            [{  
-                                        "room":     "B2"
+                "Rooms":            [{  
+                                        "Room":         "B2"
                                     }],
-                "duration":         60,
-                "eventType":        "Timetable",
+                "Duration":         60,
+                "EventType":        "Timetable",
                 "NonContactType":   ""
-    
-            }]
+            }
 
-
++ Response 204
 
 
 # Group Physical
