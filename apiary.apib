@@ -5030,6 +5030,11 @@ Update one to many Day Compositions
 
 ### Retrieve Day Composition Periods [GET]
 
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
 + Request
 
     + Headers
@@ -5038,16 +5043,17 @@ Update one to many Day Compositions
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "dayCompositionId":         1,
                 "timetableSourceId":        1,
                 "weekDay":                  "Monday",
                 "periodId":                 1,
-            `   "periodCode":               "P1",
+                "periodCode":               "P1",
                 "periodName":               "Period 1",
-                "startTime:"                "08:30",
+                "startTime":                "08:30",
                 "endTime":                  "09:50"
             },
             {
@@ -5055,9 +5061,9 @@ Update one to many Day Compositions
                 "timetableSourceId":        1,
                 "weekDay":                  "Monday",
                 "periodId":                 2,
-            `   "periodCode":               "P2",
+                "periodCode":               "P2",
                 "periodName":               "Period 2",
-                "startTime:"                "09:50",
+                "startTime":                "09:50",
                 "endTime":                  "10:50"
             },
             {
@@ -5065,15 +5071,18 @@ Update one to many Day Compositions
                 "timetableSourceId":        1,
                 "weekDay":                  "Monday",
                 "periodId":                 3,
-            `   "periodCode":               "P3",
+                "periodCode":               "P3",
                 "periodName":               "Period 3",
-                "startTime:"                "11:10",
+                "startTime":                "11:10",
                 "endTime":                  "12:10"
-            }]
+            }
+            
++ Response 204
 
-##Create/Update Day Compositions Periods [/dayCompositionsPeriods/]
+
 ### Create Day Compositions Periods [POST]
-Create on to many Day Compositions Periods
+
+Create one to many Day Composition Periods
 
 + Request
 
@@ -5083,53 +5092,50 @@ Create on to many Day Compositions Periods
         
 
 + Request (application/json)
+
     + Body
     
-            [{
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "weekDay":                  "Monday",
-            `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
+            {
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "WeekDay":                  "Monday",
+                "PeriodCode":               "P1",
+                "PeriodName":               "Period 1",
+                "StartTime":                "08:30",
+                "EndTime":                  "09:50"
             },
             {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "weekDay":                  "Tuesday",
-            `   "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime:"                "08:30",
-                "endTime":                  "09:50"
-            }]
-
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "WeekDay":                  "Tuesday",
+                "PeriodCode":               "P1",
+                "PeriodName":               "Period 1",
+                "StartTime":                "08:30",
+                "EndTime":                  "09:50"
+            }
 
 
 + Response 200 (application/json)
+
     + Body
     
             [{
-                "status":                    true,
-                "details":                  "Saved successfully",  
-                "dayCompositionId":         1,
-                "periodId":                 1,
-                "weekDay":                  "Monday",
-            `   "periodCode":               "P1"
+                "Status":                   true,
+                "Details":                  "Saved successfully",  
+                "DayCompositionId":         1,
+                "PeriodId":                 1
             },
             {
-                "status":                    true,
-                "details":                  "Saved successfully",  
-                "dayCompositionId":         1,
-                "periodId":                 2,
-                "weekDay":                  "Tuesday",
-            `   "periodCode":               "P1",
-            }]
+                "Status":                    true,
+                "Details":                  "Saved successfully",  
+                "DayCompositionId":         1,
+                "PeriodId":                 2
+            }
 
 
 ### Update Day Compositions Periods [PUT]
 
-Update on to many Day Compositions Periods
+Update one to many Day Composition Periods
 
 + Request
 
@@ -5142,24 +5148,24 @@ Update on to many Day Compositions Periods
     + Body
     
             [{
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "periodId":                 1,
-                "weekDay":                  "Monday",
-                "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime":                "08:30",
-                "endTime":                  "09:50"
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "PeriodId":                 1,
+                "WeekDay":                  "Monday",
+                "PeriodCode":               "P1",
+                "PeriodName":               "Period 1",
+                "StartTime":                "08:30",
+                "EndTime":                  "09:50"
             },
             {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "periodId":                 2,
-                "weekDay":                  "Tuesday",
-                "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime":                "08:30",
-                "endTime":                  "09:50"
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "PeriodId":                 2,
+                "WeekDay":                  "Tuesday",
+                "PeriodCode":               "P1",
+                "PeriodName":               "Period 1",
+                "StartTime":                "08:30",
+                "EndTime":                  "09:50"
             }
 
 
