@@ -5469,10 +5469,10 @@ Update one to many Sites
     + Body
     
             {
-                "status":               true,
-                "details":              "Update Successful", 
-                "siteId":               1,
-                "siteCode":             "Main site 2"
+                "Status":               true,
+                "Details":              "Update Successful", 
+                "SiteId":               1,
+                "SiteCode":             "Main site 2"
 
             }
             
@@ -5507,7 +5507,6 @@ This section is work in progress and subject to change.
     + Body
     
             {
-            "SourceId":           "abc123",
             "LearnerId":          443756,   
             "LearnerCode":        "2010-0001",
             "Surname":            "Sterling",
@@ -5527,7 +5526,7 @@ This section is work in progress and subject to change.
             "DateOfEntry":        "01-09-2010 00:00:00",
             "Year":               "13",
             "Course":             "KS5",
-             "NCYear":             "13",
+            "NCYear":             "13",
             "Boarder":            "Not a boarder",
             "AddressDetails":   [{
                                 "Country":      "GBR",
@@ -5552,27 +5551,27 @@ This section is work in progress and subject to change.
                                 "Title":        "Mr",
                                 "Forename":     "Zaphod",
                                 "Surname":      "Beelebrox",
-                                "relationship": "Father",
-                                "writtenCommunication":     "",
-                                "priority":                 1,
-                                "contactPrioritySource":    "",
-                                "emergencyContactLevel":    "Primary",
-                                "nextOfKin":                false,
-                                "addressDisclosure":        false,
-                                "addressTransferred":       false,
-                                "parentalResponsibility":   true,
-                                "feePayer":                 false,
-                                "parentalPortal":           true,
-                                "homeAddressLink":          true,
-                                "otherHomeAddressLink":     false,
-                                "sendSMS":                  true
+                                "Relationship": "Father",
+                                "WrittenCommunication":     "",
+                                "Priority":                 1,
+                                "ContactPrioritySource":    "",
+                                "EmergencyContactLevel":    "Primary",
+                                "NextOfKin":                false,
+                                "AddressDisclosure":        false,
+                                "AddressTransferred":       false,
+                                "ParentalResponsibility":   true,
+                                "FeePayer":                 false,
+                                "ParentalPortal":           true,
+                                "HomeAddressLink":          true,
+                                "OtherHomeAddressLink":     false,
+                                "SendSMS":                  true
                                 }],
             "Siblings":         [{
-                                "learnerCode":  "2014-0002",
-                                "learnerId":    0002
+                                "LearnerCode":  "2014-0002",
+                                "LearnerId":    0002
                                 },{
-                                "learnerCode":  "2015-0005",  
-                                "learnerId":    0003
+                                "LearnerCode":  "2015-0005",  
+                                "LearnerId":    0003
                                 }],
             "PartTime":           "N",
             "EnrolementStatus":   "C",
@@ -5613,18 +5612,18 @@ This section is work in progress and subject to change.
                                 "LangDescription":  "Anyi-Baule"
                                 }],
             "SENProvision":     [{
-                                "provisionId":          00001
-                                "provisionTypeCode":    "E",
-                                "provisionTypeName":    "Education, Health and Care Plan",
-                                "startDate":            "19/09/2014",
-                                "reviewDate":           "20/09/2014",
-                                "endDate":              "20/09/2014" 
+                                "ProvisionId":          00001,
+                                "ProvisionTypeCode":    "E",
+                                "ProvisionTypeName":    "Education, Health and Care Plan",
+                                "StartDate":            "19/09/2014",
+                                "ReviewDate":           "20/09/2014",
+                                "EndDate":              "20/09/2014" 
                                 }],
             "SENMajorNeeds":    [{
-                                "leanerMajorNeedId":    00001
-                                "majorNeedCode":        "SLD",
-                                "majorNeedDescription": "Severe Learning Difficulty ",
-                                "ranking":              1
+                                "LeanerMajorNeedId":    00001,
+                                "MajorNeedCode":        "SLD",
+                                "MajorNeedDescription": "Severe Learning Difficulty ",
+                                "Ranking":              1
                                 }]
             }
 
@@ -5639,6 +5638,179 @@ This section is work in progress and subject to change.
     + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
     + status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
     
+### Create a collection of Learner Details [POST]
+
+**Proposed Changes PROAPI-32**
+
+Create one or more Learner detail records
+
+    + Surname, Forename, Learner Code, Date of Birth are mandatory fields
+    + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+    + Phone is not mandatory but if included: Type and Number are mandatory
+    + Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
+    + Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    + SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
+    + SENMajorNeeds is not mandatory but if included: MajorNeed Code and Ranking are mandatory
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+            "SourceId":           "Abc123",  
+            "LearnerCode":        "2010-0001",
+            "Surname":            "Sterling",
+            "Forename":           "Geoffrey",
+            "Status":             "Active",
+            "RegGroup":           "KP",
+            "AcademicHouse":      "Hulland",
+            "DateOfBirth":        "04-08-1998 00:00:00",
+            "LegalSurname":       "Sterling",
+            "LegalForename":      "Geoffrey",
+            "MiddleName":         "James",
+            "FormerSurname":      "Silver",
+            "EmailAddress":       "a.b@c.co.uk",
+            "Gender":             "M",
+            "Notes":              "Lorem Ipsum",
+            "HomeSalutation":     "Mrs C Sterling",
+            "DateOfEntry":        "01-09-2010 00:00:00",
+            "Year":               "13",
+            "Course":             "KS5",
+            "NCYear":             "13",
+            "Boarder":            "Not a boarder"
+            "AddressDetails":   [{
+                                    "Country":      "GBR",
+                                    "Type":         "H",
+                                    "Flat":         "",
+                                    "Number":       "23",
+                                    "Street":       "Orchard Gardens",
+                                    "Locality":     "Derby",
+                                    "Town":         "",
+                                    "County":       "",
+                                    "PostCode":     "DE21 4FL"
+                                }],
+            "PhoneDetails":     [{
+                                    "Type":         "H",
+                                    "Number":       "01111567891",
+                                    "SMSFlag":      false
+                                }],
+            "Contacts":         [{
+                                    "Title":        "Mrs",
+                                    "Forename":     "Trillian",
+                                    "Surname":      "Beelebrox",
+                                    "Relationship": "Mother",
+                                    "Gender":       "F",
+                                    "WrittenCommunication":     "",
+                                    "Priority":                 1,
+                                    "ContactPrioritySource":    "",
+                                    "EmergencyContactLevel":    "Primary",
+                                    "NextOfKin":                false,
+                                    "AddressDisclosure":        false,
+                                    "AddressTransferred":       false,
+                                    "ParentalResponsibility":   true,
+                                    "FeePayer":                 false,
+                                    "ParentalPortal":           true,
+                                    "HomeAddressLink":          true,
+                                    "OtherHomeAddressLink":     false,
+                                    "SendSMS":                  true
+                                }],
+            "Siblings":         [{
+                                    "learnerCode":  "2014-0002"
+                                }],
+            "PartTime":           "N",
+            "EnrolementStatus":   "C",
+            "UPN":                "H502400200007",
+            "FormerUPN":          "F502400200003",
+            "ULN":                "P400200003",
+            "UCI":                "3452165403",
+            "G&T":                "Y",
+            "MedicalFlag":        "Y",
+            "YSSAIndicator":      "Y",
+            "Nationality":        "GBR",
+            "Ethnicity":          "WBRI",
+            "EthnicitySource":    "P",
+            "ServiceChild":       "N",
+            "ServiceChildSource": "P",
+            "TopUpFunding":       "Y",
+            "FundedHours":        "",
+            "HoursAtSetting":     "",
+            "UnitContactTime":    "",
+            "SchoolLunchTaken":   "Y",
+            "MealType":           "Cold School Meal",
+            "AsylumSeeker":       "",
+            "Religion":           "Hindi"
+            "Disabilities":     [{
+                                    "Disability":  "CON"
+                                }],
+            "Language":         [{
+                                    "TypeCode":             "F",
+                                    "LangCode":             "ENG",
+                                }],
+            "SENProvision":     [{
+                                    "ProvisionTypeCode":    "E",
+                                    "StartDate":            "19/09/2014"
+                                }],
+            "SENMajorNeeds":    [{
+                                    "MajorNeedCode":        "SLD",
+                                    "Ranking":              1
+                                }]
+            }
+            
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+            "SourceId":           "Abc123",
+            "LearnerId":          02134,
+            "LearnerCode":        "2010-0001"
+            "AddressDetails":   [{
+                                    "AddressId":    0001,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully"
+                                }],
+            "PhoneDetails":     [{
+                                    "PhoneId":      0001,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully"
+                                }],
+            "Contacts":         [{
+                                    "ContactId":    0001,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully" 
+                                }],
+            "Siblings":         [{
+                                    "LearnerId2":   0002,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully" 
+                                }],
+            "Disabilities":     [{
+                                    "DisabilityTypeId": 0001,
+                                    "Status":           true,
+                                    "Details":          "Saved successfully" 
+                                }],
+            "Language":         [{
+                                    "LanguageId":   0002,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully"
+                                }],
+            "SENProvision":     [{
+                                    "ProvisionId":  0003,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully"
+                                }],
+            "SENMajorNeeds":    [{
+                                    "MajorNeedId":  0001,
+                                    "Status":       true,
+                                    "Details":      "Saved successfully"
+                                }]
+            }            
 
 ### Retrieve a collection of Learner Other Details [GET]
 
@@ -5654,7 +5826,6 @@ This section is work in progress and subject to change.
 + Response 200 (application/json)
 
             {
-            "SourceId":           "Abc123",
             "LearnerId":          443756,   
             "LearnerCode":        "2010-0001",
             "Surname":            "Sterling",
