@@ -2183,11 +2183,11 @@ Create one to many learner records
 
     + Body
     
-            [{
+            {
                 "status":               true,
                 "details":              "saved successfully", 
-                "learnerCode":             "JBl",
-                "learnerId":           "000001",
+                "learnerCode":          "JBl",
+                "learnerId":            "000001",
                 "phoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "11111111",
@@ -2245,12 +2245,8 @@ Create one to many learner records
                                         {
                                             "contactId":            "000002",
                                             "learnerContactRelId":  "000003"
-contact
-All
-.*Aa\b
-
                                         }]
-            }]
+            }
 
 ### Update Learner [PUT]
 Update one to many learner records            
@@ -5641,7 +5637,8 @@ This section is work in progress and subject to change.
     + learnerId     (optional, int, `00001`) ... the unique identifier of the learner
     + learnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
     + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+    + status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
+    
 
 ### Retrieve a collection of Learner Other Details [GET]
 
@@ -5664,30 +5661,30 @@ This section is work in progress and subject to change.
             "Forename":           "Geoffrey",
             "Status":             "Active",
             "Exclusions":   [{
-                                "exclusionId":      0001,
-                                "category":         "FIXD",
-                                "reason":           "PP",
-                                "startDate":        "2014-07-02",
-                                "endDate":          "2014-07-02",
-                                "startSession":     "AM",
-                                "endSession":       "PM",
-                                "notes":            "Act of agression towards another pupil",
-                                "totalDays":        1,
-                                "totalSessions":    2,
+                                "ExclusionId":      0001,
+                                "Category":         "FIXD",
+                                "Reason":           "PP",
+                                "StartDate":        "2014-07-02",
+                                "EndDate":          "2014-07-02",
+                                "StartSession":     "AM",
+                                "EndSession":       "PM",
+                                "Notes":            "Act of agression towards another pupil",
+                                "TotalDays":        1,
+                                "TotalSessions":    2,
                                 "LAC":              false,
-                                "headNotified":     null,
-                                "govMeeting":       null,
-                                "provisionStartDate":   null,
-                                "provisionDetails":     null,
-                                "appeal":           false,
-                                "appealDate":       null,
-                                "appealCutOff":     null,
-                                "exclusionHearing": null,
-                                "outcome":          "E",
-                                "reintregationMeetingDate": null,
-                                "reintregationNotes":       null,
-                                "reinstatementDate":        null,
-                                "reinstatementNotes":       ""
+                                "HeadNotified":     null,
+                                "GovMeeting":       null,
+                                "ProvisionStartDate":   null,
+                                "ProvisionDetails":     null,
+                                "Appeal":           false,
+                                "AppealDate":       null,
+                                "AppealCutOff":     null,
+                                "ExclusionHearing": null,
+                                "Outcome":          "E",
+                                "ReintregationMeetingDate": null,
+                                "ReintregationNotes":       null,
+                                "ReinstatementDate":        null,
+                                "ReinstatementNotes":       ""
                             }],
             "FSM":          [{
                                 "FSMId":        0001,
@@ -5706,7 +5703,7 @@ This section is work in progress and subject to change.
             "PPI1314":      [{
                                 "PPIId":        0001,
                                 "PPIndicator":  "DPP",
-                                "FTE":          1.00,
+                                "FTE":          "1.00",
                                 "FYStartDate":  "2013-12-20",
                                 "FYEndDate":    "2014-12-14"
                             }],
@@ -5720,9 +5717,9 @@ This section is work in progress and subject to change.
                                 "Deprivation":      true,
                                 "AdoptedFromCare":  false,
                                 "ServiceChild":     false,
-                                "LookedAfter":      false
+                                "LookedAfter":      false,
                                 "CashAmount":       "935.00",
-                                "FTE":              1.0,
+                                "FTE":              "1.0",
                                 "FYStartDate":      "2014-04-01",
                                 "FYEndDate":        "2015-03-31",
                                 "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
@@ -5741,7 +5738,7 @@ This section is work in progress and subject to change.
                                 "LACLA":        "370",
                                 "HomeLA":       "871",
                                 "CPR":          false,
-                                "CPRLA":         null,
+                                "CPRLA":        null,
                                 "PEP":          false,
                                 "PPI":          false,
                                 "AdoptedFromCare":      "N",
@@ -5765,6 +5762,7 @@ This section is work in progress and subject to change.
                             }]
             }
             
++ Response 204 (application/json)
 
 
 # Group Behaviour
@@ -5773,6 +5771,7 @@ This documentation is subject to change and fields included are not final.
 
 ## Behaviour Collection [/behaviour]
 
+This will data for Bahviour Events
 
 ## Behaviour Structure Collection [/bmstructure/]
 
@@ -5978,7 +5977,7 @@ Mandatory Parameters:
                             "Code":             "02REW",
                             "Description":      "Reward Point",
                             "Behaviour":        "Positive",
-                            "BehaviourType":     "Classwork"
+                            "BehaviourType":    "Classwork"
                         }]
             "Rules":        [{
                             "RuleName":         "Reward",
@@ -5993,7 +5992,7 @@ Mandatory Parameters:
                             "IsRecursive":      "",
                             "Consequences":     "Reward Point",
                             "Points":           "2",
-                            "AddLearnerChar":   "Y",
+                            "AddLearnerChar":   "Y"
                             [{
                                 "Characteristic":   "Course",
                                 "Operator":         "Equal",
@@ -6006,13 +6005,13 @@ Mandatory Parameters:
                                 "AndOr":            ""
                             }]
                         }]
-            "Detention Type":[{
+            "DetentionType":[{
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
                             },{
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
-                         }]
+                        }]
             "Location":     [{
                                 "Code":             "CLS",
                                 "Description":      "Classroom"
@@ -6029,82 +6028,82 @@ Mandatory Parameters:
             {
             "Categories":   [{
                             "CategoryId":     0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "CategoryId":     0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "CategoryId":     0003,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "CategoryId":     0004,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         }],
             "Types":        [{
                             "TypeId":         0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "TypeId":         0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         }]
             "Severities":   [{
                             "SeverityId":     0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "SeverityId":     0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "SeverityId":     0003,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"    
                         }]
             "Actions":      [{
                             "ActionId":       0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "ActionId":       0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         }]
             "Rules":        [{
                             "RuleId":         0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                             [{
-                                "CharacteristicIdId":       0001,
-                                "Status":                   "true",
+                                "CharacteristicId":         0001,
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"
                             },{
-                                "CharacteristicIdId":       0002,
-                                "Status":                   "true",
+                                "CharacteristicId":         0002,
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"
                             }]
                         }]
-            "Detention Type":[{
+            "DetentionType":[{
                                 "DetentionTypeId":          0001,
-                                "Status":                   "true",
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"
                             },{
                                 "DetentionTypeId":          0002,
-                                "Status":                   "true",
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"
                          }]
             "Location":     [{
                                 "LocationId":               0001,
-                                "Status":                   "true",
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"
                             },{
                                 "LocationId":               0001,
-                                "Status":                   "true",
+                                "Status":                   true,
                                 "Details":                  "Saved Successfully"   
                         }]
             }
@@ -6134,7 +6133,7 @@ Updates an Behaviour Management Structure
                         }],
             "Types":        [{
                             "TypeId":           0001,  
-                            "Code":             "Conf,
+                            "Code":             "Conf",
                             "Description":      "Confrontational",
                             "Points":           "2",
                             "Behaviour":        "Negative",
@@ -6156,7 +6155,7 @@ Updates an Behaviour Management Structure
                         }],
             "Actions":      [{}],
             "Rules":        [{}],
-            "Detention Type":[{}],
+            "DetentionType":[{}],
             "Location":     [{}]
             }
 
@@ -6167,33 +6166,33 @@ Updates an Behaviour Management Structure
             {
             "Categories":   [{
                             "CategoryId":     0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "CategoryId":     0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         }],
             "Types":        [{
                             "TypeId":         0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         }]
             "Severities":   [{
                             "SeverityId":     0001,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "SeverityId":     0002,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"
                         },{
                             "SeverityId":     0003,
-                            "Status":         "true",
+                            "Status":         true,
                             "Details":        "Saved Successfully"    
                         }],
             "Actions":      [{}],
             "Rules":        [{}],
-            "Detention Type":[{}],
+            "DetentionType":[{}],
             "Location":     [{}]
             }
