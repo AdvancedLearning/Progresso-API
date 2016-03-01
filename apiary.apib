@@ -5257,17 +5257,23 @@ Update on to many Day Compositions Periods
 
 
 # Group Physical
-Group of all Physical Resources
+
+Collection of all Physical Resources
 
 ## Rooms  [/rooms/{?roomId}]
 
 + Parameters
+
     + roomId (optional, number, `12345`) ... The unique identifier of a room
 
 ### Retrieve Rooms [GET]
 
-Optionl Parameter
-- RoomId - Unique Id of the Room
+Retrieve one to many rooms
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
 
 + Request
 
@@ -5281,32 +5287,30 @@ Optionl Parameter
     + Body
     
             {
-                "roomId":               1,
-                "roomCode":             "A1",
-                "roomName":             "A1",
-                "site":                 "Main",
-                "roomCategory":         "DTN",
-                "roomType":             "Detention",
-                "capacity":             30'
-                "associatedEquipment":  [{
-                                                "equipmentCode":  "OHP",
-                                                "equipmentName":  "Over Head Projector"
+                "RoomId":               1,
+                "RoomCode":             "A1",
+                "RoomName":             "A1",
+                "Site":                 "Main",
+                "RoomCategory":         "DTN",
+                "RoomType":             "Detention",
+                "Capacity":             30
+                "AssociatedEquipment":  [{
+                                                "EquipmentCode":  "OHP",
+                                                "EquipmentName":  "Over Head Projector"
                                         }]
-
             },
             {
-                "roomId":               2,
-                "roomCode":             "A2",
-                "roomName":             "A2",
-                "site":                 "Main",
-                "roomCategory":         "",
-                "roomType":             "",
-                "associatedEquipment":  [{}]
-                "capacity":             30
-
+                "RoomId":               2,
+                "RoomCode":             "A2",
+                "RoomName":             "A2",
+                "Site":                 "Main",
+                "RoomCategory":         "",
+                "RoomType":             "",
+                "AssociatedEquipment":  [{}],
+                "Capacity":             30
             }
 
-##Create/Update Rooms [/rooms/]
++ Response 204 (applicatin/json)
 
 
 ### Create Rooms [POST]
@@ -5319,37 +5323,37 @@ Create one to many Rooms
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Request (application/json)
+
     + Body
 
-            [{
-                "roomCode":             "A3",
-                "roomName":             "A3",
-                "site":                 "Main",
-                "roomCategory":         "DTN",
-                "roomType":             "Detention",
+            {
+                "RoomCode":             "A3",
+                "RoomName":             "A3",
+                "Site":                 "Main",
+                "RoomCategory":         "DTN",
+                "RoomType":             "Detention"
                 "associatedEquipment":  [{
-                                                "equipmentCode":  "OHP",
-                                                "equipmentName":  "Over Head Projector"
+                                                "EquipmentCode":  "OHP",
+                                                "EquipmentName":  "Over Head Projector"
                                         }],
-                "capacity":             30
-            }]
-
+                "Capacity":             30
+            }
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "status":               true,
-                "details":              "Saved Successfully", 
-                "roomId":               1,
-                "roomCode":             "A3"
-
-            }]
+            {
+                "Status":               true,
+                "Details":              "Saved Successfully", 
+                "RoomId":               1,
+                "RoomCode":             "A3"
+            }
 
 
 ### Update Rooms [PUT]
+
 Update one to many Rooms
 
 + Request
@@ -5360,41 +5364,50 @@ Update one to many Rooms
         
 
 + Request (application/json)
+
     + Body
 
-            [{
-                "roomId":               1,
-                "roomCode":             "A3",
-                "roomName":             "A3-0",
-                "site":                 "Main",
-                "roomCategory":         "DTN",
-                "roomType":             "Detention",
-                "associatedEquipment":  [{
-                                                "equipmentCode":  "OHP",
-                                                "equipmentName":  "Over Head Projector"
+            {
+                "RoomId":               1,
+                "RoomCode":             "A3",
+                "RoomName":             "A3-0",
+                "Site":                 "Main",
+                "RoomCategory":         "DTN",
+                "RoomType":             "Detention"
+                "AssociatedEquipment":  [{
+                                                "EquipmentCode":  "OHP",
+                                                "EquipmentName":  "Over Head Projector"
                                         }],
-                "capacity":             30                                        
-            }]
+                "Capacity":             30                                        
+            }
 
 
 + Response 200 (application/json)
+
     + Body
     
             [
-                "status":               true,
-                "details":              "Update Successful", 
-                "roomId":               1,
-                "roomCode":             "A3"
-
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "RoomId":               1
             }
+
 
 ## Sites  [/site/{?siteId}]
 
 + Parameters
-    + siteId (optional, number, `12345`) ... The unique identifier of a room
+
+    + siteId (optional, number, `12345`) ... The unique identifier of a site
 
 ### Retrieve Site [GET]
 
+Retrieve one or more Sites
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
 + Request
 
     + Headers
@@ -5403,18 +5416,21 @@ Update one to many Rooms
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{          
-                "siteId":       1,
-                "siteCode":     "Main site",
-                "siteName":     "The Main Site of School"
-
-            }]
+            {          
+                "SiteId":       1,
+                "SiteCode":     "Main site",
+                "SiteName":     "The Main Site of School"
+            }
             
-##Create/Update Site [/site/]
++ Response 204 (application/json)
+            
+
 ### Create Site [POST]
-Create one to many Site
+
+Create one to many Sites
 
 + Request
 
@@ -5424,56 +5440,53 @@ Create one to many Site
         
 
 + Request (application/json)
+
     + Body
 
-            [{
-                "siteId":       0,
-                "siteCode":     "Main site",
-                "siteName":     "The Main Site of School"           
-            
-            }]
+            {
+                "SiteCode":     "Main site",
+                "SiteName":     "The Main Site of School"           
+            }
             
 + Response 200 (application/json)
-    + Body
-    
-            [{
-                "status":               true,
-                "details":              "Create Successful", 
-                "siteId":               1,
-                "siteCode":             "Main site"
 
-            }]
-            
-### Update Site [PUT]
-Update one to many Sites
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-
-+ Request (application/json)
-    + Body
-
-            [{
-                "siteId":       1,
-                "siteCode":     "Main site 2",
-                "siteName":     "The Main Site of School"           
-            
-            }]
-            
-+ Response 200 (application/json)
     + Body
     
             {
                 "Status":               true,
-                "Details":              "Update Successful", 
-                "SiteId":               1,
-                "SiteCode":             "Main site 2"
-
+                "Details":              "Saved successfully", 
+                "SiteId":               1
             }
+
+            
+### Update Site [PUT]
+
+Update one to many Sites
+
++ Request (applcation/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+    + Body
+
+            {
+                "SiteId":       1,
+                "SiteCode":     "Main site 1",
+                "SiteName":     "The Main Site of School"           
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "SiteId":               1
+            }
+
             
 # Group **PROPOSED Methods** 
 
@@ -5517,7 +5530,7 @@ Response codes used are:
             "Forename":           "Geoffrey",
             "Status":             "Active",
             "RegGroup":           "KP",
-            "AcademicHouse":      "Hulland"
+            "AcademicHouse":      "Hulland",
             "DateOfBirth":        "04-08-1998 00:00:00",
             "LegalSurname":       "Sterling",
             "LegalForename":      "Geoffrey",
@@ -5531,51 +5544,51 @@ Response codes used are:
             "Year":               "13",
             "Course":             "KS5",
             "NCYear":             "13",
-            "Boarder":            "Not a boarder",
+            "Boarder":            "Not a boarder"
             "AddressDetails":   [{
-                                "Country":      "GBR",
-                                "Type":         "H",
-                                "Flat":         "",
-                                "Number":       "23",
-                                "Street":       "Orchard Gardens",
-                                "Locality":     "Derby",
-                                "Town":         "",
-                                "County":       "",
-                                "PostCode":     "DE21 4FL",
-                                "AddressId":    1322228
+                                    "Country":      "GBR",
+                                    "Type":         "H",
+                                    "Flat":         "",
+                                    "Number":       "23",
+                                    "Street":       "Orchard Gardens",
+                                    "Locality":     "Derby",
+                                    "Town":         "",
+                                    "County":       "",
+                                    "PostCode":     "DE21 4FL",
+                                    "AddressId":    1322228
                                 }],
             "PhoneDetails":     [{
-                                "Type":         "H",
-                                "Number":       "01111567891",
-                                "SMSFlag":      false,
-                                "PhoneId":      2165078
+                                    "Type":         "H",
+                                    "Number":       "01111567891",
+                                    "SMSFlag":      false,
+                                    "PhoneId":      2165078
                                 }],
             "Contacts":         [{
-                                "ContactId":    0001,
-                                "Title":        "Mr",
-                                "Forename":     "Zaphod",
-                                "Surname":      "Beelebrox",
-                                "Relationship": "Father",
-                                "WrittenCommunication":     "",
-                                "Priority":                 1,
-                                "ContactPrioritySource":    "",
-                                "EmergencyContactLevel":    "Primary",
-                                "NextOfKin":                false,
-                                "AddressDisclosure":        false,
-                                "AddressTransferred":       false,
-                                "ParentalResponsibility":   true,
-                                "FeePayer":                 false,
-                                "ParentalPortal":           true,
-                                "HomeAddressLink":          true,
-                                "OtherHomeAddressLink":     false,
-                                "SendSMS":                  true
+                                    "ContactId":    0001,
+                                    "Title":        "Mr",
+                                    "Forename":     "Zaphod",
+                                    "Surname":      "Beelebrox",
+                                    "Relationship": "Father",
+                                    "WrittenCommunication":     "",
+                                    "Priority":                 1,
+                                    "ContactPrioritySource":    "",
+                                    "EmergencyContactLevel":    "Primary",
+                                    "NextOfKin":                false,
+                                    "AddressDisclosure":        false,
+                                    "AddressTransferred":       false,
+                                    "ParentalResponsibility":   true,
+                                    "FeePayer":                 false,
+                                    "ParentalPortal":           true,
+                                    "HomeAddressLink":          true,
+                                    "OtherHomeAddressLink":     false,
+                                    "SendSMS":                  true
                                 }],
             "Siblings":         [{
-                                "LearnerCode":  "2014-0002",
-                                "LearnerId":    0002
+                                    "LearnerCode":  "2014-0002",
+                                    "LearnerId":    0002
                                 },{
-                                "LearnerCode":  "2015-0005",  
-                                "LearnerId":    0003
+                                    "LearnerCode":  "2015-0005",  
+                                    "LearnerId":    0003
                                 }],
             "PartTime":           "N",
             "EnrolementStatus":   "C",
@@ -5600,34 +5613,34 @@ Response codes used are:
             "AsylumSeeker":       "Y",
             "Religion":           "Hindi",
             "Disabilities":     [{
-                                "Disability":  "CON"
+                                    "Disability":  "CON"
                                 },{
-                                "Disability":  "DDA"
+                                    "Disability":  "DDA"
                                 }],
             "Language":         [{
-                                "TypeCode":         "F",
-                                "TypeDescription":  "First Language",
-                                "LangCode":         "ENG",
-                                "LangDescription":  "English"
+                                    "TypeCode":         "F",
+                                    "TypeDescription":  "First Language",
+                                    "LangCode":         "ENG",
+                                    "LangDescription":  "English"
                                 },{
-                                "TypeCode":         "M",
-                                "TypeDescription":  "Multiple First Language",
-                                "LangCode":         "AYB",
-                                "LangDescription":  "Anyi-Baule"
+                                    "TypeCode":         "M",
+                                    "TypeDescription":  "Multiple First Language",
+                                    "LangCode":         "AYB",
+                                    "LangDescription":  "Anyi-Baule"
                                 }],
             "SENProvision":     [{
-                                "ProvisionId":          00001,
-                                "ProvisionTypeCode":    "E",
-                                "ProvisionTypeName":    "Education, Health and Care Plan",
-                                "StartDate":            "19/09/2014",
-                                "ReviewDate":           "20/09/2014",
-                                "EndDate":              "20/09/2014" 
+                                    "ProvisionId":          00001,
+                                    "ProvisionTypeCode":    "E",
+                                    "ProvisionTypeName":    "Education, Health and Care Plan",
+                                    "StartDate":            "19/09/2014",
+                                    "ReviewDate":           "20/09/2014",
+                                    "EndDate":              "20/09/2014" 
                                 }],
             "SENMajorNeeds":    [{
-                                "LeanerMajorNeedId":    00001,
-                                "MajorNeedCode":        "SLD",
-                                "MajorNeedDescription": "Severe Learning Difficulty ",
-                                "Ranking":              1
+                                    "LeanerMajorNeedId":    00001,
+                                    "MajorNeedCode":        "SLD",
+                                    "MajorNeedDescription": "Severe Learning Difficulty ",
+                                    "Ranking":              1
                                 }]
             }
 
