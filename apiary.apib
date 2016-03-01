@@ -4859,67 +4859,74 @@ Group of all Timetable Resources
 ### Create Timetable Sources [POST]
 Create one to many Timetable Sources
 
-+ Request (application/json)
++ Request
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
++ Request (application/json)
 
     + Body
 
             [{
-                "code":                     "2015/2016",
-                "name":                     "TT 2015/2016",
-                "startDate":                "2015/09/01",
-                "endDate":                  "2016/08/31",
-                "timetableIterations":      52,
-                "splitCoverEvents" :        false,
-                "splitMultiplePeriods":     false,
+                "Code":                     "2015/2016",
+                "Name":                     "TT 2015/2016",
+                "StartDate":                "2015/09/01",
+                "EndDate":                  "2016/08/31",
+                "TimetableIterations":      52,
+                "SplitCoverEvents" :        false,
+                "SplitMultiplePeriods":     false
             }]
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
+            {
                 "Status":                   true,
                 "Details":                  "Saved successfully",
                 "TimetableSourceId":        1,
                 "Code":                     "2015/2016"
-            }]
+            }
 
 
 ### Update Timetable Sources [PUT]
+
 Update one to many Timetable Sources
 
-+ Request (application/json)
++ Request
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
++ Request (application/json)
 
     + Body
 
-            [{
-                "timetableSourceId":        1,
-                "code":                     "2015/2016",
-                "name":                     "Updated",
-                "startDate":                "2015/09/01",
-                "endDate":                  "2016/08/31",
-                "timetableIterations":      52,
-                "splitCoverEvents" :        false,
-                "splitMultiplePeriods":     false,
-            }]
+            {
+                "TimetableSourceId":        1,
+                "Code":                     "2015/2016",
+                "Name":                     "Updated",
+                "StartDate":                "2015/09/01",
+                "EndDate":                  "2016/08/31",
+                "TimetableIterations":      52,
+                "SplitCoverEvents" :        false,
+                "SplitMultiplePeriods":     false
+            }
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "Status":                   true
-                "Details":                  "Saved successfully"
-                "TimetableSourceId":        1
-                "code":                     "2015/2016"
-            }]
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "TimetableSourceId":        1,
+                "Code":                     "2015/2016"
+            }
 
 
 
@@ -4931,6 +4938,11 @@ Update one to many Timetable Sources
 
 ### Retrieve Day Compositions [GET]
 
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
 + Request
 
     + Headers
@@ -4939,87 +4951,88 @@ Update one to many Timetable Sources
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "timetableSourceId":        1,
-                "dayCompositionId":         1,
+            {
+                "TimetableSourceId":        1,
+                "DayCompositionId":         1,
                 "Name":                    "Day Comp 2014/2015"
              },
             {
-                "timetableSourceId":        1,
-                "dayCompositionId":         2,
+                "TimetableSourceId":        1,
+                "DayCompositionId":         2,
                 "Name":                    "Day Comp 2014/2015 For KS5"
-             }]
-
-
-## Create/Update Day Compositions [/dayCompositions/TimetableSourceId]
-
-+ Parameters
-    
-    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a Timetable Source
+             }
+             
++ Response 204
 
 
 ### Create Day Compositions [POST]
+
 Create one to many Day Compositions
 
-+ Request (application/json)
++ Request
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
++ Request (application/json)
 
     + Body
 
-            [{           
-                "timetableSourceId":        1,
-                "Name":                    "DC 2014/2015"
-            }]
+            {           
+                "TimetableSourceId":        1,
+                "Name":                     "DC 2014/2015"
+            }
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "status":                   true,
-                "details":                  "Saved successfully",  
-                "timetableSourceId":        1,
-                "dayCompositionId":         1,
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",  
+                "TimetableSourceId":        1,
+                "DayCompositionId":         1,
                 "Name":                     "DC 2014/2015"
-            }]
+            }
 
 ### Update Day Compositions [PUT]
+
 Update one to many Day Compositions
 
-+ Parameters
-    
-    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a Timetable Source
 
-+ Request (application/json)
++ Request
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
++ Request (application/json)
 
     + Body
 
-            [{           
-                "timetableSourceId":        1,
-                "dayCompositionId":         1,
-                "Name":                    "DC 2014/2015 Updated"
-            }]
+            {           
+                "TimetableSourceId":        1,
+                "DayCompositionId":         1,
+                "Name":                     "DC 2014/2015 Updated"
+            }
 
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "status":                   true,
-                "details":                  "Saved successfully",  
-                "timetableSourceId":        1,
-                "dayCompositionId":         1,
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",  
+                "TimetableSourceId":        1,
+                "DayCompositionId":         1,
                 "Name":                     "DC 2014/2015 Updated"
-            }]
+            }
 
 
 ## Day Compositions Periods [/dayCompositionsPeriods/{?TimetableSourceId}]
@@ -5047,34 +5060,34 @@ Response codes used are:
     + Body
     
             {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "weekDay":                  "Monday",
-                "periodId":                 1,
-                "periodCode":               "P1",
-                "periodName":               "Period 1",
-                "startTime":                "08:30",
-                "endTime":                  "09:50"
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "WeekDay":                  "Monday",
+                "PeriodId":                 1,
+                "PeriodCode":               "P1",
+                "PperiodName":               "Period 1",
+                "StartTime":                "08:30",
+                "EndTime":                  "09:50"
             },
             {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "weekDay":                  "Monday",
-                "periodId":                 2,
-                "periodCode":               "P2",
-                "periodName":               "Period 2",
-                "startTime":                "09:50",
-                "endTime":                  "10:50"
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "WeekDay":                  "Monday",
+                "PeriodId":                 2,
+                "PeriodCode":               "P2",
+                "PeriodName":               "Period 2",
+                "StartTime":                "09:50",
+                "EndTime":                  "10:50"
             },
             {
-                "dayCompositionId":         1,
-                "timetableSourceId":        1,
-                "weekDay":                  "Monday",
-                "periodId":                 3,
-                "periodCode":               "P3",
-                "periodName":               "Period 3",
-                "startTime":                "11:10",
-                "endTime":                  "12:10"
+                "DayCompositionId":         1,
+                "TimetableSourceId":        1,
+                "WeekDay":                  "Monday",
+                "PeriodId":                 3,
+                "PeriodCode":               "P3",
+                "PeriodName":               "Period 3",
+                "StartTime":                "11:10",
+                "EndTime":                  "12:10"
             }
             
 + Response 204
