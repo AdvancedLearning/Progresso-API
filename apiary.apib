@@ -1555,24 +1555,24 @@ Optional Parameter
             {
                 "ContactId":            1,
                 "ContactCode":          ""'
-                "title":                "Mr",
-                "surname":              "King",
-                "forename":             "Ice",
-                "middleName":           "",
-                "gender":               "M",
-                "email":                "ice.king@home.com",
-                "language":             "English",
-                "occupation":           "",
-                "nationality":          "GBR",
-                "isMedicalContact":     true,
-                "workEmail":            "",
-                "employer":             "",
-                "translatorReqiured":   false,
-                "exPupil":              false,
-                "medicalType":          "",
-                "visaNumber":           "",
-                "memberOfArmedForces":  false,
-                "phoneDetails":         [{
+                "Title":                "Mr",
+                "Surname":              "King",
+                "Forename":             "Ice",
+                "MiddleName":           "",
+                "Gender":               "M",
+                "Email":                "ice.king@home.com",
+                "Language":             "English",
+                "Occupation":           "",
+                "Nationality":          "GBR",
+                "IsMedicalContact":     true,
+                "WorkEmail":            "",
+                "Employer":             "",
+                "TranslatorReqiured":   false,
+                "ExPupil":              false,
+                "MedicalType":          "",
+                "VisaNumber":           "",
+                "MemberOfArmedForces":  false,
+                "PhoneDetails":         [{
                                             "type":     "Home",
                                             "number":   "013332552552",
                                             "smsFlag":  false,
@@ -2420,6 +2420,7 @@ Update one to many learner records
             }
                 
 + Response 200
+
     + Body
     
             [{
@@ -5519,16 +5520,16 @@ Update one to many Sites
 
 # Group Learners Collection v2
 
-##Learners [/Learners{learnerId}{learnerCode}{status}{DateModified}]
+##Learners [/Learners{LearnerId}{LearnerCode}{Status}{DateModified}]
 After feedback from Partners and changes of internal requirements more fields are to be added to the existing GET Learners method.
 This section is work in progress and subject to change.
 
 + Parameters
 
-    + learnerId     (optional, int, `00001`) ... the unique identifier of the learner
-    + learnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
+    + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
+    + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
     + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+    + Status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
 
 ### Retrieve a collection of Learner Details [GET]
 
@@ -5546,32 +5547,32 @@ Response codes used are:
             Authorization: Bearer [CURRENT_TOKEN]
             
             
-+ Response 200 (application/json)
++ Response 200
 
     + Body
     
             {
-            "LearnerId":          443756,   
-            "LearnerCode":        "2010-0001",
-            "Surname":            "Sterling",
-            "Forename":           "Geoffrey",
-            "Status":             "Active",
-            "RegGroup":           "KP",
-            "AcademicHouse":      "Hulland",
-            "DateOfBirth":        "04-08-1998 00:00:00",
-            "LegalSurname":       "Sterling",
-            "LegalForename":      "Geoffrey",
-            "MiddleName":         "James",
-            "FormerSurname":      "Silver",
-            "EmailAddress":       "a.b@c.co.uk",
-            "Gender":             "M",
-            "Notes":              "Lorem Ipsum",
-            "HomeSalutation":     "Mrs C Sterling",
-            "DateOfEntry":        "01-09-2010 00:00:00",
-            "Year":               "13",
-            "Course":             "KS5",
-            "NCYear":             "13",
-            "Boarder":            "Not a boarder"
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Surname":          "Sterling",
+            "Forename":         "Geoffrey",
+            "Status":           "Active",
+            "RegGroup":         "KP",
+            "AcademicHouse":    "Hulland"
+            "DateOfBirth":      "04-08-1998 00:00:00",
+            "LegalSurname":     "Sterling",
+            "LegalForename":    "Geoffrey",
+            "MiddleName":       "James",
+            "FormerSurname":    "Silver",
+            "EmailAddress":     "a.b@c.co.uk",
+            "Gender":           "M",
+            "Notes":            "Lorem Ipsum",
+            "HomeSalutation":   "Mrs C Sterling",
+            "DateOfEntry":      "01-09-2010 00:00:00",
+            "Year":             "13",
+            "Course":           "KS5",
+            "NCYear":           "13",
+            "Boarder":          "N",
             "AddressDetails":   [{
                                     "Country":      "GBR",
                                     "Type":         "H",
@@ -5590,14 +5591,14 @@ Response codes used are:
                                     "SMSFlag":      false,
                                     "PhoneId":      2165078
                                 }],
-            "Contacts":         [{
+            "ContactDetails":   [{
                                     "ContactId":    0001,
                                     "Title":        "Mr",
                                     "Forename":     "Zaphod",
                                     "Surname":      "Beelebrox",
                                     "Relationship": "Father",
-                                    "WrittenCommunication":     "",
-                                    "Priority":                 1,
+                                    "WrittenCommunication":     true,
+                                    "Priority":                 "",
                                     "ContactPrioritySource":    "",
                                     "EmergencyContactLevel":    "Primary",
                                     "NextOfKin":                false,
@@ -5610,41 +5611,40 @@ Response codes used are:
                                     "OtherHomeAddressLink":     false,
                                     "SendSMS":                  true
                                 }],
-            "Siblings":         [{
+            "SiblingDetails":   [{
                                     "LearnerCode":  "2014-0002",
                                     "LearnerId":    0002
                                 },{
                                     "LearnerCode":  "2015-0005",  
                                     "LearnerId":    0003
                                 }],
-            "PartTime":           "N",
-            "EnrolementStatus":   "C",
-            "UPN":                "H502400200007",
-            "FormerUPN":          "F502400200003",
-            "ULN":                "P400200003",
-            "UCI":                "3452165403",
-            "G&T":                "Y",
-            "MedicalFlag":        "Y",
-            "YSSAIndicator":      "Y",
-            "Nationality":        "GBR",
-            "Ethnicity":          "WBRI",
-            "EthnicitySource":    "P",
-            "ServiceChild":       "N",
+            "PartTime":         false,
+            "EnrolementStatus": "C",
+            "UPN":              "H502400200007",
+            "FormerUPN":        "F502400200003",
+            "ULN":              "P400200003"
+            "GandT":            true,
+            "MedicalFlag":      true,
+            "YSSAIndicator":    "Y",
+            "Nationality":      "GBR",
+            "Ethnicity":        "WBRI",
+            "EthnicitySource":  "P",
+            "ServiceChild":     "N",
             "ServiceChildSource": "P",
-            "TopUpFunding":       "Y",
-            "FundedHours":        "0.0",
-            "HoursAtSetting":     "0.0",
-            "UnitContactTime":    "5",
-            "SchoolLunchTaken":   "Y",
-            "MealType":           "Cold School Meal",
-            "AsylumSeeker":       "Y",
-            "Religion":           "Hindi",
-            "Disabilities":     [{
+            "TopUpFunding":     true,
+            "FundedHours":      0.0,
+            "HoursAtSetting":   0.0,
+            "UnitContactTime":  5.0,
+            "SchoolLunchTaken": true,
+            "MealType":         "CSM",
+            "AsylumSeeker":     false,
+            "Religion":         "Hindi",
+            "DisabilityDetails":[{
                                     "Disability":  "CON"
                                 },{
                                     "Disability":  "DDA"
                                 }],
-            "Language":         [{
+            "LanguageDetails":  [{
                                     "TypeCode":         "F",
                                     "TypeDescription":  "First Language",
                                     "LangCode":         "ENG",
@@ -5652,24 +5652,25 @@ Response codes used are:
                                 },{
                                     "TypeCode":         "M",
                                     "TypeDescription":  "Multiple First Language",
-                                    "LangCode":         "AYB",
+                                    "LanguageCode":     "AYB",
                                     "LangDescription":  "Anyi-Baule"
                                 }],
-            "SENProvision":     [{
-                                    "ProvisionId":          00001,
-                                    "ProvisionTypeCode":    "E",
-                                    "ProvisionTypeName":    "Education, Health and Care Plan",
-                                    "StartDate":            "19/09/2014",
-                                    "ReviewDate":           "20/09/2014",
-                                    "EndDate":              "20/09/2014" 
-                                }],
-            "SENMajorNeeds":    [{
-                                    "LeanerMajorNeedId":    00001,
-                                    "MajorNeedCode":        "SLD",
-                                    "MajorNeedDescription": "Severe Learning Difficulty ",
-                                    "Ranking":              1
-                                }]
+            "SENProvisionDetails":  [{
+                                        "ProvisionId":          00001
+                                        "ProvisionTypeCode":    "E",
+                                        "ProvisionTypeName":    "Education, Health and Care Plan",
+                                        "StartDate":            "19/09/2014",
+                                        "ReviewDate":           "20/09/2014",
+                                        "EndDate":              "20/09/2014" 
+                                    }],
+            "SENMajorNeedsDetails": [{
+                                        "LeanerMajorNeedId":    00001
+                                        "MajorNeedCode":        "SLD",
+                                        "MajorNeedDescription": "Severe Learning Difficulty ",
+                                        "Ranking":              1
+                                    }]
             }
+
 
 + Response 204 (application/json)
 
