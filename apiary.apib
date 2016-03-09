@@ -5925,6 +5925,8 @@ Mandatory fields:
 
 ### Retrieve a collection of Learner Other Details [GET]
 
+Retrieve one or more Learner Other Details records
+
 **Proposed Changes PROAPI-26**
 
 Response codes used are:
@@ -6008,7 +6010,7 @@ Response codes used are:
                                             "ServiceChild":     false,
                                             "LookedAfter":      false,
                                             "CashAmount":       935.00,
-                                            "FTE":              1.",
+                                            "FTE":              1,
                                             "FYStartDate":      "2014-04-01",
                                             "FYEndDate":        "2015-03-31",
                                             "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
@@ -6043,7 +6045,7 @@ Response codes used are:
                                         "LeavingReason":"PM"
                                     },{
                                         "ClusterName":  "Advanced MAT",
-                                        "EstabNumber":  "61234",
+                                        "EstabNumber":  "6124",
                                         "SchoolName":   "Queens College Academy",                                
                                         "EntryDate":    "2010-09-01",
                                         "LeavingDate":  "2016-02-05",
@@ -6052,6 +6054,172 @@ Response codes used are:
             }
             
 + Response 204 (application/json)
+
+
+### Create a collection of Learner Other Details [POST]
+
+Create one or more Learner Other Details records
+
+**Proposed Changes PROAPI-34**
+
+Mandatory fields:
+
+-*LearnerId is mandatory*
+- Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
+                 (i) If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+- FSM is not mandatory but if used: StartDate is mandatory
+- Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+- Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+- Gifted and Talented is not not mandatory but if used: G&TStatus, StartDate and Subject are mandatory
+- School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            { 
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001"
+            "ExclusiondDetails":[{
+                                "Category":         "FIXD",
+                                "Reason":           "PP",
+                                "StartDate":        "2014-07-02",
+                                "EndDate":          "2014-07-02",
+                                "StartSession":     "AM",
+                                "EndSession":       "PM",
+                                "Notes":            "Act of agression towards another pupil",
+                                "TotalDays":        1,
+                                "TotalSessions":    2,
+                                "LAC":              false,
+                                "HeadNotified":     null,
+                                "GovMeeting":       null,
+                                "ProvisionStartDate":   null,
+                                "ProvisionDetails":     null,
+                                "Appeal":           false,
+                                "AppealDate":       null,
+                                "AppealCutOff":     null,
+                                "ExclusionHearing": null,
+                                "Outcome":          "E",
+                                "ReintregationMeetingDate": null,
+                                "ReintregationNotes":       null,
+                                "ReinstatementDate":        null,
+                                "ReinstatementNotes":       ""
+                            }],
+            "FSMDetails":   [{
+                                "StartDate":    "2014-02-12",
+                                "ReviewDate":   "",
+                                "EndDate":      "2015-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            },
+                            {
+                                "StartDate":    "2015-02-12",
+                                "ReviewDate":   "2015-12-08",
+                                "EndDate":      "2016-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            }],
+            "PPI1314Details":       [{
+                                    "PPIndicator":  "DPP",
+                                    "FTE":          1.00,
+                                    "FYStartDate":  "2013-12-20",
+                                    "FYEndDate":    "2014-12-14"
+                                    }],
+            "PupilPremiumDetails":  {
+                                    "CurrentDeprivationEver6":  true,
+                                    "CurrentServiceChild":      false,
+                                    "CurrentAdoptedfromCare":   false,
+                                    "CurrentLookedAfter":       false,
+                                    "CurrentPupilPremium":      true
+                                        [{
+                                        "Deprivation":      true,
+                                        "AdoptedFromCare":  false,
+                                        "ServiceChild":     false,
+                                        "LookedAfter":      false
+                                        "CashAmount":       "935.00",
+                                        "FTE":              1.0,
+                                        "FYStartDate":      "2014-04-01",
+                                        "FYEndDate":        "2015-03-31",
+                                        "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                        }]
+                                    },
+            "GandTDetails": [{
+                                "GandTStatus":    "G",
+                                "StartDate":    "2015-02-23",
+                                "EndDate":      null,
+                                "Subject":      "EN",
+                                "Notes":        ""
+                            }],
+            "ConfidentialDetails":  [{
+                                    "LAC":          true,
+                                    "LACCurSch":    true,
+                                    "LACLA":        "370",
+                                    "HomeLA":       "871",
+                                    "CPR":          false,
+                                    "CPRLA":        null,
+                                    "PEP":          false,
+                                    "PPI":          false,
+                                    "AdoptedFromCare":      "N",
+                                    "Notes":                "Lorem ipsum",
+                                    "SchoolAwarenessList":   true   
+                                    }],
+            "SchoolHistoryDetails": [{
+                                    "ClusterName":  "Advanced MAT",
+                                    "EstabNumber":  "6213",
+                                    "SchoolName":   "Advanced Learninig Academy",                                
+                                    "EntryDate":    "2009-09-04",
+                                    "LeavingDate":  "2010-01-08",
+                                    "LeavingReason":"PM"
+                                    },{
+                                    "ClusterName":  "Advanced MAT",
+                                    "EstabNumber":  "61234",
+                                    "SchoolName":   "Queens College Academy",                                
+                                    "EntryDate":    "2010-09-01",
+                                    "LeavingDate":  "2016-02-05",
+                                    "LeavingReason":"OT"
+                                    }]
+            }
+            
+
++ Response 200
+
+    + Body
+    
+            {  
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Status":           true,
+            "Details":          "Saved successfully"
+            "ExclusionDetails": [{
+                                "ExclusionId":  0001
+                                }],
+            "FSMDetails":       [{
+                                "FSMId":        0001
+                                },
+                                {
+                                "FSMId":        0002
+                                }],
+            "PPI1314Details":   [{
+                                "PPI1314Id":    0001
+                                }],
+            "PupilPremiumDetails":  {
+                                    [{
+                                    "PPId":     001
+                                    }]
+                                    },
+            "GandTDetails":     [{
+                                "GandTId":  0001
+                                }],
+            "ConfidentialDetails":  [{
+                                    }],
+            "SchoolHistoryDetails": [{
+                                    "HistoryId":0001
+                                    },{
+                                    "HistoryId":    0002
+                                    }]
+            }
 
 
 # Group Behaviour
@@ -6317,86 +6485,52 @@ Mandatory Parameters:
     + Body
     
             {
+            "Status":   true,
+            "Detilas":  "Saved successfully"
             "Categories":   [{
-                            "CategoryId":     0001,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "CategoryId":     0002,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "CategoryId":     0003,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "CategoryId":     0004,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        }],
+                            "CategoryId":     0001
+                            },{
+                            "CategoryId":     0002
+                            },{
+                            "CategoryId":     0003
+                            },{
+                            "CategoryId":     0004
+                            }],
             "Types":        [{
-                            "TypeId":         0001,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "TypeId":         0002,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        }]
-            "Severities":   [{
-                            "SeverityId":     0001,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "SeverityId":     0002,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "SeverityId":     0003,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"    
-                        }]
-            "Actions":      [{
-                            "ActionId":       0001,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        },{
-                            "ActionId":       0002,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                        }]
-            "Rules":        [{
-                            "RuleId":         0001,
-                            "Status":         true,
-                            "Details":        "Saved Successfully"
-                            [{
-                                "CharacteristicId":         0001,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"
+                            "TypeId":         0001
                             },{
-                                "CharacteristicId":         0002,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"
+                            "TypeId":         0002
                             }]
-                        }]
+            "Severities":   [{
+                            "SeverityId":     0001
+                            },{
+                            "SeverityId":     0002
+                            },{
+                            "SeverityId":     0003    
+                            }]
+            "Actions":      [{
+                            "ActionId":       0001
+                            },{
+                            "ActionId":       0002
+                            }]
+            "Rules":        [{
+                            "RuleId":         0001
+                                [{
+                                "CharacteristicId":         0001
+                                },{
+                                "CharacteristicId":         0002
+                                }]
+                            }]
             "DetentionType":[{
-                                "DetentionTypeId":          0001,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"
+                            "DetentionTypeId":          0001
                             },{
-                                "DetentionTypeId":          0002,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"
-                         }]
+                            "DetentionTypeId":          0002
+                            }]
             "Location":     [{
-                                "LocationId":               0001,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"
+                            "LocationId":               0001
                             },{
-                                "LocationId":               0001,
-                                "Status":                   true,
-                                "Details":                  "Saved Successfully"   
-                        }]
+                            "LocationId":               0002  
+                            }]
             }
             
 
