@@ -2921,11 +2921,11 @@ Create Attendance for one to many learners using date and time of lesson
             }]
 
 
-## Learner Exclusions [/learnerExclusions{?startDate}{?endDate}]
+## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 ### Retrieve a learner Exclusion Details [GET]
 + Parameters
-    + startDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
-    + endDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + EndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
 
 + Request
@@ -2940,33 +2940,33 @@ Create Attendance for one to many learners using date and time of lesson
             
             {
             
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "exclusions":       [{
-                                        "exclusionId":  0001,
-                                        "category":     "FIXD",
-                                        "reason":       "",
-                                        "startDate":    "",
-                                        "endDate":      "",
-                                        "startSession": "",
-                                        "endSession":   "",
-                                        "notes":        "",
-                                        "totalDays":    5,
-                                        "totalSessions":10,
+                "LearnerCode":      "2013-00001",
+                "LearnerId":       0001,
+                "Exclusions":       [{
+                                        "ExclusionId":  0001,
+                                        "Category":     "FIXD",
+                                        "Reason":       "",
+                                        "StartDate":    "",
+                                        "EndDate":      "",
+                                        "StartSession": "",
+                                        "EndSession":   "",
+                                        "Notes":        "",
+                                        "TotalDays":    5,
+                                        "TotalSessions":10,
                                         "LAC":          false,
-                                        "headNotified": "",
-                                        "govMeeting":   "",
-                                        "provisionStartDate":   "",
-                                        "provisionDetails":     "",
-                                        "appeal":           true,
-                                        "appealDate":       "",
-                                        "appealCutOff":     "",
-                                        "exclusionHearing": "",
-                                        "outcome":          "",
-                                        "reintregationMeetingDate": "",
-                                        "reintregationNotes":      "",
-                                        "reinstatementDate":        "",
-                                        "reinstatementNotes":       ""
+                                        "HeadNotified": "",
+                                        "GovMeeting":   "",
+                                        "ProvisionStartDate":   "",
+                                        "ProvisionDetails":     "",
+                                        "Appeal":           true,
+                                        "AppealDate":       "",
+                                        "AppealCutOff":     "",
+                                        "ExclusionHearing": "",
+                                        "Outcome":          "",
+                                        "ReintregationMeetingDate": "",
+                                        "ReintregationNotes":      "",
+                                        "ReinstatementDate":        "",
+                                        "ReinstatementNotes":       ""
                                     }]
             }
                 
