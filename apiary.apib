@@ -56,14 +56,14 @@ Required parameters are:
 # Group Employees Collection
 Methods for all employee-related resources
 
-## Employee Record [/employees/{id}]
+## Employee Record [/Employees/{Id}]
 View a single employee record
 
 Required parameters are:
 
 - Employee Id
 + Parameters
-    + id (required, int, `54321`) ... The unique identifier of the employee
+    + Id (required, int, `54321`) ... The unique identifier of the employee
 
 ### View an employee record [GET]
 
@@ -2043,7 +2043,6 @@ Create one to many learner records
     + Body
     
             {
-                "SourceId":        "001230",   **Proposed** 
                 "learnerCode":     "2013-00132",
                 "UPN":             "G999900210101",
                 "ULN":             "1234567890",
@@ -5520,7 +5519,7 @@ Update one to many Sites
 
 # Group Learners Collection v2
 
-##Learners [/Learners{LearnerId}{LearnerCode}{Status}{DateModified}]
+##Learners [/Learners/{LearnerId}{LearnerCode}{Status}{DateModified}]
 After feedback from Partners and changes of internal requirements more fields are to be added to the existing GET Learners method.
 This section is work in progress and subject to change.
 
@@ -5597,7 +5596,7 @@ Response codes used are:
                                     "Forename":     "Zaphod",
                                     "Surname":      "Beelebrox",
                                     "Relationship": "Father",
-                                    "WrittenCommunication":     true,
+                                    "WrittenCommunication":     "",
                                     "Priority":                 "",
                                     "ContactPrioritySource":    "",
                                     "EmergencyContactLevel":    "Primary",
@@ -5812,60 +5811,116 @@ Mandatory fields:
     + Body
     
             {
-            "SourceId":           "Abc123",
             "LearnerId":          02134,
-            "LearnerCode":        "2010-0001"
+            "LearnerCode":        "2010-0001",
+            "Status":             "true",
+            "Details":            "Saved successfully"
             "AddressDetails":   [{
-                                    "AddressId":    0001,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully"
+                                    "AddressId":    0001
                                 }],
             "PhoneDetails":     [{
-                                    "PhoneId":      0001,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully"
+                                    "PhoneId":      0001
                                 }],
-            "Contacts":         [{
-                                    "ContactId":    0001,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully" 
+            "ContactDetails":   [{
+                                    "ContactId":    0001
+                                    "LearnerContactRelationshipId": 0002
                                 }],
-            "Siblings":         [{
-                                    "LearnerId2":   0002,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully" 
+            "SiblingDetails":   [{
+                                    "LearnerId":   0002
                                 }],
-            "Disabilities":     [{
-                                    "DisabilityTypeId": 0001,
-                                    "Status":           true,
-                                    "Details":          "Saved successfully" 
+            "DisabilityDetails":[{
+                                    "DisabilityTypeId": 0001 
                                 }],
-            "Language":         [{
-                                    "LanguageId":   0002,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully"
+            "LanguageDetails":  [{
+                                    "LanguageId":   0002
                                 }],
-            "SENProvision":     [{
-                                    "ProvisionId":  0003,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully"
-                                }],
-            "SENMajorNeeds":    [{
-                                    "MajorNeedId":  0001,
-                                    "Status":       true,
-                                    "Details":      "Saved successfully"
-                                }]
+            "SENProvisionDetails":  [{
+                                        "ProvisionId":  0003
+                                    }],
+            "SENMajorNeedsDetails": [{
+                                        "MajorNeedId":  0001
+                                    }]
             } 
+
+
+### Update a collection of Learner Details [PUT]
+        
+**Proposed Changes PROAPI-33**
+
+Update one or more Learner detail records
+
+Mandatory fields:
+
+- LearnerId
+    
+- Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+    
+- Phone is not mandatory but if included: Type and Number are mandatory
+    
+- Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
+    
+- Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    
+- SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
+    
+- SENMajorNeeds is not mandatory but if included: MajorNeedCode and Ranking are mandatory
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+            "LearnerId":        02134,
+            "AcademicHouse":    "Chatsworth"
+            "EmailAddress":     "asdfasdfb@c.co.uk",
+            "DateOfEntry":      "01-09-2012 00:00:00",
+            "AddressDetails":   [{
+                                    "Country":      "GBR",
+                                    "Type":         "H",
+                                    "Flat":         "",
+                                    "Number":       "28",
+                                    "Street":       "Galaxy Road",
+                                    "Locality":     "Mickleover",
+                                    "Town":         "Derby",
+                                    "County":       "",
+                                    "PostCode":     "DE3 4FL"
+                                }],
+            "PhoneDetails":     [{
+                                    "Type":         "H",
+                                    "Number":       "0133265987856",
+                                    "SMSFlag":      false
+                                }]
+            }    
+
++ Response 200
+           
+    + Body
+    
+            {
+            "LearnerId":        "02134",
+            "Status":           "true",
+            "Details":          "Saved successfully"
+            "AddressDetails":   [{
+                                    "AddressId":    0001
+                                }],
+            "PhoneDetails":     [{
+                                    "PhoneId":      0001
+                                }]
+            }
             
 
-##LearnerOtherDetails [/LearnerOtherDetails{learnerId}{learnerCode}{status}{DateModified}]
+##LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
 
 + Parameters
 
-    + learnerId     (optional, int, `00001`) ... the unique identifier of the learner
-    + learnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
+    + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
+    + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
     + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
+    + Status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
     
            
 
@@ -5888,111 +5943,113 @@ Response codes used are:
 + Response 200 (application/json)
 
             {
-            "LearnerId":          443756,   
-            "LearnerCode":        "2010-0001",
-            "Surname":            "Sterling",
-            "Forename":           "Geoffrey",
-            "Status":             "Active",
-            "Exclusions":   [{
-                                "ExclusionId":      0001,
-                                "Category":         "FIXD",
-                                "Reason":           "PP",
-                                "StartDate":        "2014-07-02",
-                                "EndDate":          "2014-07-02",
-                                "StartSession":     "AM",
-                                "EndSession":       "PM",
-                                "Notes":            "Act of agression towards another pupil",
-                                "TotalDays":        1,
-                                "TotalSessions":    2,
-                                "LAC":              false,
-                                "HeadNotified":     null,
-                                "GovMeeting":       null,
-                                "ProvisionStartDate":   null,
-                                "ProvisionDetails":     null,
-                                "Appeal":           false,
-                                "AppealDate":       null,
-                                "AppealCutOff":     null,
-                                "ExclusionHearing": null,
-                                "Outcome":          "E",
-                                "ReintregationMeetingDate": null,
-                                "ReintregationNotes":       null,
-                                "ReinstatementDate":        null,
-                                "ReinstatementNotes":       ""
-                            }],
-            "FSM":          [{
-                                "FSMId":        0001,
-                                "StartDate":    "2014-02-12",
-                                "ReviewDate":   "",
-                                "EndDate":      "2015-02-12",
-                                "CoutnryOfUk":  "ENG"
-                            },
-                            {
-                                "FSMId":        0002,
-                                "StartDate":    "2015-02-12",
-                                "ReviewDate":   "2015-12-08",
-                                "EndDate":      "2016-02-12",
-                                "CoutnryOfUk":  "ENG"
-                            }],
-            "PPI1314":      [{
-                                "PPIId":        0001,
-                                "PPIndicator":  "DPP",
-                                "FTE":          "1.00",
-                                "FYStartDate":  "2013-12-20",
-                                "FYEndDate":    "2014-12-14"
-                            }],
-            "PupilPremiums":{
-                                "CurrentDeprivationEver6":  true,
-                                "CurrentServiceChild":      false,
-                                "CurrentAdoptedfromCare":   false,
-                                "CurrentLookedAfter":       false,
-                                "CurrentPupilPremium":      true
-                            [{
-                                "Deprivation":      true,
-                                "AdoptedFromCare":  false,
-                                "ServiceChild":     false,
-                                "LookedAfter":      false,
-                                "CashAmount":       "935.00",
-                                "FTE":              "1.0",
-                                "FYStartDate":      "2014-04-01",
-                                "FYEndDate":        "2015-03-31",
-                                "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                            }]
-                            },
-            "G&T":          [{
-                                "G&TStatus":    "G",
-                                "StartDate":    "2015-02-23",
-                                "EndDate":      null,
-                                "Subject":      "EN",
-                                "Notes":        ""
-                            }],
-            "Confidential": [{
-                                "LAC":          true,
-                                "LACCurSch":    true,
-                                "LACLA":        "370",
-                                "HomeLA":       "871",
-                                "CPR":          false,
-                                "CPRLA":        null,
-                                "PEP":          false,
-                                "PPI":          false,
-                                "AdoptedFromCare":      "N",
-                                "Notes":                "Lorem ipsum",
-                                "SchoolAwarenessList":  true   
-                            }],
-            "SchoolHistory":[{
-                                "ClusterName":  "Advanced MAT",
-                                "EstabNumber":  "6213",
-                                "SchoolName":   "Advanced Learninig Academy",                                
-                                "EntryDate":    "2009-09-04",
-                                "LeavingDate":  "2010-01-08",
-                                "LeavingReason":"PM"
-                            },{
-                                "ClusterName":  "Advanced MAT",
-                                "EstabNumber":  "61234",
-                                "SchoolName":   "Queens College Academy",                                
-                                "EntryDate":    "2010-09-01",
-                                "LeavingDate":  "2016-02-05",
-                                "LeavingReason":"OT"
-                            }]
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Surname":          "Sterling",
+            "Forename":         "Geoffrey",
+            "Status":           "Active",
+            "Traveller":        "GH",
+            "TravellerSource":  "P",
+            "ExclusionDetails": [{
+                                    "ExclusionId":          0001,
+                                    "Category":             "FIXD",
+                                    "Reason":               "PP",
+                                    "StartDate":            "2014-07-02",
+                                    "EndDate":              "2014-07-02",
+                                    "StartSession":         "AM",
+                                    "EndSession":           "PM",
+                                    "Notes":                "Act of agression towards another pupil",
+                                    "TotalDays":            1,
+                                    "TotalSessions":        2,
+                                    "LAC":                  false,
+                                    "HeadNotified":         null,
+                                    "GovMeeting":           null,
+                                    "ProvisionStartDate":   null,
+                                    "ProvisionDetails":     null,
+                                    "Appeal":               false,
+                                    "AppealDate":           null,
+                                    "AppealCutOff":         null,
+                                    "ExclusionHearing":     null,
+                                    "Outcome":              "E",
+                                    "ReintregationMeetingDate": null,
+                                    "ReintregationNotes":       null,
+                                    "ReinstatementDate":        null,
+                                    "ReinstatementNotes":       ""
+                                }],
+            "FSMDetails":       [{
+                                    "FSMId":        0001,
+                                    "StartDate":    "2014-02-12",
+                                    "ReviewDate":   "",
+                                    "EndDate":      "2015-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                },
+                                {
+                                    "FSMId":        0002,
+                                    "StartDate":    "2015-02-12",
+                                    "ReviewDate":   "2015-12-08",
+                                    "EndDate":      "2016-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                }],
+            "PPI1314Details":   [{
+                                    "PPIId":        0001,
+                                    "PPIndicator":  "DPP",
+                                    "FTE":          1.00,
+                                    "FYStartDate":  "2013-12-20",
+                                    "FYEndDate":    "2014-12-14"
+                                }],
+            "PupilPremiumDetails":  [{
+                                        "CurrentDeprivationEver6":  true,
+                                        "CurrentServiceChild":      false,
+                                        "CurrentAdoptedfromCare":   false,
+                                        "CurrentLookedAfter":       false,
+                                        "CurrentPupilPremium":      true
+                                        [{
+                                            "Deprivation":      true,
+                                            "AdoptedFromCare":  false,
+                                            "ServiceChild":     false,
+                                            "LookedAfter":      false,
+                                            "CashAmount":       935.00,
+                                            "FTE":              1.",
+                                            "FYStartDate":      "2014-04-01",
+                                            "FYEndDate":        "2015-03-31",
+                                            "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                        }]
+                                    },
+            "GandTDetails":         [{
+                                        "GandTStatus":  "G",
+                                        "StartDate":    "2015-02-23",
+                                        "EndDate":      null,
+                                        "Subject":      "EN",
+                                        "Notes":        ""
+                                    }],
+            "ConfidentialDetails":  [{
+                                        "LAC":          true,
+                                        "LACCurSch":    true,
+                                        "LACLA":        "370",
+                                        "HomeLA":       "871",
+                                        "CPR":          false,
+                                        "CPRLA":        null,
+                                        "PEP":          false,
+                                        "PPI":          false,
+                                        "AdoptedFromCare":      "N",
+                                        "Notes":                "Lorem ipsum",
+                                        "SchoolAwarenessList":  true   
+                                    }],
+            "SchoolHistoryDetails": [{
+                                        "ClusterName":  "Advanced MAT",
+                                        "EstabNumber":  "6213",
+                                        "SchoolName":   "Advanced Learninig Academy",                                
+                                        "EntryDate":    "2009-09-04",
+                                        "LeavingDate":  "2010-01-08",
+                                        "LeavingReason":"PM"
+                                    },{
+                                        "ClusterName":  "Advanced MAT",
+                                        "EstabNumber":  "61234",
+                                        "SchoolName":   "Queens College Academy",                                
+                                        "EntryDate":    "2010-09-01",
+                                        "LeavingDate":  "2016-02-05",
+                                        "LeavingReason":"OT"
+                                    }]
             }
             
 + Response 204 (application/json)
