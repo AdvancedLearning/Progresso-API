@@ -221,10 +221,10 @@ Optional parameters:
                                         }],
                 "Status":               "active",
                 "NiNumber":             "NI1234HJGJ34",
-                "QtStatus":             "False",
+                "QtStatus":             False,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
-                "HTLA":                 "False",
+                "HTLA":                 False,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
                                             "Code":     "ENG",
@@ -245,6 +245,7 @@ Optional parameters:
 Create one to many basic employee records
 
 Required parameters are:
+
 - Staff Code    
 - Forname         
 - Surname      
@@ -345,6 +346,7 @@ Required parameters are:
             }
 
 ### Update Employee Records [PUT]
+
 Update one to many employee records
 
 + Request (application/json)
@@ -379,8 +381,9 @@ Update one to many employee records
             }
 
 
-## Employees Contacts [/employeeContacts{?status}]
-Collection of all employees contacts for a school
+## Employees Contacts [/EmployeeContacts{?Status}]
+
+Retrive a collection of employees contacts
 
 ### Retrieve collection of employees contacts [GET]
 
@@ -391,90 +394,148 @@ Collection of all employees contacts for a school
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left ].
+
+    + Status (optional, string, `Active`) ... Optional filter by status, valid values [ Active | Left ].
 
 
 + Response 200
+
     + Body
     
-            [{
+            {
                 "EmployeeId":           12345,
-                "staffCode":             "sc123",
-                "contacts": 
+                "StaffCode":            "sc123",
+                "Contacts": 
                             [{
-                                        "contactId":    00001,
-                                        "forename":     "",
-                                        "surname":      "",
-                                        "relationship": "Partner",
-                                        "priority":     1,
-                                        "emergency":    "primary",
-                                    `   "nextOfKin":    true
+                                        "ContactId":    00001,
+                                        "Forename":     "",
+                                        "Surname":      "",
+                                        "Relationship": "Partner",
+                                        "Priority":     1,
+                                        "Emergency":    "primary",
+                                    `   "NextOfKin":    true
                             },
                             {  
-                                        "contactId":    00002,
-                                        "forename":     "",
-                                        "surname":      "",
-                                        "relationship": "Other",
-                                        "priority":     2,
-                                        "emergency":    "",
-                                    `   "nextOfKin":    false
+                                        "ContactId":    00002,
+                                        "Forename":     "",
+                                        "Surname":      "",
+                                        "Relationship": "Other",
+                                        "Priority":     2,
+                                        "Emergency":    "",
+                                    `   "NextOfKin":    false
                             }]
-            }]
+            }
     
 
-## Create/Update Employee Contact Association [/employeeContacts]
 ### Create Employee Contact Association [POST]
-Associate Employee to one/multiple contacts
+
+Associate one or more Employees to one or more contacts
+
+Mandtory parameters:
+
+- EmployeeId
+- ContactId
 
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
+
 
     + Body
     
             [{
                 "EmployeeId":           12345,
-                "contacts": 
+                "Contacts": 
                             [{
-                                        "contactId":    00001,
-                                        "relationship": "Partner",
-                                        "priority":     1,
-                                        "emergency":    "primary"
-                                    `   "nextOfKin":    true
+                                        "ContactId":    00001,
+                                        "Relationship": "PTNR",
+                                        "Priority":     1,
+                                        "Emergency":    "Primary",
+                                    `   "NextOfKin":    true
                             },
                             {  
-                                        "contactId":    00002,
-                                        "relationship": "Other",
-                                        "priority":     2,
-                                        "emergency":    ""
-                                    `   "nextOfKin":    false
+                                        "ContactId":    00002,
+                                        "Relationship": "OTHR",
+                                        "Priority":     2,
+                                        "Emergency":    "",
+                                    `   "NextOfKin":    false
                             }]
             }]
+            
 
 + Response 200
+
     + Body
     
             {
                 "EmployeeId":           12345,
-                "status":               true,
-                "details":              "Update Successful",
-                "contacts": 
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "Contacts": 
                             [{
-                              
-                                "contactId":            00001,
-                                "status":              true
-                                "details":              "Update Successful"
-                            },
+                                "ContactId":            00001
                             {  
-                                
-                                "contactId":            00001,
-                                 "status":              true
-                                "details":              "Update Successful"
+                                "ContactId":            00002
                             }]
             }
+
+           
+### Update Employee Contact Association [PUT]
+
+Update the association between one or more Employees to one or more contacts
+
+Mandtory parameters:
+
+- EmployeeId
+- ContactId
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
+
+    + Body
+    
+            [{
+                "EmployeeId":           12345,
+                "Contacts": 
+                            [{
+                                        "ContactId":    00001,
+                                        "Relationship": "WIFE",
+                                        "Priority":     1,
+                                        "Emergency":    "Primary",
+                                    `   "NextOfKin":    true
+                            },
+                            {  
+                                        "ContactId":    00002,
+                                        "Relationship": "RELA",
+                                        "Priority":     2,
+                                        "Emergency":    "Secondary",
+                                    `   "NextOfKin":    false
+                            }]
+            }]
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "EmployeeId":           12345,
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "Contacts": 
+                            [{
+                                "ContactId":            00001
+                            {  
+                                "ContactId":            00002
+                            }]
+            }
+            
                             
 
 ## Employees Checks [/employeeChecks{?status}{?employee}]
