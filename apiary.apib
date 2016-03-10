@@ -147,17 +147,17 @@ Required parameters are:
                 "Nationality":            "",
                 "Ethnicity":              "WBRI",
                 "Religion":               "",
-                "LaStartDate":            "",
+                "LAStartDate":            "",
                 "Disability":             "NO"
             }
 
 
-## Employee Basic Records [/employees{?status}{?since}]
+## Employee Basic Records [/Employees{?Status}{?Since}]
 Returns all employees basic records for a school
 
 Optional parameters:
 
-- Status = "active", "left" or "draft"
+- Status = "Active", "Left" or "Draft"
 
 - Since = use date format mm-dd-yyyy
 
@@ -170,130 +170,74 @@ Optional parameters:
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + status (optional, string, `active`) ... Optional filter by status, valid values [ active | left | draft].
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
+    + Status (optional, string, `active`) ... Optional filter by status, valid values [ active | left | draft].
+    + Since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
 
 + Response 200 (application/json)
 
     + Body
     
             {
-                "employeeId":           12345,
-                "staffCode":             "JBl",
-                "title":                "Mr",
-                "surname":              "Bloggs",
-                "forname":              "Joe",
+                "EmployeeId":           12345,
+                "StaffCode":            "JBl",
+                "Title":                "Mr",
+                "Surname":              "Bloggs",
+                "Forname":              "Joe",
                 "Department":           "Math",
                 "Position":             "Teacher",
-                "legalSurname":         "Bloggs",
-                "legalForename":        "Joseph",
-                "formerSurname":        "",
-                "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968 00:00:00",
+                "LegalSurname":         "Bloggs",
+                "LegalForename":        "Joseph",
+                "FormerSurname":        "",
+                "MiddleName":           "Bob",
+                "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
-                "startDate":            "28-02-2014 00:00:00",
-                "leftDate":             "31-12-2015 00:00:00",
-                "teacherNumber":        "12456",
-                "email":                "joe.bloggs@theschool.edu",
-                "phoneDetails":         [{
+                "StartDate":            "28-02-2014 00:00:00",
+                "LeftDate":             "31-12-2015 00:00:00",
+                "TeacherNumber":        "12456",
+                "Email":                "joe.bloggs@theschool.edu",
+                "PhoneDetails":         [{
                                             
-                                            "type":     "H",
-                                            "number":   "015555555",
-                                            "smsFlag":  false,
-                                            "phoneId":  12334
+                                            "Type":     "H",
+                                            "Number":   "015555555",
+                                            "SmsFlag":  false,
+                                            "PhoneId":  12334
                                         },{
-                                            "type":     "M",
-                                            "number":   "075555555",
-                                            "smsFlag":  true,
-                                            "phoneid":  212121
+                                            "Type":     "M",
+                                            "Number":   "075555555",
+                                            "SmsFlag":  true,
+                                            "Phoneid":  212121
                                         }],
-                "addressDetails":       [{
-                                            "country":  "GBR",
-                                            "type":     "H",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD",
+                "AddressDetails":       [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire"
+                                            "PostCode": "DD55 36DD",
                                             "AddressId":345345
                                         }],
-                "status":               "active",
-                "niNumber":             "NI1234HJGJ34",
-                "qtStatus":               "False",
-                "qtsRoute":               "",
-                "dateOfQTS":              "",
-                "HTLA":                   "False",
-                "DateOfHTLAStatus":       "",
-                "LanguageDetails":        [{
+                "Status":               "active",
+                "NiNumber":             "NI1234HJGJ34",
+                "QtStatus":             "False",
+                "QtsRoute":             "",
+                "DateOfQTS":            "",
+                "HTLA":                 "False",
+                "DateOfHTLAStatus":     "",
+                "LanguageDetails":      [{
                                             "Code":     "ENG",
                                             "Type":     "H",
                                             "Level":    "4",
                                             "LanguageUsageId": 434000
-                                            }],
-                "QualificationDetails":   null
-                "nationality":            "GBR",
-                "ethnicity":              "WBRI",
-                "religion":               "MU",
-                "laStartDate":            "",
-                "disability":             "No"
-            },
-            {
-                "employeeId":           54321,
-                "staffCode":             "JDo",
-                "title":                "Mrs",
-                "surname":              "Doe",
-                "forname":              "Jane",
-                "Department":           "Math",
-                "Position":             "Teacher",
-                "legalSurname":         "Doe",
-                "legalForename":        "Jane",
-                "formerSurname":        "Smith",
-                "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968",
-                "Gender":               "F",
-                "startDate":            "28-02-2014",
-                "leftDate":             ""
-                "teacherNumber":        "12456",
-                "email":                "joe.bloggs@theschool.edu",
-                "phoneDetails":         [{
-                                            "type":     "H",
-                                            "number":   "015556655",
-                                            "smsFlag":  false,
-                                            "phoneId":  3425245
-                                        },{
-                                            "type":     "M",
-                                            "number":   "075556655",
-                                            "smsFlag":  true,
-                                            "phoneid":  546456456
                                         }],
-                "addressDetails":       [{
-                                            "country":  "GBR",
-                                            "type":     "H",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire",
-                                            "postCode": "DD55 36DD",
-                                            "AddressId":6456747
-                                        }],
-                "status":               "active",
-                "niNumber":             "NI123JHJGJ34",
-                "qtStatus":               "false",
-                "qtsRoute":               "",
-                "dateOfQTS":              "",
-                "HTLA":                   "false",
-                "DateOfHTLAStatus":       "",
-                "LanguageDetails":        null,
-                "QualificationDetails":   null,
-                "nationality":            "",
-                "ethnicity":              "",
-                "religion":               "",
-                "laStartDate":            "",
-                "disability":             "No"
+                "QualificationDetails": null
+                "Nationality":          "GBR",
+                "Ethnicity":            "WBRI",
+                "Religion":             "MU",
+                "StartDate":            "",
+                "Disability":           "No"
             }
 
 
@@ -318,64 +262,68 @@ Required parameters are:
     + Body
 
             {
-                "staffCode":            "sc123",
-                "title":                "Mr",
-                "surname":              "Bloggs",
-                "forname":              "Joe",
+                "EmployeeId":           12345,
+                "StaffCode":            "JBl",
+                "Title":                "Mr",
+                "Surname":              "Bloggs",
+                "Forname":              "Joe",
                 "Department":           "Math",
-                "Position":             "Teacher",
-                "legalSurname":         "Bloggs",
-                "legalForename":        "Joseph",
-                "formerSurname":        "",
-                "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968",
-                "Gender":               "M",
-                "startDate":            "28-02-2014",
-                "leftDate":             "21-06-2014",
-                "teacherNumber":        "12456",
-                "email":                "joe.bloggs@theschool.edu",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "015555555",
-                                            "smsFlag":  false
-                                        },
-                                        {
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "smsFlag":  true
+                "Position":             "TCH",
+                "LegalSurname":         "Bloggs",
+                "LegalForename":        "Joseph",
+                "FormerSurname":        "",
+                "MiddleName":           "Bob",
+                "DateOfBirth":          "31-12-1968 00:00:00",
+                "Gender":               "1",
+                "StartDate":            "28-02-2014 00:00:00",
+                "LeftDate":             "",
+                "TeacherNumber":        "12456",
+                "Email":                "joe.bloggs@theschool.edu",
+                "PhoneDetails":         [{
+                                            
+                                            "Type":     "H",
+                                            "Number":   "015555555",
+                                            "SmsFlag":  false,
+                                            "PhoneId":  12334
+                                        },{
+                                            "Type":     "M",
+                                            "Number":   "075555555",
+                                            "SmsFlag":  true,
+                                            "Phoneid":  212121
                                         }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire",
-                                            "postCode": "DD55 36DD"
+                "AddressDetails":       [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire"
+                                            "PostCode": "DD55 36DD",
+                                            "AddressId":345345
                                         }],
-                "status":               "active",
-                "NINumber":             "NI1234HJGJ34",
-                "qtStatus":               "",
-                "qtsRoute":               "",
-                "dateOfQTS":              "",
-                "HTLA":                   "",
-                "dateOfHTLAStatus":       "",
-                "languageDetails":        [{}],
-                "qualificationDetails":   [{
-                                            "qualificationCode":  "",
-                                            "subject1":           "",
-                                            "subject2":           "",
-                                            "classOfDegree":      "",
-                                            "verified":           ""
+                "Status":               "Active",
+                "NiNumber":             "NI1234HJGJ34",
+                "QtStatus":             False,
+                "QtsRoute":             "",
+                "DateOfQTS":            "",
+                "HTLA":                 False,
+                "DateOfHTLAStatus":     "",
+                "LanguageDetails":      [{
+                                            "Code":     "ENG",
+                                            "Type":     "H",
+                                            "Level":    "4",
+                                            "LanguageUsageId": 434000
                                         }],
-                "nationality":            "",
-                "ethnicity":              "",
-                "religion":               "",
-                "laStartDate":            "",
-                "disability":             ""
+                "QualificationDetails": null
+                "Nationality":          "GBR",
+                "Ethnicity":            "WBRI",
+                "Religion":             "MU",
+                "StartDate":            "",
+                "Disability":           "No"
             }
+
 
 + Response 200 (application/json)
 
@@ -385,27 +333,14 @@ Required parameters are:
                 "Status":               true,
                 "Details":              "Saved successfully",
                 "EmployeeId":           1,
-                "staffCode":            "sc123",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "015555555",
-                                            "phoneId":  "00001"
+                "StaffCode":            "sc123",
+                "PhoneDetails":         [{
+                                            "PhoneId":  "00001"
                                         },{
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "phoneId":  "00002"
+                                            "PhoneId":  "00002"
                                         }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "addressId":  "00001"
+                "AddressDetails":       [{
+                                            "AddressId":"00001"
                                         }]
             }
 
@@ -422,93 +357,26 @@ Update one to many employee records
     + Body
 
             {
-                "employeeId":           000001,
-                "staffCode":            "sc123",
-                "title":                "Mr",
-                "surname":              "Bloggs",
-                "forname":              "Joe",
-                "Department":           "Math",
-                "Position":             "Teacher",
-                "legalSurname":         "Bloggs",
-                "legalForename":        "Joseph",
-                "formerSurname":        "",
-                "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968",
-                "Gender":               "M",
-                "startDate":            "28-02-2014",
-                "leftDate":             "21-06-2014",
-                "teacherNumber":        "12456",
-                "email":                "joe.bloggs@theschool.edu",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "015555555",
-                                            "smsFlag":  false
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "smsFlag":  true
-                                        }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire",
-                                            "postCode": "DD55 36DD"
-                                        }],
-                "status":               "active",
-                "NINumber":             "NI1234HJGJ34",
-                "qtStatus":             "",
-                "qtsRoute":             "",
-                "dateOfQTS":              "",
-                "HTLA":                   "",
-                "dateOfHTLAStatus":       "",
-                "languageDetails":        [{}],
-                "qualificationDetails":   [{
-                                            "qualificationCode":  "",
-                                            "subject1":           "",
-                                            "subject2":           "",
-                                            "classOfDegree":      "",
-                                            "verified":           ""
-                                        }],
-                "nationality":            "",
-                "ethnicity":              "",
-                "religion":               "",
-                "laStartDate":            "",
-                "disability":             ""
+                "EmployeeId":           12345,
+                "StaffCode":            "JBl",
+                "Title":                "Mr",
+                "Surname":              "Bloggs",
+                "Forname":              "Joe",
+                "Position":             "DPHT",
+                "LeftDate":             "31-12-2015 00:00:00",
+                "Email":                "joe.bloggs333@whoknows.edu"
             }
 
 + Response 200
+
     + Body
     
-            [{
+            {
                 "EmployeeId":           12345,
-                "staffCode":            "sc123",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "015555555",
-                                            "phoneId":  "00001"
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "phoneId":  "00002"
-                                        }],
-                "UKaddressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire",
-                                            "postCode": "DD55 36DD",
-                                            "addressId":  "00001"
-                                        }]
-            }]
+                "StaffCode":            "sc123",
+                "Staus":                true,
+                "Details":              "Saved successfully"
+            }
 
 
 ## Employees Contacts [/employeeContacts{?status}]
