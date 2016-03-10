@@ -57,11 +57,13 @@ Required parameters are:
 Methods for all employee-related resources
 
 ## Employee Record [/Employees/{Id}]
+
 View a single employee record
 
 Required parameters are:
 
 - Employee Id
+
 + Parameters
     + Id (required, int, `54321`) ... The unique identifier of the employee
 
@@ -80,73 +82,73 @@ Required parameters are:
     + Body
     
             {
-                "employeeId":           12345,
-                "staffCode":            "sc123",
-                "title":                "Mr",
-                "surname":              "Bloggs",
-                "forname":              "Joe",
+                "EmployeeId":           12345,
+                "StaffCode":            "sc123",
+                "Title":                "Mr",
+                "Surname":              "Bloggs",
+                "Forname":              "Joe",
                 "Department":           "Math",
-                "Position":             "Teacher",
-                "legalSurname":         "Bloggs",
-                "legalForename":        "Joseph",
-                "formerSurname":        "",
-                "middleName":           "Bob",
-                "dateOfBirth":          "31-12-1968 00:00:00",
+                "Position":             "HDPT",
+                "LegalSurname":         "Bloggs",
+                "LegalForename":        "Joseph",
+                "FormerSurname":        "",
+                "MiddleName":           "Bob",
+                "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
-                "startDate":            "28-02-2014 00:00:00",
-                "leftDate":             "31-08-2015 00:00:00"
-                "teacherNumber":        "12456",
-                "email":                "joe.bloggs@theschool.edu",
-                "phoneDetails":         [{
-                                            "type":     "H",                                        "phoneId":  1
-                                            "number":   "015555555",
-                                            "smsFlag":  false,
-                                            "phoneId":  1234567
+                "StartDate":            "28-02-2014 00:00:00",
+                "LeftDate":             "31-08-2015 00:00:00",
+                "TeacherNumber":        "12456",
+                "Email":                "joe.bloggs@theschool.edu",
+                "PhoneDetails":         [{
+                                            "Type":     "H",   
+                                            "Number":   "015555555",
+                                            "SmsFlag":  false,
+                                            "PhoneId":  1234567
                                             
                                         },{
-                                            "type":     "M",                                        "phoneId":  1
-                                            "number":   "075555555",
-                                            "smsFlag":  ftrue,
-                                            "phoneId":  1234568
+                                            "Type":     "M",  
+                                            "Number":   "075555555",
+                                            "SmsFlag":  ftrue,
+                                            "PhoneId":  1234568
                                         }],
-                "addressDetails":       [{
-                                            "country":  "GBR",
-                                            "type":     "H",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "addressId": 123456
+                "AddressDetails":       [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire",
+                                            "PostCode": "DD55 36DD",
+                                            "AddressId": 123456
                                         }],
-                "status":               "active",
-                "niNumber":             "NI1234HJGJ34",
-                "qtStatus":               "True",
-                "qtsRoute":               "OTTP",
-                "dateOfQTS":              "",
-                "HTLA":                   "False",
-                "dateOfHTLAStatus":       "",
-                "languageDetails":        [{
+                "Status":               "Active",
+                "NiNumber":             "NI1234HJGJ34",
+                "QtStatus":             true,
+                "QtsRoute":             "OTTP",
+                "DateOfQTS":            "",
+                "HTLA":                 false,
+                "DateOfHTLAStatus":       "",
+                "LanguageDetails":        [{
                                             "Code":     "CHI",
                                             "Type":     "SH",
                                             "Level":    "5",
                                             "LanguageUsageId": 434000
                                         }],
-                "qualificationDetails":   [{
-                                            "qualificationCode":  "BEDO",
-                                            "subject1":           "",
-                                            "subject2":           "",
-                                            "classOfDegree":      "3",
-                                            "verified":           "False"
+                "QualificationDetails":   [{
+                                            "QualificationCode":  "BEDO",
+                                            "Subject1":           "",
+                                            "Subject2":           "",
+                                            "ClassOfDegree":      "3",
+                                            "Verified":           False,
                                             "EmployeeQualificationId": 24534
                                         }],
-                "nationality":            "",
-                "ethnicity":              "WBRI",
-                "religion":               "",
-                "laStartDate":            "",
-                "disability":             "NO"
+                "Nationality":            "",
+                "Ethnicity":              "WBRI",
+                "Religion":               "",
+                "LaStartDate":            "",
+                "Disability":             "NO"
             }
 
 
@@ -6064,9 +6066,10 @@ Create one or more Learner Other Details records
 
 Mandatory fields:
 
--*LearnerId is mandatory*
+**LearnerId is mandatory**
 - Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
-                 (i) If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+    
+    If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
 - FSM is not mandatory but if used: StartDate is mandatory
 - Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
 - Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
@@ -6083,7 +6086,9 @@ Mandatory fields:
     
             { 
             "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001"
+            "LearnerCode":      "2010-0001",
+            "Traveller":        "GH",
+            "TravellerSource":  "P",
             "ExclusiondDetails":[{
                                 "Category":         "FIXD",
                                 "Reason":           "PP",
@@ -6091,7 +6096,7 @@ Mandatory fields:
                                 "EndDate":          "2014-07-02",
                                 "StartSession":     "AM",
                                 "EndSession":       "PM",
-                                "Notes":            "Act of agression towards another pupil",
+                                "Notes":            "Act of aggression towards another pupil",
                                 "TotalDays":        1,
                                 "TotalSessions":    2,
                                 "LAC":              false,
@@ -6191,7 +6196,7 @@ Mandatory fields:
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
             "Status":           true,
-            "Details":          "Saved successfully"
+            "Details":          "Saved successfully",
             "ExclusionDetails": [{
                                 "ExclusionId":  0001
                                 }],
