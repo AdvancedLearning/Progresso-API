@@ -351,11 +351,11 @@ Update one to many employee records
 
 + Request (application/json)
 
+
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
 
             {
@@ -570,98 +570,100 @@ Retrieve one or more employee check records
                                             "CheckedById":          123456
                                             "CheckedByCode":        "JD",
                                             "CcheckedByName":       "John Don",
-                                            "Position":             "Headteacher",
+                                            "Position":             "DPHT",
                                             "Evidence":             "Certificate Provided"
                                         }],
                 "AGN":                  [{ 
-                                            "checkId":              2,
-                                            "agencyName":           "",
-                                            "paperworkDate":       "12-09-2013"
+                                            "CheckId":              2,
+                                            "AgencyName":           "Hays",
+                                            "PaperworkDate":       "12-09-2013"
                                         }],
                 "DBS":                  [{
-                                            "checkId":              3,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedById":          123456
-                                            "checkedByCode":        "JD",
-                                            "checkedByName":        "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
-                                            "clearenceLevel":       "Enhanced check",
-                                            "result":               "Pass",
-                                            "requestDate":          "12-09-2013",
-                                            "reviewDate":           "12-09-2013",
-                                            "disclousureReference": "T000135"
+                                            "CheckId":              3,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedById":          123456
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
+                                            "ClearenceLevel":       "EN",
+                                            "Result":               "PASS",
+                                            "RequestDate":          "12-09-2013",
+                                            "ReviewDate":           "12-09-2013",
+                                            "DisclousureReference": "T000135"
                                         }],
                 "GTC":                  [{ 
-                                            "checkId":              4,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              4,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "ID":                   [{ 
-                                            "checkId":              5,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              5,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "List99":               [{ 
-                                            "checkId":              6,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "list99Clearence":      "Pass",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              6,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "List99Clearence":      "Pass",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "MED":                  [{ 
-                                            "checkId":              7,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              7,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "Qual":                 [{
-                                            "checkId":              8,
-                                             "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              8,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "RED":                  [{ 
-                                            "checkId":              9,
-                                             "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              9,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "RTW":                  [{ 
-                                            "checkId":              10,
-                                             "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedByCode":            "JD",
-                                            "checkedByName":            "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              10,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedByCode":        "JD",
+                                            "CheckedByName":        "John Doe",
+                                            "Position":             "DPHT",
+                                            "Evidence":             "Certificate Provided"
                                         }]
             }
 
 
 ## Create/Update Employee Checks [/employeeChecks]
+
 ### Create Employee Checks [POST]
+
 Create Employee checks for one to multiple employees
 
 + Request (application/json)
@@ -673,66 +675,54 @@ Create Employee checks for one to multiple employees
 
     + Body
     
-            [{
-                
-                "employeeId":       0001,
-  
-                                        "ADD":  [{ }],
-                                        "AGN":  [{ }],
-                                        "DBS":  [{ }],
-                                        "GTC":  [{ }],
-                                        "ID":   [{ }],
-                                        "List99":  [{ 
-                                                    
-                                                    "checkId":              0,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "list99Clearence":      "Pass",
-                                                    "checkedById:"          123456
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                    }],
-                                        "MED":  [{  }],
-                                        "Qual": [{ }],
-                                        "RED":  [{ }],
-                                        "RTW":  [{ }]
-                  
-                                
-            }]
+            {
+                "EmployeeId":       0001,
+                            "ADD":  [{ }],
+                            "AGN":  [{ }],
+                            "DBS":  [{ }],
+                            "GTC":  [{ }],
+                            "ID":   [{ }],
+                            "List99":   [{     
+                                        "CheckId":              0,
+                                        "VerificationDate":     "12-09-2013",
+                                        "ExpiryDate":           "12-09-2014",
+                                        "List99Clearence":      "Pass",
+                                        "CheckedById":          123456,
+                                        "Position":             "DPHT",
+                                        "Evidence":             "Certificate Provided"
+                                        }],
+                            "MED":  [{  }],
+                            "Qual": [{ }],
+                            "RED":  [{ }],
+                            "RTW":  [{ }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
             {
-            
-                "status":       true,
-                "details":      "Create Succesful",
-                "employeeId":       0001,
-          
-                                        "ADD":  [{ }],
-                                        "AGN":  [{ }],
-                                        "DBS":  [{ }],
-                                        "GTC":  [{ }],
-                                        "ID":   [{ }],
-                                        "List99":  [{ 
-                                                    
-                                                    "checkId":              00001,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "list99Clearence":      "Pass",
-                                                    "checkedById":          123456,
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                    }],
-                                        "MED":  [{  }],
-                                        "Qual": [{ }],
-                                        "RED":  [{ }],
-                                        "RTW":  [{ }]
-                    
-
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "EmployeeId":   0001,
+                            "ADD":  [{ }],
+                            "AGN":  [{ }],
+                            "DBS":  [{ }],
+                            "GTC":  [{ }],
+                            "ID":   [{ }],
+                            "List99":   [{
+                                        "CheckId":              00001,
+                                        "VerificationDate":     "12-09-2013",
+                                        "ExpiryDate":           "12-09-2014",
+                                        "List99Clearence":      "PASS",
+                                        "CheckedById":          123456,
+                                        "Position":             "DPHT",
+                                        "Evidence":             "Certificate Provided"
+                                        }],
+                            "MED":  [{  }],
+                            "Qual": [{ }],
+                            "RED":  [{ }],
+                            "RTW":  [{ }]
             }
 
 ### Update Employee Checks [PUT]
@@ -748,69 +738,60 @@ Update Employee checks for one to multiple contacts
 
     + Body
     
-            [{
-                "employeeId":       0001,
-               
-                                        "ADD":  [{ }],
-                                        "AGN":  [{ }],
-                                        "DBS":  [{ }],
-                                        "GTC":  [{ }],
-                                        "ID":   [{ }],
-                                        "List99":  [{ 
-                                                    
-                                                    "checkId":              00001,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "list99Clearence":      "Pass",
-                                                    "checkedById"           12345,
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                    }],
-                                        "MED":  [{  }],
-                                        "Qual": [{ }],
-                                        "RED":  [{ }],
-                                        "RTW":  [{ }]
-                               
-            }]
+            {
+                "EmployeeId":   0001,
+                            "ADD":  [{ }],
+                            "AGN":  [{ }],
+                            "DBS":  [{ }],
+                            "GTC":  [{ }],
+                            "ID":   [{ }],
+                            "List99":   [{
+                                        "CheckId":              00001,
+                                        "VerificationDate":     "12-09-2013",
+                                        "ExpiryDate":           "12-09-2014",
+                                        "List99Clearence":      "PASS",
+                                        "CheckedById":          123456,
+                                        "Position":             "DPHT",
+                                        "Evidence":             "Certificate Provided"
+                                        }],
+                            "MED":  [{  }],
+                            "Qual": [{ }],
+                            "RED":  [{ }],
+                            "RTW":  [{ }]
+            }
 
 + Response 200 (application/json)
 
     + Body
     
             {
-            
-                "status":       true,
-                "details":      "Create Succesful",
-                "employeeId":       0001,
-                "checks":       [{
-                                        "ADD":  [{ }],
-                                        "AGN":  [{ }],
-                                        "DBS":  [{ }],
-                                        "GTC":  [{ }],
-                                        "ID":   [{ }],
-                                        "List99":  [{ 
-                                                    
-                                                    "checkId":              00001,
-                                                    "verificationDate":     "12-09-2013",
-                                                    "expiryDate":           "12-09-2014",
-                                                    "list99Clearence":      "Pass",
-                                                    "checkedById":          123456
-                                                    "position":             "Headteacher",
-                                                    "evidence":             "Certificate Provided"
-                                                    
-                                                    }],
-                                        "MED":  [{  }],
-                                        "Qual": [{ }],
-                                        "RED":  [{ }],
-                                        "RTW":  [{ }]
-                                }]
-
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "EmployeeId":   0001,
+                            "ADD":  [{ }],
+                            "AGN":  [{ }],
+                            "DBS":  [{ }],
+                            "GTC":  [{ }],
+                            "ID":   [{ }],
+                            "List99":   [{
+                                        "CheckId":              00001,
+                                        "VerificationDate":     "12-09-2013",
+                                        "ExpiryDate":           "12-09-2014",
+                                        "List99Clearence":      "PASS",
+                                        "CheckedById":          123456,
+                                        "Position":             "DPHT",
+                                        "Evidence":             "Certificate Provided"
+                                        }],
+                            "MED":  [{  }],
+                            "Qual": [{ }],
+                            "RED":  [{ }],
+                            "RTW":  [{ }]
             }
 
 
 
 ## Employees Contracts [/employeeContracts{?employee}]
+
 Collection of all employee checks for employees within a school
 
 ### Retrieve collection of employee contracts [GET]
@@ -830,20 +811,20 @@ Collection of all employee checks for employees within a school
     + Body
     
             {
-                "employeeId":       00001,
-                "staffCode":        "sc123",
-                "contracts":        [{
-                                        contractId":       0001    
-                                        "type":         "PRM",
-                                        "name":         "Main Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2015",
-                                        "postCode":     "AHT",
-                                        "postName":     "Assistant Head",
-                                        "dailyRate":    true
-                                         "origin":       "Other",
-                                        "destination":  ""                           
-                                        "roles":    [{
+                "EmployeeId":   00001,
+                "StaffCode":    "sc123",
+                "Contracts":    [{
+                                "ContractId":       0001    
+                                "Type":         "PRM",
+                                "name":         "Main Contract",
+                                "startDate":    "01-09-2013",
+                                "endDate":      "31-08-2015",
+                                "postCode":     "AHT",
+                                "postName":     "Assistant Head",
+                                "dailyRate":    true
+                                "origin":       "Other",
+                                "destination":  ""                           
+                                "roles":    [{
                                                         "roleId":           0001,
                                                         role":             "Teaching Assistant",
                                                         "hoursPerWeek":     32.50,
@@ -1841,6 +1822,10 @@ Update one to many contact records
 
 Collection of all learner-related resources
 
+**To be replaced by PROAPI-32**
+
+Search for PROAPI-32 to see changes.
+
 ### Retrieve a collection of learners [GET]
 
 + Parameters
@@ -1902,6 +1887,10 @@ Collection of all learner-related resources
             ]
 
 ## Learner Record [/learners/{id}]
+
+**Proposed to be removed** 
+
+Optional parameter 'Id' will be included in amended GET Learners method - see PROAPI-32
 
 
 ### Retrieve a learner [GET]
