@@ -860,7 +860,7 @@ Collection of all employee checks for employees within a school
             }
             
             
-## Create/Update Employee Contracts [/employeeContracts]
+## Create/Update Employee Contracts [/EmployeeContracts]
 
 ### Create Contract [POST]
 
@@ -877,18 +877,18 @@ Create one to many contract records
     + Body
     
             {
-                "employeeId":       00001,
-                "contracts":        [{
-                                        contractId":       0,    
-                                        "type":         "PRM",
-                                        "name":         "Main Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2015",
-                                        "postCode":     "AHT",
-                                        "dailyRate":    true
-                                         "origin":       "Other",
-                                        "destination":  ""                           
-                                    }]
+                "EmployeeId":   00001,
+                "Contracts":    [{
+                                    "ContractId":   0,    
+                                    "Type":         "PRM",
+                                    "Name":         "Main Contract",
+                                    "StartDate":    "01-09-2013",
+                                    "EndDate":      "31-08-2015",
+                                    "PostCode":     "AHT",
+                                    "DailyRate":    true,
+                                    "Origin":       "OTHEDU",
+                                    "Destination":  ""                           
+                                }]
             }
 
 + Response 200 (application/json)
@@ -896,23 +896,21 @@ Create one to many contract records
     + Body
     
             {
-                "status":           true,
-                "details":          "saved successfully",
-                "employeeId":       00001,
-                "contracts":        [{
-                                        "status":           true,
-                                        "details":          "",
-                                        contractId":     1    
-                                        "type":         "PRM",
-                                        "name":         "Main Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2015",
-                       
-                                    }]
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "EmployeeId":   00001,
+                "Contracts":    [{
+                                    "ContractId":   1,    
+                                    "Type":         "PRM",
+                                    "Name":         "Main Contract",
+                                    "StartDate":    "01-09-2013",
+                                    "EndDate":      "31-08-2015"
+                                }]
             }
             
             
 ### Update Contract [PUT]
+
 Update one to many contract records  
 
 
@@ -926,19 +924,19 @@ Update one to many contract records
     + Body
     
             {
-                "employeeId":       00001,
-                "contracts":        [{
-                                        contractId":       1,    
-                                        "type":         "PRM",
-                                        "name":         "Main Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2015",
-                                        "postCode":     "AHT",
-                                        "dailyRate":    true
-                                        "Base Pay":     36588.00
-                                         "origin":       "Other",
-                                        "destination":  ""                           
-                                    }]
+                "EmployeeId":   00001,
+                "Contracts":    [{
+                                    "ContractId":       1,    
+                                    "Type":         "PRM",
+                                    "Name":         "Main Contract",
+                                    "StartDate":    "01-09-2013",
+                                    "EndDate":      "31-08-2015",
+                                    "PostCode":     "AHT",
+                                    "DailyRate":    true,
+                                    "Base Pay":     36588.00,
+                                    "Origin":       "OTHEDU",
+                                    "Destination":  ""                           
+                                }]
             }
 
 + Response 200 (application/json)
@@ -946,20 +944,20 @@ Update one to many contract records
     + Body
     
             {
-                "status":           true,
-                "details":          "saved successfully"
-                "employeeId":       00001,
-                "contracts":        [{
-                                        contractId":     1    
-                                        "type":         "PRM",
-                                        "name":         "Main Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2015",
-                        
-                                    }]
+                "Status":       true,
+                "Details":      "Saved successfully"
+                "EmployeeId":   00001,
+                "Contracts":    [{
+                                    "ContractId":     1    
+                                    "Type":         "PRM",
+                                    "Name":         "Main Contract",
+                                    "StartDate":    "01-09-2013",
+                                    "EndDate":      "31-08-2015"
+                                }]
             }
 
-## Create/Update Employees Contract Roles [/employeeContractRoles]
+## Create/Update Employees Contract Roles [/EmployeeContractRoles]
+
 Collection of all employee roles for employee contracts within a school
 
 ### Create Roles for employee contracts [POST]
@@ -973,19 +971,18 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "employeeId":       00001,
-                "contractId":       00001,
-                "roles":    [{
-                                "roleId":           0
-                                role":             "Teaching Assistant",
-                                "hoursPerWeek":     32.50,
+                "EmployeeId":       00001,
+                "ContractId":       00001,
+                "Roles":    [{
+                                "Role":             "Teaching Assistant",
+                                "HoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
-                                "weeksPerYear":     52.14,
-                                "payrollNumber":    "123456",
+                                "WeeksPerYear":     52.14,
+                                "PayrollNumber":    "123456",
                                 "NIRate":           "Contracted In",
-                                "superannuation":   "Teachers Superannuation",
-                                "costCentre":       "TEACH",
-                                "ledgerCode":       "A040"
+                                "Superannuation":   "Teachers Superannuation",
+                                "CostCentre":       "TEACH",
+                                "LedgerCode":       "A040"
                             }]
             },
             {
