@@ -538,10 +538,13 @@ Mandtory parameters:
             
                             
 
-## Employees Checks [/employeeChecks{?status}{?employee}]
+## Employees Checks [/EmployeeChecks{?Status}{?Employee}]
+
 Collection of all employee checks for employees within a school
 
 ### Retrieve collection of employee checks [GET]
+
+Retrieve one or more employee check records
 
 + Request
 
@@ -550,25 +553,25 @@ Collection of all employee checks for employees within a school
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + status (optional, boolean, `true`)... Option filter for active Employees
-    + employee (optional, int, `0001``) ... Optional filter to an Employee
+    + Status (optional, boolean, `true`)... Option filter for active Employees
+    + Employee (optional, int, `0001`) ... Optional filter to an Employee
 
 + Response 200 (application/json)
 
     + Body
     
             {
-                "employeeId":           0001,
-                "staffCode":            "sc123",     
+                "EmployeeId":           0001,
+                "StaffCode":            "sc123",     
                 "ADD":                  [{
-                                            "checkId":              1,
-                                            "verificationDate":     "12-09-2013",
-                                            "expiryDate":           "12-09-2014",
-                                            "checkedById":          123456
-                                            "checkedByCode":        "JD",
-                                            "checkedByName":        "John Doe",
-                                            "position":             "Headteacher",
-                                            "evidence":             "Certificate Provided"
+                                            "CheckId":              1,
+                                            "VerificationDate":     "12-09-2013",
+                                            "ExpiryDate":           "12-09-2014",
+                                            "CheckedById":          123456
+                                            "CheckedByCode":        "JD",
+                                            "CcheckedByName":       "John Don",
+                                            "Position":             "Headteacher",
+                                            "Evidence":             "Certificate Provided"
                                         }],
                 "AGN":                  [{ 
                                             "checkId":              2,
@@ -5656,7 +5659,7 @@ Mandatory fields:
             "Year":               "13",
             "Course":             "KS5",
             "NCYear":             "13",
-            "Boarder":            "Not a boarder"
+            "Boarder":            "N"
             "AddressDetails":   [{
                                     "Country":      "GBR",
                                     "Type":         "H",
@@ -5677,7 +5680,7 @@ Mandatory fields:
                                     "Title":        "Mrs",
                                     "Forename":     "Trillian",
                                     "Surname":      "Beelebrox",
-                                    "Relationship": "Mother",
+                                    "Relationship": "PAM",
                                     "Gender":       "F",
                                     "WrittenCommunication":     "",
                                     "Priority":                 1,
@@ -5696,28 +5699,28 @@ Mandatory fields:
             "Siblings":         [{
                                     "LearnerCode":  "2014-0002"
                                 }],
-            "PartTime":           "N",
+            "PartTime":           false,
             "EnrolementStatus":   "C",
             "UPN":                "H502400200007",
             "FormerUPN":          "F502400200003",
             "ULN":                "P400200003",
             "UCI":                "3452165403",
-            "G&T":                "Y",
-            "MedicalFlag":        "Y",
+            "G&T":                true,
+            "MedicalFlag":        true,
             "YSSAIndicator":      "Y",
             "Nationality":        "GBR",
             "Ethnicity":          "WBRI",
             "EthnicitySource":    "P",
             "ServiceChild":       "N",
             "ServiceChildSource": "P",
-            "TopUpFunding":       "Y",
-            "FundedHours":        "",
-            "HoursAtSetting":     "",
-            "UnitContactTime":    "",
-            "SchoolLunchTaken":   "Y",
-            "MealType":           "Cold School Meal",
-            "AsylumSeeker":       "",
-            "Religion":           "Hindi"
+            "TopUpFunding":       true,
+            "FundedHours":        0.0,
+            "HoursAtSetting":     0.0,
+            "UnitContactTime":    0.0,
+            "SchoolLunchTaken":   true,
+            "MealType":           "CSM",
+            "AsylumSeeker":       false,
+            "Religion":           "HIN"
             "Disabilities":     [{
                                     "Disability":  "CON"
                                 }],
@@ -5804,44 +5807,142 @@ Mandatory fields:
     + Body
     
             {
-            "LearnerId":        02134,
-            "AcademicHouse":    "Chatsworth"
-            "EmailAddress":     "asdfasdfb@c.co.uk",
-            "DateOfEntry":      "01-09-2012 00:00:00",
+            "LearnerCode":        "2010-0001",
+            "Surname":            "Sterling",
+            "Forename":           "Geoffrey",
+            "Status":             "Active",
+            "RegGroup":           "ABC",
+            "AcademicHouse":      "Hulland",
+            "DateOfBirth":        "04-08-1999 00:00:00",
+            "LegalSurname":       "Sterling",
+            "LegalForename":      "Geoffrey",
+            "MiddleName":         "James",
+            "FormerSurname":      "Silver",
+            "EmailAddress":       "af098453hsdf@c.co.uk",
+            "Gender":             "M",
+            "Notes":              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.",
+            "HomeSalutation":     "Mr G Sterling",
+            "DateOfEntry":        "01-09-2010 00:00:00",
+            "Year":               "13",
+            "Course":             "KS5",
+            "NCYear":             "13",
+            "Boarder":            "N"
             "AddressDetails":   [{
                                     "Country":      "GBR",
                                     "Type":         "H",
                                     "Flat":         "",
-                                    "Number":       "28",
-                                    "Street":       "Galaxy Road",
-                                    "Locality":     "Mickleover",
-                                    "Town":         "Derby",
+                                    "Number":       "23",
+                                    "Street":       "Orchard Gardens",
+                                    "Locality":     "Derby",
+                                    "Town":         "",
                                     "County":       "",
-                                    "PostCode":     "DE3 4FL"
+                                    "PostCode":     "DE21 4FL"
                                 }],
             "PhoneDetails":     [{
                                     "Type":         "H",
-                                    "Number":       "0133265987856",
+                                    "Number":       "01111567891",
                                     "SMSFlag":      false
+                                }],
+            "Contacts":         [{
+                                    "Title":        "Mrs",
+                                    "Forename":     "Trillian",
+                                    "Surname":      "Beelebrox",
+                                    "Relationship": "PAM",
+                                    "Gender":       "F",
+                                    "WrittenCommunication":     "",
+                                    "Priority":                 1,
+                                    "ContactPrioritySource":    "",
+                                    "EmergencyContactLevel":    "Primary",
+                                    "NextOfKin":                false,
+                                    "AddressDisclosure":        false,
+                                    "AddressTransferred":       false,
+                                    "ParentalResponsibility":   true,
+                                    "FeePayer":                 false,
+                                    "ParentalPortal":           true,
+                                    "HomeAddressLink":          true,
+                                    "OtherHomeAddressLink":     false,
+                                    "SendSMS":                  true
+                                }],
+            "Siblings":         [{
+                                    "LearnerCode":  "2014-0002"
+                                }],
+            "PartTime":           false,
+            "EnrolementStatus":   "C",
+            "UPN":                "H502400200007",
+            "FormerUPN":          "F502400200003",
+            "ULN":                "P400200003",
+            "UCI":                "3452165403",
+            "G&T":                false,
+            "MedicalFlag":        false,
+            "YSSAIndicator":      "Y",
+            "Nationality":        "GBR",
+            "Ethnicity":          "WBRI",
+            "EthnicitySource":    "P",
+            "ServiceChild":       "N",
+            "ServiceChildSource": "P",
+            "TopUpFunding":       false,
+            "FundedHours":        0.0,
+            "HoursAtSetting":     0.0,
+            "UnitContactTime":    0.0,
+            "SchoolLunchTaken":   false,
+            "MealType":           "CSM",
+            "AsylumSeeker":       false,
+            "Religion":           "HIN"
+            "Disabilities":     [{
+                                    "Disability":  "CON"
+                                }],
+            "Language":         [{
+                                    "TypeCode":             "F",
+                                    "LangCode":             "ENG",
+                                }],
+            "SENProvision":     [{
+                                    "ProvisionTypeCode":    "E",
+                                    "StartDate":            "19/09/2014"
+                                }],
+            "SENMajorNeeds":    [{
+                                    "MajorNeedCode":        "SLD",
+                                    "Ranking":              1
                                 }]
-            }    
+            }
+            
 
-+ Response 200
++ Response 200 (application/json)
            
     + Body
     
             {
-            "LearnerId":        "02134",
-            "Status":           "true",
-            "Details":          "Saved successfully"
+            "LearnerId":          02134,
+            "LearnerCode":        "2010-0001",
+            "Status":             "true",
+            "Details":            "Saved successfully"
             "AddressDetails":   [{
                                     "AddressId":    0001
                                 }],
             "PhoneDetails":     [{
                                     "PhoneId":      0001
-                                }]
-            }
-            
+                                }],
+            "ContactDetails":   [{
+                                    "ContactId":    0001
+                                    "LearnerContactRelationshipId": 0002
+                                }],
+            "SiblingDetails":   [{
+                                    "LearnerId":   0002
+                                }],
+            "DisabilityDetails":[{
+                                    "DisabilityTypeId": 0001 
+                                }],
+            "LanguageDetails":  [{
+                                    "LanguageId":   0002
+                                }],
+            "SENProvisionDetails":  [{
+                                        "ProvisionId":  0003
+                                    }],
+            "SENMajorNeedsDetails": [{
+                                        "MajorNeedId":  0001
+                                    }]
+            } 
+
+           
 
 ##LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
 
