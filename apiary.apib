@@ -790,7 +790,7 @@ Update Employee checks for one to multiple contacts
 
 
 
-## Employees Contracts [/employeeContracts{?employee}]
+## Employees Contracts [/EmployeeContracts{?Employee}]
 
 Collection of all employee checks for employees within a school
 
@@ -804,7 +804,7 @@ Collection of all employee checks for employees within a school
 
 + Parameters
 
-    + employee (optional, int, `12345`) ... Optional filter to an Employee
+    + Employee (optional, int, `12345`) ... Optional filter to an Employee
 
 + Response 200 (application/json)
 
@@ -814,132 +814,56 @@ Collection of all employee checks for employees within a school
                 "EmployeeId":   00001,
                 "StaffCode":    "sc123",
                 "Contracts":    [{
-                                "ContractId":       0001    
+                                "ContractId":   0001,    
                                 "Type":         "PRM",
-                                "name":         "Main Contract",
-                                "startDate":    "01-09-2013",
-                                "endDate":      "31-08-2015",
-                                "postCode":     "AHT",
-                                "postName":     "Assistant Head",
-                                "dailyRate":    true
-                                "origin":       "Other",
-                                "destination":  ""                           
-                                "roles":    [{
-                                                        "roleId":           0001,
-                                                        role":             "Teaching Assistant",
-                                                        "hoursPerWeek":     32.50,
-                                                        "FTEHours":         32.50,
-                                                        "weeksPerYear":     52.14,
-                                                        "payrollNumber":    "123456",
-                                                        "NIRate":           "Contracted In",
-                                                        "superannuation":   "Teachers Superannuation",
-                                                        "costCentre":       "TEACH (Teaching Staff)",
-                                                        "ledgerCode":       "A040 (Teachers Salaries"
-                                                        "salaries":         [{
-                                                                                "salaryId":             00001,
-                                                                                "effectiveFrom":        "01-09-2014",
-                                                                                "effectiveTo":          "31-08-2015",         "",
-                                                                                "payScaleCode":             "",
-                                                                                "payScaleName":             "",
-                                                                                "regionalSpine":        "",
-                                                                                "point":                "",
-                                                                                "safeguardedSalary":    true,
-                                                                                "includeInPensionCalc": false,
-                                                                                "includeInNICalc":      true,
-                                                                                "basePay":              ""
-                                                                            }],
-                                                        "allowance":        [{
-                                                                                "allowanceId":          1,
-                                                                                "effectiveFrom":        "01-09-2014",
-                                                                                "effectiveTo":          "31-08-2015",
-                                                                                "category":             "",
-                                                                                "amount":               ""
-                                                                            }],
-                                                        
-                                                    }],
-                                    }]
-            },
-            {
-                "employeeId":       00002,
-                "staffCode":        "ad456",
-                "contracts":        [{
-                                        contractId":    0002    
-                                        "type":         "FXT",
-                                        "name":         "Sum Contract",
-                                        "startDate":    "01-09-2013",
-                                        "endDate":      "31-08-2014",
-                                        "postCode":     "SUP",
-                                        "postName":     "Support Staff",
-                                        "dailyRate":    true,
-                                        "origin":       "Other",
-                                        "destination":  "",
-                                        "roles":    [{
-                                                        "roleId":           0002,
-                                                        "role":             "Teaching Assistant",
-                                                        "hoursPerWeek":     32.50,
-                                                        "FTEHours":         32.50,
-                                                        "weeksPerYear":     52.14,
-                                                        "payrollNumber":    "123456",
-                                                        "NIRate":           "Contracted In",
-                                                        "superannuation":   "Teachers Superannuation",
-                                                        "costCentre":       "TEACH (Teaching Staff)",
-                                                        "ledgerCode":       "A040 (Teachers Salaries)"
-                                                        "salaries":         [{
-                                                                                "salaryId":             00002,
-                                                                                "effectiveFrom":        "01-09-2014",
-                                                                                "effectiveTo":          "31-08-2015",
-                                                                                "payScaleCode":             "",
-                                                                                "payScaleName":             "",
-                                                                                "regionalSpine":        "",
-                                                                                "point":                "",
-                                                                                "safeguardedSalary":    true,
-                                                                                "includeInPensionCalc": false,
-                                                                                "includeInNICalc":      true,
-                                                                                "basePay":              ""
-                                                                            }]
-                                                    }]
-                                    },
-                                    {
-                                        "contractId":    0003    
-                                        "type":         "FXT",
-                                        "name":         "Sum Contract",
-                                        "startDate":    "01-09-2014",
-                                        "endDate":      "31-08-2015",
-                                        "postCode":     "SUP",
-                                        "postName":     "Support Staff",
-                                        "dailyRate":    true,
-                                        "origin":       "Other",
-                                        "destination":  ""
-                                        "roles":    [{
-                                                        "roleId":           0003,
-                                                        role":             "Teaching Assistant",
-                                                        "hoursPerWeek":     32.50,
-                                                        "FTEHours":         32.50,
-                                                        "weeksPerYear":     52.14,
-                                                        "payrollNumber":    "123456",
-                                                        "NIRate":           "Contracted In",
-                                                        "superannuation":   "Teachers Superannuation",
-                                                        "costCentre":       "TEACH (Teaching Staff)",
-                                                        "ledgerCode":       "A040 (Teachers Salaries)"
-                                                        "salaries":         [{
-                                                                                "salaryId":             00003,
-                                                                                "effectiveFrom":        "01-09-2014",
-                                                                                 "effectiveTo":          "31-08-2015",
-                                                                                "payScaleCode":             "",
-                                                                                "payScaleName":             "",
-                                                                                "regionalSpine":        "",
-                                                                                "point":                "",
-                                                                                "safeguardedSalary":    true,
-                                                                                "includeInPensionCalc": false,
-                                                                                "includeInNICalc":      true,
-                                                                                "basePay":              ""
-                                                                            }],
-                                                    }],                                        
-                                    }]
+                                "Name":         "Main Contract",
+                                "StartDate":    "01-09-2013",
+                                "EndDate":      "31-08-2015",
+                                "PostCode":     "AHT",
+                                "PostName":     "Assistant Head",
+                                "DailyRate":    False,
+                                "Origin":       "OTHEDU",
+                                "Destination":  "",                           
+                                "Roles":    [{
+                                                "RoleId":           0001,
+                                                "Role":             "TASS",
+                                                "HoursPerWeek":     32.50,
+                                                "FTEHours":         32.50,
+                                                "WeeksPerYear":     52.14,
+                                                "PayrollNumber":    "123456",
+                                                "NIRate":           "Contracted In",
+                                                "Superannuation":   "Teachers Superannuation",
+                                                "CostCentre":       "TEACH (Teaching Staff)",
+                                                "LedgerCode":       "A040 (Teachers Salaries)"
+                                                "Salaries": [{
+                                                            "SalaryId":             00001,
+                                                            "EffectiveFrom":        "01-09-2014",
+                                                            "EffectiveTo":          "31-08-2015",         "",
+                                                            "PayScaleCode":         "",
+                                                            "PayScaleName":         "",
+                                                            "RegionalSpine":        "",
+                                                            "Point":                "",
+                                                            "SafeguardedSalary":    true,
+                                                            "IncludeInPensionCalc": false,
+                                                            "IncludeInNICalc":      true,
+                                                            "BasePay":              "45000"
+                                                            }],
+                                                "Allowance":[{
+                                                            "AllowanceId":          0001,
+                                                            "EffectiveFrom":        "01-09-2014",
+                                                            "EffectiveTo":          "31-08-2015",
+                                                            "Category":             "",
+                                                            "Amount":               ""
+                                                            }],
+                                            }],
+                                }],
             }
-
+            
+            
 ## Create/Update Employee Contracts [/employeeContracts]
+
 ### Create Contract [POST]
+
 Create one to many contract records  
 
 
