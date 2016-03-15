@@ -5717,6 +5717,7 @@ Mandatory fields:
     + Body
     
             {
+            "LearnerId":          00001,
             "LearnerCode":        "2010-0001",
             "Surname":            "Sterling",
             "Forename":           "Geoffrey",
@@ -5736,8 +5737,9 @@ Mandatory fields:
             "Year":               "13",
             "Course":             "KS5",
             "NCYear":             "13",
-            "Boarder":            "N"
+            "Boarder":            "N",
             "AddressDetails":   [{
+                                    "AddressID":    0001,
                                     "Country":      "GBR",
                                     "Type":         "H",
                                     "Flat":         "",
@@ -5749,11 +5751,13 @@ Mandatory fields:
                                     "PostCode":     "DE21 4FL"
                                 }],
             "PhoneDetails":     [{
+                                    "PhoneId":      0001,
                                     "Type":         "H",
                                     "Number":       "01111567891",
                                     "SMSFlag":      false
                                 }],
-            "Contacts":         [{
+            "ContactDetails":   [{
+                                    "ContactId":    0001,
                                     "Title":        "Mrs",
                                     "Forename":     "Trillian",
                                     "Surname":      "Beelebrox",
@@ -5773,7 +5777,8 @@ Mandatory fields:
                                     "OtherHomeAddressLink":     false,
                                     "SendSMS":                  true
                                 }],
-            "Siblings":         [{
+            "SiblingDetails":   [{
+                                    "LearnerSiblingId":    0001,
                                     "LearnerCode":  "2014-0002"
                                 }],
             "PartTime":           false,
@@ -5798,21 +5803,25 @@ Mandatory fields:
             "MealType":           "CSM",
             "AsylumSeeker":       false,
             "Religion":           "HIN"
-            "Disabilities":     [{
+            "DisabilityDetails":[{
+                                    "DisabilityTypeId":     0001,
                                     "Disability":  "CON"
                                 }],
-            "Language":         [{
+            "LanguageDetails":  [{
+                                    "LanguageUsageId":      0001,
                                     "TypeCode":             "F",
                                     "LangCode":             "ENG",
                                 }],
-            "SENProvision":     [{
+            "SENProvisionDetails":  [{
+                                    "ProvisionId":          0003,
                                     "ProvisionTypeCode":    "E",
                                     "StartDate":            "19/09/2014"
-                                }],
-            "SENMajorNeeds":    [{
+                                    }],
+            "SENMajorNeedsDetails": [{
+                                    "MajorNeedId":          0001,
                                     "MajorNeedCode":        "SLD",
                                     "Ranking":              1
-                                }]
+                                    }]
             }
             
 
@@ -5832,11 +5841,11 @@ Mandatory fields:
                                     "PhoneId":      0001
                                 }],
             "ContactDetails":   [{
-                                    "ContactId":    0001
+                                    "ContactId":    0001,
                                     "LearnerContactRelationshipId": 0002
                                 }],
             "SiblingDetails":   [{
-                                    "LearnerId":   0002
+                                    "LearnerSiblingId":   0002
                                 }],
             "DisabilityDetails":[{
                                     "DisabilityTypeId": 0001 
