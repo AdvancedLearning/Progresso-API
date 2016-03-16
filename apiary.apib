@@ -5440,6 +5440,7 @@ Response codes used are:
                                     "Forename":     "Zaphod",
                                     "Surname":      "Beelebrox",
                                     "Relationship": "Father",
+                                    "Gender":       "M",
                                     "WrittenCommunication":     "",
                                     "Priority":                 "",
                                     "ContactPrioritySource":    "",
@@ -5481,22 +5482,26 @@ Response codes used are:
             "SchoolLunchTaken": true,
             "MealType":         "CSM",
             "AsylumSeeker":     false,
-            "Religion":         "Hindi",
+            "Religion":         "HIN",
             "DisabilityDetails":[{
-                                    "Disability":  "CON"
+                                    "Disability":       "CON",
+                                    "DisabilityTypeId": 0001
                                 },{
-                                    "Disability":  "DDA"
+                                    "Disability":       "DDA",
+                                    "DisabilityTypeId":  0002
                                 }],
             "LanguageDetails":  [{
-                                    "TypeCode":         "F",
-                                    "TypeDescription":  "First Language",
-                                    "LangCode":         "ENG",
-                                    "LangDescription":  "English"
+                                    "TypeCode":             "F",
+                                    "TypeDescription":      "First Language",
+                                    "LanguageCode":         "ENG",
+                                    "LanguageDescription":  "English",
+                                    "LanguageUsageId":      0001
                                 },{
                                     "TypeCode":         "M",
                                     "TypeDescription":  "Multiple First Language",
                                     "LanguageCode":     "AYB",
-                                    "LangDescription":  "Anyi-Baule"
+                                    "LanguageDescription":  "Anyi-Baule"
+                                    "LanguageUsageId":  0002
                                 }],
             "SENProvisionDetails":  [{
                                         "ProvisionId":          00001
@@ -5586,7 +5591,7 @@ Mandatory fields:
                                     "Number":       "01111567891",
                                     "SMSFlag":      false
                                 }],
-            "Contacts":         [{
+            "ContactDetails":   [{
                                     "Title":        "Mrs",
                                     "Forename":     "Trillian",
                                     "Surname":      "Beelebrox",
@@ -5606,7 +5611,7 @@ Mandatory fields:
                                     "OtherHomeAddressLink":     false,
                                     "SendSMS":                  true
                                 }],
-            "Siblings":         [{
+            "SiblingDetails":   [{
                                     "LearnerCode":  "2014-0002"
                                 }],
             "PartTime":           false,
@@ -5631,21 +5636,21 @@ Mandatory fields:
             "MealType":           "CSM",
             "AsylumSeeker":       false,
             "Religion":           "HIN"
-            "Disabilities":     [{
-                                    "Disability":  "CON"
-                                }],
-            "Language":         [{
+            "DisabilityDetailss":   [{
+                                        "Disability":  "CON"
+                                    }],
+            "LanguageDetails":  [{
                                     "TypeCode":             "F",
                                     "LangCode":             "ENG",
                                 }],
-            "SENProvision":     [{
-                                    "ProvisionTypeCode":    "E",
-                                    "StartDate":            "19/09/2014"
-                                }],
-            "SENMajorNeeds":    [{
-                                    "MajorNeedCode":        "SLD",
-                                    "Ranking":              1
-                                }]
+            "SENProvisionDetails":  [{
+                                        "ProvisionTypeCode":    "E",
+                                        "StartDate":            "19/09/2014"
+                                    }],
+            "SENMajorNeedsDetails": [{
+                                        "MajorNeedCode":        "SLD",
+                                        "Ranking":              1
+                                    }]
             }
             
             
@@ -5739,7 +5744,7 @@ Mandatory fields:
             "NCYear":             "13",
             "Boarder":            "N",
             "AddressDetails":   [{
-                                    "AddressID":    0001,
+                                    "AddressId":    0001,
                                     "Country":      "GBR",
                                     "Type":         "H",
                                     "Flat":         "",
@@ -5778,7 +5783,6 @@ Mandatory fields:
                                     "SendSMS":                  true
                                 }],
             "SiblingDetails":   [{
-                                    "LearnerSiblingId":    0001,
                                     "LearnerCode":  "2014-0002"
                                 }],
             "PartTime":           false,
@@ -5786,8 +5790,7 @@ Mandatory fields:
             "UPN":                "H502400200007",
             "FormerUPN":          "F502400200003",
             "ULN":                "P400200003",
-            "UCI":                "3452165403",
-            "G&T":                false,
+            "GandT":              false,
             "MedicalFlag":        false,
             "YSSAIndicator":      "Y",
             "Nationality":        "GBR",
@@ -5845,13 +5848,13 @@ Mandatory fields:
                                     "LearnerContactRelationshipId": 0002
                                 }],
             "SiblingDetails":   [{
-                                    "LearnerSiblingId":   0002
+                                    "LearnerId":   0002
                                 }],
             "DisabilityDetails":[{
                                     "DisabilityTypeId": 0001 
                                 }],
             "LanguageDetails":  [{
-                                    "LanguageId":   0002
+                                    "LanguageUsgeId":   0002
                                 }],
             "SENProvisionDetails":  [{
                                         "ProvisionId":  0003
