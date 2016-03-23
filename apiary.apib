@@ -5363,7 +5363,7 @@ Update one to many Sites
 
 # Group Learners Collection v2
 
-##Learners [/Learners/{LearnerId}{LearnerCode}{Status}{DateModified}]
+##Learners [/Learners/{LearnerId}{LearnerCode}{Status}{Since}]
 After feedback from Partners and changes of internal requirements more fields are to be added to the existing GET Learners method.
 This section is work in progress and subject to change.
 
@@ -5371,7 +5371,7 @@ This section is work in progress and subject to change.
 
     + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
     + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
-    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
+    + Since         (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
     + Status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
 
 ### Retrieve a collection of Learner Details [GET]
@@ -5492,21 +5492,16 @@ Response codes used are:
                                 }],
             "LanguageDetails":  [{
                                     "TypeCode":             "F",
-                                    "TypeDescription":      "First Language",
                                     "LanguageCode":         "ENG",
-                                    "LanguageDescription":  "English",
                                     "LanguageUsageId":      0001
                                 },{
                                     "TypeCode":         "M",
-                                    "TypeDescription":  "Multiple First Language",
                                     "LanguageCode":     "AYB",
-                                    "LanguageDescription":  "Anyi-Baule"
                                     "LanguageUsageId":  0002
                                 }],
             "SENProvisionDetails":  [{
                                         "ProvisionId":          00001
                                         "ProvisionTypeCode":    "E",
-                                        "ProvisionTypeName":    "Education, Health and Care Plan",
                                         "StartDate":            "19/09/2014",
                                         "ReviewDate":           "20/09/2014",
                                         "EndDate":              "20/09/2014" 
@@ -5514,7 +5509,6 @@ Response codes used are:
             "SENMajorNeedsDetails": [{
                                         "LeanerMajorNeedId":    00001
                                         "MajorNeedCode":        "SLD",
-                                        "MajorNeedDescription": "Severe Learning Difficulty ",
                                         "Ranking":              1
                                     }]
             }
@@ -5813,7 +5807,7 @@ Mandatory fields:
             "LanguageDetails":  [{
                                     "LanguageUsageId":      0001,
                                     "TypeCode":             "F",
-                                    "LangCode":             "ENG",
+                                    "LangCode":             "ENG"
                                 }],
             "SENProvisionDetails":  [{
                                     "ProvisionId":          0003,
@@ -6245,7 +6239,7 @@ Response codes used are:
                                 "Severity":        "Low"
                             }],
             "Severities":   [{
-                                "SeverityId":       0001
+                                "SeverityId":       0001,
                                 "Code":             "S1",
                                 "Description":      "Low"
                             },{
@@ -6262,13 +6256,13 @@ Response codes used are:
                                 "Code":             "01DET",
                                 "Description":      "Think Tank",
                                 "Behaviour":        "Negative",
-                                "BehaviourType":     "Confrontational"
+                                "BehaviourType":    "Confrontational"
                             },{
                                 "ActionId":         0002,
                                 "Code":             "02REW",
                                 "Description":      "Reward Point",
                                 "Behaviour":        "Positive",
-                                "BehaviourType":     "Classwork"
+                                "BehaviourType":    "Classwork"
                             }]
             "Rules":        [{
                                 "RuleId":           0001,
@@ -6367,7 +6361,7 @@ Mandatory Parameters:
                                 "Category":        "CAT1",
                                 "Severity":        "High"
                             },{
-                                "Code":            "02CLWK,
+                                "Code":            "02CLWK",
                                 "Description":     "Classwork",
                                 "Points":          "3",
                                 "Behaviour":       "Positive",
