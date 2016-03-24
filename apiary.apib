@@ -2631,9 +2631,11 @@ Update one to many learner heatlh records
                                         }]
             }]
 
-## Create/Update Learner Attendance [/learnerRollCallAttendance]
+## Create/Update Learner Attendance [/LearnerRollCallAttendance]
+
 ### Create Learner Roll Call Attendance [POST]
-Create Attendance for one to many learners
+
+Create and amend Attendance for one to many learners
 
 + Request (application/json)
 
@@ -2645,19 +2647,17 @@ Create Attendance for one to many learners
     + Body
            
             [{
-                "learnerCode":          "2013-00001",
-                "attendanceStartDate":  "16-06-2014",
-                "rollCallSessionStart": "AM",
-                "AttendanceString":     "/\/\/\/\/\##IIII/\/\/\"
+                "LearnerCode":          "2013-00001",
+                "AttendanceStartDate":  "2016-03-21",
+                "RollCallSessionStart": "AM",
+                "AttendanceString":     "////IINB"
             },
             {
-                "learnerCode":          "2013-00002",
-                "attendanceStartDate":  "16-06-2014",
-                "rollCallSessionStart": "AM",
-                "AttendanceString":     "BBBB/\/\/\##/\/\/\/\/\"
-                
+                "LearnerCode":          "2013-00002",
+                "AttendanceStartDate":  "16-06-2014",
+                "RollCallSessionStart": "PM",
+                "AttendanceString":     "B"
             }
-            
             }]
 
 + Response 200
@@ -2665,14 +2665,16 @@ Create Attendance for one to many learners
     + Body
     
             {
-                 "learnerCode":          "2013-00001",
-                 "status":             "success"
+                "LearnerCode":          "2013-00001",
+                "Status":               true,
+                "Details":              "Saved successfully"
             },
             {
-                "learnerCode":          "2013-00002",
-                 "status":             "success"
-                
+                "LearnerCode":          "2013-00002",
+                "Status":               true,
+                "Details":              "Saved successfully"
             }
+        
 
 
 ## Create/Update Learner Attendance [/learnerLessonAttendanceByPeriod]
