@@ -248,7 +248,8 @@ Required parameters are:
 
 - Staff Code    
 - Forname         
-- Surname      
+- Surname 
+- Middlename
 
     
 ### Create Basic Employees [POST]
@@ -360,7 +361,6 @@ Update one to many employee records
 
             {
                 "EmployeeId":           12345,
-                "StaffCode":            "JBl",
                 "Title":                "Mr",
                 "Surname":              "Bloggs",
                 "Forname":              "Joe",
@@ -374,10 +374,10 @@ Update one to many employee records
     + Body
     
             {
-                "EmployeeId":           12345,
-                "StaffCode":            "sc123",
-                "Staus":                true,
+                "Status":                true,
                 "Details":              "Saved successfully"
+                "EmployeeId":           12345,
+                "StaffCode":            "sc123"
             }
 
 
