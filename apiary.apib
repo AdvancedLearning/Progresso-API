@@ -6295,7 +6295,7 @@ Response codes used are:
                                 "AndOr":            ""
                             }]
                             }],
-            "DetentionType":[{
+            "DetentionTypes":[{
                                 "DetentionTypeId":  0001,
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
@@ -6304,7 +6304,7 @@ Response codes used are:
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
                             }],
-            "Location":     [{
+            "Locations":     [{
                                 "LocationId":       0001,
                                 "Code":             "CLS",
                                 "Description":      "Classroom"
@@ -6343,96 +6343,99 @@ Mandatory Parameters:
     
             {
             "Categories":   [{
-                                "Code":           "CAT1",
-                                "Description":    "Category 1"
+                            "Code":           "CAT1",
+                            "Description":    "Category 1"
                             },{
-                                "Code":           "CAT2",
-                                "Description":    "Category 2"
+                            "Code":           "CAT2",
+                            "Description":    "Category 2"
                             },{
-                                "Code":           "CAT3",
-                                "Description":    "Category 3"
+                            "Code":           "CAT3",
+                            "Description":    "Category 3"
                             },{
-                                "Code":           "CAT4",
-                                "Description":    "Category 4"
+                            "Code":           "CAT4",
+                            "Description":    "Category 4"
                             }],
             "Types":        [{
-                                "Code":            "01Conf,
-                                "Description":     "Confrontational",
-                                "Points":          "2",
-                                "Behaviour":       "Negative",
-                                "Category":        "CAT1",
-                                "Severity":        "High"
+                            "Code":            "01Conf,
+                            "Description":     "Confrontational",
+                            "Points":          "2",
+                            "Behaviour":       "Negative",
+                            "Category":        "CAT1",
+                            "Severity":        "High"
                             },{
-                                "Code":            "02CLWK",
-                                "Description":     "Classwork",
-                                "Points":          "3",
-                                "Behaviour":       "Positive",
-                                "Category":        "CAT1",
-                                "Severity":        "Low"
-                            }]
+                            "Code":            "02CLWK,
+                            "Description":     "Classwork",
+                            "Points":          "3",
+                            "Behaviour":       "Positive",
+                            "Category":        "CAT1",
+                            "Severity":        "Low"
+                            }],
             "Severities":   [{
-                                "Code":             "S1",
-                                "Description":      "Low"
+                            "Code":             "S1",
+                            "Description":      "Low"
                             },{
-                                "Code":             "S2",
-                                "Description":      "Medium"
-                            },{ 
-                                "Code":             "S3",
-                                "Description":      "High"        
-                            }]
+                            "Code":             "S2",
+                            "Description":      "Medium"
+                            },{
+                            "Code":             "S3",
+                            "Description":      "High"        
+                            }],
             "Actions":      [{
-                                "Code":             "01DET",
-                                "Description":      "Think Tank",
-                                "Behaviour":        "Negative",
-                                "BehaviourType":     "Confrontational"
+                            "Code":             "01DET",
+                            "Description":      "Think Tank",
+                            "Behaviour":        "Negative",
+                            "BehaviourType":     "Confrontational"
                             },{
-                                "Code":             "02REW",
-                                "Description":      "Reward Point",
-                                "Behaviour":        "Positive",
-                                "BehaviourType":    "Classwork"
-                            }]
+                            "Code":             "02REW",
+                            "Description":      "Reward Point",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":     "Classwork"
+                            }],
             "Rules":        [{
-                                "RuleName":         "Reward",
-                                "Status":           "Active",
-                                "RuleCriteria":     "Behaviour",
-                                "Behaviour":        "Positive",
-                                "BehaviourType":    "Classwork",
-                                "BehaviourCategory":"",
-                                "BehaviourSeverity":"",
-                                "Occurred":         "2",
-                                "TimePeriod":       "Week",
-                                "IsRecursive":      "",
-                                "Consequences":     "Reward Point",
-                                "Points":           "2",
-                                "AddLearnerChar":   "Y"
-                            [{
-                                "Characteristic":   "Course",
-                                "Operator":         "Equal",
-                                "Value":            "Key Stage 3",
-                                "AndOr":            "Or"
-                            },{
-                                "Characteristic":   "Course",
-                                "Operator":         "Equal",
-                                "Value":            "Key Stage 4",
-                                "AndOr":            ""
-                            }]
-                        }]
-            "DetentionType":[{
+                            "RuleName":         "Reward",
+                            "Status":           "Active",
+                            "RuleCriteria":     "Behaviour",
+                            "Behaviour":        "Positive",
+                            "BehaviourType":    "Classwork",
+                            "BehaviourCategory":"",
+                            "BehaviourSeverity":"",
+                            "Occurred":         "2",
+                            "TimePeriod":       "Week",
+                            "IsRecursive":      "",
+                            "Consequences":     "Reward Point",
+                            "Points":           "2",
+                            "Characteristics":
+                                [{
+                                    "Characteristic":   "Course",
+                                    "Operator":         "Equal",
+                                    "Sequence":         1,
+                                    "Value":            "Key Stage 3",
+                                    "AndOr":            "Or"
+                                },{
+                                    "Characteristic":   "Course",
+                                    "Operator":         "Equal",
+                                    "Sequence":         2
+                                    "Value":            "Key Stage 4",
+                                    "AndOr":            ""
+                                }]
+                            }],
+            "DetentionTypes":   [{
                                 "Code":             "TT",
                                 "Description":      "Think Tank"
-                            },{
+                                },{
                                 "Code":             "OOD",
                                 "Description":      "One off Detention"
-                        }]
-            "Location":     [{
+                                }],
+            "Locations":        [{
                                 "Code":             "CLS",
                                 "Description":      "Classroom"
-                            },{
+                                },{
                                 "Code":             "SBS",
                                 "Description":      "School Bus"      
-                        }]
+                                }]
             }
-      
+
+
 + Response 200 (application/json)
 
     + Body
@@ -6453,19 +6456,19 @@ Mandatory Parameters:
                             "TypeId":         0001
                             },{
                             "TypeId":         0002
-                            }]
+                            }],
             "Severities":   [{
                             "SeverityId":     0001
                             },{
                             "SeverityId":     0002
                             },{
                             "SeverityId":     0003    
-                            }]
+                            }],
             "Actions":      [{
                             "ActionId":       0001
                             },{
                             "ActionId":       0002
-                            }]
+                            }],
             "Rules":        [{
                             "RuleId":         0001
                                 [{
@@ -6473,13 +6476,13 @@ Mandatory Parameters:
                                 },{
                                 "CharacteristicId":         0002
                                 }]
-                            }]
-            "DetentionType":[{
+                            }],
+            "DetentionTypes":[{
                             "DetentionTypeId":          0001
                             },{
                             "DetentionTypeId":          0002
-                            }]
-            "Location":     [{
+                            }],
+            "Locations":    [{
                             "LocationId":               0001
                             },{
                             "LocationId":               0002  
