@@ -2444,55 +2444,35 @@ Update one to many learner records
     + Body 
             
             {
-                "learnerCode":          "2013-00132",
-                "learnerId":             000001,
-                "allergies":              [{
-                                                "Egg"},
-                                            { "Shellfish"
-                                          }],
-                "foodPreference":        [{
-                                                "DairyFree"
-
+                "LearnerCode":          "2013-00132",
+                "LearnerId":             000001,
+                "Allergies":            [{
+                                            "Allergy": "EGG"
+                                        },
+                                        {
+                                            "Allergy": "MILK"
                                         }],
-                "dietaryNotes":         "",
-                "disabilities":           [{
-                                                "NoDisability"
-                
-                                          }],
-                "disabilityNotes":      "",
-                "medicalConditions":    [{
-                                                "Condition":    "Asthma",
-                                                "InfoDate":     "19-06-2014",
-                                                "Notes":        "Asthma Attack"
-                
+                "FoodPreferences":      [{
+                                            "FoodPreference": "DAIFR"
                                         }],
-                "medicalEvents":        [{
-                                                "events Type":          "Allergic Reaction",
-                                                "from Date":            "19-06-2014",
-                                                "to Date":              "19-06-2014",
-                                                "incident Location":    "Office",
-                                                "notes":                "Eggs"
-
+                "DietaryNotes":         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "Disabilities":         [{,
+                                            "Disability": "NCOL"
+                                        }],
+                "DisabilityNotes":      "Lorem ipsum dolor sit amet",
+                "MedicalConditions":    [{
+                                            "Condition":    "ASTH",
+                                            "InfoDate":     "2016-01-18",
+                                            "Notes":        "Asthma Attack"
+                                        }],
+                "MedicalEvents":        [{
+                                            "EventType":        "ACC",
+                                            "FromDate":         "2016-01-18",
+                                            "ToDate":           "2016-01-18",
+                                            "IncidentLocation": "Office",
+                                            "Notes":            "Lorem ipsum dolor sit amet",
+                                            "MedicalEventId":    408569
                                         }]
-                    
-            
-            },
-            {
-               "learnerCode":          "2013-00133",
-                "learnerId":             000002,
-                "allergies":              [{
-                                                "Wheat"
-                
-                                          }],
-                "foodPreference":        [{ }],
-                "dietaryNotes":         "",
-                "disabilities":           [{
-                                                "Not Collected"
-                                          }],
-                "disabilityNotes":      "",
-                "medicalConditions":    [{ }],
-                "medicalEvents":        [{}]
-            
             }
             
 ## Create/Update Learner Health Details [/learnerHealth]
@@ -6358,14 +6338,14 @@ Mandatory Parameters:
             "Types":        [{
                             "Code":            "01Conf,
                             "Description":     "Confrontational",
-                            "Points":          "2",
+                            "Points":          2,
                             "Behaviour":       "Negative",
                             "Category":        "CAT1",
                             "Severity":        "High"
                             },{
                             "Code":            "02CLWK,
                             "Description":     "Classwork",
-                            "Points":          "3",
+                            "Points":          3,
                             "Behaviour":       "Positive",
                             "Category":        "CAT1",
                             "Severity":        "Low"
@@ -6399,11 +6379,11 @@ Mandatory Parameters:
                             "BehaviourType":    "Classwork",
                             "BehaviourCategory":"",
                             "BehaviourSeverity":"",
-                            "Occurred":         "2",
+                            "Occurred":         2,
                             "TimePeriod":       "Week",
-                            "IsRecursive":      "",
+                            "IsRecursive":      false,
                             "Consequences":     "Reward Point",
-                            "Points":           "2",
+                            "Points":           2,
                             "Characteristics":
                                 [{
                                     "Characteristic":   "Course",
@@ -6434,7 +6414,6 @@ Mandatory Parameters:
                                 "Description":      "School Bus"      
                                 }]
             }
-
 
 + Response 200 (application/json)
 
