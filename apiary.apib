@@ -2544,6 +2544,7 @@ Create one to many learner health records
             }
 
 ### Update Learner Health [PUT]
+
 Update one to many learner heatlh records            
             
 + Request (application/json)
@@ -2555,61 +2556,79 @@ Update one to many learner heatlh records
 
     + Body
            
-            [{
-               "learnerCode":          "2013-00133",
-                "learnerId":             000002,
-                "allergies":              [{
-                                                "Wheat"
-                
-                                          }],
-                "foodPreference":        [{ }],
-                "dietaryNotes":         "",
-                "disabilities":           [{
-                                                "Not Collected"
-                                          }],
-                "disabilityNotes":      "",
-                 "medicalConditions":    [{
-                                                "conditionId":  000001,
-                                                "Condition":    "Asthma",
-                                                "InfoDate":     "19-06-2014",
-                                                "Notes":        "Asthma Attack - Updated"
-                
-                                        }],
-                "medicalEvents":        [{
-                                                "MedicalEventId":          000001,
-                                                "events Type":          "Allergic Reaction",
-                                                "from Date":            "19-06-2014",
-                                                "to Date":              "19-06-2014",
-                                                "incident Location":    "Office",
-                                                "notes":                "Eggs"
-
-                                        }]
+            {
+                "LearnerId": 443790,
+                "LearnerCode": "9196",
+                "Allergies": [{
+                                "Allergy": "EGG"
+                              },{
+                                "Allergy": "MILK"
+                              },{
+                                "Allergy": "PNUT"
+                              }],
+                "FoodPreferences":  [{
+                                        "FoodPreference": "DAIFR"
+                                      },{
+                                        "FoodPreference": "GLFR"
+                                    }],
+                "DietaryNotes": "Lorem ipsum",
+                "Disabilities": [{
+                                    "Disability": "NCOL"
+                                }],
+                "DisabilityNotes": "Lorem ipsum",
+                "MedicalConditions": [{
+                                        "Condition": "ASTH",
+                                        "InfoDate": "2016-01-18",
+                                        "Notes": "Lorem ipsum"
+                                      },{
+                                        "Condition": "TRAV",
+                                        "InfoDate": "2016-01-18",
+                                        "Notes": "Ipsum lorem"
+                                      }],
+                "MedicalEvents":    [{
+                                        "EventType": "ACC",
+                                        "FromDate": "2016-01-18",
+                                        "ToDate": "2016-01-18",
+                                        "IncidentLocation": "GYM",
+                                        "Notes": ""
+                                    }]
+            }
             
-            }]
 
 + Response 200
+
     + Body
     
-            [{
-                "status":               true,
-                "learnerCode":           "2013-00132",
-                "learnerId":            "000001",
-                "medicalConditions":    [{
-                                                "Condition":    "Asthma",
-                                                "InfoDate":     "19-06-2014",
-                                                "Notes":        "Asthma Attack - Updated",
-                                                "conditionId":  000001
-                
-                                        }],
-                "medicalEvents":        [{
-                                                "events Type":          "Allergic Reaction",
-                                                "from Date":            "19-06-2014",
-                                                "to Date":              "19-06-2014",
-                                                "incident Location":    "Office",
-                                                "notes":                "Eggs",
-                                                "conditionId":          000002
-                                        }]
-            }]
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "LearnerId": 443790,
+                "LearnerCode": "9196",
+                "MedicalConditions": [{
+                                        "Condition": "ASTH",
+                                        "InfoDate": "18-01-2016 00:00:00",
+                                        "Notes": null,
+                                        "ConditionId": 225793
+                                      },{
+                                        "Condition": "TRAV",
+                                        "InfoDate": "18-01-2016 00:00:00",
+                                        "Notes": null,
+                                        "ConditionId": 225800
+                                      },{
+                                        "Condition": "TRAV",
+                                        "InfoDate": "18-01-2016 00:00:00",
+                                        "Notes": "Ipsum lorem",
+                                        "ConditionId": 225800
+                                      }],
+                "MedicalEvents":[{
+                                    "EventType": "ACC",
+                                    "FromDate": "18-01-2016 00:00:00",
+                                    "ToDate": "18-01-2016 00:00:00",
+                                    "IncidentLocation": "GYM",
+                                    "Notes": null,
+                                    "MedicalEventId": 117617
+                                }]
+            }
 
 ## Create/Update Learner Attendance [/LearnerRollCallAttendance]
 
