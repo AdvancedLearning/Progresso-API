@@ -2694,7 +2694,9 @@ Create Attendance for one to many learners using date and time of lesson
 
 
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
+
 ### Retrieve a learner Exclusion Details [GET]
+
 + Parameters
     + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     + EndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
@@ -2741,10 +2743,21 @@ Create Attendance for one to many learners using date and time of lesson
                                         "ReinstatementNotes":       ""
                                     }]
             }
+            
                 
 ## Create/Update Learner Exclusions [/learnerExclusions]
+
 ### Create Learner Exclusions [POST]
+
 Create Exclusions for one to many learners
+
++ Mandatory fields
+    + LearnerId
+    + Exclusion Category
+    + Exclusion Reason
+    + StartDate
+    + If Exclusion Category = FXD or LNCH: EndDate, TotalDays, Total Sessions
+    + If Exclusion Category = FXD: StartSession, EndSession
 
 + Request (application/json)
 
@@ -2755,121 +2768,57 @@ Create Exclusions for one to many learners
 
     + Body
           
-            [{
-            
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "exclusions":       [{
-                                        "category":     "",
-                                        "reason":       "",
-                                        "startDate":    "",
-                                        "endDate":      "",
-                                        "startSession": "",
-                                        "endSession":   "",
-                                        "notes":        "",
-                                        "totalDays":    5,
-                                        "totalSessions":10,
-                                        "LAC":          false,
-                                        "headNotified": "",
-                                        "govMeeting":   "",
-                                        "provisionStartDate":   "",
-                                        "provisionDetails":     "",
-                                        "appeal":           true,
-                                        "appealDate":       "",
-                                        "appealCutOff":     "",
-                                        "exclusionHearing": "",
-                                        "outcome":          "",
-                                        "reintregationMeetingDate": "",
-                                        "reintregationNotes":      "",
-                                        "reinstatementDate":        "",
-                                        "reinstatementNotes":       ""
-                                    },
-                                    {
-                                        "category":     "",
-                                        "reason":       "",
-                                        "startDate":    "",
-                                        "endDate":      "",
-                                        "startSession": "",
-                                        "endSession":   "",
-                                        "notes":        "",
-                                        "totalDays":    5,
-                                        "totalSessions":10,
-                                        "LAC":          false,
-                                        "headNotified": "",
-                                        "govMeeting":   "",
-                                        "provisionStartDate":   "",
-                                        "provisionDetails":     "",
-                                        "appeal":           true,
-                                        "appealDate":       "",
-                                        "appealCutOff":     "",
-                                        "exclusionHearing": "",
-                                        "outcome":          "",
-                                        "reintregationMeetingDate": "",
-                                        "reintregationNotes":      "",
-                                        "reinstatementDate":        "",
-                                        "reinstatementNotes":       ""
-                                    },]
-            },
             {
-                "learnerCode":      "2013-00002",
-                "learnerId":       0002,
-                "exclusions":       [{
-                                        "category":     "FIXD",
-                                        "reason":       "DB",
-                                        "startDate":    "2015-11-25",
-                                        "endDate":      "2015-11-27",
-                                        "startSession": "AM",
-                                        "endSession":   "PM",
-                                        "notes":        "Consistently failing to produce work in lessons",
-                                        "totalDays":    3,
-                                        "totalSessions":6,
-                                        "LAC":          false,
-                                        "headNotified": null,
-                                        "govMeeting":   null,
-                                        "provisionStartDate":   null,
-                                        "provisionDetails":     null"",
-                                        "appeal":           false,
-                                        "appealDate":       null,
-                                        "appealCutOff":     null,
-                                        "exclusionHearing": null,
-                                        "outcome":          null,
-                                        "reintregationMeetingDate": null,
-                                        "reintregationNotes":      null,
-                                        "reinstatementDate":        null,
-                                        "reinstatementNotes":       null
-                                    }
-            
-            }]
+                "LearnerId":    443768,
+                "LearnerCode":  "7791",
+                "Exclusions":   [{
+                                    "Category": "FIXD",
+                                    "Reason": "VA",
+                                    "StartDate": "2015-10-20",
+                                    "EndDate": "2015-10-20",
+                                    "StartSession": "AM",
+                                    "EndSession": "AM",
+                                    "Notes": "Verbal abuse towards a member of staff. Refusing to go to buddy teacher",
+                                    "TotalDays": null,
+                                    "TotalSessions": 2,
+                                    "LAC": true,
+                                    "HeadNotified": null,
+                                    "GovMeeting": null,
+                                    "ProvisionStartDate": null,
+                                    "ProvisionDetails": null,
+                                    "Appeal": false,
+                                    "AppealDate": null,
+                                    "AppealCutOff": null,
+                                    "ExclusionHearing": null,
+                                    "Outcome": "E",
+                                    "ReintegrationMeetingDate": null,
+                                    "ReintegrationNotes": null,
+                                    "ReinstatementDate": null,
+                                    "ReinstatementNotes": ""
+                                }]
+            }
 
 + Response 200
+
     + Body
     
-            [{
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "exclusions":       [{
-                                    "status":   true,
-                                    "details":  "Saved successfully",
-                                     "exclusionId":  1
-                                    },
-                                    {
-                                    "status":   true,
-                                    "details":  "Saved successfully",
-                                     "exclusionId":  2
-                                    }]
-            },
             {
-                "learnerCode":      "2013-00002",
-                "learnerId":       0002,
-                "exclusions":       [{
-                                    "status":   true,
-                                    "details":  "Saved successfully",
-                                     "exclusionId":  3
-                                    }]
-            }]
+                "Status": true,
+                "Details": "Saved successfully",
+                "LearnerId": 443768,
+                "LearnerCode": "8382",
+                "Exclusions":   [
+                                "Status": true,
+                                "Details": "Saved successfully",
+                                "ExclusionId": 65775
+                                }]
+            }
+
 
 ### Update Learner Exclusions [PUT]
+
 Update Exclusions for one to many learners
+
 
 + Request (application/json)
 
