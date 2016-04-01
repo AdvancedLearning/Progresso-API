@@ -2359,7 +2359,7 @@ Update one to many learner records
             }]
 
 
-## Learner Contacts [/learnerContacts{?since}{?status}{?responsibility}{?priority}]
+## Learner Contacts [/LearnerContacts{?since}{?status}{?responsibility}{?priority}]
 ### Retrieve a Contacts associated to a learner [GET]
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
@@ -2378,7 +2378,7 @@ Update one to many learner records
 
     + Body
 
-            [{
+            {
                 
                 "learnerCode":     "2013-00132",
                 "learnerId":       0001,
@@ -2423,12 +2423,14 @@ Update one to many learner records
                                         "otherHomeAddressLink":     false,
                                         "sendSMS":                  true
                                     }]
-            }]
+            }
 
 
             
-## Learner Health Details [/learnerHealth{?since}]
+## Learner Health Details [/LearnerHealth{?since}]
+
 ### Retrieve a learner Health Details [GET]
+
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     
@@ -2475,77 +2477,11 @@ Update one to many learner records
                                         }]
             }
             
-## Create/Update Learner Health Details [/learnerHealth]
-### Create Learner Health [POST]
-Create one to many learner health records
-            
-+ Request (application/json)
+## Create/Update Learner Health Details [/LearnerHealth]
 
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
+### Create/Update Learner Health [PUT]
 
-    + Body
-           
-            {
-               "learnerCode":          "2013-00133",
-                "learnerId":             000002,
-                "allergies":              [{
-                                                "Wheat"
-                
-                                          }],
-                "foodPreference":        [{ }],
-                "dietaryNotes":         "",
-                "disabilities":           [{
-                                                "Not Collected"
-                                          }],
-                "disabilityNotes":      "",
-                 "medicalConditions":    [{
-                                                "Condition":    "Asthma",
-                                                "InfoDate":     "19-06-2014",
-                                                "Notes":        "Asthma Attack - Added"
-                
-                                        }],
-                "medicalEvents":        [{
-                                                "events Type":          "Allergic Reaction",
-                                                "from Date":            "19-06-2014",
-                                                "to Date":              "19-06-2014",
-                                                "incident Location":    "Office",
-                                                "notes":                "Eggs"
-
-                                        }]
-            
-            }
-
-+ Response 200
-
-    + Body
-    
-            {
-                "status":               true,
-                "learnerCode":           "2013-00132",
-                "learnerId":            "000001",
-                "medicalConditions":    [{
-                                                "Condition":    "Asthma",
-                                                "InfoDate":     "19-06-2014",
-                                                "Notes":        "Asthma Attack - Added",
-                                                "conditionId":  000001
-                
-                                        }],
-                "medicalEvents":        [{
-                                                "events Type":          "Allergic Reaction",
-                                                "from Date":            "19-06-2014",
-                                                "to Date":              "19-06-2014",
-                                                "incident Location":    "Office",
-                                                "notes":                "Eggs",
-                                                "MedicalEventId":        000001
-                                        }]
-            }
-
-### Update Learner Health [PUT]
-
-Update one to many learner heatlh records            
+Create and update one to many learner heatlh records            
             
 + Request (application/json)
 
@@ -2629,6 +2565,7 @@ Update one to many learner heatlh records
                                     "MedicalEventId": 117617
                                 }]
             }
+            
 
 ## Create/Update Learner Attendance [/LearnerRollCallAttendance]
 
@@ -3458,13 +3395,13 @@ Create SEN Major Needs for one to many learners
 # Group Groups
 Group of all Group-related resources
 
-## Groups Collection [/groups{?groupStartDate}{?groupEndDate}{?type}{?since}]
+## Groups Collection [/Groups{?GroupStartDate}{?GroupEndDate}{?Type}{?Since}]
 
 + Parameters
-    + groupStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
-    + groupEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
-    + type (optional, string, `TeachingGroup`) ... Type of Group to Return
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Groups modified since date provided
+    + GroupStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
+    + GroupEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
+    + Type (optional, string, `TeachingGroup`) ... Type of Group: TeachingGroup, ReigstrationGroup, AdhocGroup, AcademicHouseGroup
+    + Since (optional, dateTime, `01-04-2014T18:00:00`) ... Groups modified since date provided
 
     
 ### Retrieve a collection of Groups [GET]
@@ -3480,49 +3417,85 @@ Group of all Group-related resources
     + Body
     
             {
-                "groupCode":    "9A",
-                "course":       "Key Stage 4",
-                "dateFrom":     "01-09-2015 00:00:00",
-                "dateTo":       "30-08-2016 00:00:00",
-                "employeeId":   [{
-                                    "StaffCode":    "JDo",
-                                    "EmployeeId":   "00001"}
+                "GroupCode":    "A1",
+                "Course":       "Vertical Groups",
+                "DateFrom":     "30-08-2015 00:00:00",
+                "DateTo":       "27-08-2016 00:00:00",
+                "employeeId":   [
+                                  {
+                                    "StaffCode": "104006",
+                                    "EmployeeId": "DO"
+                                  }
                                 ],
-                "groupId":      000001,
-                "Groupname":         "9A",
-                "size":         30,
-                "subjectCode":  "",
-                "subjectName":  "",
+                "GroupId":      "1044575",
+                "GroupName":    "Anvil 1",
+                "Size":         "3",
+                "SubjectCode":  "",
+                "SubjectName":  "",
+                "Type":         "AcademicHouseGroup",
+                "Year":         "M"
+                },{
+                "GroupCode":    "10EN4b",
+                "Course":       "Key Stage 4",
+                "DateFrom":         "30-08-2015 00:00:00",
+                "DateTo":       "27-08-2016 00:00:00",
+                "employeeId":   [
+                                  {
+                                    "StaffCode": "104041",
+                                    "EmployeeId": "VG"
+                                  }
+                                ],
+                "GroupId":      "1044313",
+                "GroupName":    "10EN4b",
+                "Size":         "2",
+                "SubjectCode":  "ENLIT",
+                "SubjectName":  "English Literature",
+                "Type":         "TeachingGroup",
+                "Year":         "10"
+                },{
+                "GroupCode":    "SIX",
+                "Course":       "",
+                "DateFrom":     "30-08-2015 00:00:00",
+                "DateTo":       "31-08-2016 00:00:00",
+                "employeeId":   [
+                                  {
+                                    "StaffCode": "103973",
+                                    "EmployeeId": "KF"
+                                  }
+                                ],
+                "GroupId":      "1044597",
+                "GroupName":    "6th Form",
+                "Size":         "9",
+                "SubjectCode":  "",
+                "SubjectName":  "",
                 "Type":         "RegistrationGroup",
-                "Year":         "10"
-            },
-            {
-                "groupCode":    "10AR/1",
-                "course":       "Key Stage 4",
-                "dateFrom":     "",
-                "dateTo":       "",
-                "employeeId":   [{
-                                    "StaffCode":    "JDo",
-                                    "EmployeeId":   "00001"
-                                },
-                                {
-                                    "StaffCode":    "JDo",
-                                    "EmployeeId":   "00002"
-                                }],
-                "groupId":      000002,
-                "Groupname":         "10Art 1",
-                "size":         29,
-                "subjectCode":  "AR",
-                "subjectName":  "Art",
-                "type":         "TeachingGroup",
-                "Year":         "10"
-            }
-
-            
+                "Year":         ""
+                },{
+                "GroupCode":    "Ski Trip",
+                "Course":       "",
+                "DateFrom":     "01-04-2016 00:00:00",
+                "DateTo":       "27-05-2016 00:00:00",
+                "employeeId":   [
+                                  {
+                                    "StaffCode": "103995",
+                                    "EmployeeId": "ET"
+                                  }
+                                ],
+                "GroupId":      "1074942",
+                "GroupName":    "Ski Trip",
+                "Size":         "30",
+                "SubjectCode":  "",
+                "SubjectName":  "",
+                "Type":         "AdhocGroup",
+                "Year":         ""
+              }
+              
+  
 ## Create/Update Group [/groups]
 
 
 ### Create Group [POST]
+
 Create one or many groups
             
 + Request (application/json)
@@ -3534,7 +3507,7 @@ Create one or many groups
 
     + Body
     
-             [{
+            {
                 "groupCode":    "9A",
                 "course":       "KS4",
                 "dateFrom":     "01-09-2015 00:00:00",
@@ -3563,7 +3536,7 @@ Create one or many groups
                 "subjectName":  "Science",
                 "type":         "TeachingGroup",
                 "Year":         "10"
-            }]
+            }
 
 
 + Response 200
