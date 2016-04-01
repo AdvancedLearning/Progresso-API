@@ -6346,7 +6346,7 @@ Mandatory Parameters:
 
     + Body
     
-            {
+                       {
             "Categories":   [{
                             "Code":           "CAT1",
                             "Description":    "Category 1"
@@ -6389,25 +6389,30 @@ Mandatory Parameters:
                             "Code":             "01DET",
                             "Description":      "Think Tank",
                             "Behaviour":        "Negative",
-                            "BehaviourType":     "Confrontational"
+                            "BehaviourType":    [{ 
+                                                    "01Conf",
+                                                    "02CLWK"
+                                                }],
                             },{
                             "Code":             "02REW",
                             "Description":      "Reward Point",
                             "Behaviour":        "Positive",
-                            "BehaviourType":     "Classwork"
+                            "BehaviourType":    [{
+                                                "02CLWK"
+                                                }]
                             }],
             "Rules":        [{
                             "RuleName":         "Reward",
                             "Status":           "Active",
                             "RuleCriteria":     "Behaviour",
                             "Behaviour":        "Positive",
-                            "BehaviourType":    "Classwork",
-                            "BehaviourCategory":"",
-                            "BehaviourSeverity":"",
+                            "BehaviourType":    "02CLWK",
+                            "BehaviourCategory":"CAT2",
+                            "BehaviourSeverity":"S2",
                             "Occurred":         2,
                             "TimePeriod":       "Week",
                             "IsRecursive":      false,
-                            "Consequences":     "Reward Point",
+                            "Consequences":     "02REW",
                             "Points":           2,
                             "Characteristics":
                                 [{
@@ -6438,6 +6443,7 @@ Mandatory Parameters:
                                 "Code":             "SBS",
                                 "Description":      "School Bus"      
                                 }]
+            }
             }
 
 + Response 200 (application/json)
