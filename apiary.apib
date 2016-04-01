@@ -2676,7 +2676,7 @@ Create and amend Attendance for one to many learners
         
 
 
-## Create/Update Learner Attendance [/learnerLessonAttendanceByPeriod]
+## Create/Update Learner Attendance [/LearnerLessonAttendanceByPeriod]
 
 ### Create Learner Lesson Attendance By Period [POST]
 Create Lesson Attendance for one to many learners using Timetable Period
@@ -2720,7 +2720,7 @@ Create Lesson Attendance for one to many learners using Timetable Period
             }
 
 
-## Create/Update Learner Attendance [/learnerLessonAttendanceByLessonTime]
+## Create/Update Learner Attendance [/LearnerLessonAttendanceByLessonTime]
 
 ### Create Learner Lesson Attendance by Time [POST]
 
@@ -2736,34 +2736,24 @@ Create Attendance for one to many learners using date and time of lesson
     + Body
            
             [{
-                "learnerCode":          "2013-00001",
-                "date":                 "16-06-2014",
-                "startTime":            "09:00",
-                "finishTime":           "10:00",
-                "attendanceCode":       "/"            
-
-            },
-            {
-
-                "learnerCode":          "2013-00002",
-                "date":                 "16-06-2014",
-                "startTime":            "09:00",
-                "finishTime":           "10:00",
-                "attendanceCode":       "N"
+                "LearnerCode":      "7791",
+                "Date":             "16-03-2016",
+                "StartTime":        "09:15",
+                "FinishTime":       "10:15",
+                "AttendanceCode":   "/"
             }]
 
 + Response 200
+
     + Body
     
-            [{
-                 "learnerCode":          "2013-00001",
-                 "status":             "success"
-            },
-            {
-                "learnerCode":          "2013-00002",
-                 "status":             "success"
-                
-            }]
+            [
+              {
+                "LearnerCode": "7791",
+                "Status": true,
+                "Details": "Saved successfully"
+              }
+            ]
 
 
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
@@ -4670,6 +4660,7 @@ Create association of one to many Course to Years
             
 
 # Group Timtetable
+
 Group of all Timetable Resources
 
 ## Timetable Sources [/TTSources?]
@@ -4686,22 +4677,35 @@ Group of all Timetable Resources
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "timetableSourceId":        0001
-                "code":                     "2014/2015",
-                "name":                     "TT 2014/2015",
-                "startDate":                "2015/09/01",
-                "endDate":                  "2016/08/30",
-                "timetableIterations":      52,
-                "splitCoverEvents" :        false,
-                "splitMultiplePeriods":     false,
-
-            }]
+            {
+                "TimetableSourceId": 2132,
+                "Code": "BehSource",
+                "Name": "BehDetSource",
+                "StartDate": "2015-08-30",
+                "EndDate": "2016-08-27",
+                "TimetableIterations": 52,
+                "splitCoverEvents": false,
+                "splitMultiplePeriods": false
+                },
+                {
+                "TimetableSourceId": 2133,
+                "Code": "Current",
+                "Name": "Timetable 2015/2016",
+                "StartDate": "2015-08-30",
+                "EndDate": "2016-08-27",
+                "TimetableIterations": 52,
+                "splitCoverEvents": false,
+                "splitMultiplePeriods": false
+            }
+            
 
 ## Create/Update Timetable Sources [/TTSources/]
+
 ### Create Timetable Sources [POST]
+
 Create one to many Timetable Sources
 
 + Request
@@ -4905,34 +4909,34 @@ Response codes used are:
     + Body
     
             {
-                "DayCompositionId":         1,
-                "TimetableSourceId":        1,
-                "WeekDay":                  "Monday",
-                "PeriodId":                 1,
-                "PeriodCode":               "P1",
-                "PperiodName":               "Period 1",
-                "StartTime":                "08:30",
-                "EndTime":                  "09:50"
+                "DayCompositionId": 3706,
+                "TimetableSourceId": 2133,
+                "PeriodId": 83077,
+                "PeriodCode": "P2",
+                "PeriodName": "Period2",
+                "StartTime": "09:00",
+                "EndTime": "10:00",
+                "WeekDay": "Monday"
+                },
+                {
+                "DayCompositionId": 3706,
+                "TimetableSourceId": 2133,
+                "PeriodId": 83080,
+                "PeriodCode": "P1",
+                "PeriodName": "Period1",
+                "StartTime": "08:40",
+                "EndTime": "09:00",
+                "WeekDay": "Monday"
             },
             {
-                "DayCompositionId":         1,
-                "TimetableSourceId":        1,
-                "WeekDay":                  "Monday",
-                "PeriodId":                 2,
-                "PeriodCode":               "P2",
-                "PeriodName":               "Period 2",
-                "StartTime":                "09:50",
-                "EndTime":                  "10:50"
-            },
-            {
-                "DayCompositionId":         1,
-                "TimetableSourceId":        1,
-                "WeekDay":                  "Monday",
-                "PeriodId":                 3,
-                "PeriodCode":               "P3",
-                "PeriodName":               "Period 3",
-                "StartTime":                "11:10",
-                "EndTime":                  "12:10"
+                "DayCompositionId": 3706,
+                "TimetableSourceId": 2133,
+                "PeriodId": 83082,
+                "PeriodCode": "P4",
+                "PeriodName": "Period4",
+                "StartTime": "11:20",
+                "EndTime": "12:20",
+                "WeekDay": "Monday"
             }
             
 + Response 204
