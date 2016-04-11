@@ -1743,10 +1743,6 @@ Update one to many contact records
 
 Collection of all learner-related resources
 
-**To be replaced by PROAPI-32**
-
-Search for PROAPI-32 to see changes.
-
 ### Retrieve a collection of learners [GET]
 
 + Parameters
@@ -1874,8 +1870,27 @@ Optional parameter 'Id' will be included in amended GET Learners method - see PR
 
 
 ## Create/Update Learner Records [/learners]
+
 ### Create Learner [POST]
-Create one to many learner records            
+**Further fields have been added to this method and are now available**
+
+Create one to many learner records  
+
+Mandatory fields:
+
+- Surname, Forename, Learner Code, Date of Birth are mandatory fields
+    
+- Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+    
+- Phone is not mandatory but if included: Type and Number are mandatory
+    
+- Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
+    
+- Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    
+- SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
+    
+- SENMajorNeeds is not mandatory but if included: MajorNeedCode and Ranking are mandatory
             
 + Request (application/json)
 
@@ -1887,137 +1902,189 @@ Create one to many learner records
     + Body
     
             {
-                "learnerCode":     "2013-00132",
-                "UPN":             "G999900210101",
-                "ULN":             "1234567890",
-                "Forename":        "Jonny",
-                "Surname":         "Doe",
-                "LegalForename":   "John",
-                "LegalSurname":    "Doe",
-                "DateOfBirth":     "20-04-2002",
-                "Year":            "Year 7",
-                "Course":          "Key Stage 3",
-                "DateOfEntry":     "03-09-2013",
-                "Gender":          "M",
-                "RegGroup":        "7L2",
-                "Ethnicity":       "AOWB",
-                "EthnicitySource": "Providede by the parent",
-                "EnrolementStatus":"Current",
-                "NCYear":          "Year 7",
-                "PhoneDetails":    [{
-                                        "type":     "Home",
-                                        "number":   "015556655",
-                                        "smsFlag":  false
-                                    },{
-                                        "type":     "Mobile",
-                                        "number":   "075556655",
-                                        "smsFlag":  true
+                "LearnerCode":        "2016-1000",
+                "Surname":            "James",
+                "Forename":           "Jeff",
+                "Status":             "Active",
+                "RegGroup":           "6AC",
+                "AcademicHouse":      "",
+                "DateOfBirth":        "04-08-1998 00:00:00",
+                "LegalSurname":       "Sterling",
+                "LegalForename":      "Geoffrey",
+                "MiddleName":         "James",
+                "FormerSurname":      "Silver",
+                "EmailAddress":       "a.b@c.co.uk",
+                "Gender":             "M",
+                "Notes":              "Lorem Ipsum",
+                "HomeSalutation":     "Mrs C Sterling",
+                "DateOfEntry":        "01-09-2010 00:00:00",
+                "Year":               "13",
+                "Course":             "KS5",
+                "NCYear":             "13",
+                "Boarder":            "N",
+                "AddressDetails":   [{
+                                        "Country":      "GBR",
+                                        "Type":         "H",
+                                        "Flat":         "",
+                                        "Number":       "23",
+                                        "Street":       "dfadf",
+                                        "Locality":     "Derby",
+                                        "Town":         "",
+                                        "County":       "",
+                                        "PostCode":     "DE21 4FL"
                                     }],
-                "addressDetails":   [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                "PhoneDetails":     [{
+                                        "Type":         "H",
+                                        "Number":       "01111567891",
+                                        "SMSFlag":      false
                                     }],
-                "status":           "active",
-                "contacts":         [{
-                                        "contactId":                00004,
-                                        "relationship":             "Father",
-                                        "writtenCommunication":     "",
-                                        "priority":                 1,
-                                        "contactPrioritySource":    "",
-                                        "emergencyContactLevel":    "Primary",
-                                        "nextOfKin":                false,
-                                        "addressDisclosure":        false,
-                                        "addressTransferred":       false,
-                                        "parentalResponsibility":   true,
-                                        "feePayer":                 false,
-                                        "parentalPortal":           true,
-                                        "homeAddressLink":          true,
-                                        "otherHomeAddressLink":     false,
-                                        "sendSMS":                  true
-                                    }]
-                                        
-                                        
-                
+                "ContactDetails":   [{
+                                        "Title":        "Mrs",
+                                        "Forename":     "Trillian",
+                                        "Surname":      "Beelebrox",
+                                        "Relationship": "PAM",
+                                        "Gender":       "F",
+                                        "WrittenCommunication":     "",
+                                        "Priority":                 1,
+                                        "ContactPrioritySource":    "",
+                                        "EmergencyContactLevel":    "Primary",
+                                        "NextOfKin":                false,
+                                        "AddressDisclosure":        false,
+                                        "AddressTransferred":       false,
+                                        "ParentalResponsibility":   true,
+                                        "FeePayer":                 false,
+                                        "ParentalPortal":           true,
+                                        "HomeAddressLink":          true,
+                                        "OtherHomeAddressLink":     false,
+                                        "SendSMS":                  true
+                                    }],
+                "SiblingDetails":   [{
+                                        "LearnerCode":  "8848"
+                                    }],
+                "PartTime":           false,
+                "EnrolementStatus":   "C",
+                "UPN":                "",
+                "FormerUPN":          "",
+                "ULN":                "",
+                "GandT":              true,
+                "MedicalFlag":        true,
+                "YSSAIndicator":      "SNR",
+                "Nationality":        "GBR",
+                "Ethnicity":          "WBRI",
+                "EthnicitySource":    "P",
+                "ServiceChild":       "N",
+                "ServiceChildSource": "P",
+                "TopUpFunding":       true,
+                "FundedHours":        0.0,
+                "HoursAtSetting":     0.0,
+                "UnitContactTime":    0.0,
+                "SchoolLunchTaken":   true,
+                "MealType":           "CSM",
+                "AsylumSeeker":       false,
+                "Religion":           "HI",
+                "DisabilityDetails":   [{
+                                            "Disability":  "CON"
+                                        }],
+                "LanguageDetails":  [{
+                                        "TypeCode":             "F",
+                                        "LanguageCode":         "ENG"
+                                    }],
+                "SENProvisionDetails":  [{
+                                            "ProvisionTypeCode":    "E",
+                                            "StartDate":            "19/09/2014"
+                                        }],
+                "SENMajorNeedsDetails": [{
+                                            "MajorNeedCode":        "SLD",
+                                            "Ranking":              1
+                                        }]
             },
             {
-                "learnerCode":     "2013-00133",
-                "UPN":             "A12331AA13",
-                "ULN":             "9876543210",
-                "Forename":        "Milli",
-                "Surname":         "Doe",
-                "LegalForename":   "Jane",
-                "LegalSurname":    "Doe",
-                "DateOfBirth":     "30-06-2002",
-                "Year":            "Year 7",
-                "Course":          "Key Stage 3",
-                "DateOfEntry":     "03-09-2013",
-                "Gender":          "F",
-                "RegGroup":        "7L3",
-                "Ethnicity":       "AOWB",
-                "EthnicitySource": "Provided by the parent",
-                "EnrolementStatus":"Current",
-                "NCYear":          "Year 7",
-                "PhoneDetails":    [{
-                                        "type":     "Home",
-                                        "number":   "11111111",
-                                        "smsFlag":  false
-                                    },{
-                                        "type":     "Mobile",
-                                        "number":   "071111111",
-                                        "smsFlag":  true
+                "LearnerCode":        "2016-0005",
+                "Surname":            "Flower",
+                "Forename":           "Lily",
+                "Status":             "Active",
+                "RegGroup":           "H3",
+                "AcademicHouse":      "",
+                "DateOfBirth":        "04-08-1998 00:00:00",
+                "LegalSurname":       "Petal",
+                "LegalForename":      "Lillian",
+                "MiddleName":         "Nectar",
+                "FormerSurname":      "",
+                "EmailAddress":       "a.b@c.co.uk",
+                "Gender":             "M",
+                "Notes":              "Lorem Ipsum",
+                "HomeSalutation":     "Mrs C Petal",
+                "DateOfEntry":        "01-09-2010 00:00:00",
+                "Year":               "13",
+                "Course":             "KS5",
+                "NCYear":             "13",
+                "Boarder":            "N",
+                "AddressDetails":   [{
+                                        "Country":      "GBR",
+                                        "Type":         "H",
+                                        "Flat":         "",
+                                        "Number":       "23",
+                                        "Street":       "Orange Blossom Road",
+                                        "Locality":     "Littleover",
+                                        "Town":         "Derby",
+                                        "County":       "Derbyshire",
+                                        "PostCode":     "DE21 4FL"
                                     }],
-                "addressDetails":   [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                "PhoneDetails":     [{
+                                        "Type":         "H",
+                                        "Number":       "079821364646",
+                                        "SMSFlag":      true
                                     }],
-                "status":           "active",
-                "contacts":         [{
-                                        "contactId":                00001,
-                                        "relationship":             "Step Father",
-                                        "writtenCommunication":     "",
-                                        "priority":                 2,
-                                        "contactPrioritySource":    "",
-                                        "emergencyContactLevel":    "Secondary",
-                                        "nextOfKin":                false,
-                                        "addressDisclosure":        false,
-                                        "addressTransferred":       false,
-                                        "parentalResponsibility":   false,
-                                        "feePayer":                 false,
-                                        "parentalPortal":           true,
-                                        "homeAddressLink":          true,
-                                        "otherHomeAddressLink":     false,
-                                        "sendSMS":                  false
-                                    },
-                                    {
-                                        "contactId":                00002,
-                                        "relationship":             "Mother",
-                                        "writtenCommunication":     "",
-                                        "priority":                 1,
-                                        "contactPrioritySource":    "",
-                                        "emergencyContactLevel":    "Primary",
-                                        "nextOfKin":                false,
-                                        "addressDisclosure":        false,
-                                        "addressTransferred":       false,
-                                        "parentalResponsibility":   true,
-                                        "feePayer":                 false,
-                                        "parentalPortal":           true,
-                                        "homeAddressLink":          true,
-                                        "otherHomeAddressLink":     false,
-                                        "sendSMS":                  true
+                "ContactDetails":   [{
+                                        "Title":        "Mrs",
+                                        "Forename":     "Trillian",
+                                        "Surname":      "Beelebrox",
+                                        "Relationship": "PAM",
+                                        "Gender":       "F",
+                                        "WrittenCommunication":     "",
+                                        "Priority":                 1,
+                                        "ContactPrioritySource":    "",
+                                        "EmergencyContactLevel":    "Primary",
+                                        "NextOfKin":                false,
+                                        "AddressDisclosure":        false,
+                                        "AddressTransferred":       false,
+                                        "ParentalResponsibility":   true,
+                                        "FeePayer":                 false,
+                                        "ParentalPortal":           true,
+                                        "HomeAddressLink":          true,
+                                        "OtherHomeAddressLink":     false,
+                                        "SendSMS":                  true
+                                    }],
+                "SiblingDetails":   [{
+                                        "LearnerCode":  "8848"
+                                    }],
+                "PartTime":           false,
+                "EnrolementStatus":   "C",
+                "UPN":                "",
+                "FormerUPN":          "",
+                "ULN":                "",
+                "GandT":              true,
+                "MedicalFlag":        true,
+                "YSSAIndicator":      "SNR",
+                "Nationality":        "GBR",
+                "Ethnicity":          "WBRI",
+                "EthnicitySource":    "P",
+                "ServiceChild":       "N",
+                "ServiceChildSource": "P",
+                "TopUpFunding":       true,
+                "FundedHours":        0.0,
+                "HoursAtSetting":     0.0,
+                "UnitContactTime":    0.0,
+                "SchoolLunchTaken":   true,
+                "MealType":           "CSM",
+                "AsylumSeeker":       false,
+                "Religion":           "HI",
+                "DisabilityDetails":   [{
+                                            "Disability":  "CON"
+                                        }],
+                "LanguageDetails":  [{
+                                        "TypeCode":             "F",
+                                        "LanguageCode":         "ENG"
                                     }]
             }
 
@@ -2026,70 +2093,93 @@ Create one to many learner records
     + Body
     
             {
-                "status":               true,
-                "details":              "saved successfully", 
-                "learnerCode":          "JBl",
-                "learnerId":            "000001",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "11111111",
-                                            "phoneId":  "000051"
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "071111111",
-                                            "phoneId":  "00006"
-                                        }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "addressId":  "00003"
-                                        }],
-                "contacts":             [{
-                                            "contactId":            000001,
-                                            "learnerContactRelId":  000001
-                                        }]
-            },
-            {
-                "LearnerCode":             "JDo",
-                "LearnerId":           "000002",
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "015555555",
-                                            "phoneId":  "00007"
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "075555555",
-                                            "phoneId":  "00008"
-                                        }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "AddressId":  "00004"
-                                        }],
-                "contacts":             [{
-                                            "contactId":            "000001",
-                                            "learnerContactRelId":  "000002"
-                                        },
-                                        {
-                                            "contactId":            "000002",
-                                            "learnerContactRelId":  "000003"
-                                        }]
-            }
-
+                    "Status": true,
+                    "Details": "Saved successfully",
+                    "LearnerId": 453758,
+                    "LearnerCode": "2016-1000",
+                    "PhoneDetails": [
+                      {
+                        "PhoneId": 2200855
+                      }
+                    ],
+                    "AddressDetails": [
+                      {
+                        "AddressId": 1353316
+                      }
+                    ],
+                    "ContactDetails": [
+                      {
+                        "ContactId": 968989,
+                        "LearnerContactRelationshipId": 2054
+                      }
+                    ],
+                    "SiblingDetails": [
+                      {
+                        "LearnerId": 443779
+                      }
+                    ],
+                    "DisabilityDetails": [
+                      {
+                        "DisabilityTypeId": 2648
+                      }
+                    ],
+                    "LanguageDetails": [
+                      {
+                        "LanguageId": 448983
+                      }
+                    ],
+                    "SENProvisionDetails": [
+                      {
+                        "ProvisionId": 852001
+                      }
+                    ],
+                    "SENMajorNeedsDetails": [
+                      {
+                        "MajorNeedId": 115706
+                      }
+                    ]
+                  },
+                  {
+                    "Status": true,
+                    "Details": "Saved successfully",
+                    "LearnerId": 453759,
+                    "LearnerCode": "2016-0005",
+                    "PhoneDetails": [
+                      {
+                        "PhoneId": 2200856
+                      }
+                    ],
+                    "AddressDetails": [
+                      {
+                        "AddressId": 1353317
+                      }
+                    ],
+                    "ContactDetails": [
+                      {
+                        "ContactId": 968990,
+                        "LearnerContactRelationshipId": 2054
+                      }
+                    ],
+                    "SiblingDetails": [
+                      {
+                        "LearnerId": 443779
+                      }
+                    ],
+                    "DisabilityDetails": [
+                      {
+                        "DisabilityTypeId": 2648
+                      }
+                    ],
+                    "LanguageDetails": [
+                      {
+                        "LanguageId": 448984
+                      }
+                    ],
+                    "SENProvisionDetails": [],
+                    "SENMajorNeedsDetails": []
+                  }
+            
+            
 ### Update Learner [PUT]
 Update one to many learner records            
             
