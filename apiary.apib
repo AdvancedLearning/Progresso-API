@@ -5960,6 +5960,11 @@ Mandatory fields:
 
 Retreive one to many learner's attendance details
 
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
 + Request
 
     + Headers
@@ -5997,8 +6002,10 @@ Retreive one to many learner's attendance details
                 "AttendanceStartDate":  "16-06-2014",
                 "rollCallSessionStart": "AM",
                 "AttendanceString":     "LL//MMII//", 
-                "MinutesLate":          "10,5"
+                "MinutesLate":          "10,5,0,0,0,0,0,0,0,0"
             }
+
++ Response 204 (application/json)
 
 
 # Group Behaviour
