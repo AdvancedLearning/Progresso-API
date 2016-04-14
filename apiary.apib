@@ -5669,7 +5669,7 @@ Response codes used are:
             
 + Response 200 (application/json)
 
-            {
+        {
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
             "Surname":          "Sterling",
@@ -5724,7 +5724,7 @@ Response codes used are:
                                     "FYStartDate":  "2013-12-20",
                                     "FYEndDate":    "2014-12-14"
                                 }],
-            "PupilPremiumDetails":  [{
+            "PupilPremiumDetails":  {
                                         "CurrentDeprivationEver6":  true,
                                         "CurrentServiceChild":      false,
                                         "CurrentAdoptedfromCare":   false,
@@ -5749,7 +5749,7 @@ Response codes used are:
                                         "Subject":      "EN",
                                         "Notes":        ""
                                     }],
-            "ConfidentialDetails":  [{
+            "ConfidentialDetails":  {
                                         "LAC":          true,
                                         "LACCurSch":    true,
                                         "LACLA":        "370",
@@ -5759,19 +5759,20 @@ Response codes used are:
                                         "PEP":          false,
                                         "PPI":          false,
                                         "AdoptedFromCare":      "N",
-                                        "Notes":                "Lorem ipsum",
-                                        "SchoolAwarenessList":  true   
-                                    }],
+                                        "Notes":                "Lorem ipsum"   
+                                    },
             "SchoolHistoryDetails": [{
-                                        "ClusterName":  "Advanced MAT",
-                                        "EstabNumber":  "6213",
+                                        "LANumber":     "999",
+                                        "LAName":       "Advanced MAT",
+                                        "SchoolNumber": "6213",
                                         "SchoolName":   "Advanced Learninig Academy",                                
                                         "EntryDate":    "2009-09-04",
                                         "LeavingDate":  "2010-01-08",
                                         "LeavingReason":"PM"
                                     },{
-                                        "ClusterName":  "Advanced MAT",
-                                        "EstabNumber":  "6124",
+                                        "LANumber":     "999",
+                                        "LAName":       "Advanced MAT",
+                                        "SchoolNumber": "6124",
                                         "SchoolName":   "Queens College Academy",                                
                                         "EntryDate":    "2010-09-01",
                                         "LeavingDate":  "2016-02-05",
@@ -5881,7 +5882,7 @@ Mandatory fields:
                                 "Subject":      "EN",
                                 "Notes":        ""
                             }],
-            "ConfidentialDetails":  [{
+            "ConfidentialDetails":  {
                                     "LAC":          true,
                                     "LACCurSch":    true,
                                     "LACLA":        "370",
@@ -5891,26 +5892,27 @@ Mandatory fields:
                                     "PEP":          false,
                                     "PPI":          false,
                                     "AdoptedFromCare":      "N",
-                                    "Notes":                "Lorem ipsum",
-                                    "SchoolAwarenessList":   true   
-                                    }],
+                                    "Notes":                "Lorem ipsum"
+                                    },
             "SchoolHistoryDetails": [{
-                                    "ClusterName":  "Advanced MAT",
-                                    "EstabNumber":  "6213",
+                                    "LANumber":     "999",
+                                    "LAName":       "Advanced MAT",
+                                    "SchoolNumber":  "6213",
                                     "SchoolName":   "Advanced Learninig Academy",                                
                                     "EntryDate":    "2009-09-04",
                                     "LeavingDate":  "2010-01-08",
                                     "LeavingReason":"PM"
                                     },{
-                                    "ClusterName":  "Advanced MAT",
-                                    "EstabNumber":  "61234",
+                                    "LANumber":     "999",
+                                    "LAName":       "Advanced MAT",
+                                    "SchoolNumber":  "1234",
                                     "SchoolName":   "Queens College Academy",                                
                                     "EntryDate":    "2010-09-01",
                                     "LeavingDate":  "2016-02-05",
                                     "LeavingReason":"OT"
                                     }]
             }
-            
+          
 
 + Response 200
 
