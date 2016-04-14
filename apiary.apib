@@ -5731,18 +5731,20 @@ Response codes used are:
                                         "CurrentLookedAfter":       false,
                                         "CurrentPupilPremium":      true
                                         [{
-                                            "Deprivation":      true,
-                                            "AdoptedFromCare":  false,
-                                            "ServiceChild":     false,
-                                            "LookedAfter":      false,
-                                            "CashAmount":       935.00,
-                                            "FTE":              1,
-                                            "FYStartDate":      "2014-04-01",
-                                            "FYEndDate":        "2015-03-31",
-                                            "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                            "PupilPremiumRecordId": 0001,
+                                            "Deprivation":          true,
+                                            "AdoptedFromCare":      false,
+                                            "ServiceChild":         false,
+                                            "LookedAfter":          false,
+                                            "CashAmount":           935.00,
+                                            "FTE":                  1,
+                                            "FYStartDate":          "2014-04-01",
+                                            "FYEndDate":            "2015-03-31",
+                                            "Notes":                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                         }]
                                     },
             "GandTDetails":         [{
+                                        "GandTId":      0001,
                                         "GandTStatus":  "G",
                                         "StartDate":    "2015-02-23",
                                         "EndDate":      null,
@@ -5762,6 +5764,7 @@ Response codes used are:
                                         "Notes":                "Lorem ipsum"   
                                     },
             "SchoolHistoryDetails": [{
+                                        "SchoolHistoryId": 0001,
                                         "LANumber":     "999",
                                         "SchoolNumber": "6213",
                                         "SchoolName":   "Advanced Learninig Academy",                                
@@ -5769,6 +5772,7 @@ Response codes used are:
                                         "LeavingDate":  "2010-01-08",
                                         "LeavingReason":"PM"
                                     },{
+                                        "SchoolHistoryId": 0001,
                                         "LANumber":     "999",
                                         "SchoolNumber": "6124",
                                         "SchoolName":   "Queens College Academy",                                
@@ -5948,6 +5952,54 @@ Mandatory fields:
                                     }]
             }
 
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?RollCallSessionStart}{?Status}]
+
+**Proposed Changes PROAPI-36**
+
+### Get Roll Call Attendance [GET]
+
+Retreive one to many learner's attendance details
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Parameters
+
+    + LearnerId (optional, int, `00001`) ... the unique identifier of the learner
+
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified from
+
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... learner records modified to
+
+    + RollCallSessionStart (optional, string, `AM`) ... unique roll call session - 'AM' or 'PM'
+
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
+
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "LearnerId":            0001
+                "LearnerCode":          "2013-00001",
+                "AttendanceStartDate":  "16-06-2014",
+                "RollCallSessionStart": "AM",
+                "AttendanceString":     "//L/L/////",
+                "MinutesLate":          "0,0,5,0,10,0,0,0,0,0"
+            },
+            {
+                "LearnerId":            0002
+                "LearnerCode":          "2013-00002",
+                "AttendanceStartDate":  "16-06-2014",
+                "rollCallSessionStart": "AM",
+                "AttendanceString":     "LL//MMII//", 
+                "MinutesLate":          "10,5"
+            }
+
 
 # Group Behaviour
 The whole **Behaviour** section is under development and unavailable at present. 
@@ -5955,7 +6007,7 @@ This documentation is subject to change and fields included are not final.
 
 ## Behaviour Collection [/behaviour]
 
-This will data for Bahviour Events
+This will data for Behaviour Events
 
 ## Behaviour Structure Collection [/bmstructure/]
 
