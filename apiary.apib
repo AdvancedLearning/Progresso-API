@@ -6000,6 +6000,27 @@ Response codes used are:
 
 + Response 204 (application/json)
 
+## Learner Lesson Attendance by Time [/LearnerLessonAttendanceByLessonTime{?LearnerId}{?StartDate}{?EndDate}{?RollCallSessionStart}{?Status}]
+
+**Proposed Changes PROAPI-59**
+
+### Get Learner Lesson Attendance by Time [GET]
+
+Retrieve lesson attendance for one to many learners using date and time of lesson
+
++ Request (applicaiton/json)
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            
+            
+            
 
 # Group Behaviour
 The whole **Behaviour** section is under development and unavailable at present. 
@@ -6167,7 +6188,7 @@ Mandatory Parameters:
 
     + Body
     
-                       {
+            {
             "Categories":   [{
                             "Code":           "CAT1",
                             "Description":    "Category 1"
@@ -6264,44 +6285,67 @@ Mandatory Parameters:
                                 "Code":             "SBS",
                                 "Description":      "School Bus"      
                                 }]
-            }
-            }
+            }}
+            
+
 
 + Response 200 (application/json)
 
     + Body
     
             {
-            "Status":   true,
-            "Detilas":  "Saved successfully"
             "Categories":   [{
-                            "CategoryId":     0001
+                            "CategoryId":   0001,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "CategoryId":     0002
+                            "CategoryId":   0002,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "CategoryId":     0003
+                            "CategoryId":   0003,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "CategoryId":     0004
+                            "CategoryId":   0004,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             }],
             "Types":        [{
-                            "TypeId":         0001
+                            "TypeId":       0001,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "TypeId":         0002
+                            "TypeId":       0002,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             }],
             "Severities":   [{
-                            "SeverityId":     0001
+                            "SeverityId":   0001,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "SeverityId":     0002
+                            "SeverityId":   0002,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "SeverityId":     0003    
+                            "SeverityId":   0003,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             }],
             "Actions":      [{
-                            "ActionId":       0001
+                            "ActionId":     0001,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             },{
-                            "ActionId":       0002
+                            "ActionId":     0002,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                             }],
             "Rules":        [{
-                            "RuleId":         0001
+                            "RuleId":       0001,
+                            "Status":       true,
+                            "Details":      "Saved successfully"
                                 [{
                                 "CharacteristicId":         0001
                                 },{
@@ -6309,14 +6353,22 @@ Mandatory Parameters:
                                 }]
                             }],
             "DetentionTypes":[{
-                            "DetentionTypeId":          0001
+                            "DetentionTypeId":  0001,
+                            "Status":           true,
+                            "Details":          "Saved successfully"
                             },{
-                            "DetentionTypeId":          0002
+                            "DetentionTypeId":  0002,
+                            "Status":           true,
+                            "Details":          "Saved successfully"
                             }],
-            "Locations":    [{
-                            "LocationId":               0001
+            "Locations":     [{
+                            "LocationId":       0001,
+                            "Status":           true,
+                            "Details":          "Saved successfully"
                             },{
-                            "LocationId":               0002  
+                            "LocationId":       0002,
+                            "Status":           true,
+                            "Details":          "Saved successfully"
                             }]
             }
             
