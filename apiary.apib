@@ -1309,8 +1309,8 @@ Collection of all employee roles for employee contracts within a school
             Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
-           
-              [{
+    
+            {
                     "employeeId":       00001,
                     "qualifications":   [{
                                             "qualificationId":      1,
@@ -1331,7 +1331,7 @@ Collection of all employee roles for employee contracts within a school
                                             "classOfDegree":        "2: Upper Second Class honours",
                                             "verified":             true  
                                         }            
-            }]
+            }
 
 + Response 200 (application/json)
 
@@ -1575,9 +1575,10 @@ Minimum Parameters
 
 
 + Response 200
+
     + Body
     
-            [{
+            {
                 "contactCode":          "3447",
                 "contactId":            000001,
                 "phoneDetails":         [{
@@ -1626,10 +1627,11 @@ Minimum Parameters
                                             "postCode": "DD55 36DD"
                                             "AddressId":  00004
                                         }]
-            }]
+            }
 
 
 ### Update Contact [PUT]
+
 Update one to many contact records            
             
 + Request (application/json)
@@ -1710,6 +1712,7 @@ Update one to many contact records
 
 
 + Response 200
+
     + Body
     
             [{
@@ -2405,10 +2408,9 @@ Create and update one to many learner heatlh records
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
 
     + Body
-           
+    
             {
                 "LearnerId": 443790,
                 "LearnerCode": "9196",
@@ -2541,20 +2543,19 @@ Create Lesson Attendance for one to many learners using Timetable Period
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
            
             [{
-                "learnerCode":          "2013-00001",
-                "iteration":            1,
-                "periodId":             1,
-                "attendanceCode":       "/"
+                "LearnerCode":          "2013-00001",
+                "Iteration":            1,
+                "PeriodId":             1,
+                "AttendanceCode":       "/"
             },
             {
-                "learnerCode":          "2013-00002",
-                "iteration":            1,
-                "periodId":             1,
-                "attendanceCode":       "N"
+                "LearnerCode":          "2013-00002",
+                "Iteration":            1,
+                "PeriodId":             1,
+                "AttendanceCode":       "N"
             }
             
             }]
@@ -2564,12 +2565,12 @@ Create Lesson Attendance for one to many learners using Timetable Period
     + Body
     
             {
-                 "learnerCode":          "2013-00001",
-                 "status":             "success"
+                 "LearnerCode":         "2013-00001",
+                 "Status":              "Success"
             },
             {
-                "learnerCode":          "2013-00002",
-                 "status":             "success"
+                "LearnerCode":          "2013-00002",
+                "Status":               "Success"
                 
             }
 
@@ -3417,6 +3418,7 @@ Update one or many groups
 
 
 + Response 200 (application/json)
+
     + Body
     
             {
@@ -3465,8 +3467,8 @@ Create Group Association for one to many Learners and Groups
             Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
-
-            [{
+    
+            {
                     "groupId":   1,
                     "learners":   [{
                                         "learnerId":                1,
@@ -3494,7 +3496,7 @@ Create Group Association for one to many Learners and Groups
 
                                 }]
 
-            }]
+            }
 
 
 + Response 200 (application/json)
@@ -3552,9 +3554,9 @@ Update Group Association for one to many Learners and Groups
             
             
     + Body
-
-            [{
-                   "groupId":   1,
+    
+            {
+                    "groupId":   1,
                     "learners":   [{
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    1,
@@ -3563,7 +3565,7 @@ Update Group Association for one to many Learners and Groups
                                 }]
             },
             {
-                   "groupId":   2,
+                    "groupId":   2,
                     "learners":   [{
                                         "learnerId":                1,
                                         "learnerGroupLearnerId":    3,
@@ -4094,7 +4096,7 @@ Set one to many days of a Week Structure
 
     + Body
 
-            [{
+            {
                 "AcYearId":             1
                 "name":                 "Sunday",
                 "workingNonWorking":    "Non-Working Day"
@@ -4116,7 +4118,7 @@ Set one to many days of a Week Structure
                 "name":                 "Wednesday",
                 "workingNonWorking":    "Half Working Day - AM"
                 
-            }]
+            }
             
 + Response 200 (application/json)
     + Body
@@ -5430,7 +5432,7 @@ Mandatory fields:
            
     + Body
     
-            {
+                {
             "LearnerId":          02134,
             "LearnerCode":        "2010-0001",
             "Status":             "true",
