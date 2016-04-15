@@ -5669,7 +5669,9 @@ Response codes used are:
             
 + Response 200 (application/json)
 
-        {
+    + Body
+    
+            {
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
             "Surname":          "Sterling",
@@ -5677,6 +5679,21 @@ Response codes used are:
             "Status":           "Active",
             "Traveller":        "GH",
             "TravellerSource":  "P",
+            "CurrentDeprivationEver6":  true,
+            "CurrentServiceChild":      false,
+            "CurrentAdoptedfromCare":   false,
+            "CurrentLookedAfter":       false,
+            "CurrentPupilPremium":      true,
+            "LAC":              true,
+            "LACCurSch":        true,
+            "LACLA":            "370",
+            "HomeLA":           "871",
+            "CPR":              false,
+            "CPRLA":            null,
+            "PEP":              false,
+            "PPI":              false,
+            "AdoptedFromCare":      "N",
+            "Notes":                "Lorem ipsum"  
             "ExclusionDetails": [{
                                     "ExclusionId":          0001,
                                     "Category":             "FIXD",
@@ -5724,14 +5741,8 @@ Response codes used are:
                                     "FYStartDate":  "2013-12-20",
                                     "FYEndDate":    "2014-12-14"
                                 }],
-            "PupilPremiumDetails":  {
-                                        "CurrentDeprivationEver6":  true,
-                                        "CurrentServiceChild":      false,
-                                        "CurrentAdoptedfromCare":   false,
-                                        "CurrentLookedAfter":       false,
-                                        "CurrentPupilPremium":      true
-                                        [{
-                                            "PupilPremiumRecordId": 0001,
+            "PupilPremiumDetails":  [{
+                                            "PupilPremiumRecordId":0001,
                                             "Deprivation":          true,
                                             "AdoptedFromCare":      false,
                                             "ServiceChild":         false,
@@ -5741,7 +5752,7 @@ Response codes used are:
                                             "FYStartDate":          "2014-04-01",
                                             "FYEndDate":            "2015-03-31",
                                             "Notes":                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                                        }]
+                                    }]
                                     },
             "GandTDetails":         [{
                                         "GandTId":      0001,
@@ -5751,18 +5762,6 @@ Response codes used are:
                                         "Subject":      "EN",
                                         "Notes":        ""
                                     }],
-            "ConfidentialDetails":  {
-                                        "LAC":          true,
-                                        "LACCurSch":    true,
-                                        "LACLA":        "370",
-                                        "HomeLA":       "871",
-                                        "CPR":          false,
-                                        "CPRLA":        null,
-                                        "PEP":          false,
-                                        "PPI":          false,
-                                        "AdoptedFromCare":      "N",
-                                        "Notes":                "Lorem ipsum"   
-                                    },
             "SchoolHistoryDetails": [{
                                         "SchoolHistoryId": 0001,
                                         "LANumber":     "999",
@@ -5809,13 +5808,29 @@ Mandatory fields:
         
             Authorization: Bearer [CURRENT_TOKEN]
             
+
     + Body
-    
+            
             { 
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
             "Traveller":        "GH",
             "TravellerSource":  "P",
+            "CurrentDeprivationEver6":  true,
+            "CurrentServiceChild":      false,
+            "CurrentAdoptedfromCare":   false,
+            "CurrentLookedAfter":       false,
+            "CurrentPupilPremium":      true,
+            "LAC":              true,
+            "LACCurSch":        true,
+            "LACLA":            "370",
+            "HomeLA":           "871",
+            "CPR":              false,
+            "CPRLA":            null,
+            "PEP":              false,
+            "PPI":              false,
+            "AdoptedFromCare":  "N",
+            "Notes":            "Lorem ipsum"          
             "ExclusiondDetails":[{
                                 "Category":         "FIXD",
                                 "Reason":           "PP",
@@ -5859,43 +5874,24 @@ Mandatory fields:
                                     "FYStartDate":  "2013-12-20",
                                     "FYEndDate":    "2014-12-14"
                                     }],
-            "PupilPremiumDetails":  {
-                                    "CurrentDeprivationEver6":  true,
-                                    "CurrentServiceChild":      false,
-                                    "CurrentAdoptedfromCare":   false,
-                                    "CurrentLookedAfter":       false,
-                                    "CurrentPupilPremium":      true
-                                        [{
-                                        "Deprivation":      true,
-                                        "AdoptedFromCare":  false,
-                                        "ServiceChild":     false,
-                                        "LookedAfter":      false
-                                        "CashAmount":       "935.00",
-                                        "FTE":              1.0,
-                                        "FYStartDate":      "2014-04-01",
-                                        "FYEndDate":        "2015-03-31",
-                                        "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                                        }]
-                                    },
+            "PupilPremiumDetails":  [{
+                                    "Deprivation":      true,
+                                    "AdoptedFromCare":  false,
+                                    "ServiceChild":     false,
+                                    "LookedAfter":      false
+                                    "CashAmount":       "935.00",
+                                    "FTE":              1.0,
+                                    "FYStartDate":      "2014-04-01",
+                                    "FYEndDate":        "2015-03-31",
+                                    "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                    }],
             "GandTDetails": [{
-                                "GandTStatus":    "G",
-                                "StartDate":    "2015-02-23",
-                                "EndDate":      null,
-                                "Subject":      "EN",
-                                "Notes":        ""
-                            }],
-            "ConfidentialDetails":  {
-                                    "LAC":          true,
-                                    "LACCurSch":    true,
-                                    "LACLA":        "370",
-                                    "HomeLA":       "871",
-                                    "CPR":          false,
-                                    "CPRLA":        null,
-                                    "PEP":          false,
-                                    "PPI":          false,
-                                    "AdoptedFromCare":      "N",
-                                    "Notes":                "Lorem ipsum"
-                                    },
+                                        "GandTStatus":    "G",
+                                        "StartDate":    "2015-02-23",
+                                        "EndDate":      null,
+                                        "Subject":      "EN",
+                                        "Notes":        ""
+                                    }],
             "SchoolHistoryDetails": [{
                                     "LANumber":     "999",
                                     "SchoolNumber":  "6213",
@@ -5919,38 +5915,35 @@ Mandatory fields:
     + Body
     
             {  
-            "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001",
-            "Status":           true,
-            "Details":          "Saved successfully",
+            "LearnerId":            443756,   
+            "LearnerCode":          "2010-0001",
+            "Status":               true,
+            "Details":              "Saved successfully",
             "ExclusionDetails": [{
-                                "ExclusionId":  0001
+                                    "ExclusionId":  0001
                                 }],
             "FSMDetails":       [{
-                                "FSMId":        0001
+                                    "FSMId":        0001
                                 },
                                 {
-                                "FSMId":        0002
+                                    "FSMId":        0002
                                 }],
             "PPI1314Details":   [{
-                                "PPI1314Id":    0001
+                                    "PPIId":        0001
                                 }],
-            "PupilPremiumDetails":  {
-                                    [{
-                                    "PPId":     001
-                                    }]
-                                    },
+            "PupilPremiumDetails":[{
+                                    "PupilPremiumRecordId":     001
+                                  }],
             "GandTDetails":     [{
-                                "GandTId":  0001
+                                    "GandTId":      0001
                                 }],
-            "ConfidentialDetails":  [{
-                                    }],
             "SchoolHistoryDetails": [{
-                                    "HistoryId":0001
+                                    "SchoolHistoryId":0001
                                     },{
-                                    "HistoryId":    0002
+                                    "SchoolHistoryId":0002
                                     }]
             }
+            
 
 ## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?RollCallSessionStart}{?Status}]
 
