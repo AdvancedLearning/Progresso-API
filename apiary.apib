@@ -4121,9 +4121,10 @@ Set one to many days of a Week Structure
             }
             
 + Response 200 (application/json)
+
     + Body
         
-            [{
+            {
                 "AcYearId":             1
                 "name":                 "Sunday",
                 "workingNonWorking":    "Non-Working Day",
@@ -4148,7 +4149,8 @@ Set one to many days of a Week Structure
                 "name":                 "Wednesday",
                 "workingNonWorking":    "Half Working Day - AM",
                 "status":               true
-            }]
+            }
+            
 
 ## Academic Calendar Events [/academicCalendarEvents/{?AcYearId}{?id}]
 
@@ -5429,10 +5431,11 @@ Mandatory fields:
             
             
 + Response 200 (application/json)
+
            
     + Body
     
-                {
+            {
             "LearnerId":          02134,
             "LearnerCode":        "2010-0001",
             "Status":             "true",
@@ -5462,7 +5465,7 @@ Mandatory fields:
             "SENMajorNeedsDetails": [{
                                         "MajorNeedId":  0001
                                     }]
-            } 
+            }
 
 
 ### Update a collection of Learner Details [PUT]
@@ -5603,6 +5606,7 @@ Mandatory fields:
             
 
 + Response 200 (application/json)
+
            
     + Body
     
@@ -5639,8 +5643,7 @@ Mandatory fields:
             } 
 
            
-
-##LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
+## LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
 
 + Parameters
 
@@ -6296,6 +6299,8 @@ Mandatory Parameters:
     + Body
     
             {
+            "Status":       true,
+            "Details":      "Saved successfully"
             "Categories":   [{
                             "CategoryId":   0001,
                             "Status":       true,
