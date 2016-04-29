@@ -5675,7 +5675,7 @@ Response codes used are:
 + Response 200 (application/json)
 
     + Body
-    
+
             {
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
@@ -5697,8 +5697,9 @@ Response codes used are:
             "CPRLA":            null,
             "PEP":              false,
             "PPI":              false,
-            "AdoptedFromCare":      "N",
-            "Notes":                "Lorem ipsum"  
+            "AdoptedFromCare":  "N",
+            "Notes":            "Lorem ipsum",
+            "Refugee":          true           
             "ExclusionDetails": [{
                                     "ExclusionId":          0001,
                                     "Category":             "FIXD",
@@ -5720,8 +5721,8 @@ Response codes used are:
                                     "AppealCutOff":         null,
                                     "ExclusionHearing":     null,
                                     "Outcome":              "E",
-                                    "ReintregationMeetingDate": null,
-                                    "ReintregationNotes":       null,
+                                    "ReintegrationMeetingDate": null,
+                                    "ReintegrationNotes":       null,
                                     "ReinstatementDate":        null,
                                     "ReinstatementNotes":       ""
                                 }],
@@ -5785,6 +5786,7 @@ Response codes used are:
                                         "LeavingReason":"OT"
                                     }]
             }
+
             
 + Response 204 (application/json)
 
@@ -5813,7 +5815,6 @@ Mandatory fields:
         
             Authorization: Bearer [CURRENT_TOKEN]
             
-
     + Body
             
             { 
@@ -5835,8 +5836,9 @@ Mandatory fields:
             "PEP":              false,
             "PPI":              false,
             "AdoptedFromCare":  "N",
-            "Notes":            "Lorem ipsum"          
-            "ExclusiondDetails":[{
+            "Notes":            "Lorem ipsum",
+            "Refugee":          true
+            "ExclusionDetails":[{
                                 "Category":         "FIXD",
                                 "Reason":           "PP",
                                 "StartDate":        "2014-07-02",
@@ -5856,8 +5858,8 @@ Mandatory fields:
                                 "AppealCutOff":     null,
                                 "ExclusionHearing": null,
                                 "Outcome":          "E",
-                                "ReintregationMeetingDate": null,
-                                "ReintregationNotes":       null,
+                                "ReintegrationMeetingDate": null,
+                                "ReintegrationNotes":       null,
                                 "ReinstatementDate":        null,
                                 "ReinstatementNotes":       ""
                             }],
@@ -5891,7 +5893,7 @@ Mandatory fields:
                                     "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                     }],
             "GandTDetails": [{
-                                        "GandTStatus":    "G",
+                                        "GandTStatus":    "Gifted",
                                         "StartDate":    "2015-02-23",
                                         "EndDate":      null,
                                         "Subject":      "EN",
