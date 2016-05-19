@@ -6009,26 +6009,70 @@ Response codes used are:
 
 + Response 204 (application/json)
 
-## Learner Lesson Attendance by Time [/LearnerLessonAttendanceByLessonTime{?LearnerId}{?StartDate}{?EndDate}{?RollCallSessionStart}{?Status}]
+## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
 
 **Proposed Changes PROAPI-59**
 
-### Get Learner Lesson Attendance by Time [GET]
+### Get Learner Lesson Attendance [GET]
 
 Retrieve lesson attendance for one to many learners using date and time of lesson
 
-+ Request (applicaiton/json)
+**Either LearnerId or Date Range is mandatory**
+**Maximum Date Range is 16 weeks**
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
++ Parameters
+
+    + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
++ Request
 
     + Headers
     
             Authorization: Bearer [CURRENT_TOKEN]
             
-+ Response 200 (application/json)
++ Response 200
 
-
+    + Body
     
-            
-            
+            {   
+                {
+                "EventId":      1234,
+                "Date":         "18-04-2016",
+                "StartTime":    "09:00",
+                "EndTime":      "10:00",
+                "Period":       "1",
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "AttendanceCode":   "//",
+                "AttendanceCodeId": 1,  
+                "MinutesLate":      0,
+                "Notes":            ""
+                },{
+                "EventId":      6541,
+                "Date":         "18-04-2016",
+                "StartTime":    "10:00",
+                "EndTime":      "12:00",
+                "Period":       "2,3",
+                "Date":         "18-04-2016"
+                "LearnerId":    0002,
+                "LearnerCode":  "2013-00002",
+                "AttendanceCode":   "L",
+                "AttendanceCodeId": 3,  
+                "MinutesLate":      5,
+                "Notes":            "Lorem ipsum dolor sit amet."  
+                }
+            }  
+
++ Response 204 (application/json)
+         
             
 
 # Group Behaviour
