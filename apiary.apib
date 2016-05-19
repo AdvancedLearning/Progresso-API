@@ -4831,11 +4831,11 @@ Update one to many Day Composition Periods
 
 
 
-## Timetable Events  [/ttEvents/{TimetableSourceId}{startDate}{endDate}{?dayCompositionId}]
+## Timetable Events  [/ttEvents/{SourceId}{startDate}{endDate}{?dayCompositionId}]
 
 + Parameters
 
-    + TimetableSourceId (required, number, `12345`) ... The unique identifier of a timetable source
+    + SourceId (required, number, `12345`) ... The unique identifier of a timetable source
     + startDate (required, date, `2015-09-09`) ...    Filter date for timetable events
     + endDate (required, date, `2015-09-09`) ...    Filter date for timetable events
     + dayCompositionId (optional, number, `12345`) ...    Filter for events from a single day composition
@@ -5952,7 +5952,7 @@ Mandatory fields:
             }
             
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?RollCallSessionStart}{?Status}]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
 
 **Proposed Changes PROAPI-36**
 
@@ -5960,10 +5960,20 @@ Mandatory fields:
 
 Retreive one to many learner's attendance details
 
+**Either LearnerId or Date Range is mandatory**
+**Maximum Date Range is 16 weeks**
+
 Response codes used are:
 
 - 200: Returns with data
 - 204: No data available
+
++ Parameters
+
+    + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
 
 + Request
 
@@ -5971,39 +5981,31 @@ Response codes used are:
     
             Authorization: Bearer [CURRENT_TOKEN]
             
-+ Parameters
-
-    + LearnerId (optional, int, `00001`) ... the unique identifier of the learner
-
-    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified from
-
-    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... learner records modified to
-
-    + RollCallSessionStart (optional, string, `AM`) ... unique roll call session - 'AM' or 'PM'
-
-    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-
-+ Response 200 (application/json)
++ Response 200
 
     + Body
-            
-            {
-                "LearnerId":            0001
-                "LearnerCode":          "2013-00001",
-                "AttendanceStartDate":  "16-06-2014",
-                "RollCallSessionStart": "AM",
-                "AttendanceString":     "//L/L/////",
-                "MinutesLate":          "0,0,5,0,10,0,0,0,0,0"
-            },
-            {
-                "LearnerId":            0002
-                "LearnerCode":          "2013-00002",
-                "AttendanceStartDate":  "16-06-2014",
-                "rollCallSessionStart": "AM",
-                "AttendanceString":     "LL//MMII//", 
-                "MinutesLate":          "10,5,0,0,0,0,0,0,0,0"
-            }
+    
+            {   
+                {
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "AM",
+                "AttendanceCode":  "//",
+                "AttendanceCodeId":1,  
+                "MinutesLate":     0,
+                "Notes":           ""
+                },{
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "PM",
+                "AttendanceCode":  "L",
+                "AttendanceCodeId": 3,  
+                "MinutesLate":     5,
+                "Notes":           "Lorem Ipsum"
+                }
+            }  
 
 + Response 204 (application/json)
 
@@ -6023,7 +6025,7 @@ Retrieve lesson attendance for one to many learners using date and time of lesso
             
 + Response 200 (application/json)
 
-    + Body
+
     
             
             
