@@ -6009,7 +6009,8 @@ Response codes used are:
 
 + Response 204 (application/json)
 
-## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
+
+## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?GroupCode}{?Status}]
 
 **Proposed Changes PROAPI-59**
 
@@ -6030,6 +6031,7 @@ Response codes used are:
     + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
     + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + GroupCode (optional, string, `9Sc1`) ... Code of the Teaching Group
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
 
 + Request
