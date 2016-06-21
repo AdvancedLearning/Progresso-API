@@ -2583,7 +2583,7 @@ Create Attendance for one to many learners using date and time of lesson
 
 + Request (application/json)
 
-    + Headers
++ Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
         
@@ -2610,6 +2610,55 @@ Create Attendance for one to many learners using date and time of lesson
               }
             ]
 
+## Learner Roll Call Attendance [/
+
+### Retrieve Leaeners Roll Call Attendacne Details
+
++ Parameters
+    + *Either LearnerId or Date Range is mandatory*
+    + *Maximum Date Range is 16 weeks*
+    +LearnerId (optional/mandatory, int, `123465`) ... the unique identifier of the learner
+    +StartDate (optional/mandatory, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    +EndDate (optional/mandatory, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    +Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
++ Response 204 - no data found
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            {
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "AM",
+                "AttendanceCode":  "//",
+                "AttendanceCodeId":1,  
+                "MinutesLate":     0,
+                "Notes":           ""
+                },{
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "PM",
+                "AttendanceCode":  "L",
+                "AttendanceCodeId": 3,  
+                "MinutesLate":     5,
+                "Notes":           "Lorem Ipsum"
+                }
+            }    
+
++ Response 204
+
+    No data found
 
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 
