@@ -1802,71 +1802,6 @@ Collection of all learner-related resources
             },
             ]
 
-## Learner Record [/learners/{id}]
-
-**Proposed to be removed** 
-
-Optional parameter 'Id' will be included in amended GET Learners method - see PROAPI-32
-
-
-### Retrieve a learner [GET]
-
-+ Parameters
-    + id (required, int, `12345`) ... The unique identifier of the learner
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "learnerId":       12345,
-                "learnerCode":     "2013-00132",
-                "UPN":             "G999900210101",
-                "ULN":             "1234567890",
-                "Forename":        "Jonny",
-                "Surname":         "Doe",
-                "LegalForename":   "John",
-                "LegalSurname":    "Doe",
-                "DateOfBirth":     "20-04-2002",
-                "Year":            "Year 7",
-                "Course":          "Key Stage 3",
-                "DateOfEntry":     "03-09-2013",
-                "Gender":          "Male",
-                "RegGroup":        "7L2",
-                "Ethnicity":       "AOWB",
-                "EthnicitySource": "Providede by the parent",
-                "EnrolementStatus":"Current",
-                "NCYear":          "Year 7",
-                "PhoneDetails":    [{
-                                        "type":     "Home",
-                                        "number":   "015556655",
-                                        "smsFlag":  false
-                                    },{
-                                        "type":     "Mobile",
-                                        "number":   "075556655",
-                                        "smsFlag":  true
-                                    }],
-                "addressDetails":   [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                    }],
-                "status":           "active"
-                
-            }
-
 
 ## Create/Update Learner Records [/learners]
 
@@ -3677,7 +3612,7 @@ Group of all Academic Resources
 + Parameters
     + id (optional, number, `12345`) ... The unique identifier of the Academic Year
 
-### Retrieve AcadmicYear [GET]
+### Retrieve AcademicYear [GET]
 
 + Request
 
