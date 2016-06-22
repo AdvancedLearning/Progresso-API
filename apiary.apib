@@ -58,6 +58,8 @@ Methods for all employee-related resources
 
 ## Employee Record [/Employees/{Id}]
 
+**This method will shortly be removed**
+    
 View a single employee record
 
 Required parameters are:
@@ -153,13 +155,8 @@ Required parameters are:
 
 
 ## Employee Basic Records [/Employees{?Status}{?Since}]
+
 Returns all employees basic records for a school
-
-Optional parameters:
-
-- Status = "Active", "Left" or "Draft"
-
-- Since = use date format mm-dd-yyyy
 
 ### Retrieve one to many basic employee records [GET]
 
@@ -170,10 +167,24 @@ Optional parameters:
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + Status (optional, string, `active`) ... Optional filter by status, valid values [ active | left | draft].
-    + Since (optional, dateTime, `01-04-2014T18:00:00`) ... Optional filter to retrieve all changes since the date time specified. Only employee records that have changed will be returned.
 
-+ Response 200 (application/json)
+    + EmployeeId (optional, int, '1023454') ... unique Id of employee
+    
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+    
+    + Since (optional, dateTime, `01-04-2014T18:00:00`) ... employee records modified since
+
+
++ Response 204 - no data found
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
 
     + Body
     
@@ -183,16 +194,20 @@ Optional parameters:
                 "Title":                "Mr",
                 "Surname":              "Bloggs",
                 "Forname":              "Joe",
-                "Department":           "Math",
+                "Department":           "MAT",
                 "Position":             "Teacher",
                 "LegalSurname":         "Bloggs",
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
+    **          "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
                 "StartDate":            "28-02-2014 00:00:00",
                 "LeftDate":             "31-12-2015 00:00:00",
+    **          "DestinationType":      2,
+    **          "Destination":          "Hermitage on Skye",
+    **          "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "PhoneDetails":         [{
@@ -219,12 +234,14 @@ Optional parameters:
                                             "PostCode": "DD55 36DD",
                                             "AddressId":345345
                                         }],
-                "Status":               "active",
-                "NiNumber":             "NI1234HJGJ34",
-                "QtStatus":             False,
+                "Status":               "Left",
+    **          "ExcludeFromCensus":    true
+                "NINumber":             "NI1234HJGJ34",
+    **          "PayrollNumber":        "A270515",            
+                "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
-                "HTLA":                 False,
+                "HTLA":                 false,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
                                             "Code":     "ENG",
@@ -240,44 +257,55 @@ Optional parameters:
                 "Disability":           "No"
             }
 
++ Response 204
 
-## Create/Update Employee Records [/employees]
-Create one to many basic employee records
+    No data found
 
-Required parameters are:
 
-- Staff Code    
-- Forname         
-- Surname 
-- Middlename
-
-    
 ### Create Basic Employees [POST]
+
+ Create one to many one to many employee records 
+
++ Mandatory fields
+    + Employee Code, Forename and Surname are all mandatory
+    
+    + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+    
+    + Phone is not mandatory but if included: Type and Number are mandatory
+    
+    + Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    
+    + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
 
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
 
     + Body
-
+    
             {
                 "StaffCode":            "JBl",
                 "Title":                "Mr",
                 "Surname":              "Bloggs",
                 "Forname":              "Joe",
-                "Department":           "Math",
-                "Position":             "TCH",
+                "Department":           "MAT",
+                "Position":             "Teacher",
                 "LegalSurname":         "Bloggs",
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
+    **          "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
                 "StartDate":            "28-02-2014 00:00:00",
-                "LeftDate":             "",
+                "LeftDate":             "31-12-2015 00:00:00",
+    **          "DestinationType":      2,
+    **          "Destination":          "Hermitage on Skye",
+    **          "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "PhoneDetails":         [{
@@ -299,81 +327,177 @@ Required parameters are:
                                             "Locality": "Belper",
                                             "Town":     "Derby",
                                             "County":   "Derbyshire"
-                                            "PostCode": "DD55 3DD"
+                                            "PostCode": "DD55 36DD"
                                         }],
-                "Status":               "Active",
-                "NiNumber":             "NI648254E",
-                "QtStatus":             False,
+                "Status":               "Left",
+    **          "ExcludeFromCensus":    true
+                "NINumber":             "NI1234HJGJ34",
+    **          "PayrollNumber":        "A270515",            
+                "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
-                "HTLA":                 False,
+                "HTLA":                 false,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
                                             "Code":     "ENG",
                                             "Type":     "H",
-                                            "Level":    "4",
-                                            "LanguageUsageId": 434000
+                                            "Level":    "4"
                                         }],
-                "QualificationDetails": null
+                "QualificationDetails": [{
+                                            "Code":    "BEDO",
+                                            "Subject1": "A100",
+                                            "Subject2": "C100",
+                                            "ClassOfDegree": "3",
+                                            "Verified":   true
                 "Nationality":          "GBR",
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
-                "StartDate":            "",
                 "Disability":           "No"
             }
-
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "Status":               true,
-                "Details":              "Saved successfully",
-                "EmployeeId":           1,
-                "StaffCode":            "sc123",
-                "PhoneDetails":         [{
-                                            "PhoneId":  "00001"
-                                        },{
-                                            "PhoneId":  "00002"
-                                        }],
-                "AddressDetails":       [{
-                                            "AddressId":"00001"
-                                        }]
-            }
-
-### Update Employee Records [PUT]
-
-Update one to many employee records
-
-+ Request (application/json)
-
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-    + Body
-
-            {
-                "EmployeeId":           12345,
-                "Title":                "Mr",
-                "Surname":              "Bloggs",
-                "Forname":              "Joe",
-                "Position":             "DPHT",
-                "LeftDate":             "31-12-2015 00:00:00",
-                "Email":                "joe.bloggs333@whoknows.edu"
-            }
-
+                    
 + Response 200
 
     + Body
     
             {
-                "Status":                true,
+                "EmployeeId":           0001,
+                "StaffCode":            "JBl",
+                "Status":               true,
                 "Details":              "Saved successfully"
-                "EmployeeId":           12345,
-                "StaffCode":            "sc123"
+                "PhoneDetails":         [{
+                                            "PhoneId":      00001
+                                        },{
+                                            "PhoneId":      00002
+                                        }],
+                "AddressDetails":       [{
+                                            "AddressId":    00001
+                                        }],
+                "LanguageDetails":      [{
+                                            "LanguageId":   0001
+                                        }],
+                "QualificationDetails": [{
+                                            "QualificationId":0001
+                                        }]
+            }
+
+
+### Update Employee Records [PUT]
+
+Update one to many employee records
+
++ Mandatory fields
+
+    + EmployeeId, Surname, Forename are mandatory fields
+    
+    + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+
+    + Phone is not mandatory but if included: Type and Number are mandatory
+    
+    + Language is not mandatory but if included: TypeCode and LangCode are mandatory
+    
+    + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
+
+* Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+           {
+                "StaffCode":            "JBl",
+                "Title":                "Mr",
+                "Surname":              "Bloggs",
+                "Forname":              "Joe",
+                "Department":           "MAT",
+                "Position":             "Teacher",
+                "LegalSurname":         "Bloggs",
+                "LegalForename":        "Joseph",
+                "FormerSurname":        "",
+                "MiddleName":           "Bob",
+    **          "DisplayName":          "Mr J B Bloggs",
+                "DateOfBirth":          "31-12-1968 00:00:00",
+                "Gender":               "1",
+                "StartDate":            "28-02-2014 00:00:00",
+                "LeftDate":             "31-12-2015 00:00:00",
+    **          "DestinationType":      2,
+    **          "Destination":          "Hermitage on Skye",
+    **          "LeavingReason":        "Wants to be a hermit"'
+                "TeacherNumber":        "12456",
+                "Email":                "joe.bloggs@theschool.edu",
+                "PhoneDetails":         [{
+                                            
+                                            "Type":     "H",
+                                            "Number":   "015555555",
+                                            "SmsFlag":  false
+                                        },{
+                                            "Type":     "M",
+                                            "Number":   "075555555",
+                                            "SmsFlag":  true
+                                        }],
+                "AddressDetails":       [{
+                                            "Country":  "GBR",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire"
+                                            "PostCode": "DD55 36DD"
+                                        }],
+                "Status":               "Left",
+    **          "ExcludeFromCensus":    true
+                "NINumber":             "NI1234HJGJ34",
+    **          "PayrollNumber":        "A270515",            
+                "QtStatus":             false,
+                "QtsRoute":             "",
+                "DateOfQTS":            "",
+                "HTLA":                 false,
+                "DateOfHTLAStatus":     "",
+                "LanguageDetails":      [{
+                                            "Code":     "ENG",
+                                            "Type":     "H",
+                                            "Level":    "4"
+                                        }],
+                "QualificationDetails": [{
+                                            "Code":    "BEDO",
+                                            "Subject1": "A100",
+                                            "Subject2": "C100",
+                                            "ClassOfDegree": "3",
+                                            "Verified":   true
+                "Nationality":          "GBR",
+                "Ethnicity":            "WBRI",
+                "Religion":             "MU",
+                "Disability":           "No"
+            }
+
++ Response 200
+           
+    + Body
+    
+            {
+                "EmployeeId":           0001,
+                "StaffCode":            "JBl",
+                "Status":               true,
+                "Details":              "Saved successfully"
+                "PhoneDetails":         [{
+                                            "PhoneId":      00001
+                                        },{
+                                            "PhoneId":      00002
+                                        }],
+                "AddressDetails":       [{
+                                            "AddressId":    00001
+                                        }],
+                "LanguageDetails":      [{
+                                            "LanguageId":   0001
+                                        }],
+                "QualificationDetails": [{
+                                            "QualificationId":0001
+                                        }]
             }
 
 
@@ -2115,6 +2239,8 @@ Mandatory fields:
             
             
 ### Update Learner [PUT]
+**Further fields will be added to this method shortly**
+
 Update one to many learner records            
             
 + Request (application/json)
@@ -2213,6 +2339,315 @@ Update one to many learner records
                                     ]
             }
 
+
+## LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
+
++ Parameters
+
+    + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
+    + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
+    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
+    + Status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
+    
+           
+
+### Retrieve a collection of Learner Other Details [GET]
+
+Retrieve one or more Learner Other Details records
+
+**Deployed to Live PROAPI-26**
+
+Response codes used are:
+
+- 200: Returns with data
+- 204: No data available
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Surname":          "Sterling",
+            "Forename":         "Geoffrey",
+            "Status":           "Active",
+            "Traveller":        "GH",
+            "TravellerSource":  "P",
+            "CurrentDeprivationEver6":  true,
+            "CurrentServiceChild":      false,
+            "CurrentAdoptedfromCare":   false,
+            "CurrentLookedAfter":       false,
+            "CurrentPupilPremium":      true,
+            "LAC":              true,
+            "LACCurSch":        true,
+            "LACLA":            "370",
+            "HomeLA":           "871",
+            "CPR":              false,
+            "CPRLA":            null,
+            "PEP":              false,
+            "PPI":              false,
+            "AdoptedFromCare":  "N",
+            "Notes":            "Lorem ipsum",
+            "Refugee":          true           
+            "ExclusionDetails": [{
+                                    "ExclusionId":          0001,
+                                    "Category":             "FIXD",
+                                    "Reason":               "PP",
+                                    "StartDate":            "2014-07-02",
+                                    "EndDate":              "2014-07-02",
+                                    "StartSession":         "AM",
+                                    "EndSession":           "PM",
+                                    "Notes":                "Act of agression towards another pupil",
+                                    "TotalDays":            1,
+                                    "TotalSessions":        2,
+                                    "LAC":                  false,
+                                    "HeadNotified":         null,
+                                    "GovMeeting":           null,
+                                    "ProvisionStartDate":   null,
+                                    "ProvisionDetails":     null,
+                                    "Appeal":               false,
+                                    "AppealDate":           null,
+                                    "AppealCutOff":         null,
+                                    "ExclusionHearing":     null,
+                                    "Outcome":              "E",
+                                    "ReintegrationMeetingDate": null,
+                                    "ReintegrationNotes":       null,
+                                    "ReinstatementDate":        null,
+                                    "ReinstatementNotes":       ""
+                                }],
+            "FSMDetails":       [{
+                                    "FSMId":        0001,
+                                    "StartDate":    "2014-02-12",
+                                    "ReviewDate":   "",
+                                    "EndDate":      "2015-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                },
+                                {
+                                    "FSMId":        0002,
+                                    "StartDate":    "2015-02-12",
+                                    "ReviewDate":   "2015-12-08",
+                                    "EndDate":      "2016-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                }],
+            "PPI1314Details":   [{
+                                    "PPIId":        0001,
+                                    "PPIndicator":  "DPP",
+                                    "FTE":          1.00,
+                                    "FYStartDate":  "2013-12-20",
+                                    "FYEndDate":    "2014-12-14"
+                                }],
+            "PupilPremiumDetails":  [{
+                                            "PupilPremiumRecordId":0001,
+                                            "Deprivation":          true,
+                                            "AdoptedFromCare":      false,
+                                            "ServiceChild":         false,
+                                            "LookedAfter":          false,
+                                            "CashAmount":           935.00,
+                                            "FTE":                  1,
+                                            "FYStartDate":          "2014-04-01",
+                                            "FYEndDate":            "2015-03-31",
+                                            "Notes":                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                    }]
+                                    },
+            "GandTDetails":         [{
+                                        "GandTId":      0001,
+                                        "GandTStatus":  "G",
+                                        "StartDate":    "2015-02-23",
+                                        "EndDate":      null,
+                                        "Subject":      "EN",
+                                        "Notes":        ""
+                                    }],
+            "SchoolHistoryDetails": [{
+                                        "SchoolHistoryId": 0001,
+                                        "LANumber":     "999",
+                                        "SchoolNumber": "6213",
+                                        "SchoolName":   "Advanced Learninig Academy",                                
+                                        "EntryDate":    "2009-09-04",
+                                        "LeavingDate":  "2010-01-08",
+                                        "LeavingReason":"PM"
+                                    },{
+                                        "SchoolHistoryId": 0001,
+                                        "LANumber":     "999",
+                                        "SchoolNumber": "6124",
+                                        "SchoolName":   "Queens College Academy",                                
+                                        "EntryDate":    "2010-09-01",
+                                        "LeavingDate":  "2016-02-05",
+                                        "LeavingReason":"OT"
+                                    }]
+            }
+
+            
++ Response 204 (application/json)
+
+
+### Create\Update a collection of Learner Other Details [POST]
+
+Create or update one or more Learner Other Details records
+
+**Deployed to Live PROAPI-34**
+
+Mandatory fields:
+
+**LearnerId is mandatory**
+- Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
+    
+    If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+- FSM is not mandatory but if used: StartDate is mandatory
+- Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+- Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+- Gifted and Talented is not not mandatory but if used: G&TStatus, StartDate and Subject are mandatory
+- School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+            
+            { 
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Traveller":        "GH",
+            "TravellerSource":  "P",
+            "CurrentDeprivationEver6":  true,
+            "CurrentServiceChild":      false,
+            "CurrentAdoptedfromCare":   false,
+            "CurrentLookedAfter":       false,
+            "CurrentPupilPremium":      true,
+            "LAC":              true,
+            "LACCurSch":        true,
+            "LACLA":            "370",
+            "HomeLA":           "871",
+            "CPR":              false,
+            "CPRLA":            null,
+            "PEP":              false,
+            "PPI":              false,
+            "AdoptedFromCare":  "N",
+            "Notes":            "Lorem ipsum",
+            "Refugee":          true
+            "ExclusionDetails":[{
+                                "Category":         "FIXD",
+                                "Reason":           "PP",
+                                "StartDate":        "2014-07-02",
+                                "EndDate":          "2014-07-02",
+                                "StartSession":     "AM",
+                                "EndSession":       "PM",
+                                "Notes":            "Act of aggression towards another pupil",
+                                "TotalDays":        1,
+                                "TotalSessions":    2,
+                                "LAC":              false,
+                                "HeadNotified":     null,
+                                "GovMeeting":       null,
+                                "ProvisionStartDate":   null,
+                                "ProvisionDetails":     null,
+                                "Appeal":           false,
+                                "AppealDate":       null,
+                                "AppealCutOff":     null,
+                                "ExclusionHearing": null,
+                                "Outcome":          "E",
+                                "ReintegrationMeetingDate": null,
+                                "ReintegrationNotes":       null,
+                                "ReinstatementDate":        null,
+                                "ReinstatementNotes":       ""
+                            }],
+            "FSMDetails":   [{
+                                "StartDate":    "2014-02-12",
+                                "ReviewDate":   "",
+                                "EndDate":      "2015-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            },
+                            {
+                                "StartDate":    "2015-02-12",
+                                "ReviewDate":   "2015-12-08",
+                                "EndDate":      "2016-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            }],
+            "PPI1314Details":       [{
+                                    "PPIndicator":  "DPP",
+                                    "FTE":          1.00,
+                                    "FYStartDate":  "2013-12-20",
+                                    "FYEndDate":    "2014-12-14"
+                                    }],
+            "PupilPremiumDetails":  [{
+                                    "Deprivation":      true,
+                                    "AdoptedFromCare":  false,
+                                    "ServiceChild":     false,
+                                    "LookedAfter":      false
+                                    "CashAmount":       "935.00",
+                                    "FTE":              1.0,
+                                    "FYStartDate":      "2014-04-01",
+                                    "FYEndDate":        "2015-03-31",
+                                    "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                    }],
+            "GandTDetails": [{
+                                        "GandTStatus":    "Gifted",
+                                        "StartDate":    "2015-02-23",
+                                        "EndDate":      null,
+                                        "Subject":      "EN",
+                                        "Notes":        ""
+                                    }],
+            "SchoolHistoryDetails": [{
+                                    "LANumber":     "999",
+                                    "SchoolNumber":  "6213",
+                                    "SchoolName":   "Advanced Learninig Academy",                                
+                                    "EntryDate":    "2009-09-04",
+                                    "LeavingDate":  "2010-01-08",
+                                    "LeavingReason":"PM"
+                                    },{
+                                    "LANumber":     "999",
+                                    "SchoolNumber":  "1234",
+                                    "SchoolName":   "Queens College Academy",                                
+                                    "EntryDate":    "2010-09-01",
+                                    "LeavingDate":  "2016-02-05",
+                                    "LeavingReason":"OT"
+                                    }]
+            }
+          
+
++ Response 200
+
+    + Body
+    
+            {  
+            "LearnerId":            443756,   
+            "LearnerCode":          "2010-0001",
+            "Status":               true,
+            "Details":              "Saved successfully",
+            "ExclusionDetails": [{
+                                    "ExclusionId":  0001
+                                }],
+            "FSMDetails":       [{
+                                    "FSMId":        0001
+                                },
+                                {
+                                    "FSMId":        0002
+                                }],
+            "PPI1314Details":   [{
+                                    "PPIId":        0001
+                                }],
+            "PupilPremiumDetails":[{
+                                    "PupilPremiumRecordId":     001
+                                  }],
+            "GandTDetails":     [{
+                                    "GandTId":      0001
+                                }],
+            "SchoolHistoryDetails": [{
+                                    "SchoolHistoryId":0001
+                                    },{
+                                    "SchoolHistoryId":0002
+                                    }]
+            }
+            
 
 ## Learner Contacts [/LearnerContacts{?since}{?status}{?responsibility}{?priority}]
 ### Retrieve a Contacts associated to a learner [GET]
@@ -2421,7 +2856,60 @@ Create and update one to many learner heatlh records
             }
             
 
-## Create/Update Learner Attendance [/LearnerRollCallAttendance]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]]
+
+### Retrieve Learner Roll Call Attendance [GET]
+
++ Parameters
+
+    + *Either LearnerId or Date Range is mandatory*
+    
+    + *Maximum Date Range is 16 weeks*
+
+    + LearnerId (optional/mandatory, int, `123465`) ... the unique identifier of the learner
+
+    + StartDate (optional/mandatory, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+
+    + EndDate (optional/mandatory, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
++ Response 204 - no data found
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+        {
+            "LearnerId":    0001,
+            "LearnerCode":  "2013-00001",
+            "Date":         "18-04-2016",
+            "Session":         "AM",
+            "AttendanceCode":  "//",
+            "AttendanceCodeId":1,  
+            "MinutesLate":     0,
+            "Notes":           ""
+            },{
+            "LearnerId":    0001,
+            "LearnerCode":  "2013-00001",
+            "Date":         "18-04-2016",
+            "Session":         "PM",
+            "AttendanceCode":  "L",
+            "AttendanceCodeId": 3,  
+            "MinutesLate":     5,
+            "Notes":           "Lorem Ipsum"
+            }
+        }    
+
 
 ### Create Learner Roll Call Attendance [POST]
 
@@ -2467,9 +2955,69 @@ Create and amend Attendance for one to many learners
         
 
 
-## Create/Update Learner Attendance [/LearnerLessonAttendanceByPeriod]
+## Learner Lesson Attendance [/LearnerLessonAttendance{/LearnerId}{?SatrtDate}{?EndDate}{?GroupCode}{?Status}]
+
+### Retrieve Learner Lesson Attendance [GET]
+
++ Parameters
+    + *Either LearnerId, GroupCode or Date Range is mandatory*
+    + *Maximum Date Range is 4 weeks*
+    + LearnerId (mandatory/optional, int, `123456`) ... the unique identifier of the learner
+    + StartDate (mandatory/optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    + EndDate (mandatory/optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + GroupCode (mandatory/optional, string, '9Sc1') ... group code
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
+* Response 204 - no data found
+* Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+                    
++ Response 200
+
+    + Body
+    
+                           {
+                            "EventId":      1234,
+                            "GroupCode":  "9Sc1",
+                            "Date":         "18-04-2016",
+                            "StartTime":    "09:00",
+                            "EndTime":      "10:00",
+                            "Period":       "1",
+                            "LearnerId":    0001,
+                            "LearnerCode":  "2013-00001",
+                            "AttendanceCode":   "//",
+                            "AttendanceCodeId": 1,  
+                            "MinutesLate":      0,
+                            "Notes":            ""
+                            },{
+                            "EventId":      6541,
+                            "GroupCode":   "10Ar3",
+                            "Date":         "18-04-2016",
+                            "StartTime":    "10:00",
+                            "EndTime":      "12:00",
+                            "Period":       "2,3",
+                            "Date":         "18-04-2016"
+                            "LearnerId":    0002,
+                            "LearnerCode":  "2013-00002",
+                            "AttendanceCode":   "L",
+                            "AttendanceCodeId": 3,  
+                            "MinutesLate":      5,
+                            "Notes":            "Lorem ipsum dolor sit amet."                                
+                            }
+                            
++ Response 204
+
+    No data found
+
 
 ### Create Learner Lesson Attendance By Period [POST]
+
 Create Lesson Attendance for one to many learners using Timetable Period
 
 + Request (application/json)
@@ -2509,9 +3057,6 @@ Create Lesson Attendance for one to many learners using Timetable Period
                 
             }
 
-
-## Create/Update Learner Attendance [/LearnerLessonAttendanceByLessonTime]
-
 ### Create Learner Lesson Attendance by Time [POST]
 
 Create Attendance for one to many learners using date and time of lesson
@@ -2525,75 +3070,29 @@ Create Attendance for one to many learners using date and time of lesson
 
     + Body
            
-            [{
+            {
                 "LearnerCode":      "7791",
                 "Date":             "16-03-2016",
                 "StartTime":        "09:15",
                 "FinishTime":       "10:15",
                 "AttendanceCode":   "/"
-            }]
+            }
 
 + Response 200
 
     + Body
-    
-            [
-              {
+                 
+            {
                 "LearnerCode": "7791",
                 "Status": true,
                 "Details": "Saved successfully"
-              }
-            ]
-
-## Learner Roll Call Attendance [/
-
-### Retrieve Leaeners Roll Call Attendacne Details
-
-+ Parameters
-    + *Either LearnerId or Date Range is mandatory*
-    + *Maximum Date Range is 16 weeks*
-    +LearnerId (optional/mandatory, int, `123465`) ... the unique identifier of the learner
-    +StartDate (optional/mandatory, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-    +EndDate (optional/mandatory, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
-    +Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-+ Response 204 - no data found
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-+ Response 200
-
-    + Body
-    
-            {
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "AM",
-                "AttendanceCode":  "//",
-                "AttendanceCodeId":1,  
-                "MinutesLate":     0,
-                "Notes":           ""
-                },{
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "PM",
-                "AttendanceCode":  "L",
-                "AttendanceCodeId": 3,  
-                "MinutesLate":     5,
-                "Notes":           "Lorem Ipsum"
-                }
-            }    
+            }
 
 + Response 204
 
     No data found
+
+
 
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 
@@ -5129,328 +5628,6 @@ Update one to many Sites
 
 # Group Learners Collection v2
 
-##Learners [/Learners/{LearnerId}{LearnerCode}{Status}{Since}]
-After feedback from Partners and changes of internal requirements more fields are to be added to the existing GET Learners method.
-This section is work in progress and subject to change.
-
-+ Parameters
-
-    + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
-    + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
-    + Since         (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + Status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-### Retrieve a collection of Learner Details [GET]
-
-**Proposed Changes PROAPI-25**
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-            
-+ Response 200
-
-    + Body
-    
-            {
-            "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001",
-            "Surname":          "Sterling",
-            "Forename":         "Geoffrey",
-            "Status":           "Active",
-            "RegGroup":         "KP",
-            "AcademicHouse":    "Hulland"
-            "DateOfBirth":      "04-08-1998 00:00:00",
-            "LegalSurname":     "Sterling",
-            "LegalForename":    "Geoffrey",
-            "MiddleName":       "James",
-            "FormerSurname":    "Silver",
-            "EmailAddress":     "a.b@c.co.uk",
-            "Gender":           "M",
-            "Notes":            "Lorem Ipsum",
-            "HomeSalutation":   "Mrs C Sterling",
-            "DateOfEntry":      "01-09-2010 00:00:00",
-            "Year":             "13",
-            "Course":           "KS5",
-            "NCYear":           "13",
-            "Boarder":          "N",
-            "AddressDetails":   [{
-                                    "Country":      "GBR",
-                                    "Type":         "H",
-                                    "Flat":         "",
-                                    "Number":       "23",
-                                    "Street":       "Orchard Gardens",
-                                    "Locality":     "Derby",
-                                    "Town":         "",
-                                    "County":       "",
-                                    "PostCode":     "DE21 4FL",
-                                    "AddressId":    1322228
-                                }],
-            "PhoneDetails":     [{
-                                    "Type":         "H",
-                                    "Number":       "01111567891",
-                                    "SMSFlag":      false,
-                                    "PhoneId":      2165078
-                                }],
-            "ContactDetails":   [{
-                                    "ContactId":    0001,
-                                    "Title":        "Mr",
-                                    "Forename":     "Zaphod",
-                                    "Surname":      "Beelebrox",
-                                    "Relationship": "Father",
-                                    "Gender":       "M",
-                                    "WrittenCommunication":     "",
-                                    "Priority":                 "",
-                                    "ContactPrioritySource":    "",
-                                    "EmergencyContactLevel":    "Primary",
-                                    "NextOfKin":                false,
-                                    "AddressDisclosure":        false,
-                                    "AddressTransferred":       false,
-                                    "ParentalResponsibility":   true,
-                                    "FeePayer":                 false,
-                                    "ParentalPortal":           true,
-                                    "HomeAddressLink":          true,
-                                    "OtherHomeAddressLink":     false,
-                                    "SendSMS":                  true
-                                }],
-            "SiblingDetails":   [{
-                                    "LearnerCode":  "2014-0002",
-                                    "LearnerId":    0002
-                                },{
-                                    "LearnerCode":  "2015-0005",  
-                                    "LearnerId":    0003
-                                }],
-            "PartTime":         false,
-            "EnrolementStatus": "C",
-            "UPN":              "H502400200007",
-            "FormerUPN":        "F502400200003",
-            "ULN":              "P400200003"
-            "GandT":            true,
-            "MedicalFlag":      true,
-            "YSSAIndicator":    "Y",
-            "Nationality":      "GBR",
-            "Ethnicity":        "WBRI",
-            "EthnicitySource":  "P",
-            "ServiceChild":     "N",
-            "ServiceChildSource": "P",
-            "TopUpFunding":     true,
-            "FundedHours":      0.0,
-            "HoursAtSetting":   0.0,
-            "UnitContactTime":  5.0,
-            "SchoolLunchTaken": true,
-            "MealType":         "CSM",
-            "AsylumSeeker":     false,
-            "Religion":         "HIN",
-            "DisabilityDetails":[{
-                                    "Disability":       "CON",
-                                    "DisabilityTypeId": 0001
-                                },{
-                                    "Disability":       "DDA",
-                                    "DisabilityTypeId":  0002
-                                }],
-            "LanguageDetails":  [{
-                                    "TypeCode":             "F",
-                                    "LanguageCode":         "ENG",
-                                    "LanguageUsageId":      0001
-                                },{
-                                    "TypeCode":         "M",
-                                    "LanguageCode":     "AYB",
-                                    "LanguageUsageId":  0002
-                                }],
-            "SENProvisionDetails":  [{
-                                        "ProvisionId":          00001
-                                        "ProvisionTypeCode":    "E",
-                                        "StartDate":            "19/09/2014",
-                                        "ReviewDate":           "20/09/2014",
-                                        "EndDate":              "20/09/2014" 
-                                    }],
-            "SENMajorNeedsDetails": [{
-                                        "LeanerMajorNeedId":    00001
-                                        "MajorNeedCode":        "SLD",
-                                        "Ranking":              1
-                                    }]
-            }
-
-
-+ Response 204 (application/json)
-
-
-### Create a collection of Learner Details [POST]
-
-**Proposed Changes PROAPI-32**
-
-Create one or more Learner detail records
-
-Mandatory fields:
-
-- Surname, Forename, Learner Code, Date of Birth are mandatory fields
-    
-- Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
-    
-- Phone is not mandatory but if included: Type and Number are mandatory
-    
-- Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
-    
-- Language is not mandatory but if included: TypeCode and LangCode are mandatory
-    
-- SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
-    
-- SENMajorNeeds is not mandatory but if included: MajorNeedCode and Ranking are mandatory
-
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-    + Body
-    
-            {
-            "LearnerCode":        "2010-0001",
-            "Surname":            "Sterling",
-            "Forename":           "Geoffrey",
-            "Status":             "Active",
-            "RegGroup":           "KP",
-            "AcademicHouse":      "Hulland",
-            "DateOfBirth":        "04-08-1998 00:00:00",
-            "LegalSurname":       "Sterling",
-            "LegalForename":      "Geoffrey",
-            "MiddleName":         "James",
-            "FormerSurname":      "Silver",
-            "EmailAddress":       "a.b@c.co.uk",
-            "Gender":             "M",
-            "Notes":              "Lorem Ipsum",
-            "HomeSalutation":     "Mrs C Sterling",
-            "DateOfEntry":        "01-09-2010 00:00:00",
-            "Year":               "13",
-            "Course":             "KS5",
-            "NCYear":             "13",
-            "Boarder":            "N",
-            "AddressDetails":   [{
-                                    "Country":      "GBR",
-                                    "Type":         "H",
-                                    "Flat":         "",
-                                    "Number":       "23",
-                                    "Street":       "Orchard Gardens",
-                                    "Locality":     "Derby",
-                                    "Town":         "",
-                                    "County":       "",
-                                    "PostCode":     "DE21 4FL"
-                                }],
-            "PhoneDetails":     [{
-                                    "Type":         "H",
-                                    "Number":       "01111567891",
-                                    "SMSFlag":      false
-                                }],
-            "ContactDetails":   [{
-                                    "Title":        "Mrs",
-                                    "Forename":     "Trillian",
-                                    "Surname":      "Beelebrox",
-                                    "Relationship": "PAM",
-                                    "Gender":       "F",
-                                    "WrittenCommunication":     "",
-                                    "Priority":                 1,
-                                    "ContactPrioritySource":    "",
-                                    "EmergencyContactLevel":    "Primary",
-                                    "NextOfKin":                false,
-                                    "AddressDisclosure":        false,
-                                    "AddressTransferred":       false,
-                                    "ParentalResponsibility":   true,
-                                    "FeePayer":                 false,
-                                    "ParentalPortal":           true,
-                                    "HomeAddressLink":          true,
-                                    "OtherHomeAddressLink":     false,
-                                    "SendSMS":                  true
-                                }],
-            "SiblingDetails":   [{
-                                    "LearnerCode":  "2014-0002"
-                                }],
-            "PartTime":           false,
-            "EnrolementStatus":   "C",
-            "UPN":                "H502400200007",
-            "FormerUPN":          "F502400200003",
-            "ULN":                "P400200003",
-            "UCI":                "3452165403",
-            "GandT":              true,
-            "MedicalFlag":        true,
-            "YSSAIndicator":      "SNR",
-            "Nationality":        "GBR",
-            "Ethnicity":          "WBRI",
-            "EthnicitySource":    "P",
-            "ServiceChild":       "N",
-            "ServiceChildSource": "P",
-            "TopUpFunding":       true,
-            "FundedHours":        0.0,
-            "HoursAtSetting":     0.0,
-            "UnitContactTime":    0.0,
-            "SchoolLunchTaken":   true,
-            "MealType":           "CSM",
-            "AsylumSeeker":       false,
-            "Religion":           "HI",
-            "DisabilityDetails":   [{
-                                        "Disability":  "CON"
-                                    }],
-            "LanguageDetails":  [{
-                                    "TypeCode":             "F",
-                                    "LanguageCode":         "ENG"
-                                }],
-            "SENProvisionDetails":  [{
-                                        "ProvisionTypeCode":    "E",
-                                        "StartDate":            "19/09/2014"
-                                    }],
-            "SENMajorNeedsDetails": [{
-                                        "MajorNeedCode":        "SLD",
-                                        "Ranking":              1
-                                    }]
-            }
-            
-            
-+ Response 200 (application/json)
-
-           
-    + Body
-    
-            {
-            "LearnerId":          02134,
-            "LearnerCode":        "2010-0001",
-            "Status":             "true",
-            "Details":            "Saved successfully"
-            "AddressDetails":   [{
-                                    "AddressId":    0001
-                                }],
-            "PhoneDetails":     [{
-                                    "PhoneId":      0001
-                                }],
-            "ContactDetails":   [{
-                                    "ContactId":    0001
-                                    "LearnerContactRelationshipId": 0002
-                                }],
-            "SiblingDetails":   [{
-                                    "LearnerId":   0002
-                                }],
-            "DisabilityDetails":[{
-                                    "DisabilityTypeId": 0001 
-                                }],
-            "LanguageDetails":  [{
-                                    "LanguageId":   0002
-                                }],
-            "SENProvisionDetails":  [{
-                                        "ProvisionId":  0003
-                                    }],
-            "SENMajorNeedsDetails": [{
-                                        "MajorNeedId":  0001
-                                    }]
-            }
-
 
 ### Update a collection of Learner Details [PUT]
         
@@ -5626,172 +5803,32 @@ Mandatory fields:
                                     }]
             }
 
-           
-## LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
-
-+ Parameters
-
-    + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
-    + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
-    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + Status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
-    
-           
-
-### Retrieve a collection of Learner Other Details [GET]
-
-Retrieve one or more Learner Other Details records
-
-**Deployed to Live PROAPI-26**
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
-
-+ Request
-
-    + Headers
+### Update a collection of Learner Other Details [PUT]
         
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-            
-+ Response 200 (application/json)
+**Proposed Changes PROAPI-35**
 
-    + Body
-
-            {
-            "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001",
-            "Surname":          "Sterling",
-            "Forename":         "Geoffrey",
-            "Status":           "Active",
-            "Traveller":        "GH",
-            "TravellerSource":  "P",
-            "CurrentDeprivationEver6":  true,
-            "CurrentServiceChild":      false,
-            "CurrentAdoptedfromCare":   false,
-            "CurrentLookedAfter":       false,
-            "CurrentPupilPremium":      true,
-            "LAC":              true,
-            "LACCurSch":        true,
-            "LACLA":            "370",
-            "HomeLA":           "871",
-            "CPR":              false,
-            "CPRLA":            null,
-            "PEP":              false,
-            "PPI":              false,
-            "AdoptedFromCare":  "N",
-            "Notes":            "Lorem ipsum",
-            "Refugee":          true           
-            "ExclusionDetails": [{
-                                    "ExclusionId":          0001,
-                                    "Category":             "FIXD",
-                                    "Reason":               "PP",
-                                    "StartDate":            "2014-07-02",
-                                    "EndDate":              "2014-07-02",
-                                    "StartSession":         "AM",
-                                    "EndSession":           "PM",
-                                    "Notes":                "Act of agression towards another pupil",
-                                    "TotalDays":            1,
-                                    "TotalSessions":        2,
-                                    "LAC":                  false,
-                                    "HeadNotified":         null,
-                                    "GovMeeting":           null,
-                                    "ProvisionStartDate":   null,
-                                    "ProvisionDetails":     null,
-                                    "Appeal":               false,
-                                    "AppealDate":           null,
-                                    "AppealCutOff":         null,
-                                    "ExclusionHearing":     null,
-                                    "Outcome":              "E",
-                                    "ReintegrationMeetingDate": null,
-                                    "ReintegrationNotes":       null,
-                                    "ReinstatementDate":        null,
-                                    "ReinstatementNotes":       ""
-                                }],
-            "FSMDetails":       [{
-                                    "FSMId":        0001,
-                                    "StartDate":    "2014-02-12",
-                                    "ReviewDate":   "",
-                                    "EndDate":      "2015-02-12",
-                                    "CoutnryOfUk":  "ENG"
-                                },
-                                {
-                                    "FSMId":        0002,
-                                    "StartDate":    "2015-02-12",
-                                    "ReviewDate":   "2015-12-08",
-                                    "EndDate":      "2016-02-12",
-                                    "CoutnryOfUk":  "ENG"
-                                }],
-            "PPI1314Details":   [{
-                                    "PPIId":        0001,
-                                    "PPIndicator":  "DPP",
-                                    "FTE":          1.00,
-                                    "FYStartDate":  "2013-12-20",
-                                    "FYEndDate":    "2014-12-14"
-                                }],
-            "PupilPremiumDetails":  [{
-                                            "PupilPremiumRecordId":0001,
-                                            "Deprivation":          true,
-                                            "AdoptedFromCare":      false,
-                                            "ServiceChild":         false,
-                                            "LookedAfter":          false,
-                                            "CashAmount":           935.00,
-                                            "FTE":                  1,
-                                            "FYStartDate":          "2014-04-01",
-                                            "FYEndDate":            "2015-03-31",
-                                            "Notes":                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                                    }]
-                                    },
-            "GandTDetails":         [{
-                                        "GandTId":      0001,
-                                        "GandTStatus":  "G",
-                                        "StartDate":    "2015-02-23",
-                                        "EndDate":      null,
-                                        "Subject":      "EN",
-                                        "Notes":        ""
-                                    }],
-            "SchoolHistoryDetails": [{
-                                        "SchoolHistoryId": 0001,
-                                        "LANumber":     "999",
-                                        "SchoolNumber": "6213",
-                                        "SchoolName":   "Advanced Learninig Academy",                                
-                                        "EntryDate":    "2009-09-04",
-                                        "LeavingDate":  "2010-01-08",
-                                        "LeavingReason":"PM"
-                                    },{
-                                        "SchoolHistoryId": 0001,
-                                        "LANumber":     "999",
-                                        "SchoolNumber": "6124",
-                                        "SchoolName":   "Queens College Academy",                                
-                                        "EntryDate":    "2010-09-01",
-                                        "LeavingDate":  "2016-02-05",
-                                        "LeavingReason":"OT"
-                                    }]
-            }
-
-            
-+ Response 204 (application/json)
-
-
-### Create\Update a collection of Learner Other Details [POST]
-
-Create or update one or more Learner Other Details records
-
-**Deployed to Live PROAPI-34**
+Update one or more Learner other detail records
 
 Mandatory fields:
 
-**LearnerId is mandatory**
-- Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
++ LearnerId
+
+    + Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
+        + If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+                 
+    + FSM is not mandatory but if used: StartDate is mandatory
+
+    + Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+
+    + Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
     
-    If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
-- FSM is not mandatory but if used: StartDate is mandatory
-- Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
-- Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
-- Gifted and Talented is not not mandatory but if used: G&TStatus, StartDate and Subject are mandatory
-- School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
+    + Gifted and Talented is not not mandatory but if used: G&TStatus, StartDate and Subject are mandatory
+
+    + School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
+    
+
+- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
 
 + Request (application/json)
 
@@ -5800,8 +5837,8 @@ Mandatory fields:
             Authorization: Bearer [CURRENT_TOKEN]
             
     + Body
-            
-            { 
+        
+          { 
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
             "Traveller":        "GH",
@@ -5823,6 +5860,7 @@ Mandatory fields:
             "Notes":            "Lorem ipsum",
             "Refugee":          true
             "ExclusionDetails":[{
+                                "ExclusionId":      0001,
                                 "Category":         "FIXD",
                                 "Reason":           "PP",
                                 "StartDate":        "2014-07-02",
@@ -5848,6 +5886,7 @@ Mandatory fields:
                                 "ReinstatementNotes":       ""
                             }],
             "FSMDetails":   [{
+                                "FSMId":        0001
                                 "StartDate":    "2014-02-12",
                                 "ReviewDate":   "",
                                 "EndDate":      "2015-02-12",
@@ -5860,12 +5899,14 @@ Mandatory fields:
                                 "CoutnryOfUk":  "ENG"
                             }],
             "PPI1314Details":       [{
+                                    "PPIId":    0001
                                     "PPIndicator":  "DPP",
                                     "FTE":          1.00,
                                     "FYStartDate":  "2013-12-20",
                                     "FYEndDate":    "2014-12-14"
                                     }],
             "PupilPremiumDetails":  [{
+                                    "PupilPremiumRecordId":     001
                                     "Deprivation":      true,
                                     "AdoptedFromCare":  false,
                                     "ServiceChild":     false,
@@ -5876,14 +5917,16 @@ Mandatory fields:
                                     "FYEndDate":        "2015-03-31",
                                     "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                     }],
-            "GandTDetails": [{
-                                        "GandTStatus":    "Gifted",
-                                        "StartDate":    "2015-02-23",
-                                        "EndDate":      null,
-                                        "Subject":      "EN",
-                                        "Notes":        ""
+            "GandTDetails":         [{
+                                    "GandTId":  0001
+                                    "GandTStatus":    "Gifted",
+                                    "StartDate":    "2015-02-23",
+                                    "EndDate":      null,
+                                    "Subject":      "EN",
+                                    "Notes":        ""
                                     }],
             "SchoolHistoryDetails": [{
+                                    "SchoolHistoryId":0001
                                     "LANumber":     "999",
                                     "SchoolNumber":  "6213",
                                     "SchoolName":   "Advanced Learninig Academy",                                
@@ -5891,6 +5934,7 @@ Mandatory fields:
                                     "LeavingDate":  "2010-01-08",
                                     "LeavingReason":"PM"
                                     },{
+                                    "SchoolHistoryId":0002
                                     "LANumber":     "999",
                                     "SchoolNumber":  "1234",
                                     "SchoolName":   "Queens College Academy",                                
@@ -5899,42 +5943,42 @@ Mandatory fields:
                                     "LeavingReason":"OT"
                                     }]
             }
-          
+
 
 + Response 200
 
     + Body
     
             {  
-            "LearnerId":            443756,   
-            "LearnerCode":          "2010-0001",
-            "Status":               true,
-            "Details":              "Saved successfully",
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Status":           true,
+            "Details":          "Saved successfully",
             "ExclusionDetails": [{
-                                    "ExclusionId":  0001
+                                "ExclusionId":  0001
                                 }],
             "FSMDetails":       [{
-                                    "FSMId":        0001
+                                "FSMId":        0001
                                 },
                                 {
-                                    "FSMId":        0002
+                                "FSMId":        0002
                                 }],
             "PPI1314Details":   [{
-                                    "PPIId":        0001
+                                "PPIId":    0001
                                 }],
             "PupilPremiumDetails":[{
                                     "PupilPremiumRecordId":     001
                                   }],
             "GandTDetails":     [{
-                                    "GandTId":      0001
+                                "GandTId":  0001
                                 }],
             "SchoolHistoryDetails": [{
                                     "SchoolHistoryId":0001
                                     },{
-                                    "SchoolHistoryId":0002
+                                    "SchoolHistoryId":    0002
                                     }]
-            }
-            
+            }           
+
 
 ## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
 
