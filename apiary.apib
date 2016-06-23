@@ -4143,6 +4143,9 @@ Group of all Academic Resources
 ## Create/Update Academic Years [/academicYear]
 
 ### Create Academic Year [POST]
+
+**The updated method will aloow for past academic years to be created ONLY if there are no existing Academic Years. It will laso created the week structure at the same time**
+
 Create one to many academic years
 
 + Request (application/json)
@@ -4567,6 +4570,7 @@ Update one to many terms breaks
             }
 
 ## ** Proposed ** Update Week Structure [/weekStructure]
+**This will be included in the updated POST Academic Year method
 
 ### Set Week Structure [PUT]
 Set one to many days of a Week Structure
