@@ -2239,105 +2239,177 @@ Mandatory fields:
             
             
 ### Update Learner [PUT]
-**Further fields will be added to this method shortly**
+**Fields marked with ** are newly added**
 
 Update one to many learner records            
             
+**LearnerId is a mandatory field**
+
+- Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
+
+- Phone is not mandatory but if included: Type and Number are mandatory
+
+- Contacts are not mandatory but if included: Title, Forename, Surname, Relationship and Gender are mandatory
+
+- Language is not mandatory but if included: TypeCode and LangCode are mandatory
+
+- SENProvision is not mandatory but if included: ProvisionTypeCode and StartDate are mandatory
+
+- SENMajorNeeds is not mandatory but if included: MajorNeed Code and Ranking are mandatory
+
+- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
+            
     + Body
-    
+
             {
-                "LearnerId":        443757,
-                "LearnerCode":      "7899",
-                "UPN":              "D502400200014",
-                "ULN":              "2712059815",
-                "Surname":          "Gillis",
-                "Forename":         "Marc",
-                "LegalSurname":     "Gillis",
-                "LegalForename":    "Marc",
-                "DateOfBirth":      "03-03-1998 00:00:00",
-                "Year":             "13",
-                "Course":           "KS5",
-                "DateOfEntry":      "01-09-2010 00:00:00",
-                "Gender":           "M",
-                "RegGroup":         "6AC",
-                "Ethnicity":        "WBRI",
-                "EthnicitySource":  "P",
-                "EnrolementStatus": "C",
-                "NCYear":           "13",
-                "Status":           "Active",
-                "PhoneDetails": [
-                                  {
-                                    "Type": "H",
-                                    "Number": "01332660400",
-                                    "SMSFlag": false,
-                                    "PhoneId": 2165092
-                                  }
-                                ],
-                "AddressDetails": [
-                                    {
-                                        "Country": "GBR",
-                                        "Type": "H",
-                                        "Flat": "",
-                                        "Number": "153",
-                                        "Street": "Addis Ababa Avenue",
-                                        "Locality": "Derby",
-                                        "Town": "",
-                                        "County": "",
-                                        "PostCode": "DE36 3PW",
-                                        "AddressId": 1322229
-                                      }
-                                    ]
+                "LearnerId":          00001,
+                "LearnerCode":        "2010-0001",
+                "Surname":            "Sterling",
+                "Forename":           "Geoffrey",
+                "Status":             "Active",
+                "RegGroup":           "ABC",
+              **  "AcademicHouse":      "Hulland",
+                "DateOfBirth":        "04-08-1999 00:00:00",
+                "LegalSurname":       "Sterling",
+                "LegalForename":      "Geoffrey",
+              **  "MiddleName":         "James",
+              **  "FormerSurname":      "Silver",
+              **  "EmailAddress":       "af098453hsdf@c.co.uk",
+                "Gender":             "M",
+              **  "Notes":              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.",
+             **   "HomeSalutation":     "Mr G Sterling",
+                "DateOfEntry":        "01-09-2010 00:00:00",
+                "Year":               "13",
+                "Course":             "KS5",
+                "NCYear":             "13",
+              **  "Boarder":            "N",
+                "AddressDetails":   [{
+                                        "AddressId":    0001,
+                                        "Country":      "GBR",
+                                        "Type":         "H",
+                                        "Flat":         "",
+                                        "Number":       "23",
+                                        "Street":       "Orchard Gardens",
+                                        "Locality":     "Derby",
+                                        "Town":         "",
+                                        "County":       "",
+                                        "PostCode":     "DE21 4FL"
+                                    }],
+                "PhoneDetails":     [{
+                                        "PhoneId":      0001,
+                                        "Type":         "H",
+                                        "Number":       "01111567891",
+                                        "SMSFlag":      false
+                                    }],
+              **  "ContactDetails":   [{
+                                        "ContactId":    0001,
+                                        "Title":        "Mrs",
+                                        "Forename":     "Trillian",
+                                        "Surname":      "Beelebrox",
+                                        "Relationship": "PAM",
+                                        "Gender":       "F",
+                                        "WrittenCommunication":     "",
+                                        "Priority":                 1,
+                                        "ContactPrioritySource":    "",
+                                        "EmergencyContactLevel":    "Primary",
+                                        "NextOfKin":                false,
+                                        "AddressDisclosure":        false,
+                                        "AddressTransferred":       false,
+                                        "ParentalResponsibility":   true,
+                                        "FeePayer":                 false,
+                                        "ParentalPortal":           true,
+                                        "HomeAddressLink":          true,
+                                        "OtherHomeAddressLink":     false,
+                                        "SendSMS":                  true
+                                    }],
+               **  "SiblingDetails":   [{
+                                        "LearnerCode":  "2014-0002"
+                                    }],
+               ** "PartTime":           false,
+               ** "EnrolementStatus":   "C",
+               ** "UPN":                "H502400200007",
+              **  "FormerUPN":          "F502400200003",
+                "ULN":                "P400200003",
+              **  "GandT":              false,
+              **  "MedicalFlag":        false,
+              **  "YSSAIndicator":      "Y",
+              **  "Nationality":        "GBR",
+              **  "Ethnicity":          "WBRI",
+              **  "EthnicitySource":    "P",
+              **  "ServiceChild":       "N",
+              **  "ServiceChildSource": "P",
+              **  "TopUpFunding":       false,
+              **  "FundedHours":        0.0,
+              **  "HoursAtSetting":     0.0,
+              **  "UnitContactTime":    0.0,
+              **  "SchoolLunchTaken":   false,
+              **  "MealType":           "CSM",
+              **  "AsylumSeeker":       false,
+              **  "Religion":           "HIN"
+              **  "DisabilityDetails":[{
+                                        "DisabilityTypeId":     0001,
+                                        "Disability":  "CON"
+                                    }],
+              **  "LanguageDetails":  [{
+                                        "LanguageUsageId":      0001,
+                                        "TypeCode":             "F",
+                                        "LangCode":             "ENG",
+                                    }],
+              **  "SENProvisionDetails":  [{
+                                        "ProvisionId":          0003,
+                                        "ProvisionTypeCode":    "E",
+                                        "StartDate":            "19/09/2014"
+                                        }],
+              **  "SENMajorNeedsDetails": [{
+                                        "LeanerMajorNeedId":          0001,
+                                        "MajorNeedCode":        "SLD",
+                                        "Ranking":              1
+                                        }]
             }
             
-                
-+ Response 200
 
++ Response 200 (application/json)
+           
     + Body
     
             {
-                "Status":       true,
-                "Details":      "Saved successfully",
-                "LearnerId":    443757,
-                "LearnerCode":  "7899",
-                "PhoneDetails": [
-                                  {
-                                    "Type": "H",
-                                    "Number": "01332010101",
-                                    "PhoneId": 2148939
-                                  }
-                                ],
-                "AddressDetails":   [
-                                      {
-                                        "Country": "GBR",
-                                        "Type": "Home",
-                                        "Flat": "",
-                                        "Number": "21",
-                                        "Street": "Rockingham Close",
-                                        "Locality": "Derby",
-                                        "Town": "",
-                                        "County": "",
-                                        "PostCode": "DE36 3PW",
-                                        "AddressId": 1322229
-                                      }
-                                    ],
-                "ContactDetails": [
-                                    {
-                                        "ContactId": 950018,
-                                        "LearnerContactRelId": 2054
-                                    },
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                                    ]
-            }
+                "LearnerId":          02134,
+                "LearnerCode":        "2010-0001",
+                "Status":             "true",
+                "Details":            "Saved successfully"
+                "AddressDetails":   [{
+                                        "AddressId":    0001
+                                    }],
+                "PhoneDetails":     [{
+                                        "PhoneId":      0001
+                                    }],
+                "ContactDetails":   [{
+                                        "ContactId":    0001
+                                        "LearnerContactRelationshipId": 0002
+                                    }],
+                "SiblingDetails":   [{
+                                        "LearnerId":   0002
+                                    }],
+                "DisabilityDetails":[{
+                                        "DisabilityTypeId": 0001 
+                                    }],
+                "LanguageDetails":  [{
+                                        "LanguageUsageId":   0002
+                                    }],
+                "SENProvisionDetails":  [{
+                                            "ProvisionId":  0003
+                                        }],
+                "SENMajorNeedsDetails": [{
+                                            "MajorNeedId":  0001
+                                        }]
+            } 
 
 
 ## LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
@@ -2488,9 +2560,9 @@ Response codes used are:
 + Response 204 (application/json)
 
 
-### Create\Update a collection of Learner Other Details [POST]
+### Create a collection of Learner Other Details [POST]
 
-Create or update one or more Learner Other Details records
+Create one or more Learner Other Details records
 
 **Deployed to Live PROAPI-34**
 
@@ -2647,7 +2719,179 @@ Mandatory fields:
                                     "SchoolHistoryId":0002
                                     }]
             }
+
+
+### Update a collection of Learner Other Details [PUT]
+
+ Update one to many one to many learner other detail records    
+
+**LearnerId is mandatory**
+- Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
+                 (i) If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+                 
+- FSM is not mandatory but if used: StartDate is mandatory
+
+- Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+
+- Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
+
+- Gifted and Talented is not not mandatory but if used: G&TStatus, StartDate and Subject are mandatory
+
+- School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
+
+- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+        
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
             
+    + Body
+        
+          { 
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Traveller":        "GH",
+            "TravellerSource":  "P",
+            "CurrentDeprivationEver6":  true,
+            "CurrentServiceChild":      false,
+            "CurrentAdoptedfromCare":   false,
+            "CurrentLookedAfter":       false,
+            "CurrentPupilPremium":      true,
+            "LAC":              true,
+            "LACCurSch":        true,
+            "LACLA":            "370",
+            "HomeLA":           "871",
+            "CPR":              false,
+            "CPRLA":            null,
+            "PEP":              false,
+            "PPI":              false,
+            "AdoptedFromCare":  "N",
+            "Notes":            "Lorem ipsum",
+            "Refugee":          true
+            "ExclusionDetails":[{
+                                "ExclusionId":      0001,
+                                "Category":         "FIXD",
+                                "Reason":           "PP",
+                                "StartDate":        "2014-07-02",
+                                "EndDate":          "2014-07-02",
+                                "StartSession":     "AM",
+                                "EndSession":       "PM",
+                                "Notes":            "Act of aggression towards another pupil",
+                                "TotalDays":        1,
+                                "TotalSessions":    2,
+                                "LAC":              false,
+                                "HeadNotified":     null,
+                                "GovMeeting":       null,
+                                "ProvisionStartDate":   null,
+                                "ProvisionDetails":     null,
+                                "Appeal":           false,
+                                "AppealDate":       null,
+                                "AppealCutOff":     null,
+                                "ExclusionHearing": null,
+                                "Outcome":          "E",
+                                "ReintegrationMeetingDate": null,
+                                "ReintegrationNotes":       null,
+                                "ReinstatementDate":        null,
+                                "ReinstatementNotes":       ""
+                            }],
+            "FSMDetails":   [{
+                                "FSMId":        0001
+                                "StartDate":    "2014-02-12",
+                                "ReviewDate":   "",
+                                "EndDate":      "2015-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            },
+                            {
+                                "StartDate":    "2015-02-12",
+                                "ReviewDate":   "2015-12-08",
+                                "EndDate":      "2016-02-12",
+                                "CoutnryOfUk":  "ENG"
+                            }],
+            "PPI1314Details":       [{
+                                    "PPIId":    0001
+                                    "PPIndicator":  "DPP",
+                                    "FTE":          1.00,
+                                    "FYStartDate":  "2013-12-20",
+                                    "FYEndDate":    "2014-12-14"
+                                    }],
+            "PupilPremiumDetails":  [{
+                                    "PupilPremiumRecordId":     001
+                                    "Deprivation":      true,
+                                    "AdoptedFromCare":  false,
+                                    "ServiceChild":     false,
+                                    "LookedAfter":      false
+                                    "CashAmount":       "935.00",
+                                    "FTE":              1.0,
+                                    "FYStartDate":      "2014-04-01",
+                                    "FYEndDate":        "2015-03-31",
+                                    "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                    }],
+            "GandTDetails":         [{
+                                    "GandTId":  0001
+                                    "GandTStatus":    "Gifted",
+                                    "StartDate":    "2015-02-23",
+                                    "EndDate":      null,
+                                    "Subject":      "EN",
+                                    "Notes":        ""
+                                    }],
+            "SchoolHistoryDetails": [{
+                                    "SchoolHistoryId":0001
+                                    "LANumber":     "999",
+                                    "SchoolNumber":  "6213",
+                                    "SchoolName":   "Advanced Learninig Academy",                                
+                                    "EntryDate":    "2009-09-04",
+                                    "LeavingDate":  "2010-01-08",
+                                    "LeavingReason":"PM"
+                                    },{
+                                    "SchoolHistoryId":0002
+                                    "LANumber":     "999",
+                                    "SchoolNumber":  "1234",
+                                    "SchoolName":   "Queens College Academy",                                
+                                    "EntryDate":    "2010-09-01",
+                                    "LeavingDate":  "2016-02-05",
+                                    "LeavingReason":"OT"
+                                    }]
+            }
+
++ Response 200
+
+    + Body
+    
+            {  
+            "LearnerId":        443756,   
+            "LearnerCode":      "2010-0001",
+            "Status":           true,
+            "Details":          "Saved successfully",
+            "ExclusionDetails": [{
+                                "ExclusionId":  0001
+                                }],
+            "FSMDetails":       [{
+                                "FSMId":        0001
+                                },
+                                {
+                                "FSMId":        0002
+                                }],
+            "PPI1314Details":   [{
+                                "PPIId":    0001
+                                }],
+            "PupilPremiumDetails":[{
+                                    "PupilPremiumRecordId":     001
+                                  }],
+            "GandTDetails":     [{
+                                "GandTId":  0001
+                                }],
+            "SchoolHistoryDetails": [{
+                                    "SchoolHistoryId":0001
+                                    },{
+                                    "SchoolHistoryId":    0002
+                                    }]
+            }
+
+
 
 ## Learner Contacts [/LearnerContacts{?since}{?status}{?responsibility}{?priority}]
 ### Retrieve a Contacts associated to a learner [GET]
@@ -3671,10 +3915,55 @@ Create SEN Major Needs for one to many learners
             
             }
 
+# Group Photo
 
+## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
+
++ Parameters
+    + IsLearnerRequest (mandatory, boolean, true) ... true for learner photo, false for Employee photo
+    + Id (optional, int, 1245698) ... unique LearnerId or EmployeeId
+
+Group of all photo related resources
+
+### Retrieve a collection of Photos
+
+**To be added shortly**
+
+- **PhotoData is byte array**
+
+- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+- Response 204 - no data found
+
+Retrieve one to many one to many employee/learner photos         
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            {
+                [
+                "EntityIdId":               12345,
+                "PhotoData":  "0xFFD8FFE000104A46494600010101006000600000FFDB0043000"
+                ],
+                ["EntityId":               12334,
+                "PhotoData":  "0xFFD8FFE000104A46494600010101006000600000FFDB001684974"
+                ]
+            }
+
++ Response 204
+
+        No Content
 
 
 # Group Groups
+
 Group of all Group-related resources
 
 ## Groups Collection [/Groups{?GroupStartDate}{?GroupEndDate}{?Type}{?Since}]
@@ -4144,7 +4433,16 @@ Group of all Academic Resources
 
 ### Create Academic Year [POST]
 
-**The updated method will alow for past academic years to be created ONLY if there are no existing Academic Years. It will also create the week structure at the same time**
+**If a school already exists then this method should be used to create future Academic Years**
+
+**Mandatory fields**
+
+- Name (mandatory, string, 'Academic Year 2016/2017') ... name of the Academic Year
+
+- StartDate (mandatory, DateTime, '01/09/2016') ... start date of the Academic Year
+
+- EndDate (mandatory, DateTime, '31/08/2017') ... end date of the Academic Year
+
 
 Create one to many academic years
 
@@ -4155,19 +4453,19 @@ Create one to many academic years
             Authorization: Bearer [CURRENT_TOKEN]
 
     + Body
-
-            [{
-                "name":             "Academic Year 2014/2015",
-                "startDate":        "01/09/2014",
-                "endDate":          "31/08/2015"
+    
+            {
+                "name":             "Academic Year 2016/2017",
+                "startDate":        "01/09/2016",
+                "endDate":          "31/08/2017"
                 
              },
             {
-                "name":             "Academic Year 2013/2014",
-                "startDate":        "01/09/2013",
-                "endDate":          "31/08/2014"
+                "name":             "Academic Year 2017/2018",
+                "startDate":        "01/09/2017",
+                "endDate":          "31/08/2018"
                 
-            }]
+            }
             
 + Response 200 (application/json)
 
@@ -4175,17 +4473,17 @@ Create one to many academic years
     
             {
                 "academicYearId":   1
-                "name":             "Academic Year 2014/2015",
-                "startDate":        "01/09/2014",
-                "endDate":          "31/08/2015",
+                "name":             "Academic Year 2016/2017",
+                "startDate":        "01/09/2016",
+                "endDate":          "31/08/2017",
                 "Status":           "Saved successfully"
                 
              },
             {
                 "academicYearId":   2
-                "name":             "Academic Year 2013/2014",
-                "startDate":        "01/09/2013",
-                "endDate":          "31/08/2014"
+                "name":             "Academic Year 2017/2018",
+                "startDate":        "01/09/2017",
+                "endDate":          "31/08/2018"
                 "Status":           "Saved successfully"
                 
             }
