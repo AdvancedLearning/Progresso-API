@@ -154,7 +154,7 @@ Required parameters are:
             }
 
 
-## Employee Basic Records [/Employees{?Status}{?Since}]
+## Employee Basic Records [/Employees{?EmployeeId}{?Status}{?Since}]
 
 Returns all employees basic records for a school
 
@@ -4867,75 +4867,6 @@ Update one to many terms breaks
                 
             }
 
-## ** Proposed ** Update Week Structure [/weekStructure]
-**This will be included in the updated POST Academic Year method
-
-### Set Week Structure [PUT]
-Set one to many days of a Week Structure
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-    + Body
-
-            {
-                "AcYearId":             1
-                "name":                 "Sunday",
-                "workingNonWorking":    "Non-Working Day"
-             },
-            {
-                "AcYearId":             1
-                "name":                 "Monday",
-                "workingNonWorking":    "Full Working Day"
-                
-            },
-            {
-                "AcYearId":             1
-                "name":                 "Tuesday",
-                "workingNonWorking":    "Full Working Day"
-                
-            },
-            {
-                "AcYearId":             1
-                "name":                 "Wednesday",
-                "workingNonWorking":    "Half Working Day - AM"
-                
-            }
-            
-+ Response 200 (application/json)
-
-    + Body
-        
-            {
-                "AcYearId":             1
-                "name":                 "Sunday",
-                "workingNonWorking":    "Non-Working Day",
-                "status":               true
-             },
-            {
-                "AcYearId":             1
-                "name":                 "Monday",
-                "workingNonWorking":    "Full Working Day",
-                "status":               true
-                
-            },
-            {
-                "AcYearId":             1
-                "name":                 "Tuesday",
-                "workingNonWorking":    "Full Working Day",
-                "status":               true
-                
-            },
-            {
-                "AcYearId":             1
-                "name":                 "Wednesday",
-                "workingNonWorking":    "Half Working Day - AM",
-                "status":               true
-            }
-            
 
 ## Academic Calendar Events [/academicCalendarEvents/{?AcYearId}{?id}]
 
