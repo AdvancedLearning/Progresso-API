@@ -3794,7 +3794,7 @@ Create SEN Major Needs for one to many learners
 ## Learner Siblings [/learnerSiblings{?learnerId}]
 
 + Parameters
-    + learnerId (optional, int, `00001`) ... Return siblings of a learner
+    + LearnerId (optional, int, `00001`) ... Return siblings of a learner
 
 ### Return a list of siblings associated to one of more learners [GET]
 
@@ -3808,22 +3808,22 @@ Create SEN Major Needs for one to many learners
 
     + Body 
             
-            [{
+            {
             
-                "learnerCode":      "2013-00001",
-                "learnerId":        0001,
-                "siblings":   [{
-                                    "learnerCode":      "2013-00002",
-                                    "learnerId":        0002
+                "LearnerCode":      "2013-00001",
+                "LearnerId":        0001,
+                "Siblings":   [{
+                                    "LearnerCode":      "2013-00002",
+                                    "LearnerId":        0002
                                 },
                                 {
-                                    "learnerCode":      "2013-00003",
-                                    "learnerId":        0003
+                                    "LearnerCode":      "2013-00003",
+                                    "LearnerId":        0003
                                 
                                 }]
-            }]
-            
-## Create/Update Learner Sibling Association [/learnerSiblings]
+            }
+
+
 ### Create Learner Sibling Association [POST]
 
 + Request (application/json)
@@ -3832,10 +3832,9 @@ Create SEN Major Needs for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
           
-            [{
+            {
                 "learnerId":        0001,
                 "siblings":   [{
                                     "learnerId":        0002
@@ -3844,56 +3843,9 @@ Create SEN Major Needs for one to many learners
                                     "learnerId":        0003
                                 
                                 }]
+            }
             
-            }]
-            
-            
-
-+ Response 200 (application/json)
-
-    + Body 
-            
-            [{
-                "learnerId":        0001,
-                "siblings":   [{
-                                    "status":           true,
-                                    "details":          "successful",
-                                    "learnerId":        0002
-                                },
-                                {
-                                    "status":           true,
-                                    "details":          "successful",
-                                    "learnerId":        0003
-                                
-                                }]
-            
-            }]
-
-
-### Update Learner Sibling Association [PUT]
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-
-    + Body
-          
-            [{
-                "learnerId":        0001,
-                "siblings":   [{
-                                    "learnerId":        0002
-                                },
-                                {
-                                    "learnerId":        0003
-                                
-                                }]
-            
-            }]
-            
-            
+    
 
 + Response 200 (application/json)
 
@@ -3901,7 +3853,7 @@ Create SEN Major Needs for one to many learners
             
             {
                 "learnerId":        0001,
-                "siblings":   [{
+                "siblings":     [{
                                     "status":           true,
                                     "details":          "successful",
                                     "learnerId":        0002
@@ -3915,25 +3867,65 @@ Create SEN Major Needs for one to many learners
             
             }
 
+
+### Update Learner Sibling Association [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+    + Body
+          
+            {
+                "learnerId":        0001,
+                "siblings":     [{
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "learnerId":        0003
+                                }]
+            }
+            
+
++ Response 200 (application/json)
+
+    + Body 
+            
+            {
+                "learnerId":        0001,
+                "siblings":     [{
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0002
+                                },
+                                {
+                                    "status":           true,
+                                    "details":          "successful",
+                                    "learnerId":        0003
+                                }]
+            }
+
+
 # Group Photo
+
+Group of Photo-related resources
 
 ## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
 
 + Parameters
-    + IsLearnerRequest (mandatory, boolean, true) ... true for learner photo, false for Employee photo
+    + IsLearnerRequest (mandatory, boolean, true) ... true for Learner photo, false for Employee photo
     + Id (optional, int, 1245698) ... unique LearnerId or EmployeeId
 
 Group of all photo related resources
 
-### Retrieve a collection of Photos
+### Retrieve a collection of Photos [GET]
 
-**To be added shortly**
+**PhotoData is byte array**
 
-- **PhotoData is byte array**
-
-- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
-- Response 204 - no data found
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
++ Response 204 - no data found
 
 Retrieve one to many one to many employee/learner photos         
 
@@ -5549,12 +5541,20 @@ Update one to many Day Composition Periods
 
 ## Timetable Events  [/ttEvents/{SourceId}{startDate}{endDate}{?dayCompositionId}]
 
-+ Parameters
++ Mandatory fields
+    + SourceId is a mandatory field
+*And either*
+    + LearnerId
+    + EmployeeID
+    + StartDate and EndDate
 
-    + SourceId (required, number, `12345`) ... The unique identifier of a timetable source
-    + startDate (required, date, `2015-09-09`) ...    Filter date for timetable events
-    + endDate (required, date, `2015-09-09`) ...    Filter date for timetable events
-    + dayCompositionId (optional, number, `12345`) ...    Filter for events from a single day composition
++ Parameters
+    + SourceId (Mandatory, int, '2133') ... unique Id of  the timetable source
+    + EmployeeId (Mandatory/optional, int, '1023454') ... unique Id of employee
+    + LearnerId (Mandatory/optional, int, '123456') ... unique Id of Learner
+    + StartDate (Mandatory/optional, date, '2015-12-01') ... Start of date range
+    + EndDate (Mandatory/optional, date, '2015-12-08') ... End of date range
+    + DayCompositionId (optional, int, `1234`) ... filter for event for a single day
 
 
 ### Retrieve Timetable Events [GET]
@@ -5569,6 +5569,14 @@ Response codes used are:
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "SourceId":     2133,
+                "StartDate":    '2015-12-01',
+                "EndDate":      '2015-12-08'
+            }
         
 
 + Response 200 (application/json)
