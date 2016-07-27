@@ -3956,7 +3956,64 @@ A collection of all UDF-related resources
     + Code (optional, string, 'LP') ... unique Code of UDF        
         
 
-    
+### Retrieve one to many UDFs
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "FieldDefinitionID": 1111,
+                "Code":             "LP",
+                "Name":             "LearnerPhoto",
+                "Entity":           "Learner",
+                "DataType":         "PickValue",
+                "MasterData":       "",
+                "PickListValues":   [{
+                                        "Code": "1",
+                                        "Name:  "Value1"
+                                        "Order":
+                                    },{
+                                        "Code": "2",
+                                        "Name:  "Value2"
+                                    }],
+                "FieldLength":      null
+                "DefaultValue":     null
+                "Mandatory":        "No",
+                "ToolTip":          "Permission to view Learner Photo"
+            },
+            {
+                "FieldDefinitionID": 1112,
+                "Code":             "AA",
+                "Name":             "Any Allergies",
+                "Entity":           "Staff",
+                "DataType":         "Boolean",
+                "MasterData":       "",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "No",
+                "ToolTip":          "Has the Staff any allergies?"    
+            },
+            {
+                "FieldDefinitionID": 1113,
+                "Code":             "CR",
+                "Name":             "ContactRelationship",
+                "Entity":           "Contact",
+                "DataType":         "Master Data",
+                "MasterData":       "Relationship",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "Yes",
+                "ToolTip":          "What is the relationship of the Contact to the Learner?"    
+            }
 
 
 
