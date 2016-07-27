@@ -3956,7 +3956,7 @@ A collection of all UDF-related resources
     + Code (optional, string, 'LP') ... unique Code of UDF        
         
 
-### Retrieve one to many UDFs
+### Retrieve one to many UDFs [GET]
 
 + Request
 
@@ -4014,9 +4014,239 @@ A collection of all UDF-related resources
                 "Mandatory":        "Yes",
                 "ToolTip":          "What is the relationship of the Contact to the Learner?"    
             }
+            
++ Response 204
+
+
+### Create one to many UDFs [POST]
+
++ Parameters
+    + Code (mandatory, string, 'Learner') ... unique code of UDF
+    + Name (mandatory, string, 'Learner') ... name of UDF
+    + EntityType (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
+    + DataType (mandatory, string, 'PickValue') ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
+        If DataType = PickValue then PickListValues cannot be null
+        If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
+    + FieldLength (mandatory, int, '255') ... *only mandatory for DataTypes of Integer, Double and String*
+    + Mandatory (mandatory, string, 'No') ... valid values Yes or No
+    + ToolTip (mandatory, string, 'Permission to view Learner Photo') ... Message to help users
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "Code":             "LP",
+                "Name":             "LearnerPhoto",
+                "Entity":           "Learner",
+                "DataType":         "PickValue",
+                "MasterData":       "",
+                "PickListValues":   [{
+                                        "Code": "1",
+                                        "Name:  "Value1"
+                                        "Order":
+                                    },{
+                                        "Code": "2",
+                                        "Name:  "Value2"
+                                    }],
+                "FieldLength":      null
+                "DefaultValue":     null
+                "Mandatory":        "No",
+                "ToolTip":          "Permission to view Learner Photo"
+            },
+            {
+                "Code":             "AA",
+                "Name":             "Any Allergies",
+                "Entity":           "Staff",
+                "DataType":         "Boolean",
+                "MasterData":       "",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "No",
+                "ToolTip":          "Has the Staff any allergies?"    
+            },
+            {
+                "Code":             "CR",
+                "Name":             "ContactRelationship",
+                "Entity":           "Contact",
+                "DataType":         "Master Data",
+                "MasterData":       "Relationship",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "Yes",
+                "ToolTip":          "The relationship of the Contact to the Learner"    
+            }
+            
+
++ Response 200
+
+        
+            {
+               "Status":           true,
+               "Details":          "Saved Successfully",
+               "FieldDefinitionID": 1111,
+               "Code":             "LP",
+               "Name":             "LearnerPhoto"
+              },
+              {
+               "Status":           true,
+               "Details":          "Saved Successfully",
+               "FieldDefinitionID": 1112,
+               "Code":             "AA",
+               "Name":             "Any Allergies"
+              }
+              {
+               "Status":           false,
+               "Details":          "Display error message",
+               "FieldDefinitionID": 1113,
+               "Code":             "CR",
+               "Name":             "ContactRelationship"
+            }
+        
+        
+        
+### Update one to many UDFs [PUT]
+
++ Parameters
+    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "FieldDefinitionID": 1111,
+                "Code":             "LP",
+                "Name":             "LearnerPhoto",
+                "Entity":           "Learner",
+                "DataType":         "PickValue",
+                "MasterData":       "",
+                "PickListValues":   [{
+                                        "Code": "1",
+                                        "Name:  "Allowed"
+                                        "Order":
+                                    },{
+                                        "Code": "2",
+                                        "Name:  "Not Allowed"
+                                    }],
+                "FieldLength":      null
+                "DefaultValue":     null
+                "Mandatory":        "No",
+                "ToolTip":          "Permission to view Learner Photo"
+            },
+            {
+                "FieldDefinitionID": 1112,
+                "Code":             "AA",
+                "Name":             "Any Asthma",
+                "Entity":           "Staff",
+                "DataType":         "Boolean",
+                "MasterData":       "",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "No",
+                "ToolTip":          "Does the Staff have Asthma?"    
+            },
+            {
+                "FieldDefinitionID": 1113,
+                "Code":             "CR",
+                "Name":             "ContactRelationship",
+                "Entity":           "Contact",
+                "DataType":         "Master Data",
+                "MasterData":       "Relationship",
+                "PickListValues":   null,
+                "FieldLength":      1
+                "DefaultValue":     0
+                "Mandatory":        "No",
+                "ToolTip":          "The relationship of the Contact to the Learner"    
+            }
+            
++ Response 200
+
+            {
+               "Status":           true,
+               "Details":          "Saved Successfully",
+               "FieldDefinitionID": 1111,
+               "Code":             "LP",
+               "Name":             "LearnerPhoto"
+              },
+              {
+               "Status":           true,
+               "Details":          "Saved Successfully",
+               "FieldDefinitionID": 1112,
+               "Code":             "AA",
+               "Name":             "Any Allergies"
+              }
+              {
+               "Status":           false,
+               "Details":          "Display error message",
+               "FieldDefinitionID": 1113,
+               "Code":             "CR",
+               "Name":             "ContactRelationship"
+            }
+            
+### Retrieve UDF values for a UDF [GET]
+
++ Parameters
+    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
+    + Entity (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
+    + Id (optional, int, '001234') ... unique Id of Learner/School Staff or Contact in form of array
+
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
++ Response 204 - no data found
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+
+    + Body
+    
+            {
+                "FieldDefinitionID":1111,
+                "Id":               0123456,
+                "Name":             "LearnerPhoto",
+                "Entity":           "Learner",
+                "Value":            "Yes"
+            },
+            {
+                "FieldDefinitionID":1112,
+                "Id":               345208,
+                "Name":             "Any Allergies",
+                "Entity":           "Learner",
+                "Value":            "Nuts"
+            },
+            {
+                "FieldDefinitionID": 1113,
+                "Id":               965415,
+                "Name":             "ContactRelationship",
+                "Entity":           "Learner",
+                "Value":            "Mother"   
+            }
+            
++ Response 204
 
 
 
+        
 
 # Group Groups
 
