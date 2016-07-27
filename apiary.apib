@@ -170,7 +170,7 @@ Returns all employees basic records for a school
 
     + EmployeeId (optional, int, '1023454') ... unique Id of employee
     
-    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+    + Status (optional, string, `Active`) ... Status of the learner - Active Left Draft
     
     + Since (optional, dateTime, `01-04-2014T18:00:00`) ... employee records modified since
 
@@ -3953,6 +3953,43 @@ Retrieve one to many one to many employee/learner photos
 
         No Content
         
+        
+
+# Group UDF
+
+Collection of all UDF related resources
+
+## UDF Collection [/UDF{?EntityType}{?Code}]
+
++ Parameters
+    + EntityType (optional, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
+    + Code (optional, string, 'LP') ... the unique code of the UDF
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
++ Response 204 - no data found
+
+
+### Retrieve a collection of User Ddefined Fields [GET]
+
+ Retrieve one to many one to many School Staff/Learner/Contact UDFs
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+
++ Response 200
+
+    + Body
+    
+            
+
+### Create 
+
+
 # Group Groups
 
 Group of all Group-related resources
