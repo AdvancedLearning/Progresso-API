@@ -4245,7 +4245,77 @@ A collection of all UDF-related resources
 + Response 204
 
 
+### Create/Update UDF values for a UDF
 
+ Create/update one to many one to many employee/learner/contact UDF values    
+
++ Parameters
+    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
+    + Id (mandatory, int, '001234') ... unique Id of Learner, Employee or Contact
+    + Entity (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
+    + Value (mandatory, string, 'Yes') ... the values of the UDF
+
++ Validation
+    + FieldDefinitionId corresponds to Entity in Parameters
+    + UDF Value is of DataType
+    + Id of Learner, Employee or Contact is for this school
+    + FieldDefinitionId exists for this school
+
++ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "FieldDefinitionID":1111,
+                "Id":               0123456,
+                "Entity":           "Learner",
+                "Value":            "Yes"
+            },
+            {
+                "FieldDefinitionID":1112,
+                "Id":               345208,
+                "Entity":           "Staff",
+                "Value":            "Nuts"
+            },
+            {
+                "FieldDefinitionID": 1113,
+                "Id":               965415,
+                "Entity":           "Contact",
+                "Value":            "Mother"   
+            }
+            
++ Response 200
+
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "FieldDefinitionID": 1111,
+                "Id":               0123456,
+                "Entity":           "Learner"
+            },
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "FieldDefinitionID":1112,
+                "Id":               345208,
+                "Entity":           "Staff"
+            }
+            {
+                "Status":           false,
+                "Details":          "Saved successfully",
+                 "FieldDefinitionID": 1113,
+                "Id":               965415,
+                "Entity":           "Contact"
+            }
+            
++ Response 204
         
 
 # Group Groups
