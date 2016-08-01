@@ -55,107 +55,10 @@ Required parameters are:
 # Group Employees Collection
 Methods for all employee-related resources
 
-## Employee Record [/Employees/{Id}]
-
-**This method will shortly be removed**
-    
-View a single employee record
-
-Required parameters are:
-
-- Employee Id
-
-+ Parameters
-    + Id (required, int, `54321`) ... The unique identifier of the employee
-
-### View an employee record [GET]
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-    
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "EmployeeId":           12345,
-                "StaffCode":            "sc123",
-                "Title":                "Mr",
-                "Surname":              "Bloggs",
-                "Forname":              "Joe",
-                "Department":           "Math",
-                "Position":             "HDPT",
-                "LegalSurname":         "Bloggs",
-                "LegalForename":        "Joseph",
-                "FormerSurname":        "",
-                "MiddleName":           "Bob",
-                "DateOfBirth":          "31-12-1968 00:00:00",
-                "Gender":               "1",
-                "StartDate":            "28-02-2014 00:00:00",
-                "LeftDate":             "31-08-2015 00:00:00",
-                "TeacherNumber":        "12456",
-                "Email":                "joe.bloggs@theschool.edu",
-                "PhoneDetails":         [{
-                                            "Type":     "H",   
-                                            "Number":   "015555555",
-                                            "SmsFlag":  false,
-                                            "PhoneId":  1234567
-                                            
-                                        },{
-                                            "Type":     "M",  
-                                            "Number":   "075555555",
-                                            "SmsFlag":  ftrue,
-                                            "PhoneId":  1234568
-                                        }],
-                "AddressDetails":       [{
-                                            "Country":  "GBR",
-                                            "Type":     "H",
-                                            "Flat":     "3a",
-                                            "Number":   "1",
-                                            "Street":   "The Street",
-                                            "Locality": "Belper",
-                                            "Town":     "Derby",
-                                            "County":   "Derbyshire",
-                                            "PostCode": "DD55 36DD",
-                                            "AddressId": 123456
-                                        }],
-                "Status":               "Active",
-                "NiNumber":             "NI1234HJGJ34",
-                "QtStatus":             true,
-                "QtsRoute":             "OTTP",
-                "DateOfQTS":            "",
-                "HTLA":                 false,
-                "DateOfHTLAStatus":       "",
-                "LanguageDetails":        [{
-                                            "Code":     "CHI",
-                                            "Type":     "SH",
-                                            "Level":    "5",
-                                            "LanguageUsageId": 434000
-                                        }],
-                "QualificationDetails":   [{
-                                            "QualificationCode":  "BEDO",
-                                            "Subject1":           "",
-                                            "Subject2":           "",
-                                            "ClassOfDegree":      "3",
-                                            "Verified":           False,
-                                            "EmployeeQualificationId": 24534
-                                        }],
-                "Nationality":            "",
-                "Ethnicity":              "WBRI",
-                "Religion":               "",
-                "LAStartDate":            "",
-                "Disability":             "NO"
-            }
-
 
 ## Employee Basic Records [/Employees{?EmployeeId}{?Status}{?Since}]
 
-Returns all employees basic records for a school
+Returns one to many employee basic records
 
 ### Retrieve one to many basic employee records [GET]
 
@@ -190,14 +93,14 @@ Returns all employees basic records for a school
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
-    **          "DisplayName":          "Mr J B Bloggs",
+                "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
                 "StartDate":            "28-02-2014 00:00:00",
                 "LeftDate":             "31-12-2015 00:00:00",
-    **          "DestinationType":      2,
-    **          "Destination":          "Hermitage on Skye",
-    **          "LeavingReason":        "Wants to be a hermit"'
+                "DestinationType":      2,
+                "Destination":          "Hermitage on Skye",
+                "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "PhoneDetails":         [{
@@ -225,9 +128,9 @@ Returns all employees basic records for a school
                                             "AddressId":345345
                                         }],
                 "Status":               "Left",
-    **          "ExcludeFromCensus":    true
+                "ExcludeFromCensus":    true
                 "NINumber":             "NI1234HJGJ34",
-    **          "PayrollNumber":        "A270515",            
+                "PayrollNumber":        "A270515",            
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
@@ -286,14 +189,14 @@ Returns all employees basic records for a school
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
-    **          "DisplayName":          "Mr J B Bloggs",
+               "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
                 "StartDate":            "28-02-2014 00:00:00",
                 "LeftDate":             "31-12-2015 00:00:00",
-    **          "DestinationType":      2,
-    **          "Destination":          "Hermitage on Skye",
-    **          "LeavingReason":        "Wants to be a hermit"'
+                "DestinationType":      2,
+                "Destination":          "Hermitage on Skye",
+                "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "PhoneDetails":         [{
@@ -318,9 +221,9 @@ Returns all employees basic records for a school
                                             "PostCode": "DD55 36DD"
                                         }],
                 "Status":               "Left",
-    **          "ExcludeFromCensus":    true
+                "ExcludeFromCensus":    true
                 "NINumber":             "NI1234HJGJ34",
-    **          "PayrollNumber":        "A270515",            
+                "PayrollNumber":        "A270515",            
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
@@ -406,14 +309,14 @@ Update one to many employee records
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
-    **          "DisplayName":          "Mr J B Bloggs",
+                "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968 00:00:00",
                 "Gender":               "1",
                 "StartDate":            "28-02-2014 00:00:00",
                 "LeftDate":             "31-12-2015 00:00:00",
-    **          "DestinationType":      2,
-    **          "Destination":          "Hermitage on Skye",
-    **          "LeavingReason":        "Wants to be a hermit"'
+                "DestinationType":      2,
+                "Destination":          "Hermitage on Skye",
+                "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "PhoneDetails":         [{
@@ -438,9 +341,9 @@ Update one to many employee records
                                             "PostCode": "DD55 36DD"
                                         }],
                 "Status":               "Left",
-    **          "ExcludeFromCensus":    true
+                "ExcludeFromCensus":    true
                 "NINumber":             "NI1234HJGJ34",
-    **          "PayrollNumber":        "A270515",            
+                "PayrollNumber":        "A270515",            
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
@@ -464,7 +367,7 @@ Update one to many employee records
             }
 
 + Response 200
-           
+
     + Body
     
             {
@@ -1094,19 +997,19 @@ Collection of all employee roles for employee contracts within a school
                             }]
             },
             {
-                "employeeId":       00002,
-                "contractId":       00002,
-                "roles":    [{
-                                "roleId":           0,
-                                "role":             "Teaching Assistant",
-                                "hoursPerWeek":     32.50,
+                "EmployeeId":       00002,
+                "ContractId":       00002,
+                "Roles":    [{
+                                "RoleId":           0,
+                                "Role":             "Teaching Assistant",
+                                "HoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
-                                "weeksPerYear":     52.14,
-                                "payrollNumber":    "123456",
+                                "WeeksPerYear":     52.14,
+                                "PayrollNumber":    "123456",
                                 "NIRate":           "Contracted In",
-                                "superannuation":   "Teachers Superannuation",
-                                "costCentre":       "TEACH",
-                                "ledgerCode":       "A040"
+                                "Superannuation":   "Teachers Superannuation",
+                                "CostCentre":       "TEACH",
+                                "LedgerCode":       "A040"
                             }]
             
             }
@@ -5957,51 +5860,38 @@ Response codes used are:
     + Body
             
             {
-                "EventId":          1,
-                "Day"  :            "Monday",
-                "StartTime":        "08:50",
-                "FinishTime":       "09:00",
-                "Employees":        [{  
-                                        "EmployeeId":   123456,
-                                        "EmployeeCode": "ABC"
-                                    }],
-                "Groups":           [{  
-                                        "GroupId":      123456,
-                                        "GroupCode":    "Aba"
-                                    }],
-                "Subjects/NCAType": [{
-                                        "Subject/NCAType":  "Tutor Time"
-                                    }],
-                "Rooms":            [{  
-                                        "Room":         "A1"
-                                    }],
-                "Duration":         10,
-                "EventType":        "Timetable",
-                "NonContactType":   ""
-            },
-            {
-                "EventId":          2,
-                "Day":              "Monday",
-                "StartTime":        "09:00",
-                "FinishTime":       "10:00",
-                "Employees":        [{  
-                                        "EmployeeId":   465789,
-                                        "EmployeeCode": "DEF"
-                                    }],
-                "Groups":           [{  
-                                        "GroupId":      45601,
-                                        "GroupCode":    "7-Mat"
-                                    }],
-                "Subjects": [{
-                                        "Subject/NCAType":  "Mathematics"
-                                    }],
-                "Rooms":            [{  
-                                        "Room":         "B2"
-                                    }],
-                "Duration":         60,
-                "EventType":        "Timetable",
-                "NonContactType":   ""
+            "EventId":      124512732,
+        **  "Date":         "2015-12-01",
+            "StartTime":    "09:00",
+            "FinishTime":   "10:00",
+            "Day":          "Tue1",
+            "EventType":    "Timetable",
+            "Duration":     60,
+            "NCAEventType": "",
+            "Employees":[
+                          {
+                            "EmployeeId": 104034,
+                            "EmployeeCode": "KBr"
+                          }
+                        ],
+            "Groups":   [
+                          {
+                            "GroupId": 1044341,
+                            "GroupCode": "11En1"
+                          }
+                        ],
+            "Subjects": [
+                          {
+                            "Subject": "EN"
+                          }
+                        ],
+            "Rooms":    [
+                          {
+                            "Room": "CE06"
+                          }
+                        ]
             }
+            
 
 + Response 204
 
