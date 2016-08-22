@@ -4210,12 +4210,141 @@ Create or update UDF values for Learner, Staff or Contact
             }
             
 + Response 204
-        
-        
-        
+
+
 # Group Assessments
 
 Collection of all Assessment related resources
+
+## Assessment Screen Collection [/AssessmentScreens{?AcademicYearId}]
+
++ Parameters
+    + AcademicYearId (mandatory, int, `1234`) ... unique number of Academic Year
+
+### Retrieve a collection of Assessment Screens
+
+ Retrieve one to many assessment screen details for a school         
+            
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+
+    + Body
+    
+            {
+                "AssessmentScreenId":   1234,
+                "Name":                 "2015-2016 Year 10",
+                "ColumnList":
+                    [{
+                        "ColumnId":         1234,
+                        "ColumnName:"       "AU1",
+                        "IsTargetColumn":   false
+                    },{
+                        "ColumnId":         1235,
+                        "ColumnName:"       "AU2",
+                        "IsTargetColumn":   false
+                    },{
+                        "ColumnId":         1330,
+                        "ColumnName:"       "End of Year Target"'
+                        "IsTargetColumn":   true
+                    }]
+            },
+            {
+                "AssessmentScreenId":   1200,
+                "Name":                 "2015-2016 Year 9",
+                "ColumnList":
+                    [{
+                        "ColumnId":         1234,
+                        "ColumnName:"       "9-KS2",
+                        "IsTargetColumn":   false
+                    },{
+                        "ColumnId":         1235,
+                        "ColumnName:"       "SU1",
+                        "IsTargetColumn":   false
+                    },{
+                        "ColumnId":         1330,
+                        "ColumnName:"       "End of Year Target"'
+                        "IsTargetColumn":   true
+                    }]
+            }
+
+
+## Learner Assessment Results Collection [LearnerAssessmentResults{AcademicYearId}{?AssessmentSCreenId}{?LearnerId}{?GroupId}{?Year}]
+
++  AcademicYearId is mandatory
+**And either**
++ AssessmentScreenId or LearnerId
+
++ Parameters
+    + AcademicYearId (mandatory, int, `1234`) ... unique ID of Academic Year
+    + AssessmentScreenId (optional, int, `23344`) ... unique Id of the Assessment Screen
+    + LearnerId (optional, int, `12340`) ... unique Id of Learner
+    + GroupId (optional, int, `122434`) ... unique Id of Group
+    + Year (optional, string, `Year 8`) ... name of the Year Group
+    
+
+### Retrieve one or more Learner Assessment restuls
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":            109234
+                "AssessmentScreenList":
+                            [{
+                                "AssessmentScreenName": "2015-2016 Year 10",
+                                "GroupCode":            "10-AR1",
+                                "TeacherCode":          "GBr",
+                                "StudyLevel":           "GCSE",
+                                "Subject":               "AR"
+                                "ColumnList":
+                                    [{
+                                        "ColumnName":       "AU1",
+                                        "ColumnValue":      "7c",
+                                        "VaulePoints":      "36"
+                                    },{
+                                        "ColumnName":       "AU2",
+                                        "ColumnValue":      "7b",
+                                        "VaulePoints":      "40"
+                                    },{
+                                        "ColumnName":       "AU_Eff",
+                                        "ColumnValue":      "Could do better",
+                                        "VaulePoints":      null
+                                    }]
+                            },
+                            {
+                                "AssessmentScreenName": "2015-2016 Year 10 Tutor",
+                                "GroupCode":            "10-AR1",
+                                "TeacherCode":          "GBr",
+                                "StudyLevel":           null,
+                                "Subject":               "AR",
+                                "ColumnList":
+                                    [{
+                                        "ColumnName":       "10_Tutor_Comment",
+                                        "ColumnValue":      "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+                                        "VaulePoints":      null
+                                    },{
+                                        "ColumnName":       "10_AU_Approach",
+                                        "ColumnValue":      "Trying hard",
+                                        "VaulePoints":      null
+                                    },{
+                                        "ColumnName":       "10_AU_Behaviour",
+                                        "ColumnValue":       "Good",
+                                        "VaulePoints":      null
+                                    }]
+                            }]
+            }
 
 
 
