@@ -58,12 +58,14 @@ Methods for all employee-related resources
 
 ## Employee Basic Records [/Employees{?EmployeeId}{?Status}{?Since}]
 
-Returns one to many employee basic records
+Collection of Employee related resources
 
 ### Retrieve one to many basic employee records [GET]
 
+Retrieve one to many employee basic records
+
 + Parameters
-    + EmployeeId (optional, int, '1023454') ... unique Id of employee
+    + EmployeeId (optional, int, `1023454`) ... unique Id of employee
     + Status (optional, string, `Active`) ... Status of the learner Active, Left or Draft
     + Since (optional, dateTime, `01-04-2014T18:00:00`) ... employee records modified since
 
@@ -166,9 +168,9 @@ Returns one to many employee basic records
     
     + Language is not mandatory but if included: TypeCode and LangCode are mandatory
     
-    + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
+    + Qualification is not mandatory but if included: QualificaitonCode and Subject are mandatory
 
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
++ Response 200 (application/json)
 
 + Request (application/json)
 
@@ -288,7 +290,6 @@ Update one to many employee records
     
     + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
 
-* Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
 
 + Request (application/json)
 
@@ -298,7 +299,7 @@ Update one to many employee records
             
     + Body
     
-           {
+            {
                 "StaffCode":            "JBl",
                 "Title":                "Mr",
                 "Surname":              "Bloggs",
@@ -364,7 +365,7 @@ Update one to many employee records
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
                 "Disability":           "No"
-            }
+            }           
 
 + Response 200
 
@@ -2148,8 +2149,6 @@ Update one to many learner records
 
 - SENMajorNeeds is not mandatory but if included: MajorNeed Code and Ranking are mandatory
 
-- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
 
 + Request (application/json)
 
@@ -2630,9 +2629,6 @@ Mandatory fields:
 
 - School History is not mandatory but it used: School Name, Leaving Date and Leaving Reason are mandatory
 
-- Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
-        
 
 + Request (application/json)
 
@@ -2642,110 +2638,110 @@ Mandatory fields:
             
     + Body
         
-          { 
-            "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001",
-            "Traveller":        "GH",
-            "TravellerSource":  "P",
-            "CurrentDeprivationEver6":  true,
-            "CurrentServiceChild":      false,
-            "CurrentAdoptedfromCare":   false,
-            "CurrentLookedAfter":       false,
-            "CurrentPupilPremium":      true,
-            "LAC":              true,
-            "LACCurSch":        true,
-            "LACLA":            "370",
-            "HomeLA":           "871",
-            "CPR":              false,
-            "CPRLA":            null,
-            "PEP":              false,
-            "PPI":              false,
-            "AdoptedFromCare":  "N",
-            "Notes":            "Lorem ipsum",
-            "Refugee":          true
-            "ExclusionDetails":[{
-                                "ExclusionId":      0001,
-                                "Category":         "FIXD",
-                                "Reason":           "PP",
-                                "StartDate":        "2014-07-02",
-                                "EndDate":          "2014-07-02",
-                                "StartSession":     "AM",
-                                "EndSession":       "PM",
-                                "Notes":            "Act of aggression towards another pupil",
-                                "TotalDays":        1,
-                                "TotalSessions":    2,
-                                "LAC":              false,
-                                "HeadNotified":     null,
-                                "GovMeeting":       null,
-                                "ProvisionStartDate":   null,
-                                "ProvisionDetails":     null,
-                                "Appeal":           false,
-                                "AppealDate":       null,
-                                "AppealCutOff":     null,
-                                "ExclusionHearing": null,
-                                "Outcome":          "E",
-                                "ReintegrationMeetingDate": null,
-                                "ReintegrationNotes":       null,
-                                "ReinstatementDate":        null,
-                                "ReinstatementNotes":       ""
-                            }],
-            "FSMDetails":   [{
-                                "FSMId":        0001
-                                "StartDate":    "2014-02-12",
-                                "ReviewDate":   "",
-                                "EndDate":      "2015-02-12",
-                                "CoutnryOfUk":  "ENG"
-                            },
-                            {
-                                "StartDate":    "2015-02-12",
-                                "ReviewDate":   "2015-12-08",
-                                "EndDate":      "2016-02-12",
-                                "CoutnryOfUk":  "ENG"
-                            }],
-            "PPI1314Details":       [{
-                                    "PPIId":    0001
-                                    "PPIndicator":  "DPP",
-                                    "FTE":          1.00,
-                                    "FYStartDate":  "2013-12-20",
-                                    "FYEndDate":    "2014-12-14"
-                                    }],
-            "PupilPremiumDetails":  [{
-                                    "PupilPremiumRecordId":     001
-                                    "Deprivation":      true,
-                                    "AdoptedFromCare":  false,
-                                    "ServiceChild":     false,
-                                    "LookedAfter":      false
-                                    "CashAmount":       "935.00",
-                                    "FTE":              1.0,
-                                    "FYStartDate":      "2014-04-01",
-                                    "FYEndDate":        "2015-03-31",
-                                    "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                                    }],
-            "GandTDetails":         [{
-                                    "GandTId":  0001
-                                    "GandTStatus":    "Gifted",
-                                    "StartDate":    "2015-02-23",
-                                    "EndDate":      null,
-                                    "Subject":      "EN",
-                                    "Notes":        ""
-                                    }],
-            "SchoolHistoryDetails": [{
-                                    "SchoolHistoryId":0001
-                                    "LANumber":     "999",
-                                    "SchoolNumber":  "6213",
-                                    "SchoolName":   "Advanced Learninig Academy",                                
-                                    "EntryDate":    "2009-09-04",
-                                    "LeavingDate":  "2010-01-08",
-                                    "LeavingReason":"PM"
-                                    },{
-                                    "SchoolHistoryId":0002
-                                    "LANumber":     "999",
-                                    "SchoolNumber":  "1234",
-                                    "SchoolName":   "Queens College Academy",                                
-                                    "EntryDate":    "2010-09-01",
-                                    "LeavingDate":  "2016-02-05",
-                                    "LeavingReason":"OT"
-                                    }]
+            { 
+                "LearnerId":        443756,   
+                "LearnerCode":      "2010-0001",
+                "Traveller":        "GH",
+                "TravellerSource":  "P",
+                "CurrentDeprivationEver6":  true,
+                "CurrentServiceChild":      false,
+                "CurrentAdoptedfromCare":   false,
+                "CurrentLookedAfter":       false,
+                "CurrentPupilPremium":      true,
+                "LAC":              true,
+                "LACCurSch":        true,
+                "LACLA":            "370",
+                "HomeLA":           "871",
+                "CPR":              false,
+                "CPRLA":            null,
+                "PEP":              false,
+                "PPI":              false,
+                "AdoptedFromCare":  "N",
+                "Notes":            "Lorem ipsum",
+                "Refugee":          true
+                "ExclusionDetails":[{
+                                    "ExclusionId":      0001,
+                                    "Category":         "FIXD",
+                                    "Reason":           "PP",
+                                    "StartDate":        "2014-07-02",
+                                    "EndDate":          "2014-07-02",
+                                    "StartSession":     "AM",
+                                    "EndSession":       "PM",
+                                    "Notes":            "Act of aggression towards another pupil",
+                                    "TotalDays":        1,
+                                    "TotalSessions":    2,
+                                    "LAC":              false,
+                                    "HeadNotified":     null,
+                                    "GovMeeting":       null,
+                                    "ProvisionStartDate":   null,
+                                    "ProvisionDetails":     null,
+                                    "Appeal":           false,
+                                    "AppealDate":       null,
+                                    "AppealCutOff":     null,
+                                    "ExclusionHearing": null,
+                                    "Outcome":          "E",
+                                    "ReintegrationMeetingDate": null,
+                                    "ReintegrationNotes":       null,
+                                    "ReinstatementDate":        null,
+                                    "ReinstatementNotes":       ""
+                                }],
+                "FSMDetails":   [{
+                                    "FSMId":        0001
+                                    "StartDate":    "2014-02-12",
+                                    "ReviewDate":   "",
+                                    "EndDate":      "2015-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                },
+                                {
+                                    "StartDate":    "2015-02-12",
+                                    "ReviewDate":   "2015-12-08",
+                                    "EndDate":      "2016-02-12",
+                                    "CoutnryOfUk":  "ENG"
+                                }],
+                "PPI1314Details":       [{
+                                        "PPIId":    0001
+                                        "PPIndicator":  "DPP",
+                                        "FTE":          1.00,
+                                        "FYStartDate":  "2013-12-20",
+                                        "FYEndDate":    "2014-12-14"
+                                        }],
+                "PupilPremiumDetails":  [{
+                                        "PupilPremiumRecordId":     001
+                                        "Deprivation":      true,
+                                        "AdoptedFromCare":  false,
+                                        "ServiceChild":     false,
+                                        "LookedAfter":      false
+                                        "CashAmount":       "935.00",
+                                        "FTE":              1.0,
+                                        "FYStartDate":      "2014-04-01",
+                                        "FYEndDate":        "2015-03-31",
+                                        "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                        }],
+                "GandTDetails":         [{
+                                        "GandTId":  0001
+                                        "GandTStatus":    "Gifted",
+                                        "StartDate":    "2015-02-23",
+                                        "EndDate":      null,
+                                        "Subject":      "EN",
+                                        "Notes":        ""
+                                        }],
+                "SchoolHistoryDetails": [{
+                                        "SchoolHistoryId":0001
+                                        "LANumber":     "999",
+                                        "SchoolNumber":  "6213",
+                                        "SchoolName":   "Advanced Learninig Academy",                                
+                                        "EntryDate":    "2009-09-04",
+                                        "LeavingDate":  "2010-01-08",
+                                        "LeavingReason":"PM"
+                                        },{
+                                        "SchoolHistoryId":0002
+                                        "LANumber":     "999",
+                                        "SchoolNumber":  "1234",
+                                        "SchoolName":   "Queens College Academy",                                
+                                        "EntryDate":    "2010-09-01",
+                                        "LeavingDate":  "2016-02-05",
+                                        "LeavingReason":"OT"
+                                        }]
             }
 
 + Response 200
@@ -2995,23 +2991,19 @@ Create and update one to many learner heatlh records
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
+    + Either LearnerId or Date Range is mandatory
+    
+    + Maximum Date Range is 16 weeks
+
 + Parameters
 
-    + *Either LearnerId or Date Range is mandatory*
-    
-    + *Maximum Date Range is 16 weeks*
+    + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
 
-    + LearnerId (optional/mandatory, int, `123465`) ... the unique identifier of the learner
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
 
-    + StartDate (optional/mandatory, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-
-    + EndDate (optional/mandatory, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
 
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-+ Response 204 - no data found
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
 
 
 + Request (application/json)
@@ -3024,26 +3016,29 @@ Create and update one to many learner heatlh records
 
     + Body
     
-        {
-            "LearnerId":    0001,
-            "LearnerCode":  "2013-00001",
-            "Date":         "18-04-2016",
-            "Session":         "AM",
-            "AttendanceCode":  "//",
-            "AttendanceCodeId":1,  
-            "MinutesLate":     0,
-            "Notes":           ""
-            },{
-            "LearnerId":    0001,
-            "LearnerCode":  "2013-00001",
-            "Date":         "18-04-2016",
-            "Session":         "PM",
-            "AttendanceCode":  "L",
-            "AttendanceCodeId": 3,  
-            "MinutesLate":     5,
-            "Notes":           "Lorem Ipsum"
+            {    
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "AM",
+                "AttendanceCode":  "//",
+                "AttendanceCodeId":1,  
+                "MinutesLate":     0,
+                "Notes":           ""
+                },{
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "PM",
+                "AttendanceCode":  "L",
+                "AttendanceCodeId": 3,  
+                "MinutesLate":     5,
+                "Notes":           "Lorem Ipsum"
             }
-        }    
+            
++ Response 204
+
+            No data exists
 
 
 ### Create Learner Roll Call Attendance [POST]
@@ -3056,10 +3051,9 @@ Create and amend Attendance for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
            
-            [{
+            {
                 "LearnerCode":          "2013-00001",
                 "AttendanceStartDate":  "2016-03-21",
                 "RollCallSessionStart": "AM",
@@ -3071,7 +3065,7 @@ Create and amend Attendance for one to many learners
                 "RollCallSessionStart": "PM",
                 "AttendanceString":     "B"
             }
-            }]
+            }
 
 + Response 200
 
@@ -3914,6 +3908,9 @@ A collection of all UDF-related resources
             
 + Response 204
 
+## Create/Update User Ddefined Fields
+
+Create or update one to many UDFs
 
 ### Create one to many UDFs [POST]
 
@@ -4096,6 +4093,10 @@ A collection of all UDF-related resources
                "Name":             "ContactRelationship"
             }
             
+##User Defined Values Collection [/UDFValues{?FieldDefinitionId}{?Entity}{?Id}]
+
+Collection od User Defined Values resources
+
 ### Retrieve UDF values for a UDF [GET]
 
 + Parameters
@@ -4141,6 +4142,9 @@ A collection of all UDF-related resources
             
 + Response 204
 
+## Create or Update values for a UDF
+
+Create or update UDF values for Learner, Staff or Contact
 
 ### Create/Update UDF values for a UDF
 
@@ -4158,7 +4162,7 @@ A collection of all UDF-related resources
     + Id of Learner, Employee or Contact is for this school
     + FieldDefinitionId exists for this school
 
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+
 
 
 + Request (application/json)
@@ -4214,6 +4218,13 @@ A collection of all UDF-related resources
             
 + Response 204
         
+        
+        
+# Group Assessments
+
+Collection of all Assessment related resources
+
+
 
 # Group Groups
 
@@ -4604,8 +4615,7 @@ Update Group Association for one to many Learners and Groups
                                         "endDate":                  "30-08-2015"
 
                                 }]
-
-            }]
+            }
 
 
 + Response 200 (application/json)
