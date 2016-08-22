@@ -3081,8 +3081,7 @@ Create and amend Attendance for one to many learners
             }
         
 
-
-## Learner Lesson Attendance [/LearnerLessonAttendance{/LearnerId}{?SatrtDate}{?EndDate}{?GroupCode}{?Status}]
+## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?GroupCode}{?Status}]
 
 ### Retrieve Learner Lesson Attendance [GET]
 
@@ -3138,7 +3137,7 @@ Create and amend Attendance for one to many learners
                             
 + Response 204
 
-
+## Create Learner Lesson Attendance by Period
 
 ### Create Learner Lesson Attendance By Period [POST]
 
@@ -3181,13 +3180,15 @@ Create Lesson Attendance for one to many learners using Timetable Period
                 
             }
 
-### Create Learner Lesson Attendance by Time [POST]
+## Create Learner Lesson Attendance by Time
+
+### Create Learner Lesson Attendance By Time [POST]
 
 Create Attendance for one to many learners using date and time of lesson
 
 + Request (application/json)
 
-+ Headers
+    + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
         
@@ -3213,9 +3214,6 @@ Create Attendance for one to many learners using date and time of lesson
             }
 
 + Response 204
-
-    No data found
-
 
 
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
