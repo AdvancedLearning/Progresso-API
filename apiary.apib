@@ -2987,7 +2987,7 @@ Create and update one to many learner heatlh records
             }
             
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
@@ -3038,8 +3038,6 @@ Create and update one to many learner heatlh records
             
 + Response 204
 
-            No data exists
-
 
 ### Create Learner Roll Call Attendance [POST]
 
@@ -3088,17 +3086,15 @@ Create and amend Attendance for one to many learners
 
 ### Retrieve Learner Lesson Attendance [GET]
 
-+ Parameters
     + *Either LearnerId, GroupCode or Date Range is mandatory*
     + *Maximum Date Range is 4 weeks*
-    + LearnerId (mandatory/optional, int, `123456`) ... the unique identifier of the learner
-    + StartDate (mandatory/optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-    + EndDate (mandatory/optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
-    + GroupCode (mandatory/optional, string, '9Sc1') ... group code
+    
++ Parameters
+    + LearnerId (optional, int, `123456`) ... the unique identifier of the learner
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + GroupCode (optional, string, `9Sc1`) ... unique Code of Group 
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-* Response 204 - no data found
-* Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
 
 
 + Request (application/json)
@@ -3142,7 +3138,6 @@ Create and amend Attendance for one to many learners
                             
 + Response 204
 
-    No data found
 
 
 ### Create Learner Lesson Attendance By Period [POST]
