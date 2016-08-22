@@ -2985,238 +2985,8 @@ Create and update one to many learner heatlh records
                                     "MedicalEventId": 117617
                                 }]
             }
-            
-
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
-
-### Retrieve Learner Roll Call Attendance [GET]
-
-    + Either LearnerId or Date Range is mandatory
-    
-    + Maximum Date Range is 16 weeks
-
-+ Parameters
-
-    + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
-
-    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-
-    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
-
-    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-+ Response 200
-
-    + Body
-    
-            {    
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "AM",
-                "AttendanceCode":  "//",
-                "AttendanceCodeId":1,  
-                "MinutesLate":     0,
-                "Notes":           ""
-                },{
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "PM",
-                "AttendanceCode":  "L",
-                "AttendanceCodeId": 3,  
-                "MinutesLate":     5,
-                "Notes":           "Lorem Ipsum"
-            }
-            
-+ Response 204
-
-
-### Create Learner Roll Call Attendance [POST]
-
-Create and amend Attendance for one to many learners
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-    + Body
-           
-            {
-                "LearnerCode":          "2013-00001",
-                "AttendanceStartDate":  "2016-03-21",
-                "RollCallSessionStart": "AM",
-                "AttendanceString":     "////IINB"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "AttendanceStartDate":  "16-06-2014",
-                "RollCallSessionStart": "PM",
-                "AttendanceString":     "B"
-            }
-            }
-
-+ Response 200
-
-    + Body
-    
-            {
-                "LearnerCode":          "2013-00001",
-                "Status":               true,
-                "Details":              "Saved successfully"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "Status":               true,
-                "Details":              "Saved successfully"
-            }
-        
-
-## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?GroupCode}{?Status}]
-
-### Retrieve Learner Lesson Attendance [GET]
-
-    + *Either LearnerId, GroupCode or Date Range is mandatory*
-    + *Maximum Date Range is 4 weeks*
-    
-+ Parameters
-    + LearnerId (optional, int, `123456`) ... the unique identifier of the learner
-    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
-    + GroupCode (optional, string, `9Sc1`) ... unique Code of Group 
-    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-                    
-+ Response 200
-
-    + Body
-    
-                           {
-                            "EventId":      1234,
-                            "GroupCode":  "9Sc1",
-                            "Date":         "18-04-2016",
-                            "StartTime":    "09:00",
-                            "EndTime":      "10:00",
-                            "Period":       "1",
-                            "LearnerId":    0001,
-                            "LearnerCode":  "2013-00001",
-                            "AttendanceCode":   "//",
-                            "AttendanceCodeId": 1,  
-                            "MinutesLate":      0,
-                            "Notes":            ""
-                            },{
-                            "EventId":      6541,
-                            "GroupCode":   "10Ar3",
-                            "Date":         "18-04-2016",
-                            "StartTime":    "10:00",
-                            "EndTime":      "12:00",
-                            "Period":       "2,3",
-                            "Date":         "18-04-2016"
-                            "LearnerId":    0002,
-                            "LearnerCode":  "2013-00002",
-                            "AttendanceCode":   "L",
-                            "AttendanceCodeId": 3,  
-                            "MinutesLate":      5,
-                            "Notes":            "Lorem ipsum dolor sit amet."                                
-                            }
-                            
-+ Response 204
-
-## Create Learner Lesson Attendance by Period
-
-### Create Learner Lesson Attendance By Period [POST]
-
-Create Lesson Attendance for one to many learners using Timetable Period
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-    + Body
-           
-            [{
-                "LearnerCode":          "2013-00001",
-                "Iteration":            1,
-                "PeriodId":             1,
-                "AttendanceCode":       "/"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "Iteration":            1,
-                "PeriodId":             1,
-                "AttendanceCode":       "N"
-            }
-            
-            }]
-
-+ Response 200
-
-    + Body
-    
-            {
-                 "LearnerCode":         "2013-00001",
-                 "Status":              "Success"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "Status":               "Success"
-                
-            }
-
-## Create Learner Lesson Attendance by Time
-
-### Create Learner Lesson Attendance By Time [POST]
-
-Create Attendance for one to many learners using date and time of lesson
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-
-    + Body
-           
-            {
-                "LearnerCode":      "7791",
-                "Date":             "16-03-2016",
-                "StartTime":        "09:15",
-                "FinishTime":       "10:15",
-                "AttendanceCode":   "/"
-            }
-
-+ Response 200
-
-    + Body
-                 
-            {
-                "LearnerCode": "7791",
-                "Status": true,
-                "Details": "Saved successfully"
-            }
-
-+ Response 204
-
-
-## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
+ 
+ ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 
 ### Retrieve a learner Exclusion Details [GET]
 
@@ -3784,6 +3554,238 @@ Create SEN Major Needs for one to many learners
                                     "learnerId":        0003
                                 }]
             }
+           
+
+# Group Learner Attendnace
+
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
+
+### Retrieve Learner Roll Call Attendance [GET]
+
+    + Either LearnerId or Date Range is mandatory
+    
+    + Maximum Date Range is 16 weeks
+
++ Parameters
+
+    + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
+
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            {    
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "AM",
+                "AttendanceCode":  "//",
+                "AttendanceCodeId":1,  
+                "MinutesLate":     0,
+                "Notes":           ""
+                },{
+                "LearnerId":    0001,
+                "LearnerCode":  "2013-00001",
+                "Date":         "18-04-2016",
+                "Session":         "PM",
+                "AttendanceCode":  "L",
+                "AttendanceCodeId": 3,  
+                "MinutesLate":     5,
+                "Notes":           "Lorem Ipsum"
+            }
+            
++ Response 204
+
+
+### Create Learner Roll Call Attendance [POST]
+
+Create and amend Attendance for one to many learners
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+    + Body
+           
+            {
+                "LearnerCode":          "2013-00001",
+                "AttendanceStartDate":  "2016-03-21",
+                "RollCallSessionStart": "AM",
+                "AttendanceString":     "////IINB"
+            },
+            {
+                "LearnerCode":          "2013-00002",
+                "AttendanceStartDate":  "16-06-2014",
+                "RollCallSessionStart": "PM",
+                "AttendanceString":     "B"
+            }
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+                "LearnerCode":          "2013-00001",
+                "Status":               true,
+                "Details":              "Saved successfully"
+            },
+            {
+                "LearnerCode":          "2013-00002",
+                "Status":               true,
+                "Details":              "Saved successfully"
+            }
+        
+
+## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?GroupCode}{?Status}]
+
+### Retrieve Learner Lesson Attendance [GET]
+
+    + *Either LearnerId, GroupCode or Date Range is mandatory*
+    + *Maximum Date Range is 4 weeks*
+    
++ Parameters
+    + LearnerId (optional, int, `123456`) ... the unique identifier of the learner
+    + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
+    + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
+    + GroupCode (optional, string, `9Sc1`) ... unique Code of Group 
+    + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+                    
++ Response 200
+
+    + Body
+    
+                           {
+                            "EventId":      1234,
+                            "GroupCode":  "9Sc1",
+                            "Date":         "18-04-2016",
+                            "StartTime":    "09:00",
+                            "EndTime":      "10:00",
+                            "Period":       "1",
+                            "LearnerId":    0001,
+                            "LearnerCode":  "2013-00001",
+                            "AttendanceCode":   "//",
+                            "AttendanceCodeId": 1,  
+                            "MinutesLate":      0,
+                            "Notes":            ""
+                            },{
+                            "EventId":      6541,
+                            "GroupCode":   "10Ar3",
+                            "Date":         "18-04-2016",
+                            "StartTime":    "10:00",
+                            "EndTime":      "12:00",
+                            "Period":       "2,3",
+                            "Date":         "18-04-2016"
+                            "LearnerId":    0002,
+                            "LearnerCode":  "2013-00002",
+                            "AttendanceCode":   "L",
+                            "AttendanceCodeId": 3,  
+                            "MinutesLate":      5,
+                            "Notes":            "Lorem ipsum dolor sit amet."                                
+                            }
+                            
++ Response 204
+
+
+## Create Learner Lesson Attendance by Period
+
+### Create Learner Lesson Attendance By Period [POST]
+
+Create Lesson Attendance for one to many learners using Timetable Period
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+    + Body
+           
+            {
+                "LearnerCode":          "2013-00001",
+                "Iteration":            1,
+                "PeriodId":             1,
+                "AttendanceCode":       "/"
+            },
+            {
+                "LearnerCode":          "2013-00002",
+                "Iteration":            1,
+                "PeriodId":             1,
+                "AttendanceCode":       "N"
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+                 "LearnerCode":         "2013-00001",
+                 "Status":              "Success"
+            },
+            {
+                "LearnerCode":          "2013-00002",
+                "Status":               "Success"
+                
+            }
+
+## Create Learner Lesson Attendance by Time
+
+### Create Learner Lesson Attendance By Time [POST]
+
+Create Attendance for one to many learners using date and time of lesson
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
+    + Body
+           
+            {
+                "LearnerCode":      "7791",
+                "Date":             "16-03-2016",
+                "StartTime":        "09:15",
+                "FinishTime":       "10:15",
+                "AttendanceCode":   "/"
+            }
+
++ Response 200
+
+    + Body
+                 
+            {
+                "LearnerCode": "7791",
+                "Status": true,
+                "Details": "Saved successfully"
+            }
+
++ Response 204
+
+
 
 
 # Group Photo
@@ -4139,7 +4141,7 @@ Collection od User Defined Values resources
 
 Create or update UDF values for Learner, Staff or Contact
 
-### Create/Update UDF values for a UDF
+### Create/Update UDF values for a UDF [POST]
 
  Create/update one to many one to many employee/learner/contact UDF values    
 
@@ -4154,8 +4156,6 @@ Create or update UDF values for Learner, Staff or Contact
     + UDF Value is of DataType
     + Id of Learner, Employee or Contact is for this school
     + FieldDefinitionId exists for this school
-
-
 
 
 + Request (application/json)
