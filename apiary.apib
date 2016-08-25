@@ -5550,6 +5550,37 @@ Create association of one to many Course to Years
             }
             
 
+## Subjects
+
+### Retrieve a list of school subjects [/Subjects]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LookupId":         1525,
+                "Code":             "ENG",
+                "Name":             "English,
+                "Description":      "English"
+            },
+            {
+                "LookupId":         1526,
+                "Code":             "FRE",
+                "Name":             "French,
+                "Description":      "French"
+            }
+
+
+
+
 # Group Timtetable
 
 Group of all Timetable Resources
@@ -5668,6 +5699,70 @@ Update one to many Timetable Sources
                 "Code":                     "2015/2016"
             }
 
+## Day Structure [/DayStructures/{?SourceId}]
+
++ Parameters
+    + SourceId (mandatory, int, `2731`) ... unique identifier of a timetable source
+
+### Retrieve Day Structures
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "DayStructureId":   1064,
+                "DayCode":          "Mon1",
+                "DayName":          "Monday1",
+                "DayOrder":         1
+            }
+
++ Response 204
+
+
+## Date Mappings [/DateMappings/{?SourceId}]
+
++ Parameters
+    + SourceId (mandatory, int, `2731`) ... unique identifier of a timetable source
+
+### Retrieve Date Mappings [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "DateMappingId":    1064,
+                "DayStructureId":   2154,
+                "IterationNumber":  1,
+                "Date":        "30-08-2015"
+            },
+            {
+                "DateMappingId":    1064,
+                "DayStructureId":   2155,
+                "IterationNumber":  2,
+                "Date":        "13-09-2015"
+            },
+            {
+                "DateMappingId":    1064,
+                "DayStructureId":   2156,
+                "IterationNumber":  3,
+                "Date":        "27-09-2015"
+            }
 
 
 ## Day Compositions  [/dayCompositions/{?TTSourceId}]
@@ -5945,6 +6040,29 @@ Update one to many Day Composition Periods
                 "PeriodCode":               "P1"
             }
 
+
+## Week Ranges [/WeekRanges/{?SourceId}]
+
++ Parameters
+    + SourceId (mandatory, int, `1235`) ... unique Id of timetable source 
+    
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+        {
+            "WeekRangeId":    1581,
+            "Name":             "Full Year",
+            "IterationNumber":  1
+            "StartDate":        "30-08-2015"
+        }
+    
 
 
 ## Timetable Events  [/ttEvents/{SourceId}{startDate}{endDate}{?dayCompositionId}]
