@@ -2986,7 +2986,7 @@ Create and update one to many learner heatlh records
                                 }]
             }
  
- ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
+## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 
 ### Retrieve a learner Exclusion Details [GET]
 
@@ -3439,7 +3439,7 @@ Create SEN Major Needs for one to many learners
             }
 
 
-## Learner Siblings [/learnerSiblings{?learnerId}]
+## Learner Siblings [/learnerSiblings{?LearnerId}]
 
 + Parameters
     + LearnerId (optional, int, `00001`) ... Return siblings of a learner
@@ -3709,11 +3709,9 @@ Create and amend Attendance for one to many learners
 + Response 204
 
 
-## Create Learner Lesson Attendance by Period
+### Create Learner Lesson Attendance [POST]
 
-### Create Learner Lesson Attendance By Period [POST]
-
-Create Lesson Attendance for one to many learners using Timetable Period
+#### Create Learner Lesson Atendance by Period
 
 + Request (application/json)
 
@@ -3750,11 +3748,8 @@ Create Lesson Attendance for one to many learners using Timetable Period
                 
             }
 
-## Create Learner Lesson Attendance by Time
 
-### Create Learner Lesson Attendance By Time [POST]
-
-Create Attendance for one to many learners using date and time of lesson
+#### Create Learner Lesson Atendance by Time
 
 + Request (application/json)
 
@@ -3784,8 +3779,6 @@ Create Attendance for one to many learners using date and time of lesson
             }
 
 + Response 204
-
-
 
 
 # Group Photo
