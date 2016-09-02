@@ -3711,7 +3711,7 @@ Create and amend Attendance for one to many learners
 
 ### Create Learner Lesson Attendance [POST]
 
-#### Create Learner Lesson Atendance by Period
+Create Learner Lesson Atendance by Period
 
 + Request (application/json)
 
@@ -3749,7 +3749,7 @@ Create and amend Attendance for one to many learners
             }
 
 
-#### Create Learner Lesson Atendance by Time
+Create Learner Lesson Atendance by Time
 
 + Request (application/json)
 
@@ -3788,17 +3788,14 @@ Group of Photo-related resources
 ## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
 
 + Parameters
-    + IsLearnerRequest (mandatory, boolean, true) ... true for Learner photo, false for Employee photo
-    + Id (optional, int, 1245698) ... unique LearnerId or EmployeeId
+    + IsLearnerRequest (mandatory, boolean, `true`) ... true for Learner photo, false for Employee photo
+    + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
 
 Group of all photo related resources
 
 ### Retrieve a collection of Photos [GET]
 
 **PhotoData is byte array**
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-+ Response 204 - no data found
 
 Retrieve one to many one to many employee/learner photos         
 
@@ -3831,8 +3828,8 @@ A collection of all UDF-related resources
 ## UDF Collection [/UDF{?EntityType}{?Code}]
 
 + Parameters
-    + EntityType (optional, string, 'Learner') ... type of UDF Valid values School Staff, Learner, Contact
-    + Code (optional, string, 'LP') ... unique Code of UDF        
+    + EntityType (optional, string, `Learner`) ... type of UDF Valid values School Staff, Learner, Contact
+    + Code (optional, string, `LP`) ... unique Code of UDF        
         
 
 ### Retrieve one to many UDFs [GET]
@@ -3903,17 +3900,15 @@ Create or update one to many UDFs
 ### Create one to many UDFs [POST]
 
 + Parameters
-    + Code (mandatory, string, 'Learner') ... unique code of UDF
-    + Name (mandatory, string, 'Learner') ... name of UDF
-    + EntityType (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
-    + DataType (mandatory, string, 'PickValue') ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
+    + Code (mandatory, string, `Learner`) ... unique code of UDF
+    + Name (mandatory, string, `Learner`) ... name of UDF
+    + EntityType (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + DataType (mandatory, string, `PickValue`) ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
         If DataType = PickValue then PickListValues cannot be null
         If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
-    + FieldLength (mandatory, int, '255') ... *only mandatory for DataTypes of Integer, Double and String*
-    + Mandatory (mandatory, string, 'No') ... valid values Yes or No
-    + ToolTip (mandatory, string, 'Permission to view Learner Photo') ... Message to help users
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+    + FieldLength (mandatory, int, `255`) ... *only mandatory for DataTypes of Integer, Double and String*
+    + Mandatory (mandatory, string, `No`) ... valid values Yes or No
+    + ToolTip (mandatory, string, `Permission to view Learner Photo`) ... Message to help users
 
 + Request (application/json)
 
@@ -3998,9 +3993,7 @@ Create or update one to many UDFs
 ### Update one to many UDFs [PUT]
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
+    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
 
 + Request (application/json)
 
@@ -4088,13 +4081,10 @@ Collection od User Defined Values resources
 ### Retrieve UDF values for a UDF [GET]
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
-    + Entity (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
-    + Id (optional, int, '001234') ... unique Id of Learner/School Staff or Contact in form of array
+    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
+    + Entity (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + Id (optional, int, `001234`) ... unique Id of Learner/School Staff or Contact in form of array
 
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-+ Response 204 - no data found
 
 + Request (application/json)
 
@@ -4139,10 +4129,10 @@ Create or update UDF values for Learner, Staff or Contact
  Create/update one to many one to many employee/learner/contact UDF values    
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, '1111') ... unique Id of UDF
-    + Id (mandatory, int, '001234') ... unique Id of Learner, Employee or Contact
-    + Entity (mandatory, string, 'Learner') ... type of UDF - valid values are School staff, Contact, Learner
-    + Value (mandatory, string, 'Yes') ... the values of the UDF
+    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
+    + Id (mandatory, int, `001234`) ... unique Id of Learner, Employee or Contact
+    + Entity (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + Value (mandatory, string, `Yes`) ... the values of the UDF
 
 + Validation
     + FieldDefinitionId corresponds to Entity in Parameters
