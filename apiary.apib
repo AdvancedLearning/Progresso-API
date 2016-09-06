@@ -3749,7 +3749,7 @@ Create Learner Lesson Atendance by Period
             }
 
 
-Create Learner Lesson Atendance by Time
+Create Learner Lesson Attendance by Time
 
 + Request (application/json)
 
@@ -3757,7 +3757,6 @@ Create Learner Lesson Atendance by Time
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
            
             {
@@ -3787,18 +3786,17 @@ Group of Photo-related resources
 
 ## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
 
-+ Parameters
-    + IsLearnerRequest (mandatory, boolean, `true`) ... true for Learner photo, false for Employee photo
-    + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
-
-Group of all photo related resources
 
 ### Retrieve a collection of Photos [GET]
 
+Retrieve one to many one to many employee/learner photos  
+
 **PhotoData is byte array**
 
-Retrieve one to many one to many employee/learner photos         
-
++ Parameters
+    + IsLearnerRequest (mandatory, boolean, `true`) ... true for Learner photo, false for Employee photo
+    + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
+       
 + Request (application/json)
 
     + Headers
@@ -6369,7 +6367,7 @@ This documentation is subject to change and fields included are not final.
 
 ## Behaviour Collection [/behaviour]
 
-This will data for Behaviour Events
+Collection of Behaviour Events methods
 
 ## Behaviour Structure Collection [/bmstructure/]
 
