@@ -565,7 +565,7 @@ Retrieve one or more employee check records
             Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
-    + Status (optional, boolean, `true`)... Option filter for active Employees
+    + Status (optional, boolean, `true`)... Optional filter for active Employees
     + Employee (optional, int, `0001`) ... Optional filter to an Employee
 
 + Response 200 (application/json)
@@ -3786,7 +3786,6 @@ Group of Photo-related resources
 
 ## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
 
-
 ### Retrieve a collection of Photos [GET]
 
 Retrieve one to many one to many employee/learner photos  
@@ -3794,7 +3793,7 @@ Retrieve one to many one to many employee/learner photos
 **PhotoData is byte array**
 
 + Parameters
-    + IsLearnerRequest (mandatory, boolean, `true`) ... true for Learner photo, false for Employee photo
+    + IsLearnerRequest (mandatory, boolean, `true`) ... true/false marker for Learner or Staff photo
     + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
        
 + Request (application/json)
