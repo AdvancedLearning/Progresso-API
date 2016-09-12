@@ -3711,7 +3711,7 @@ Create and amend Attendance for one to many learners
 
 ### Create Learner Lesson Attendance [POST]
 
-Create Learner Lesson Atendance by Period
+Create Learner Lesson Atendance by Period or Time
 
 + Request (application/json)
 
@@ -3720,7 +3720,7 @@ Create Learner Lesson Atendance by Period
             Authorization: Bearer [CURRENT_TOKEN]
         
     + Body
-           
+            
             {
                 "LearnerCode":          "2013-00001",
                 "Iteration":            1,
@@ -3732,7 +3732,15 @@ Create Learner Lesson Atendance by Period
                 "Iteration":            1,
                 "PeriodId":             1,
                 "AttendanceCode":       "N"
+            },
+            {
+                "LearnerCode":      "7791",
+                "Date":             "16-03-2016",
+                "StartTime":        "09:15",
+                "FinishTime":       "10:15",
+                "AttendanceCode":   "/"
             }
+
 
 + Response 200
 
@@ -3746,31 +3754,7 @@ Create Learner Lesson Atendance by Period
                 "LearnerCode":          "2013-00002",
                 "Status":               "Success"
                 
-            }
-
-
-Create Learner Lesson Attendance by Time
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-    + Body
-           
-            {
-                "LearnerCode":      "7791",
-                "Date":             "16-03-2016",
-                "StartTime":        "09:15",
-                "FinishTime":       "10:15",
-                "AttendanceCode":   "/"
-            }
-
-+ Response 200
-
-    + Body
-                 
+            },
             {
                 "LearnerCode": "7791",
                 "Status": true,
@@ -3793,7 +3777,7 @@ Retrieve one to many one to many employee/learner photos
 **PhotoData is byte array**
 
 + Parameters
-    + IsLearnerRequest (mandatory, boolean, `true`) ... true/false marker for Learner or Staff photo
+    + IsLearnerRequest (required, boolean, `true`) ... true/false marker for Learner or Staff photo
     + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
        
 + Request (application/json)
@@ -3890,22 +3874,18 @@ A collection of all UDF-related resources
             
 + Response 204
 
-## Create/Update User Ddefined Fields
-
-Create or update one to many UDFs
-
 ### Create one to many UDFs [POST]
 
 + Parameters
-    + Code (mandatory, string, `Learner`) ... unique code of UDF
-    + Name (mandatory, string, `Learner`) ... name of UDF
-    + EntityType (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
-    + DataType (mandatory, string, `PickValue`) ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
+    + Code (required, string, `Learner`) ... unique code of UDF
+    + Name (required, string, `Learner`) ... name of UDF
+    + EntityType (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + DataType (required, string, `PickValue`) ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
         If DataType = PickValue then PickListValues cannot be null
         If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
-    + FieldLength (mandatory, int, `255`) ... *only mandatory for DataTypes of Integer, Double and String*
-    + Mandatory (mandatory, string, `No`) ... valid values Yes or No
-    + ToolTip (mandatory, string, `Permission to view Learner Photo`) ... Message to help users
+    + FieldLength (required, int, `255`) ... *only mandatory for DataTypes of Integer, Double and String*
+    + Mandatory (required, string, `No`) ... valid values Yes or No
+    + ToolTip (required, string, `Permission to view Learner Photo`) ... Message to help users
 
 + Request (application/json)
 
@@ -6091,7 +6071,7 @@ Response codes used are:
             
             {
             "EventId":      124512732,
-        **  "Date":         "2015-12-01",
+            "Date":         "2015-12-01",
             "StartTime":    "09:00",
             "FinishTime":   "10:00",
             "Day":          "Tue1",
