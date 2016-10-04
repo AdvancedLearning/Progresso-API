@@ -3874,18 +3874,13 @@ A collection of all UDF-related resources
             
 + Response 204
 
+## UDF Create [/UDF]
+
 ### Create one to many UDFs [POST]
 
-+ Parameters
-    + Code (required, string, `Learner`) ... unique code of UDF
-    + Name (required, string, `Learner`) ... name of UDF
-    + EntityType (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
-    + DataType (required, string, `PickValue`) ... type of field - valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
-        If DataType = PickValue then PickListValues cannot be null
-        If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
-    + FieldLength (required, int, `255`) ... *only mandatory for DataTypes of Integer, Double and String*
-    + Mandatory (required, string, `No`) ... valid values Yes or No
-    + ToolTip (required, string, `Permission to view Learner Photo`) ... Message to help users
+Notes on using DataType:
+    If DataType = PickValue then PickListValues cannot be null
+    If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
 
 + Request (application/json)
 
@@ -3965,12 +3960,12 @@ A collection of all UDF-related resources
                "Name":             "ContactRelationship"
             }
         
-        
+## UDF Create [/UDF{?FieldDefinitionId}]
         
 ### Update one to many UDFs [PUT]
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
+    + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
 
 + Request (application/json)
 
@@ -4058,8 +4053,8 @@ Collection od User Defined Values resources
 ### Retrieve UDF values for a UDF [GET]
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
-    + Entity (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
+    + Entity (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
     + Id (optional, int, `001234`) ... unique Id of Learner/School Staff or Contact in form of array
 
 
@@ -4097,26 +4092,15 @@ Collection od User Defined Values resources
             
 + Response 204
 
-## Create or Update values for a UDF
-
-Create or update UDF values for Learner, Staff or Contact
-
 ### Create/Update UDF values for a UDF [POST]
 
  Create/update one to many one to many employee/learner/contact UDF values    
 
 + Parameters
-    + FieldDefinitionId (mandatory, int, `1111`) ... unique Id of UDF
-    + Id (mandatory, int, `001234`) ... unique Id of Learner, Employee or Contact
-    + Entity (mandatory, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
-    + Value (mandatory, string, `Yes`) ... the values of the UDF
-
-+ Validation
-    + FieldDefinitionId corresponds to Entity in Parameters
-    + UDF Value is of DataType
-    + Id of Learner, Employee or Contact is for this school
-    + FieldDefinitionId exists for this school
-
+    + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
+    + Id (required, int, `001234`) ... unique Id of Learner, Employee or Contact
+    + Entity (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
+    + Value (required, string, `Yes`) ... the values of the UDF
 
 + Request (application/json)
 
@@ -4179,9 +4163,9 @@ Collection of all Assessment related resources
 ## Assessment Screen Collection [/AssessmentScreens{?AcademicYearId}]
 
 + Parameters
-    + AcademicYearId (mandatory, int, `1234`) ... unique number of Academic Year
+    + AcademicYearId (required, int, `1234`) ... unique number of Academic Year
 
-### Retrieve a collection of Assessment Screens
+### Retrieve a collection of Assessment Screens [GET]
 
  Retrieve one to many assessment screen details for a school         
             
@@ -4232,22 +4216,21 @@ Collection of all Assessment related resources
                     }]
             }
 
-
-## Learner Assessment Results Collection [LearnerAssessmentResults{AcademicYearId}{?AssessmentSCreenId}{?LearnerId}{?GroupId}{?Year}]
+## Learner Assessment Results Collection [/LearnerAssessmentResults{AcademicYearId}{?AssessmentScreenId}{?LearnerId}{?GroupId}{?Year}]
 
 +  AcademicYearId is mandatory
 **And either**
 + AssessmentScreenId or LearnerId
 
 + Parameters
-    + AcademicYearId (mandatory, int, `1234`) ... unique ID of Academic Year
+    + AcademicYearId (required, int, `1234`) ... unique ID of Academic Year
     + AssessmentScreenId (optional, int, `23344`) ... unique Id of the Assessment Screen
     + LearnerId (optional, int, `12340`) ... unique Id of Learner
     + GroupId (optional, int, `122434`) ... unique Id of Group
     + Year (optional, string, `Year 8`) ... name of the Year Group
     
 
-### Retrieve one or more Learner Assessment restuls
+### Retrieve one or more Learner Assessment results [GET]
 
 + Request
 
@@ -4790,7 +4773,8 @@ Create one to many current or future academic years
     + StartDate (mandatory, DateTime, '01/09/2016') ... start date of the Academic Year
     + EndDate (mandatory, DateTime, '31/08/2017') ... end date of the Academic Year
 
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
++ Response 200 
+    will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
 
 
 + Request (application/json)
@@ -5569,7 +5553,8 @@ Group of all Timetable Resources
                 "EndDate": "2016-08-27",
                 "TimetableIterations": 52,
                 "splitCoverEvents": false,
-                "splitMultiplePeriods": false
+                "splitMultiplePeriods": false,
+                "ActiveSource": "N"
                 },
                 {
                 "TimetableSourceId": 2133,
@@ -5579,7 +5564,8 @@ Group of all Timetable Resources
                 "EndDate": "2016-08-27",
                 "TimetableIterations": 52,
                 "splitCoverEvents": false,
-                "splitMultiplePeriods": false
+                "splitMultiplePeriods": false,
+                "ActiveSource": "Y"
             }
             
 
@@ -6035,11 +6021,11 @@ Update one to many Day Composition Periods
     + StartDate and EndDate
 
 + Parameters
-    + SourceId (Mandatory, int, '2133') ... unique Id of  the timetable source
-    + EmployeeId (Mandatory/optional, int, '1023454') ... unique Id of employee
-    + LearnerId (Mandatory/optional, int, '123456') ... unique Id of Learner
-    + StartDate (Mandatory/optional, date, '2015-12-01') ... Start of date range
-    + EndDate (Mandatory/optional, date, '2015-12-08') ... End of date range
+    + SourceId (required, int, '2133') ... unique Id of  the timetable source
+    + EmployeeId (optional, int, '1023454') ... unique Id of employee
+    + LearnerId (optional, int, '123456') ... unique Id of Learner
+    + StartDate (optional, date, '2015-12-01') ... Start of date range
+    + EndDate (optional, date, '2015-12-08') ... End of date range
     + DayCompositionId (optional, int, `1234`) ... filter for event for a single day
 
 
@@ -6202,45 +6188,6 @@ Create one to many Rooms
             }
 
 
-### Update Rooms [PUT]
-
-Update one to many Rooms
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-        
-
-+ Request (application/json)
-
-    + Body
-
-            {
-                "RoomId":               1,
-                "RoomCode":             "A3",
-                "RoomName":             "A3-0",
-                "Site":                 "Main",
-                "RoomCategory":         "DTN",
-                "RoomType":             "Detention"
-                "AssociatedEquipment":  [{
-                                                "EquipmentCode":  "OHP",
-                                                "EquipmentName":  "Over Head Projector"
-                                        }],
-                "Capacity":             30                                        
-            }
-
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            [
-                "Status":               true,
-                "Details":              "Saved successfully", 
-                "RoomId":               1
-            }
 
 
 ## Sites  [/site/{?siteId}]
