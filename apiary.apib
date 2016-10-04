@@ -4757,7 +4757,7 @@ Group of all Academic Resources
             }
 
 
-## Create Academic Years [/academicYear]
+## Academic Years [/AcademicYear]
 
 ### Create Academic Year [POST]
 
@@ -4772,10 +4772,6 @@ Create one to many current or future academic years
     + Name (mandatory, string, 'Academic Year 2016/2017') ... name of the Academic Year
     + StartDate (mandatory, DateTime, '01/09/2016') ... start date of the Academic Year
     + EndDate (mandatory, DateTime, '31/08/2017') ... end date of the Academic Year
-
-+ Response 200 
-    will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
 
 + Request (application/json)
 
@@ -4819,20 +4815,19 @@ Create one to many current or future academic years
             }
             
 
+## Past Academic Years [\PastACYear]
+
+**Past Academic Year can only be created if no other Academic Year exists**
+
 ### Create Past Academic Year [POST]
 
 Create one or more past academic years
-
-**Past Academic Year can only be created if no other Academic Year exists**
 
 + Mandatory fields
 
     + Name (mandatory, string, 'Academic Year 2014/2015') ... name of the Academic Year
     + StartDate (mandatory, DateTime, '2014-09-01') ... start date of the Academic Year
     + EndDate (mandatory, DateTime, '2015-09-31') ... end date of the Academic Year
-
-+ Response 200 will contain the generic 'Success' or 'Fail' message along with appropriate Id's where applicable.
-
 
 + Request (application/json)
 
@@ -4915,6 +4910,8 @@ Create one or more past academic years
             }
 
 ## Create/Update Academic Terms [/academicTerms]
+
+** Use this method to create academic terms in the future **
 
 ### Create Academic Term [POST]
 
