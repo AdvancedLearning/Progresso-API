@@ -4720,7 +4720,7 @@ Update Group Association for one to many Learners and Groups
         
              }
 
-# Group Academic Data
+# Group Current Academic Data
 Group of all Academic Resources
 
 ## AcademicYear [/academicYear/{?id}]
@@ -4815,7 +4815,7 @@ Create one to many current or future academic years
             }
             
 
-## Past Academic Years [\PastACYear]
+## Past Academic Years [/PastACYear]
 
 **Past Academic Year can only be created if no other Academic Year exists**
 
@@ -5255,7 +5255,6 @@ Optional parameters are:
 
 ## Create/Update Academic Calendar Events [/academicCalendarEvents]
 
-
 ### Create Academic Calendar Events [POST]
 Create one to many Academic Calendar Events
 
@@ -5491,9 +5490,9 @@ Create association of one to many Course to Years
             }
             
 
-## Subjects
+## Subjects [/Subjects]
 
-### Retrieve a list of school subjects [/Subjects]
+### Retrieve a list of school subjects [GET]
 
 + Request
 
@@ -5644,9 +5643,9 @@ Update one to many Timetable Sources
 ## Day Structure [/DayStructures/{?SourceId}]
 
 + Parameters
-    + SourceId (mandatory, int, `2731`) ... unique identifier of a timetable source
+    + SourceId (optional, number, `1234`) ... unique identifier of an Academic Year
 
-### Retrieve Day Structures
+### Retrieve Day Structures [GET]
 
 + Request
 
@@ -5672,7 +5671,7 @@ Update one to many Timetable Sources
 ## Date Mappings [/DateMappings/{?SourceId}]
 
 + Parameters
-    + SourceId (mandatory, int, `2731`) ... unique identifier of a timetable source
+    + SourceId (required, number, `2731`) ... unique identifier of a timetable source
 
 ### Retrieve Date Mappings [GET]
 
@@ -5911,7 +5910,7 @@ Create one to many Day Composition Periods
 
     + Body
     
-            [{
+            {
                 "Status":                   true,
                 "Details":                  "Saved successfully",  
                 "DayCompositionId":         1,
@@ -5939,7 +5938,7 @@ Update one to many Day Composition Periods
 
     + Body
     
-            [{
+            {
                 "DayCompositionId":         1,
                 "TimetableSourceId":        1,
                 "PeriodId":                 1,
@@ -5987,7 +5986,9 @@ Update one to many Day Composition Periods
 ## Week Ranges [/WeekRanges/{?SourceId}]
 
 + Parameters
-    + SourceId (mandatory, int, `1235`) ... unique Id of timetable source 
+    + SourceId (required, number, `1235`) ... unique Id of timetable source
+
+### Retrieve Week Ranges [GET]
     
 + Request
 
@@ -6018,20 +6019,15 @@ Update one to many Day Composition Periods
     + StartDate and EndDate
 
 + Parameters
-    + SourceId (required, int, '2133') ... unique Id of  the timetable source
-    + EmployeeId (optional, int, '1023454') ... unique Id of employee
-    + LearnerId (optional, int, '123456') ... unique Id of Learner
+    + SourceId (required, number, '2133') ... unique Id of  the timetable source
+    + EmployeeId (optional, number, '1023454') ... unique Id of employee
+    + LearnerId (optional, number, '123456') ... unique Id of Learner
     + StartDate (optional, date, '2015-12-01') ... Start of date range
     + EndDate (optional, date, '2015-12-08') ... End of date range
-    + DayCompositionId (optional, int, `1234`) ... filter for event for a single day
+    + DayCompositionId (optional, number, `1234`) ... filter for event for a single day
 
 
 ### Retrieve Timetable Events [GET]
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
@@ -6093,20 +6089,14 @@ Response codes used are:
 
 Collection of all Physical Resources
 
-## Rooms  [/rooms/{?roomId}]
+## Rooms  [/rooms/{?RoomId}]
 
 + Parameters
-
-    + roomId (optional, number, `12345`) ... The unique identifier of a room
+    + RoomId (optional, number, `12345`) ... The unique identifier of a room
 
 ### Retrieve Rooms [GET]
 
 Retrieve one to many rooms
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
@@ -6187,20 +6177,15 @@ Create one to many Rooms
 
 
 
-## Sites  [/site/{?siteId}]
+## Sites  [/site/{?SiteId}]
 
 + Parameters
 
-    + siteId (optional, number, `12345`) ... The unique identifier of a site
+    + SiteId (optional, number, `12345`) ... The unique identifier of a site
 
-### Retrieve Site [GET]
+### Retrieve Sites [GET]
 
 Retrieve one or more Sites
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
@@ -6431,15 +6416,11 @@ Response codes used are:
 
 Creates a new Behaviour Management Structure
 
-Mandatory Parameters:
-        
-- Types:
-
-    - Code  (required, string, 'ABLAN') ... Unique code for the type of behaviour
-    
-    - Description (required, string, 'Abusive/Threating Language') ... Description of the type of behaviour
-    
-    - Points (required, int, '1') ... Number of points, defaults to zero
++ Parameters
+    + Types:
+    + Code  (required, string, '01Conf') ... Unique code for the type of behaviour
+    + Description (required, string, 'Abusive/Threating Language') ... Description of the type of behaviour
+    + Points (required, number, '0') ... Number of points, defaults to zero
 
 + Request
 
