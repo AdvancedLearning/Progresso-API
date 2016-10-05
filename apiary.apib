@@ -6,7 +6,7 @@ Provides the ability to manage school information.
 
 **Please Note**
 
-There are areas which are or will be under development in the near future. Once areas/methods are complete they will be marked as Available.
+There are areas which are or will be under development in the near future.
 
 If you have any comments or suggestions please contact:
             **sally.robinson@oneadvanced.com**
@@ -6000,23 +6000,22 @@ Update one to many Day Composition Periods
 
     + Body
     
-        {
-            "WeekRangeId":    1581,
-            "Name":             "Full Year",
-            "IterationNumber":  1
-            "StartDate":        "30-08-2015"
-        }
+            {
+                "WeekRangeId":    1581,
+                "Name":             "Full Year",
+                "IterationNumber":  1
+                "StartDate":        "30-08-2015"
+            }
     
 
+## Timetable Events  [/ttEvents/{?SourceId}{?EmployeeId}{?LearnerId}{?StartDate}{?EndDate}{?DayCompositionId}]
 
-## Timetable Events  [/ttEvents/{SourceId}{startDate}{endDate}{?dayCompositionId}]
-
-+ Mandatory fields
-    + SourceId is a mandatory field
+- Mandatory fields
+    - SourceId is a mandatory field
 *And either*
-    + LearnerId
-    + EmployeeID
-    + StartDate and EndDate
+    - LearnerId
+    - EmployeeID
+    - StartDate and EndDate
 
 + Parameters
     + SourceId (required, number, '2133') ... unique Id of  the timetable source
@@ -6267,11 +6266,8 @@ Update one to many Sites
             }
 
             
-# Group **PROPOSED Methods** 
-
 # Group Behaviour
-The whole **Behaviour** section is under development and unavailable at present. 
-This documentation is subject to change and fields included are not final.
+
 
 ## Behaviour Collection [/behaviour]
 
@@ -6280,14 +6276,8 @@ Collection of Behaviour Events methods
 ## Behaviour Structure Collection [/bmstructure/]
 
 ### Get behaviour structure [GET]
-**Deployed to Live PROAPI-24**
 
 Retrieves the current behaviour structure. 
-
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
