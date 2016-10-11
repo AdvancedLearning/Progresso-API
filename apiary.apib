@@ -8,8 +8,8 @@ Provides the ability to manage school information.
 
 There are areas which are or will be under development in the near future.
 
-If you have any comments or suggestions please contact:
-            **sally.robinson@oneadvanced.com**
+If you have any comments or suggestions please contact: 
+ **sally.robinson@oneadvanced.com**
 
 
 # Group Authorisation
@@ -160,16 +160,17 @@ Retrieve one to many employee basic records
  Create one to many one to many employee records 
 
 + Mandatory fields
-    + Employee Code, Forename and Surname are all mandatory
+
+    + EmployeeId, Surname, Forename are mandatory fields
     
     + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
-    
+
     + Phone is not mandatory but if included: Type and Number are mandatory
     
     + Language is not mandatory but if included: TypeCode and LangCode are mandatory
     
-    + Qualification is not mandatory but if included: QualificaitonCode and Subject are mandatory
-
+    + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
+    
 + Response 200 (application/json)
 
 + Request (application/json)
@@ -4096,7 +4097,7 @@ Collection od User Defined Values resources
 
  Create/update one to many one to many employee/learner/contact UDF values    
 
-+ Parameters
++ Mandatory fields
     + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
     + Id (required, int, `001234`) ... unique Id of Learner, Employee or Contact
     + Entity (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
@@ -5810,13 +5811,13 @@ Update one to many Day Compositions
             }
 
 
-## Day Compositions Periods [/dayCompositionsPeriods/{?TimetableSourceId}]
+## Day Compositions Periods [/dayCompositionsPeriods/{?TTSourceId}]
 
 ** Please note the lowercase 'd' in this call **
 
 + Parameters
 
-    + TimetableSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
+    + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
 ### Retrieve Day Composition Periods [GET]
 
@@ -5838,7 +5839,7 @@ Response codes used are:
     
             {
                 "DayCompositionId": 3706,
-                "TimetableSourceId": 2133,
+                "TTSourceId": 2133,
                 "PeriodId": 83077,
                 "PeriodCode": "P2",
                 "PeriodName": "Period2",
@@ -5848,7 +5849,7 @@ Response codes used are:
                 },
                 {
                 "DayCompositionId": 3706,
-                "TimetableSourceId": 2133,
+                "TTSourceId": 2133,
                 "PeriodId": 83080,
                 "PeriodCode": "P1",
                 "PeriodName": "Period1",
@@ -5858,7 +5859,7 @@ Response codes used are:
             },
             {
                 "DayCompositionId": 3706,
-                "TimetableSourceId": 2133,
+                "TTSourceId": 2133,
                 "PeriodId": 83082,
                 "PeriodCode": "P4",
                 "PeriodName": "Period4",
