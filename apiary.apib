@@ -1064,8 +1064,8 @@ Collection of all employee roles for employee contracts within a school
                                         "salaryId":             0,
                                         "effectiveFrom":        "01-09-2014",
                                         "effectiveTo":          "31-08-2015",
-                                        "payScaleCode":             "",
-                                        "payScaleName":             "",
+                                        "payScaleCode":         "",
+                                        "payScaleName":         "",
                                         "regionalSpine":        "",
                                         "point":                "",
                                         "safeguardedSalary":    true,
@@ -5210,16 +5210,16 @@ Update one to many terms breaks
             }
 
 
-## Academic Calendar Events [/academicCalendarEvents/{?AcYearId}{?id}]
+## Academic Calendar Events [/academicCalendarEvents/{?AcademicYearId}{?id}]
 
 Optional parameters are:
 
-- AcYearId - Academic Year Id
+- AcademicYearId - Academic Year Id
 - Id - Calendar Event Id
 
 + Parameters
     + id (optional, number, `12345`) ... The unique identifier of the Academic Calendar Event
-    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+    + AcademicYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
 ### Retrieve Calendar Events [GET]
 
@@ -5235,7 +5235,7 @@ Optional parameters are:
     + Body
             
             {
-                "AcYearId":             1
+                "AcademicYearId":             1
                 "name":                 "Inset Day",
                 "category":             "IN",
                 "startDate":            "2014-09-02",
@@ -5244,7 +5244,7 @@ Optional parameters are:
                 "calendarEventId":      0001
             },
             {
-                "AcYearId":             1
+                "AcademicYearId":             1
                 "name":                 "Teacher Training",
                 "category":             "#",
                 "startDate":            "2014-09-03",
