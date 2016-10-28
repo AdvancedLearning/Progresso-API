@@ -6109,27 +6109,32 @@ Retrieve one to many rooms
     + Body
     
             {
-                "RoomId":               1,
-                "RoomCode":             "A1",
-                "RoomName":             "A1",
-                "Site":                 "Main",
-                "RoomCategory":         "DTN",
-                "RoomType":             "Detention",
-                "Capacity":             30
-                "AssociatedEquipment":  [{
-                                                "EquipmentCode":  "OHP",
-                                                "EquipmentName":  "Over Head Projector"
-                                        }]
-            },
-            {
-                "RoomId":               2,
-                "RoomCode":             "A2",
-                "RoomName":             "A2",
-                "Site":                 "Main",
-                "RoomCategory":         "",
-                "RoomType":             "",
-                "AssociatedEquipment":  [{}],
-                "Capacity":             30
+                "RoomId": 74441,
+                "RoomCode": "ScIT",
+                "RoomName": "ScienceIT",
+                "Site": "Main Site",
+                "Roomcategory": null,
+                "AssociatedEquipments": null,
+                "TypeAndCapacity": [
+                  {
+                    "RoomType": "OTH",
+                    "Capacity": 0
+                  }
+                ]
+              },
+              {
+                "RoomId": 74447,
+                "RoomCode": "SciMez",
+                "RoomName": "Sci mez",
+                "Site": "Main Site",
+                "Roomcategory": null,
+                "AssociatedEquipments": null,
+                "TypeAndCapacity": [
+                  {
+                    "RoomType": "OTH",
+                    "Capacity": 10
+                  }
+                ]
             }
 
 + Response 204 (applicatin/json)
@@ -6148,29 +6153,35 @@ Create one to many Rooms
 + Request (application/json)
 
     + Body
-
+    
             {
-                "RoomCode":             "A3",
-                "RoomName":             "A3",
-                "Site":                 "Main",
-                "RoomCategory":         "DTN",
-                "RoomType":             "Detention"
-                "associatedEquipment":  [{
-                                                "EquipmentCode":  "OHP",
-                                                "EquipmentName":  "Over Head Projector"
-                                        }],
-                "Capacity":             30
+                "RoomCode":            "API8",
+                "RoomName":            "API8",
+                "Site":                "Main",
+                "RoomCategory":        null,
+                "TypeAndCapacity":     [{
+                                        "RoomType":  "ICT",
+                                        "Capacity":  "30"
+                                        },{
+                                        "RoomType":  "EXM",
+                                        "Capacity":  "25"
+                                        }],     
+                "AssociatedEquipments": [{
+                                        "EquipmentCode":  "OHP",
+                                        "EquipmentName":  "Overhead Projector"
+                                        }]
             }
+        
 
 + Response 200 (application/json)
 
     + Body
     
             {
-                "Status":               true,
-                "Details":              "Saved Successfully", 
-                "RoomId":               1,
-                "RoomCode":             "A3"
+                "Details": "Saved successfully",
+                "Status": true,
+                "RoomId": 83913,
+                "RoomCode": "API8"
             }
 
 
@@ -6220,7 +6231,7 @@ Create one to many Sites
 + Request (application/json)
 
     + Body
-
+    
             {
                 "SiteCode":     "Main site",
                 "SiteName":     "The Main Site of School"           
@@ -6241,14 +6252,17 @@ Create one to many Sites
 
 Update one to many Sites
 
-+ Request (applcation/json)
++ Request
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-    + Body
 
++ Request (application/json)
+
+    + Body
+    
             {
                 "SiteId":       1,
                 "SiteCode":     "Main site 1",
