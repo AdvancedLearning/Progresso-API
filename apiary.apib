@@ -2799,13 +2799,13 @@ Mandatory fields:
 + Response 200 (application/json)
 
     + Body
-
+    
             {
                 
-                "learnerCode":     "2013-00132",
-                "learnerId":       0001,
+                "LearnerCode":     "2013-00132",
+                "LearnerId":       0001,
                 "UPN":             "G999900210101",
-                "contacts":         [{
+                "Contacts":         [{
                                         "learnerContactRelId":      000003
                                         "contactId":                00001,
                                         "forename":                 "",
@@ -3061,7 +3061,7 @@ Create Exclusions for one to many learners
         
 
     + Body
-          
+    
             {
                 "LearnerId":    443768,
                 "LearnerCode":  "7791",
@@ -3122,7 +3122,7 @@ Update Exclusions for one to many learners
         
 
     + Body
-          
+    
             {
                 "LearnerId":    443768,
                 "LearnerCode":  "7791",
@@ -3238,17 +3238,17 @@ Create SEN Provisions for one to many learners
         
 
     + Body
-          
+    
             {
             
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "provisions":   [{
-                                    "provisionTypeCode":    "A",
-                                    "provisionTypeName":    "School Action",
-                                    "startDate":            "2015-11-25",
-                                    "reviewDate":           "",
-                                    "endDate":              ""
+                "LearnerCode":      "2013-00001",
+                "LearnerId":       0001,
+                "Provisions":   [{
+                                    "ProvisionTypeCode":    "A",
+                                    "ProvisionTypeName":    "School Action",
+                                    "StartDate":            "2015-11-25",
+                                    "ReviewDate":           "",
+                                    "EndDate":              ""
                                 }]
             }
               
@@ -3257,14 +3257,14 @@ Create SEN Provisions for one to many learners
     + Body
     
             {
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "status":           true,
-                "details":          "Saved successfully",
-                "provisions":   [{
-                                    "status":               true,
-                                    "details":              "Saved successfully",
-                                    "provisionId":          00001
+                "LearnerCode":      "2013-00001",
+                "LearnerId":        0001,
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "Provisions":   [{
+                                    "Status":               true,
+                                    "Details":              "Saved successfully",
+                                    "ProvisionId":          00001
                                 }]
             }
 
@@ -3278,7 +3278,6 @@ Update SEN Provisions for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
           
             [{
@@ -3359,7 +3358,6 @@ Create SEN Major Needs for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
           
             [{
@@ -3405,7 +3403,6 @@ Create SEN Major Needs for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
           
             [{
@@ -3418,9 +3415,6 @@ Create SEN Major Needs for one to many learners
                                     "majorNeedDescription": "Severe Learning Difficulty ",
                                     "ranking":            2
                                 }]
-            
-            
-            
             }]
 
 + Response 200 (application/json)
@@ -4217,7 +4211,7 @@ Collection of all Assessment related resources
                     }]
             }
 
-## Learner Assessment Results Collection [/LearnerAssessmentResults{AcademicYearId}{?AssessmentScreenId}{?LearnerId}{?GroupId}{?Year}]
+## Learner Assessment Results Collection [/LearnerAssessmentResult{AcademicYearId}{?AssessmentScreenId}{?LearnerId}{?GroupId}{?Year}]
 
 +  AcademicYearId is mandatory
 **And either**
@@ -6282,14 +6276,59 @@ Update one to many Sites
             
 # Group Behaviour
 
+Collection of Behaviour methods
 
-## Behaviour Collection [/behaviour]
+## Behaviour Events Collection [/BMEvents]
 
-Collection of Behaviour Events methods
+### Get Behaviour Events [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":    120318,
+                "LearnerCode":  "015234",
+                "RegGroup":     "11E",
+                "IncidentDate": "06-09-2016",
+                "Behaviour":    "Negative",
+                "Subject":      "MFL",
+                "Location":     "Classroom",
+                "Details":      [{
+                                    "Category":     "Classwork",
+                                    "Type":         "Ignoring Instructions"
+                                },{
+                                    "Category":     "Classwork",
+                                    "Type":         "Disrespectful"
+                                }],
+                "Comments":     [{
+                                    "Comment":      "Limited work completed, off task"
+                                },{
+                                    "Comment":      "Removed from Computers"
+                                }],
+                "Actions":      [{
+                                    "Action":       "Moved in Class"
+                                }'{
+                                    "Action":       "Warning 1"
+                                }],
+                "Published":    "Yes",
+                "Creator":      "SBr",
+                "Assignee":     "LCr",
+                "Status":       "Created"
+            }
+ 
++ Response 204                
 
 ## Behaviour Structure Collection [/BMStructure/]
 
-### Get behaviour structure [GET]
+### Get Behaviour Structure [GET]
+**Due end of November**
 
 Retrieves the current behaviour structure
 
@@ -6622,7 +6661,6 @@ Creates a new Behaviour Management Structure
             
 
 ### Update Behaviour Structure [PUT]
-**PROPOSED POST METHOD - PROAPI-29**
 
 Updates an Behaviour Management Structure
 
