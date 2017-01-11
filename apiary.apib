@@ -2434,7 +2434,7 @@ Response codes used are:
 + Response 200 (application/json)
 
     + Body
-
+    
             {
             "LearnerId":        443756,   
             "LearnerCode":      "2010-0001",
@@ -2544,6 +2544,11 @@ Response codes used are:
                                         "LeavingDate":  "2016-02-05",
                                         "LeavingReason":"OT"
                                     }]
+            "LeavingDetails":        {
+                                        "LeavingDate":          "10-08-2015",
+                                        "Destination":          "Progresso Academy",
+                                        "Reason":               "EL"
+                                    }
             }
 
             
@@ -2673,6 +2678,11 @@ Mandatory fields:
                                     "LeavingDate":  "2016-02-05",
                                     "LeavingReason":"OT"
                                     }]
+            "LeavingDetails":       {
+                                        "LeavingDate":          "10-08-2015",
+                                        "Destination":          "Progresso Academy",
+                                        "Reason":               "EL"
+                                    }
             }
           
 
@@ -2842,6 +2852,11 @@ Mandatory fields:
                                         "LeavingDate":  "2016-02-05",
                                         "LeavingReason":"OT"
                                         }]
+                "LeavingDetails":       {
+                                        "LeavingDate":          "10-08-2015",
+                                        "Destination":          "Progresso Academy",
+                                        "Reason":               "EL"
+                                    }
             }
 
 + Response 200
@@ -6181,6 +6196,241 @@ Update one to many Day Composition Periods
 
 Collection of all Physical Resources
 
+## Room Categories [/RoomCategories]
+
+### Retrieve Room Categories [GET]
+
+Retrieve all room categories
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "RoomCategoryId": 30975,
+                "RoomCategoryCode": "ICT",
+                "RoomCategoryName": "ICT Suite",
+                "Description": "ICT Suite"
+            },
+            {
+                "RoomCategoryId": 30976,
+                "RoomCategoryCode": "Hall",
+                "RoomCategoryName": "Hall",
+                "Description": "Hall"
+            },
+            {
+                "RoomCategoryId": 48164,
+                "RoomCategoryCode": "Lab",
+                "RoomCategoryName": "Science Lab",
+                "Description": null
+            },
+            {
+                "RoomCategoryId": 48165,
+                "RoomCategoryCode": "Tech",
+                "RoomCategoryName": "Technology Room",
+                "Description": null
+            }
+            
+### Create Room categories [POST]
+
+Create one to many room categories
+
++ Mandatory fields
+    + RoomCategoryCode (required, string, 'HALL') ... unique code of the RoomCategory
+    + RoomCategoryName (required, string, 'Hall') ... name of the RoomCategory
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
++ Request (application/json)
+
+    + Body
+    
+            {
+                "RoomCategoryCode":       "ART",
+                "RoomCategoryName":       "Art Block", 
+                "Description":            "Art Block"                                   
+            }
+            
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "RoomCategoryId":       0456,
+                "RoomCategoryCode":     "ART"
+            }
+            
+            
+### Update Room Categories [PUT]
+
+Update one to many room categories
+
++ Mandatory fields
+    + RoomCategoryID (required, int, '00001') ... unique code of the RoomCategory
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "RoomCategoryId":         0001,
+                "RoomCategoryCode":       "HALL",
+                "RoomCategoryName":       "Hall", 
+                "Description":            "Used for Assesmblies and Exams"                                   
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "RoomCategoryId":       0001,
+                "RoomCategoryCode":     "HALL"
+            }
+    
+
+
+## Room Types [/RoomTypes]
+
+### Retrieve Room Types [GET]
+
+Retrieve all room types
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {          
+                "TypeId":       0001,
+                "TypeCode":     "AD",
+                "TypeName":     "Art and Design",
+                "Description":  "Art and Design Centre"
+            },{
+                "TypeId":       0002,
+                "TypeCode":     "ICT",
+                "TypeName":     "ICT",
+                "Description":  "ICT Suite"
+            }
+            
+            
+### Create Room Types [POST]
+
+Create one to many room types
+
++ Mandatory fields
+    + TypeName (required, string, 'Art and Design') ... Room type name
+    + TypeCode (required, string, 'AD') ... Room type code
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Request (application/json)
+
+    + Body
+    
+            {   
+                "TypeCode":     "AD",
+                "TypeName":     "Art and Design",
+                "Description":  "Art and Design Centre"
+            },{
+                "TypeCode":     "ICT",
+                "TypeName":     "ICT",
+                "Description":  "ICT Suite"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "TypeId":               0001,
+                "TypeCode":             "AD"
+            },{
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "TypeId":               0002,
+                "TypeCode":             "ICT"
+            }
+            
+            
+### Update Room Types [PUT]
+
+Update one to many room types
+
++ Mandatory fields
+    + TypeId (required, int, '0001') ... unique id of room type
+    
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+        
++ Request (application.json)
+            
+    + Body
+
+            {   
+                "TypeId":       0001'
+                "TypeCode":     "AD",
+                "TypeName":     "AD",
+                "Description":  "Art and Design Suite"
+            },{
+                "TypeId":       0002
+                "TypeCode":     "ICT",
+                "TypeName":     "ICT",
+                "Description":  "Information Technolgy Suite"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "TypeId":               0001,
+                "TypeCode":             "AD"
+            },{
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "TypeId":               0002,
+                "TypeCode":             "ICT"
+            }
+            
+
 ## Rooms  [/rooms/{?RoomId}]
 
 + Parameters
@@ -6207,27 +6457,33 @@ Retrieve one to many rooms
                 "RoomName": "ScienceIT",
                 "Site": "Main Site",
                 "Roomcategory": null,
-                "AssociatedEquipments": null,
+                "AssociatedEquipments": [
+                                          {
+                                            "EquipmentId": 1144,
+                                            "EquipmentCode": "SmBoard",
+                                            "EquipmentName": "Smart Board"
+                                          }
+                                        ],
                 "TypeAndCapacity": [
-                  {
-                    "RoomType": "OTH",
-                    "Capacity": 0
-                  }
-                ]
-              },
-              {
+                                          {
+                                            "RoomType": "OTH",
+                                            "Capacity": 0
+                                          }
+                                        ]
+            },
+            {
                 "RoomId": 74447,
                 "RoomCode": "SciMez",
                 "RoomName": "Sci mez",
                 "Site": "Main Site",
                 "Roomcategory": null,
                 "AssociatedEquipments": null,
-                "TypeAndCapacity": [
-                  {
-                    "RoomType": "OTH",
-                    "Capacity": 10
-                  }
-                ]
+                "TypeAndCapacity":  [
+                                        {
+                                        "RoomType": "OTH",
+                                        "Capacity": 10
+                                        }
+                                    ]
             }
 
 + Response 204 (applicatin/json)
@@ -6276,8 +6532,6 @@ Create one to many Rooms
                 "RoomId": 83913,
                 "RoomCode": "API8"
             }
-
-
 
 
 ## Sites  [/site/{?SiteId}]
