@@ -551,6 +551,48 @@ Mandtory parameters:
             
                             
 
+## Staff Absences [/StaffAbsences]
+
+### Create one to many staff absences [POST]
+
+If StartTime and EndTime are null then the Start and End times of the default day structure are inserted.
+
+All other fields are mandatory.
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+             {
+                "StaffCode":            "AdGo",
+                "AbsenceCategoryCode":  "ABS",
+                "FromDate":             "2016-12-05",
+                "ToDate":               "2016-12-07",
+                "StartTime":            null,
+                "EndTime":              null,
+                "Note":                "Had flu"
+             }
+             
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+               {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "StaffAbsenceId":       1000,
+                "EmployeeId":           1000,
+                "Date":                 "01-09-2016" ,
+                "StartTime":            "08:45"  ,
+                "EndTime":              "10:50"
+                }
+
+
+
 ## Employees Checks [/EmployeeChecks{?Status}{?Employee}]
 
 Collection of all employee checks for employees within a school
@@ -2025,7 +2067,7 @@ Mandatory fields:
                 "ServiceChild":       "N",
                 "ServiceChildSource": "P",
                 "TopUpFunding":       true,
-                "FundedHours":        0.0,
+                "FundedHours":        0,
                 "HoursAtSetting":     0.0,
                 "UnitContactTime":    0.0,
                 "SchoolLunchTaken":   true,
@@ -2252,12 +2294,13 @@ Update one to many learner records
 
 + Request (application/json)
 
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-    + Body
 
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+
+    + Body
+    
             {
                 "LearnerId":          00001,
                 "LearnerCode":        "2010-0001",
@@ -2265,21 +2308,21 @@ Update one to many learner records
                 "Forename":           "Geoffrey",
                 "Status":             "Active",
                 "RegGroup":           "ABC",
-              **  "AcademicHouse":      "Hulland",
+                "AcademicHouse":      "Hulland",
                 "DateOfBirth":        "04-08-1999 00:00:00",
                 "LegalSurname":       "Sterling",
                 "LegalForename":      "Geoffrey",
-              **  "MiddleName":         "James",
-              **  "FormerSurname":      "Silver",
-              **  "EmailAddress":       "af098453hsdf@c.co.uk",
+                "MiddleName":         "James",
+                "FormerSurname":      "Silver",
+                "EmailAddress":       "af098453hsdf@c.co.uk",
                 "Gender":             "M",
-              **  "Notes":              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.",
-             **   "HomeSalutation":     "Mr G Sterling",
+                "Notes":              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.",
+                "HomeSalutation":     "Mr G Sterling",
                 "DateOfEntry":        "01-09-2010 00:00:00",
                 "Year":               "13",
                 "Course":             "KS5",
                 "NCYear":             "13",
-              **  "Boarder":            "N",
+                "Boarder":            "N",
                 "AddressDetails":   [{
                                         "AddressId":    0001,
                                         "Country":      "GBR",
@@ -2298,7 +2341,7 @@ Update one to many learner records
                                         "Number":       "01111567891",
                                         "SMSFlag":      false
                                     }],
-              **  "ContactDetails":   [{
+                "ContactDetails":   [{
                                         "ContactId":    0001,
                                         "Title":        "Mrs",
                                         "Forename":     "Trillian",
@@ -2319,45 +2362,45 @@ Update one to many learner records
                                         "OtherHomeAddressLink":     false,
                                         "SendSMS":                  true
                                     }],
-               **  "SiblingDetails":   [{
+                "SiblingDetails":   [{
                                         "LearnerCode":  "2014-0002"
                                     }],
-               ** "PartTime":           false,
-               ** "EnrolementStatus":   "C",
-               ** "UPN":                "H502400200007",
-              **  "FormerUPN":          "F502400200003",
+                "PartTime":           false,
+                "EnrolementStatus":   "C",
+                "UPN":                "H502400200007",
+                "FormerUPN":          "F502400200003",
                 "ULN":                "P400200003",
-              **  "GandT":              false,
-              **  "MedicalFlag":        false,
-              **  "YSSAIndicator":      "Y",
-              **  "Nationality":        "GBR",
-              **  "Ethnicity":          "WBRI",
-              **  "EthnicitySource":    "P",
-              **  "ServiceChild":       "N",
-              **  "ServiceChildSource": "P",
-              **  "TopUpFunding":       false,
-              **  "FundedHours":        0.0,
-              **  "HoursAtSetting":     0.0,
-              **  "UnitContactTime":    0.0,
-              **  "SchoolLunchTaken":   false,
-              **  "MealType":           "CSM",
-              **  "AsylumSeeker":       false,
-              **  "Religion":           "HIN"
-              **  "DisabilityDetails":[{
+                "GandT":              false,
+                "MedicalFlag":        false,
+                "YSSAIndicator":      "Y",
+                "Nationality":        "GBR",
+                "Ethnicity":          "WBRI",
+                "EthnicitySource":    "P",
+                "ServiceChild":       "N",
+                "ServiceChildSource": "P",
+                "TopUpFunding":       false,
+                "FundedHours":        0.0,
+                "HoursAtSetting":     0.0,
+                "UnitContactTime":    0.0,
+                "SchoolLunchTaken":   false,
+                "MealType":           "CSM",
+                "AsylumSeeker":       false,
+                "Religion":           "HIN"
+                "DisabilityDetails":[{
                                         "DisabilityTypeId":     0001,
                                         "Disability":  "CON"
                                     }],
-              **  "LanguageDetails":  [{
+                "LanguageDetails":  [{
                                         "LanguageUsageId":      0001,
                                         "TypeCode":             "F",
                                         "LangCode":             "ENG",
                                     }],
-              **  "SENProvisionDetails":  [{
+                "SENProvisionDetails":  [{
                                         "ProvisionId":          0003,
                                         "ProvisionTypeCode":    "E",
                                         "StartDate":            "19/09/2014"
                                         }],
-              **  "SENMajorNeedsDetails": [{
+                "SENMajorNeedsDetails": [{
                                         "LeanerMajorNeedId":          0001,
                                         "MajorNeedCode":        "SLD",
                                         "Ranking":              1
@@ -2555,7 +2598,7 @@ Response codes used are:
 + Response 204 (application/json)
 
 
-### Create a collection of Learner Other Details [POST]
+### Create Learner Other Details [POST]
 
 Create one or more Learner Other Details records
 
@@ -3911,6 +3954,7 @@ Retrieve one to many one to many employee/learner photos
 
 + Response 204
 
+
 # Group User Defined Fields
 
 A collection of all UDF-related resources
@@ -3983,7 +4027,6 @@ A collection of all UDF-related resources
             
 + Response 204
 
-## UDF Create [/UDF]
 
 ### Create one to many UDFs [POST]
 
@@ -4069,11 +4112,12 @@ Notes on using DataType:
                "Name":             "ContactRelationship"
             }
         
-## UDF Create [/UDF{?FieldDefinitionId}]
-        
+
+
 ### Update one to many UDFs [PUT]
 
-+ Parameters
++ Mandatory field:
+
     + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
 
 + Request (application/json)
@@ -4155,6 +4199,7 @@ Notes on using DataType:
                "Name":             "ContactRelationship"
             }
             
+
 ##User Defined Values Collection [/UDFValues{?FieldDefinitionId}{?Entity}{?Id}]
 
 Collection od User Defined Values resources
@@ -4341,6 +4386,10 @@ Collection of all Assessment related resources
 
 ### Retrieve one or more Learner Assessment results [GET]
 
++ Mandatory fields:
+
+    + Either AssessmentSCreenId or LearnerId is a required field
+
 + Request
 
     + Headers
@@ -4355,49 +4404,279 @@ Collection of all Assessment related resources
                 "LearnerId":            109234
                 "AssessmentScreenList":
                             [{
+                                "AssessmentScreenID":   3456
                                 "AssessmentScreenName": "2015-2016 Year 10",
                                 "GroupCode":            "10-AR1",
+                                "EmployeeId":           123456,
                                 "TeacherCode":          "GBr",
                                 "StudyLevel":           "GCSE",
+                                "SubjectLookupId":      98752
                                 "Subject":               "AR"
                                 "ColumnList":
                                     [{
+                                        "AssementScreenColumnId":   1234,
                                         "ColumnName":       "AU1",
                                         "ColumnValue":      "7c",
                                         "VaulePoints":      "36"
                                     },{
+                                        "AssementScreenColumnId":   1235,
                                         "ColumnName":       "AU2",
                                         "ColumnValue":      "7b",
                                         "VaulePoints":      "40"
                                     },{
+                                        "AssementScreenColumnId":   1236,
                                         "ColumnName":       "AU_Eff",
                                         "ColumnValue":      "Could do better",
                                         "VaulePoints":      null
                                     }]
-                            },
-                            {
-                                "AssessmentScreenName": "2015-2016 Year 10 Tutor",
-                                "GroupCode":            "10-AR1",
-                                "TeacherCode":          "GBr",
-                                "StudyLevel":           null,
-                                "Subject":               "AR",
-                                "ColumnList":
-                                    [{
-                                        "ColumnName":       "10_Tutor_Comment",
-                                        "ColumnValue":      "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
-                                        "VaulePoints":      null
-                                    },{
-                                        "ColumnName":       "10_AU_Approach",
-                                        "ColumnValue":      "Trying hard",
-                                        "VaulePoints":      null
-                                    },{
-                                        "ColumnName":       "10_AU_Behaviour",
-                                        "ColumnValue":       "Good",
-                                        "VaulePoints":      null
-                                    }]
-                            }]
+                            }
             }
 
+
+## SATs Collection [/LearnerSATsResult/{?LearnerId}{?CourseCode}]
+
++ Parameters
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + CourseCode (optional, string, `KS2`) ... the course of the SATs
+        
+
+### Retrieve SATs Results for Learners [GET]
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "LearnerId":    120318,
+                "LearnerCode":  "015234",
+                "KeyStage":   [
+                                {
+                                "Stage": "KS1",
+                                "StageAssessment": [
+                                                   {
+                                                    "Locale":       "ENG",
+                                                    "Year":         "2006",
+                                                    "Subject":      "ENG",
+                                                    "Method":       "TA",
+                                                    "Component":    "AT2",
+                                                    "Description":  "Reading"'
+                                                    "ResultStatus": "R",
+                                                    "ResultQualifier": "NL",
+                                                    "ResultDate":   "11-11-2006",
+                                                    "Result":       "3",
+                                                    "Sublevel":     "3A",
+                                                    "Points":       23
+                                                    },
+                                                    {
+                                                    "Locale":       "ENG",
+                                                    "Year":         "2006",
+                                                    "Subject":      "ENG",
+                                                    "Method":       "TA",
+                                                    "Component":    "AT3",
+                                                    "ResultStatus": "R",
+                                                    "ResultQualifier": "NL",
+                                                    "ResultDate":   "11-11-2006",
+                                                    "Result":       "3",
+                                                    "Sublevel":     "3B",
+                                                    "Points":       25
+                                                    },
+                                                    {
+                                                    "Locale":       "ENG",
+                                                    "Year":         "2006",
+                                                    "Subject":      "MAT",
+                                                    "Method":       "TA",
+                                                    "Component":    "SUB",
+                                                    "ResultStatus": "R",
+                                                    "ResultQualifier": "NL",
+                                                    "ResultDate":   "11-11-2006",
+                                                    "Result":       "2",
+                                                    "Sublevel":     "2A",
+                                                    "Points":       18
+                                                    },
+                                                    ]
+                                },{
+                                "Stage": "KS2",
+                                "StageAssessment": [
+                                                  {
+                                                  "Locale":         "ENG",
+                                                  "Year":           "2010",
+                                                  "Subject":        "ENG",
+                                                  "Method":         "TA",
+                                                  "Component":      "SUB",
+                                                  "ResultStatus":   "R",
+                                                  "ResultQualifier": "NL",
+                                                  "ResultDate":   "11-11-2006",
+                                                  "Result":       "4",
+                                                  "Sublevel":     null,
+                                                  "Points":       null
+                                                  },
+                                                  {
+                                                  "Locale":         "ENG",
+                                                  "Year":           "2010",
+                                                  "Subject":        "MAT",
+                                                  "Method":         "TA",
+                                                  "Component":      "SUB",
+                                                  "ResultStatus":   "R",
+                                                  "ResultQualifier": "NL",
+                                                  "ResultDate":   "11-11-2006",
+                                                  "Result":       "5",
+                                                  "Sublevel":     null,
+                                                  "Points":       null
+                                                  },
+                                                 {
+                                                  "Locale": "ENG",
+                                                  "Year": "2010",
+                                                  "Subject": "SCI",
+                                                  "Method": "TA",
+                                                  "Component": "SUB",
+                                                  "ResultStatus": "R",
+                                                  "ResultQualifier": "NL",
+                                                  "ResultDate":   "11-11-2006",
+                                                  "Result":       "6",
+                                                  "Sublevel":     "6B",
+                                                  "Points":       39
+                                                  }
+                                                 ]
+                                    }]
+                                    }
+
+
+
+## Exams Results Collection [/LearnerExamOptionResult/{?AcYearId}{?Year}{?LearnerId}{?Status}]
+
+
+        *Either AcYearId, Year or LeanerId is mandatory*
+
++ Parameters
+    + AcYearId (required, int, `1234`) ... unique Id of Academic Year
+    + Year (required, string, `2015`) ... Year of the Exam
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + Status (optional, string,`C`) ... statuc of the candidate C = Internal, P = Private, X = Non-Statistical
+        
+
+### Retrieve Exam Results [GET]
+
+        
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body    
+        
+            {
+                "LearnerId":    120318,
+                "LearnerCode":  "015234",
+                "Status":       "C",
+                "ULN":          123489792,
+                "UCI":          "423498757459892784P",
+                "CandidateNumber":  5004,
+                "ExamResults":  [{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "ENL03",
+                                    "Option":               "ENGLISH LANGUAGE UNIT 3",
+                                    "SyllabusCode":         "4700",
+                                    "Syllabus":             "ENGLISH AND ENGLISH LANGUAGE",
+                                    "ResultType":           "U",
+                                    "First":                "081",
+                                    "Second":               "C",
+                                    "MaxMark":              100,
+                                    "ExamQualification":    null,
+                                    "ExamLevel":            "Not applicable",
+                                    "ExamQualUnit":         "GCSE",
+                                    "ExamLevelUnit":        "Not applicable",
+                                    "ExamUnit":             "U",
+                                    "QCAClassification":    "RB1",
+                                    "QCANumber":            null,
+                                    "FeeDefined":           false,
+                                    "Fee":                  10.95
+                                },{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "9717",
+                                    "Option":               "ENGLISH LITERATURE",
+                                    "SyllabusCode":         "9715",
+                                    "Syllabus":             "ENGLISH LITERATURE",
+                                    "ResCode":              "B",
+                                    "ResultType":           "B",
+                                    "First":                "0153",
+                                    "Second":               "B",
+                                    "MaxMark":              200,
+                                    "ExamQualification":    "GCSE",
+                                    "ExamLevel":            null,
+                                    "ExamQualUnit":         null,
+                                    "ExamLevelUnit":        null,
+                                    "ExamUnit":             "C",
+                                    "QCAClassification":    "RB1",
+                                    "QCANumber":            "60095064",
+                                    "FeeDefined":           false,
+                                    "Fee":                  0.00
+                                }],
+                },{
+                "LearnerId":    23456,
+                "LearnerCode":  "015654",
+                "Status":       "P",
+                "ULN":          1234897892,
+                "UCI":          "4234987574594564H",
+                "CandidateNumber":  1234,
+                "ExamResults":  [{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "ENL03",
+                                    "Option":               "ENGLISH LANGUAGE UNIT 3",
+                                    "SyllabusCode":         "4700",
+                                    "Syllabus":             "ENGLISH AND ENGLISH LANGUAGE",
+                                    "ResultType":           "U",
+                                    "First":                "0126",
+                                    "Second":               "B",
+                                    "MaxMark":              150,
+                                    "ExamQualification":    null,
+                                    "ExamLevel":            "Not applicable",
+                                    "ExamQualUnit":         "GCSE",
+                                    "ExamLevelUnit":        "Not applicable",
+                                    "ExamUnit":             "U",
+                                    "QCAClassification":    "RB1",
+                                    "QCANumber":            null,
+                                    "FeeDefined":           false,
+                                    "Fee":                  10.95
+                                },{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "9717",
+                                    "Option":               "ENGLISH LITERATURE",
+                                    "SyllabusCode":         "9715",
+                                    "Syllabus":             "ENGLISH LITERATURE",
+                                    "ResCode":              "B",
+                                    "ResultType":           "B",
+                                    "First":                "0153",
+                                    "Second":               "B",
+                                    "MaxMark":              200,
+                                    "ExamQualification":    "GCSE",
+                                    "ExamLevel":            null,
+                                    "ExamQualUnit":         null,
+                                    "ExamLevelUnit":        null,
+                                    "ExamUnit":             "C",
+                                    "QCAClassification":    "RB1",
+                                    "QCANumber":            "60095064",
+                                    "FeeDefined":           false,
+                                    "Fee":                  0.00 
+                                }]
+                }
+               
 
 
 # Group Groups
@@ -4587,8 +4866,8 @@ Update one or many groups
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   00001},
                                 {
-                                    "employeeId":           54321,
-                                    "staffCode":             "JDo"
+                                    "employeeId":   54321,
+                                    "staffCode":    "JDo"
                                 }],
                 "name":         "9A",
                 "subjectCode":  "",
@@ -4829,7 +5108,8 @@ Update Group Association for one to many Learners and Groups
         
              }
 
-# Group Current Academic Data
+
+# Group  Academic Data
 Group of all Academic Resources
 
 ## AcademicYear [/academicYear/{?id}]
@@ -4865,8 +5145,6 @@ Group of all Academic Resources
                 
             }
 
-
-## Academic Years [/AcademicYear]
 
 ### Create Academic Year [POST]
 
@@ -4924,64 +5202,6 @@ Create one to many current or future academic years
             }
             
 
-## Past Academic Years [/PastACYear]
-
-**Past Academic Year can only be created if no other Academic Year exists**
-
-### Create Past Academic Year [POST]
-
-Create one or more past academic years
-
-+ Mandatory fields
-
-    + Name (mandatory, string, 'Academic Year 2014/2015') ... name of the Academic Year
-    + StartDate (mandatory, DateTime, '2014-09-01') ... start date of the Academic Year
-    + EndDate (mandatory, DateTime, '2015-09-31') ... end date of the Academic Year
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-    + Body
-
-            {
-                "Name":             "Academic Year 2013/2014",
-                "StartDate":        "01/09/2013",
-                "EndDate":          "31/08/2014"                 
-               
-                
-            },
-            {
-                "Name":             "Academic Year 2014/2015",
-                "StartDate":        "01/09/2014",
-                "EndDate":          "31/08/2015"             
-            }
-
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "Status":           true,
-                "Details":          "Saved successfully",
-                "AcademicYearId":   1111,
-                "Name":             "Academic Year 2013/2014",
-                "StartDate":        "01/09/2013",
-                "EndDate":          "31/08/2014"
-             },
-            {
-                "Status":           true,
-                "Details":          "Saved successfully",
-                "AcademicYearId":   1112,
-                "Name":             "Academic Year 2014/2015",
-                "StartDate":        "01/09/2014",
-                "EndDate":          "31/08/2015"             
-            }
-
-
 ## Academic Terms [/academicTerms/{?id}{?AcYearId}]
 
 + Parameters
@@ -5002,25 +5222,22 @@ Create one or more past academic years
     + Body
     
             {
-                "academicYearId":   1
-                "academicTermId":   1
+                "academicYearId":   1,
+                "academicTermId":   1,
                 "name":             "Autumn",
                 "startDate":        "01/09/2014",
                 "endDate":          "19/12/2014"
                 
              },
             {
-                "academicYearId":   1
-                "academicTermId":   2
+                "academicYearId":   1,
+                "academicTermId":   2,
                 "name":             "Spring",
                 "startDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
             }
 
-## Create/Update Academic Terms [/academicTerms]
-
-** Use this method to create academic terms in the future **
 
 ### Create Academic Term [POST]
 
@@ -5031,25 +5248,23 @@ Create one to many academic terms
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-
+            
     + Body
-
-            [{
-                "academicYearId":   1
-                "name":             "Autumn",
-                "startDate":        "01/09/2014",
-                "endDate":          "19/12/2014"
+    
+            {
+                "AcademicYearId":   1,
+                "Name":             "Autumn",
+                "StartDate":        "01/09/2014",
+                "EndDate":          "19/12/2014"
                 
              },
             {
-               "academicYearId":   1
-                "name":             "Spring",
-                "startDate":        "05/01/2015",
-                "endDate":          "10/04/2015"
+                "AcademicYearId":   1,
+                "Name":             "Spring",
+                "StartDate":        "05/01/2015",
+                "EndDate":          "10/04/2015"
                 
-            }]
+            }
             
 + Response 200 (application/json)
 
@@ -5058,21 +5273,21 @@ Create one to many academic terms
             {
                 "Status":           true,
                 "Details":          "Saved successfully",
-                "academicYearId":   1,
-                "academicTermId":   1,
-                "name":             "Autumn",
-                "startDate":        "01/09/2014",
-                "endDate":          "19/12/2014"
+                "AcademicYearId":   1,
+                "AcademicTermId":   1,
+                "Name":             "Autumn",
+                "StartDate":        "01/09/2014",
+                "EndDate":          "19/12/2014"
                 
              },
             {
                 "Status":           true,
                 "Details":          "Saved successfully",
-                "academicYearId":   1
-                "academicTermId":   2
-                "name":             "Spring",
-                "startDate":        "05/01/2015",
-                "endDate":          "10/04/2015"
+                "AcademicYearId":   1
+                "AcademicTermId":   2
+                "Name":             "Spring",
+                "StartDate":        "05/01/2015",
+                "EndDate":          "10/04/2015"
                 
             }
 
@@ -5086,41 +5301,41 @@ Update one to many academic terms
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
+            
     + Body
-
-            [{
-                "academicTermId":   1
-                "name":             "Autumn",
-                "startDate":        "05/09/2014",
+    
+            {
+                "AcademicYearId":   1,
+                "Name":             "Autumn",
+                "StartDate":        "05/09/2014",
                 "endDate":          "19/12/2014"
                 
-             },
+            },
             {
-               "academicTermId":   2
+               "AcademicYearId":   2,
                 "name":             "Spring",
-                "startDate":        "05/01/2015",
+                "StartDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
-            }]
+            }
             
 + Response 200 (application/json)
 
     + Body
     
             {
-                "academicYearId":   1
-                "academicTermId":   1
+                "academicYearId":   1,
+                "academicTermId":   1,
                 "name":             "Autumn",
-                "startDate":        "01/09/2014",
+                "StartDate":        "01/09/2014",
                 "endDate":          "19/12/2014"
                 
              },
             {
-                "academicYearId":   1
-                "academicTermId":   2
+                "academicYearId":   1,
+                "academicTermId":   2,
                 "name":             "Spring",
-                "startDate":        "05/01/2015",
+                "StartDate":        "05/01/2015",
                 "endDate":          "10/04/2015"
                 
             }
@@ -5142,24 +5357,25 @@ Update one to many academic terms
         
 
 + Response 200 (application/json)
+
     + Body
     
-            [{
-                "academicYearId":   1
-                "TermBreakId":      1
+            {
+                "academicYearId":   1,
+                "TermBreakId":      1,
                 "name":             "Spring Half Term",
                 "startDate":        "2014-04-25",
                 "endDate":          "2014-06-01"
                 
              },
             {
-                "academicYearId":   1
-                "TermBreakId":      2
+                "academicYearId":   1,
+                "TermBreakId":      2,
                 "name":             "Autumn Half Term",
                 "startDate":        "2013-10-26",
                 "endDate":          "2013-11-01"
                 
-            }]
+            }
 
 
 ## Create/Update Term Breaks [/TermBreaks]
@@ -5175,25 +5391,22 @@ Create one to many terms breaks
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-
+            
     + Body
-
-            [{
-                "AcademicYearId":   1
+    
+            {
+                "AcademicYearId":   1,
                 "Name":            "Spring Half Term",
-                "startDate":        "2014-05-25",
-                "endDate":          "2014-06-01"
+                "StartDate":        "2014-05-25",
+                "EndDate":          "2014-06-01"
                 
              },
             {
-                "AcademicYearId":   1
-                "name":             "Autumn Half Term",
-                "startDate":        "2013-10-26",
-                "endDate":          "2013-11-02"
-                
-            }]
+                "AcademicYearId":   1,
+                "Name":             "Autumn Half Term",
+                "StartDate":        "2013-10-26",
+                "EndDate":          "2013-11-02"
+            }
             
 + Response 200 (application/json)
 
@@ -5204,9 +5417,9 @@ Create one to many terms breaks
                 "Details":          "Saved successfully",
                 "AcademicYearId":   1
                 "TermBreakId":      1
-                "name":             "Spring Half Term",
-                "startDate":        "25/05/2014",
-                "endDate":          "01/06/2014"
+                "Name":             "Spring Half Term",
+                "StartDate":        "25/05/2014",
+                "EndDate":          "01/06/2014"
                 
              },
             {
@@ -5214,9 +5427,9 @@ Create one to many terms breaks
                 "Details":          "Saved successfully",
                 "AcademicYearId":   1
                 "TermBreakId":      2
-                "name":             "Autumn Half Term",
-                "startDate":        "26/10/2013",
-                "endDate":          "02/11/2013"
+                "Name":             "Autumn Half Term",
+                "StartDate":        "26/10/2013",
+                "EndDate":          "02/11/2013"
                 
             }
 
@@ -5230,26 +5443,25 @@ Update one to many terms breaks
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-
+            
     + Body
-
-            [{
-                "AcademicYearId":   1
-                "TermBreakId":      1
+    
+            {
+                "AcademicYearId":   1,
+                "TermBreakId":      1,
                 "Name":             "Spring Half Term",
                 "StartDate":        "2014-05-25",
                 "EndDate":          "2014-06-01"
                 
              },
             {
-               "TermBreakId":   2
-                 "name":             "Autumn Half Term",
-                "startDate":        "2013-10-26",
-                "endDate":          "2013-11-02"
+                "AcademicYearId":   1,
+                "TermBreakId":      2,
+                "Name":             "Autumn Half Term",
+                "StartDate":        "2013-10-26",
+                "EndDate":          "2013-11-02"
                 
-            }]
+            }
             
 + Response 200 (application/json)
 
@@ -5260,9 +5472,9 @@ Update one to many terms breaks
                 "Details":          "Saved successfully",
                 "AcademicYearId":   1
                 "TermBreakId":      1
-                "name":             "Spring Half Term",
-                "startDate":        "25-05-2014",
-                "endDate":          "01-06-2014"
+                "Name":             "Spring Half Term",
+                "StartDate":        "25-05-2014",
+                "EndDate":          "01-06-2014"
                 
              },
             {
@@ -5270,11 +5482,11 @@ Update one to many terms breaks
                 "Details":          "Saved successfully",
                 "AcademicYearId":   1
                 "TermBreakId":      2
-                 "name":             "Autumn Half Term",
-                "startDate":        "26-10-2013",
-                "endDate":          "02-11-2013"
-                
+                "Name":             "Autumn Half Term",
+                "StartDate":        "26-10-2013",
+                "EndDate":          "02-11-2013"
             }
+
 
 ## Week Structure [/weekStructure/{?AcYearId}]
 
@@ -5295,25 +5507,25 @@ Update one to many terms breaks
     
             {
                 "AcYearId":             1
-                "name":                 "Sunday",
-                "workingNonWorking":    "NWD"
+                "Name":                 "Sunday",
+                "WorkingNonWorking":    "NWD"
              },
             {
                 "AcYearId":             1
-                "name":                 "Monday",
-                "workingNonWorking":    "FWD"
+                "Name":                 "Monday",
+                "WorkingNonWorking":    "FWD"
                 
             },
             {
                 "AcYearId":             1
-                "name":                 "Tuesday",
-                "workingNonWorking":    " Half Working Day - AM"
+                "Name":                 "Tuesday",
+                "WorkingNonWorking":    " Half Working Day - AM"
                 
             },
             {
                 "AcYearId":             1
-                "name":                 "Wednesday",
-                "workingNonWorking":    "Half Working Day - PM"
+                "Name":                 "Wednesday",
+                "WorkingNonWorking":    "Half Working Day - PM"
                 
             }
 
@@ -5461,6 +5673,7 @@ Update one to many Academic Calendar Events
                 "calendarEventId":      0003
             }]
 
+
 ## Courses [/courses/{?AcYearId}]
 
 Optional Parameters
@@ -5518,36 +5731,36 @@ Optional Parameters
 
     + Body
     
-            {
-               "acYearId":          1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "courseId":         0001,
-                "yearCode":         "Y7",
-                "yearName":         "Year 7",
-                "yearId":           0001,
-                "couseYearId":      0001
-            },
-            {
-                "acYearId":         1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "courseId":         0001,
-                "yearCode":         "Y8",
-                "yearName":         "Year 8",
-                "yearId":           0002,
-                "couseYearId":      0002
-            },
-            {
-                "acYearId":         1,
-                "courseCode":       "KS4",
-                "courseName":       "Key Stage 4",
-                "courseId":         0002,
-                "yearCode":         "Y10",
-                "yearName":         "Year 10",
-                "yearId":           0004,
-                "couseYearId":      0003
-            }
+              {
+                    "AcademicYearId": 2251,
+                    "CourseCode": "KS3",
+                    "CourseName": "Key Stage 3",
+                    "CourseId": 2575,
+                    "YearCode": "7",
+                    "YearName": "Year 7",
+                    "YearId": 2429,
+                    "CourseYearId": 11937
+                  },
+                  {
+                    "AcademicYearId": 2252,
+                    "CourseCode": "KS3",
+                    "CourseName": "Key Stage 3",
+                    "CourseId": 2575,
+                    "YearCode": "7",
+                    "YearName": "Year 7",
+                    "YearId": 2429,
+                    "CourseYearId": 11938
+                  },
+                  {
+                    "AcademicYearId": 2245,
+                    "CourseCode": "KS3",
+                    "CourseName": "Key Stage 3",
+                    "CourseId": 2575,
+                    "YearCode": "7",
+                    "YearName": "Year 7",
+                    "YearId": 2429,
+                    "CourseYearId": 11939
+                }
 
 
 ## Create/Update CourseYears [/courseYear]
@@ -5561,21 +5774,24 @@ Create association of one to many Course to Years
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-
+            
     + Body
-
-            [{
-                "AcademicYearId":   1,
-                "CourseId":         0001,
-                "YearTypeId":       0001
+    
+            {
+                "AcademicYearId": 3668,
+                "CourseCode": "R",
+                "YearCode": "R"
             },
             {
-                "AcademicYearId":   1,
-                "CourseId":         0002,
-                "YearTypeId":       0004
-            }]
+                "AcademicYearId": 3669,
+                "CourseCode": "R",
+                "YearCode": "R"
+            },
+            {
+                "AcademicYearId": 3670,
+                "CourseCode": "R",
+                "YearCode": "R"
+            }
             
 + Response 200 (application/json)
 
@@ -6491,7 +6707,7 @@ Retrieve one to many rooms
 
 ### Create Rooms [POST]
 
-Create one to many Rooms
+Create one to many Rooms. If the associated equipment does not exist it will create this too.
 
 + Request
 
@@ -6589,9 +6805,9 @@ Create one to many Sites
     + Body
     
             {
-                "Status":               true,
-                "Details":              "Saved successfully", 
-                "SiteId":               1
+                "Status":       true,
+                "Details":      "Saved successfully", 
+                "SiteId":       1
             }
 
             
@@ -6631,9 +6847,15 @@ Update one to many Sites
 
 Collection of Behaviour methods
 
-## Behaviour Events Collection [/BMEvents]
+## Behaviour Events Collection [/BMEvents/{?LearnerId}{?FromDate}{?ToDate}{?Behaviour}]
 
 ### Get Behaviour Events [GET]
+
++ Parameters
+    + LearnerId (optional, int, `123420`) ... unique ID of Learner
+    + FromDate (optional, date, `05-09-2016`) ... the beginning of the date range
+    + ToDate (optional, date, `31-12-2016`) ... the end of the date range
+    + Behaviour (optional, string, `Positive`) ... Positive, Negative or Neutral BM Events
 
 + Request
 
@@ -6655,10 +6877,14 @@ Collection of Behaviour methods
                 "Location":     "Classroom",
                 "Details":      [{
                                     "Category":     "Classwork",
-                                    "Type":         "Ignoring Instructions"
+                                    "Type":         "Ignoring Instructions",
+                                    "Points":       2,
+                                    "Severity":     "S2"
                                 },{
                                     "Category":     "Classwork",
-                                    "Type":         "Disrespectful"
+                                    "Type":         "Disrespectful",
+                                    "Points":       1,
+                                    "Severity":     "S3"
                                 }],
                 "Comments":     [{
                                     "Comment":      "Limited work completed, off task"
