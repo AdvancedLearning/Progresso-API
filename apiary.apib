@@ -4373,7 +4373,9 @@ Collection of all Assessment related resources
 ## Learner Assessment Results Collection [/LearnerAssessmentResult{AcademicYearId}{?AssessmentScreenId}{?LearnerId}{?GroupId}{?Year}]
 
 +  AcademicYearId is mandatory
+
 **And either**
+
 + AssessmentScreenId or LearnerId
 
 + Parameters
@@ -4547,11 +4549,464 @@ Collection of all Assessment related resources
                                     }
 
 
+## CATS Prediction Data [/LearnerAssessmentCATSData/{?LearnerId}{?DateFrom}{?DateTo}]
 
-## Exams Results Collection [/LearnerExamOptionResult/{?AcYearId}{?Year}{?LearnerId}{?Status}]
+**Either LearnerID or Date Range is mandatory**
+
++ Parameters
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + DateFrom (required, date, `01-09-2015`) ... start of the date range for Date of Test
+    + DateTo (required, date, `31-08-2016`) ... end of the date range for Date of Test
+    
+
+### Retrieve CATS data for Learners [GET]
+    
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+                "LearnerId":                    120318,
+                "LearnerCode":                  "015234",
+                "DateOfTest":                   "17/09/2013",
+                "AgeInMonths":                  "138",
+                "CATVersion":                   "CAT3R1",
+                "CATLevel":                     "D",
+                "VerbalAttempts":               "78",
+                "VerbalRawScoreTotal":          "38",
+                "VerbalSAS":                    "89",
+                "VerbalNPR":                    "24",
+                "VerbalStanine":                "4",
+                "VerbalSubTest1RawScore":       "10",
+                "VerbalSubTest1Stanine":        "2",
+                "VerbalSubTest2RawScore":       "12",
+                "VerbalSubTest2Stanine":        "4",
+                "VerbalSubTest3RawScore":       "16",
+                "VerbalSubTest3Stanine":        "4",
+                "QuantitativeAttempts":         "58",
+                "QuantitativeRawScoreTotal":    "41",
+                "QuantitativeSAS":              "101",
+                "QuantitativeNPR":              "52",
+                "QuantitativeStanine":          "5",
+                "QuantitativeSubTest1RawScore": "15",
+                "QuantitativeSubTest1Stanine":  "6",
+                "QuantitativeSubTest2RawScore": "13",
+                "QuantitativeSubTest2Stanine":  "4",
+                "QuantitativeSubTest3RawScore": "13",
+                "QuantitativeSubTest3Stanine":  "5",
+                "NonVerbalAttempts":            "66",
+                "NonVerbalRawScoreTotal":       "36",
+                "NonVerbalSAS":                 "93",
+                "NonVerbalNPR":                 "32",
+                "NonVerbalStanine":             "4",
+                "NonVerbalSubTest1RawScore":    "17",
+                "NonVerbalSubTest1Stanine":     "5",
+                "NonVerbalSubTest2RawScore":    "13",
+                "NonVerbalSubTest2Stanine":     "4",
+                "NonVerbalSubTest3RawScore":    "6",
+                "NonVerbalSubTest3Stanine":     "4",
+                "MeanSAS":                      "94",
+                "VerbalUnclear":                null,
+                "QuantitativeUnclear":          null,
+                "NonVerbalUnclear":             null,
+                "ASBiology":        "A",
+                "ASBusinessStudies":"A",
+                "ASChemistry":      "A",
+                "ASDesignTechnology":   "A",
+                "ASDramaTheatreStudies":"A",
+                "ASEconomics":      "ECO",
+                "ASEnglish":        "B",
+                "ASFrench":         "B",
+                "ASGeneralStudies": "B",
+                "ASGeography":      "B",
+                "ASHistory":        "C",
+                "ASLaw":            "C",
+                "ASMathematics":    "C",
+                "ASMedia":          "A",
+                "ASMediaFilmTV":    "A",
+                "ASPhysics":        "A",
+                "ASPsychology":     "D",
+                "ASReligiousStudies": "D",
+                "ASSociology":      "A",
+                "Y12UCASTotal":     "600",
+                "Y12UCASAverage":   "120",
+                "ABiology":         "B",
+                "ABusinessStudies": "B",
+                "ADesignTechnology":"A",
+                "ADramaTheatreArts":"B",
+                "AEnglish":         "C",
+                "AFrench":          "C",
+                "AGeneralStudies":  "C",
+                "AGeography":       "A",
+                "AHistory":         "B",
+                "ALaw":             "B",
+                "AMathematics":     "C",
+                "AMediaFilmTV":     "C",
+                "APEDance":         "C",
+                "APhysics":         "D",
+                "APsychology":      "B",
+                "AReligiousStudies":"B",
+                "ASociology":       "B",
+                "Y13UCASTotal":     "350",
+                "Y13UCASAverage":   "102",
+                "KS2EnglishLevel":   null,
+                "KS2MathsLevel":    null
+                "KS2ScienceLevel":  null
+                "KS3EnglishLevel":  "5C",
+                "KS3MathsLevel":    "5A",
+                "KS3ScienceLevel":  "5B",
+                "KS3Art":           "5B",
+                "KS3DT":            "5B",
+                "KS3Geography":     "5B",
+                "KS3History":       "5B",
+                "KS3ICT":           "5B",
+                "KS3MFL":           "4A",
+                "KS3Music":         "5B",
+                "KS3PE":            "5B",
+                "GCSEArtDesign":    "C",
+                "GCSEBusinessStudies":      "C/D",
+                "GCSEDesignTechElectronics":"D",
+                "GCSEDesignTechFood":       "C/D",
+                "GCSEDesignTechGraphics":   "C/D",
+                "GCSEDesignTechResMaterials":   "C/D",
+                "GCSEDesignTechSystemsControl": "D",
+                "GCSEDesignTechTextiles":   "C",
+                "GCSEDrama":                "C",
+                "GCSEEnglish":              "C/D",
+                "GCSEEnglishLiterature":    "C/D",
+                "GCSEFrench":               "C/D",
+                "GCSEGeography":            "C/D",
+                "GCSEGerman":               "C/D",
+                "GCSEHistory":              "C/D",
+                "GCSEHomeEconomics":        "D",
+                "GCSEInformationTechnology":"C/D",
+                "GCSEMathematics":          "C/D",
+                "GCSEMediaStudies":         "C",
+                "GCSEMusic":                "C",
+                "GCSEPhysicalEducation":    "C",
+                "GCSEReligiousEducation":   "C/D",
+                "GCSEScienceBiology":       "C",
+                "GCSEScienceChemistry":     "C",
+                "GCSESciencePhysics":       "C",
+                "GCSEScienceDoubleAward":   "NULL",
+                "GCSEScienceSingleAward":   "NULL",
+                "GCSEScienceCore":          "C/D",
+                "GCSEScienceAdditional":    "C/D",
+                "GCSESociology":            "C/D",
+                "GCSESpanish":              "C/D",
+                "GCSEStatistics":           "C",
+                "GCSEWelsh":                "C",
+                "GCSEWelsh2ndlangFullCourse": "C/D",
+                "GCSEWelsh2ndlangShortCourse":"D/E",
+                "GCSEOfficeTechnology":     "D",
+                "Prob5AStarToCGCSE":        "84",
+                "Prob5AstarToCGCSEIncEngMaths": "52",
+                "Prob5AstarToGGCSE":        "99",
+                "NewGCSEPointScore":        null,
+                "NewBest8Score":            null,
+                "OldGCSEPointScore":        null,
+                "OldBest8Score":            null
+            }
+            
+
+## CAT4 Prediction Data [/LearnerAssessmentCAT4Data/{?LearnerId}{?DateFrom}{?DateTo}]
+
+**Either LearnerID or Date Range is mandatory**
+
++ Parameters
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + DateFrom (required, date, `01-09-2015`) ... start of the date range for Date of Test
+    + DateTo (required, date, `31-08-2016`) ... end of the date range for Date of Test
+    
+
+### CAT4 Predication Data [GET]
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+                "LearnerId":                    120318,
+                "LearnerCode":                  "015234",
+                "DateOfTest":                   "04/07/2015",
+                "AgeInMonths":                  "131",
+                "CATVersion":                   "CAT4E2",
+                "CATLevel":                     "D",
+                "VerbalSpatialProfile":         "Moderate verbal bias",
+                "VerbalNoAttempted":            "48",
+                "VerbalTotalRawScore":          "34",
+                "VerbalSubtest1RawScore":       "16",
+                "VerbalSubtest2RawScore":       "18",
+                "VerbalSAS":                    "121",
+                "VerbalNPR":                    "92",
+                "VerbalStanine":                "8",
+                "VerbalNoUnclear":              null,
+                "QuantitativeNoAttempted":      "32",
+                "QuantitativeTotalRawScore":    "29",
+                "QuantitativeSubtest1RawScore": "17",
+                "QuantitativeSubtest2RawScore": "12",
+                "QuantitativeSAS":              "119",
+                "QuantitativeNPR":              "90",
+                "QuantitativeStanine":          "8",
+                "QuantitativeNoUnclear":        null,
+                "NonVerbalNoAttempted":         "42",
+                "NonVerbalTotalRawScore":       "33",
+                "NonVerbalSubtest1RawScore":    "14",
+                "NonVerbalSubtest2RawScore":    "19",
+                "NonVerbalSAS":                 "115",
+                "NonVerbalNPR":                 "84",
+                "NonVerbalStanine":             "7",
+                "NonVerbalNoUnclear":           null,
+                "SpatialNoAttempted":           "23",
+                "SpatialTotalRawScore":         "20",
+                "SpatialSubtest1RawScore":      "12",
+                "SpatialSubtest2RawScore":      "8",
+                "SpatialSAS":                   "103",
+                "SpatialNPR":                   "58",
+                "SpatialStanine":               "5",
+                "SpatialNoUnclear":             null,
+                "MeanSAS":                      "115",
+                "KS2EnglishRetrospectiveLevel": null,
+                "KS2MathsRetrospectiveLevel":   null,
+                "KS2ScienceRetrospectiveLevel": null,
+                "GCSEProbOf5AStarToC":          null,
+                "GCSEProbOf5AStarToCIncEnglishAndMaths": null,
+                "GCSEProbOf5AStarToG":          null,
+                "GCSETotalPointsScore":         "572",
+                "GCSEBest8pointsScore":         "404",
+                "KS2EnglishLevel":                 "3a",
+                "KS2EnglishLevelIfChallenged":     "4a",
+                "KS2MathsLevel":                   "3b",
+                "KS2MathsLevelIfChallenged":       "4b",
+                "KS2ScienceLevel":                 "3c",
+                "KS2ScienceLevelIfChallenged":     "4c",
+                "KS2EnglishNCPointScore":          null,
+                "KS2EnglishNCPointScoreIfChallenged":  null,
+                "KS2MathsNCPointScore":                null,
+                "KS2MathsNCPointScoreIfChallenged":    null,
+                "KS2ScienceNCPointScore":              null,
+                "KS2ScienceNCPointScoreIfChallenged":  null,
+                "KS2EnglishFineLevelScore":            null,
+                "KS2EnglishFineLevelScoreIfChallenged":null,
+                "KS2MathsFineLevelScore":              null,
+                "KS2MathsFineLevelScoreIfChallenged":  null,
+                "KS2ScienceFineLevelScore":            null,
+                "KS2ScienceFineLevelScoreIfChallenged":null
+                "KS3EnglishNCPointScore":              null,
+                "KS3EnglishNCPointScoreIfChallenged":  null,
+                "KS3MathsNCPointScore":                null,
+                "KS3MathsNCPointScoreIfChallenged":    null,
+                "KS3ScienceNCPointScore":              null,
+                "KS3ScienceNCPointScoreIfChallenged":  null,
+                "KS3ArtNCPointScore":                  null,
+                "KS3ArtNCPointScoreIfChallenged":      null,
+                "KS3DAndTNCPointScore":                null,
+                "KS3DAndTNCPointScoreIfChallenged":    null,
+                "KS3GeographyNCPointScore":            null,
+                "KS3GeographyNCPointScoreIfChallenged":null,
+                "KS3HistoryNCPointScore":              null,
+                "KS3HistoryNCPointScoreIfChallenged":  null,
+                "KS3ICTNCPointScore":                  null,
+                "KS3ICTNCPointScoreIfChallenged":      null,
+                "KS3MFLNCPointScore":                  null,
+                "KS3MFLNCPointScoreIfChallenged":      null,
+                "KS3MusicNCPointScore":                null,
+                "KS3MusicNCPointScoreIfChallenged":    null,
+                "KS3PENCPointScore":                   null,
+                "KS3PENCPointScoreIfChallenged":       null,
+                "KS3EnglishLevel":                     "7c",
+                "KS3EnglishLeveIfChallenged":          "7b",
+                "KS3MathsLevel":                       "8",
+                "KS3MathsLeveIfChallenged":            "8",
+                "KS3ScienceLevel":                     "7b",
+                "KS3ScienceLeveIfChallenged":          "7a",
+                "KS3ArtLevel":                         "7c",
+                "KS3ArtLeveIfChallenged":              "7b",
+                "KS3DAndTLevel":                       "7c",
+                "KS3DAndTLeveIfChallenged":            "7b",
+                "KS3GeographyLevel":                   "7b",
+                "KS3GeographyLeveIfChallenged":        "7a",
+                "KS3HistoryLevel":                     "7b",
+                "KS3HistoryLeveIfChallenged":          "7a",
+                "KS3ICTLevel":                         "7b",
+                "KS3ICTLeveIfChallenged":              "7a",
+                "KS3MFLLevel":                         "7c",
+                "KS3MFLLeveIfChallenged":              "7b",
+                "KS3MusicLevel":                       "6a",
+                "KS3MusicLeveIfChallenged":            "7c",
+                "KS3PELevel":                          "6b",
+                "KS3PELeveIfChallenged":               "6a",
+                "KS3EnglishFineLevelScore":            null,
+                "KS3EnglishFineLevelScoreIfChallenged":null,
+                "KS3MathsFineLevelScore":              null,
+                "KS3MathsFineLevelScoreIfChallenged":  null,
+                "KS3ScienceFineLevelScore":            null,
+                "KS3ScienceFineLevelScoreIfChallenged":null,
+                "KS3ArtFineLevelScore":                null,
+                "KS3ArtFineLevelScoreIfChallenged":    null,
+                "KS3DAndTFineLevelScore":              null,
+                "KS3DAndTFineLevelScoreIfChallenged":  null,
+                "KS3GeographyFineLevelScore":          null,
+                "KS3GeographyFineLevelScoreIfChallenged": null,
+                "KS3HistoryFineLevelScore":            null,
+                "KS3HistoryFineLevelScoreIfChallenged":null,
+                "KS3ICTFineLevelScore":                null,
+                "KS3ICTFineLevelScoreIfChallenged":    null,
+                "KS3MFLFineLevelScore":                null,
+                "KS3MFLFineLevelScoreIfChallenged":    null,
+                "KS3MusicFineLevelScore":              null,
+                "KS3MusicFineLevelScoreIfChallenged":  null,
+                "KS3PEFineLevelScore":                 null,
+                "KS3PEFineLevelScoreIfChallenged":     null
+                "KS4ArtAndDesign":                     "A",
+                "KS4ArtAndDesignIfChallenged":         "A*",
+                "KS4BusinessStudies":                  "A",
+                "KS4BusinessStudiesIfChallenged":      "A*",
+                "KS4DAndTElectronics":                 "A",
+                "KS4DAndTElectronicsIfChallenged":     "A*",
+                "KS4DAndTFood":                        "A*/A",
+                "KS4DAndTFoodIfChallenged":            "A*",
+                "KS4DAndTGraphics":                    "A",
+                "KS4DAndTGraphicsIfChallenged":        "A*",
+                "KS4DAndTResistant":                   "A",
+                "KS4DAndTResistantIfChallenged":       "A*",
+                "KS4DAndTSystems":                     "A",
+                "KS4DAndTSystemsIfChallenged":         "A*",
+                "KS4DAndTTextiles":                    "A*/A",
+                "KS4DAndTTextilesIfChallenged":        "A*",
+                "KS4Drama":                            "A",
+                "KS4DramaIfChallenged":                "A*",
+                "KS4English":                          "A",
+                "KS4EnglishIfChallenged":              "A*",
+                "KS4EnglishLiterature":                "A",
+                "KS4EnglishLiteratureIfChallenged":    "A*",
+                "KS4French":                           "A",
+                "KS4FrenchIfChallenged":               "A*",
+                "KS4Geography":                        "A*/A",
+                "KS4GeographyIfChallenged":            "A*",
+                "KS4German":                           "A",
+                "KS4GermanIfChallenged":               "A*",
+                "KS4History":                          "A*/A",
+                "KS4HistoryIfChallenged":              "A*",
+                "KS4HomeEconomics":                    "A",
+                "KS4HomeEconomicsIfChallenged":        "A*",
+                "KS4InformationTechnology":            "A/B",
+                "KS4InformationTechnologyIfChallenged":"A",
+                "KS4Mathematics":                      "A*",
+                "KS4MathematicsIfChallenged":          "A*",
+                "KS4MediaStudies":                     "A",
+                "KS4MediaStudiesIfChallenged":         "A*",
+                "KS4Music":                            "A",
+                "KS4MusicIfChallenged":                "A*",
+                "KS4PhysicalEducation":                "A",
+                "KS4PhysicalEducationIfChallenged":    "A*",
+                "KS4ReligiousEducation":               "A*/A",
+                "KS4ReligiousEducationIfChallenged":   "A*",
+                "KS4ScienceAdditional":                "A*/A",
+                "KS4ScienceAdditionalIfChallenged":    "A*",
+                "KS4ScienceBiology":                   "A*/A",
+                "KS4ScienceBiologyIfChallenged":       "A*",
+                "KS4ScienceChemistry":                 "A*/A",
+                "KS4ScienceChemistryIfChallenged":     "A*",
+                "KS4ScienceCore":                      "A*/A",
+                "KS4ScienceCoreIfChallenged":          "A*",
+                "KS4SciencePhysics":                   "A*/A",
+                "KS4SciencePhysicsIfChallenged":       "A*",
+                "KS4Sociology":                        "A",
+                "KS4SociologyIfChallenged":            "A*",
+                "KS4Spanish":                          "A",
+                "KS4SpanishIfChallenged":              "A*",
+                "KS4GCSEStatisticsIfChallenged":       "A*"
+                "KS4GCSEStatistics":                   "A",
+                "KS5ASArtAndDesign":                   "B/C",
+                "KS5ASArtAndDesignIfChallenged":       "B",
+                "KS5ASBiology":                        "D/E",
+                "KS5ASBiologyIfChallenged":            "D",
+                "KS5ASBusinessStudies":                "C",
+                "KS5ASBusinessStudiesIfChallenged":    "B",
+                "KS5ASChemistry":                      "C/D",
+                "KS5ASChemistryIfChallenged":          "C",
+                "KS5ASCriticalThinking":               "E",
+                "KS5ASCriticalThinkingIfChallenged":   "D",
+                "KS5ASDrama":                          "B/C",
+                "KS5ASDramaIfChallenged":              "B",
+                "KS5ASEnglish":                        "C",
+                "KS5ASEnglishIfChallenged":            "B",
+                "KS5ASFrench":                         "C",
+                "KS5ASFrenchIfChallenged":             "B",
+                "KS5ASGeneralStudies":                 "D/E",
+                "KS5ASGeneralStudiesIfChallenged":     "D",
+                "KS5ASGeography":                      "C/D",
+                "KS5ASGeographyIfChallenged":          "C",
+                "KS5ASHistory":                        "C",
+                "KS5ASHistoryIfChallenged":            "B",
+                "KS5ASMaths":                          "C/D",
+                "KS5ASMathsIfChallenged":              "C",
+                "KS5ASMediaStudies":                   "B/C",
+                "KS5ASMediaStudiesIfChallenged":       "B",
+                "KS5ASPhsicalEducation":               "C/D",
+                "KS5ASPhsicalEducationIfChallenged":   "C",
+                "KS5ASPhysics":                        "D/E",
+                "KS5ASPhysicsIfChallenged":            "D",
+                "KS5ASPsychology":                     "C/D",
+                "KS5ASPsychologyIfChallenged":         "C",
+                "KS5ASReligiousStudies":               "C",
+                "KS5ASReligiousStudiesIfChallenged":   "B",
+                "KS5ASSociology":                      "C/D",
+                "KS5ASSociologyIfChallenged":          "C",
+                "KS5AArtAndDesign":                    "B",
+                "KS5AArtAndDesignIfChallenged":        "A",
+                "KS5ABiology":                         "C/D",
+                "KS5ABiologyIfChallenged":             "C",
+                "KS5ABusinessStudies":                 "B/C",
+                "KS5ABusinessStudiesIfChallenged":     "B",
+                "KS5AChemistry":                       "B/C",
+                "KS5AChemistryIfChallenged":           "B",
+                "KS5ADrama":                           "B/C",
+                "KS5ADramaIfChallenged":               "B",
+                "KS5AEnglish":                         "B/C",
+                "KS5AEnglishIfChallenged":             "B",
+                "KS5AFrench":                          "B/C",
+                "KS5AFrenchIfChallenged":              "B",
+                "KS5AGeneralStudies":                  "C/D",
+                "KS5AGeneralStudiesIfChallenged":      "C",
+                "KS5AGeography":                       "C",
+                "KS5AGeographyIfChallenged":           "B",
+                "KS5AHistory":                         "B/C",
+                "KS5AHistoryIfChallenged":             "B",
+                "KS5AMaths":                           "B/C",
+                "KS5AMathsIfChallenged":               "B",
+                "KS5AMediaStudies":                    "B/C",
+                "KS5AMediaStudiesIfChallenged":        "B",
+                "KS5APhsicalEducation":                "C",
+                "KS5APhsicalEducationIfChallenged":    "B",
+                "KS5APhysics":                         "C/D",
+                "KS5APhysicsIfChallenged":             "C",
+                "KS5APsychology":                      "B/C",
+                "KS5APsychologyIfChallenged":          "B",
+                "KS5AReligiousStudies":                "B/C",
+                "KS5AReligiousStudiesIfChallenged":    "B",
+                "KS5ASociology":                       "B/C",
+                "KS5ASociologyIfChallenged":           "B"     
+            }
+            
+
+## Exams Results [/LearnerExamOptionResult/{?AcYearId}{?Year}{?LearnerId}{?Status}]
 
 
-        *Either AcYearId, Year or LeanerId is mandatory*
+**Either AcYearId, Year or LeanerId is mandatory**
 
 + Parameters
     + AcYearId (required, int, `1234`) ... unique Id of Academic Year
@@ -4562,6 +5017,7 @@ Collection of all Assessment related resources
 
 ### Retrieve Exam Results [GET]
 
+Retrieve one to many exam results for a learner
         
 + Request
 
@@ -4677,6 +5133,77 @@ Collection of all Assessment related resources
                                 }]
                 }
                
+
+
+
+
+### Create Exam Results [POST]
+
+Create one to many exam result entries for a learner
+
+**Either FirstGrade or SecondGrade is mandatory**
+
+    + LearnerCode (required, string, '123456') ... code of Learner
+    + CandidateNumber (required, string, '5004') ... unique candidate number of Learner
+    + AcademicYearId (required, int, 1234) ... unique Id of the Academic Year in which the Examwas taken
+    + Board (required, string, '70') ... unique Id of Exam board
+    + Series (required, string, '6G') ... unique code for the exam series
+    + Year (required, string, '2015') ... year in which the exam was taken
+    + OptionCode (required, string, 'ENL03') ... code of the Option taken
+    + SyllabusCode (required, string, '4700') ... code of the Syllabus in which the Option belongs
+    + ResultType (required, string, 'U') ... type of result
+    + FirstGrade (optional, string, '081') ... first result grade
+    + SecondGrade (optional, string, 'C') ... second result grade
+
++ Request 
+
+    + Header
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "LearnerCode":      "123456",
+                "CandidateNumber":  "5004",
+                "AcademicYearId":   1234,
+                "ExamResults":  [{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "ENL03",
+                                    "SyllabusCode":         "4700",
+                                    "ResultType":           "U",
+                                    "First":                "081",
+                                    "Second":               "C"
+                                },{
+                                    "Board":                "70",
+                                    "Series":               "6G",
+                                    "Year":                 "2015",
+                                    "OptionCode":           "9717",
+                                    "SyllabusCode":         "9715",
+                                    "ResultType":           "1",
+                                    "First":                "0153",
+                                    "Second":               "B"
+                                }]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "LearnerCode":              "123456",
+                "ExamCandidateOptionId":    4321
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "LearnerCode":              "123456",
+                "ExamCandidateOptionId":    4322 
+            }
+
 
 
 # Group Groups
@@ -5813,7 +6340,97 @@ Create association of one to many Course to Years
             }
             
             
+## Departments [/Departments]
+
+### Retrieve a list of Departments
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
             
+            
++ Response 200 (application.json)
+
+    + Body
+    
+            {
+                "DepartmentId": 4947,
+                "DepartmentCode": "AD",
+                "DepartmentName": "Art & Design",
+                "EmployeeId": 68422,
+                "HeadOfDepartment": "GD",
+                "Subjects": [
+                              {
+                                "SubjectId": 170189,
+                                "SubjectCode": "PG-A2"
+                              },
+                              {
+                                "SubjectId": 170190,
+                                "SubjectCode": "PG-AS"
+                              },
+                              {
+                                "SubjectId": 170191,
+                                "SubjectCode": "PG-GCSE"
+                              },
+                              {
+                                "SubjectId": 169778,
+                                "SubjectCode": "AD-GCSE"
+                              },
+                              {
+                                "SubjectId": 169772,
+                                "SubjectCode": "AD-AS"
+                              },
+                              {
+                                "SubjectId": 169770,
+                                "SubjectCode": "AD-A2"
+                              },
+                              {
+                                "SubjectId": 169769,
+                                "SubjectCode": "AD"
+                              },
+                              {
+                                "SubjectId": 178581,
+                                "SubjectCode": "ADA-GCSE"
+                              }
+                            ]
+              }
+              
+
+### Create Departments [POST]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "DepartmentCode":       "ICT",
+                "DepartmentName":       "ICT", 
+                "HeadOfDepartment":     null,
+                "Subjects":          [{
+                                        "SubjectCode":  "AIT"
+                                    },{
+                                        "SubjectCode":  "DTE"
+                                    },{
+                                        "SubjectCode":  "ICT"
+                                    }
+                                     ]                                    
+            }
+            
++ Response 200 (application/json)
+
+            {
+                "Status":               true,
+                "Details":              "Saved successfully", 
+                "DepartmentId":         0001,
+                "DepartmentCode":       "ICT"
+            }
+
 
 ## Subjects [/Subjects]
 
