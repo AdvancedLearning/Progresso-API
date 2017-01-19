@@ -1258,7 +1258,7 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
            
-              {
+            {
                     "employeeId":       00001,
                     "staffCode":        "sc123",
                     "qualifications":   [{
@@ -1278,8 +1278,8 @@ Collection of all employee roles for employee contracts within a school
                                             "verified":             true                                        
                                         }]
             
-              },
-             {
+            },
+            {
                     "employeeId":       00002,
                     "staffCode":        "ad456",
                     "qualifications":   [{
@@ -1289,131 +1289,9 @@ Collection of all employee roles for employee contracts within a school
                                             "subject2":             "A400: Clinical Dentistry ",
                                             "classOfDegree":        "2: Upper Second Class honours",
                                             "verified":             true  
-                                        }                
-             
-             
-             
-             }
-
-
-
-## Create/Update Employees Qualifications [/employeeQualifications]
-### Create employee qualifications [POST]
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-    + Body
-           
-            {
-                    "employeeId":       00001,
-                    "qualifications":   [{
-                                            "qualificationId":      0,
-                                            "qualificationCode":    "BEng: BEng",
-                                            "subject1":             "A400: Clinical Dentistry",
-                                            "subject2":             "B400: Nutrition",
-                                            "classOfDegree":        "5: Third Degree honours",
-                                            "verified":             true
-                                        }]
-            },
-            {
-                    "employeeId":       00002,
-                    "qualifications":   [{
-                                            "qualificationId":      0,                                        
-                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
-                                            "subject1":             "B100: Anatomy, Physiology and Pathology ",
-                                            "subject2":             "A400: Clinical Dentistry ",
-                                            "classOfDegree":        "2: Upper Second Class honours",
-                                            "verified":             true  
-                                        }            
+                                        }]  
             }
 
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                    "employeeId":       00001,
-                    "qualifications":   [{
-                                            "status":           true,
-                                            "details":          "Saved Succesfully",
-                                            "qualificationId":      1,
-                                            "qualificationCode":    "BEng: BEng",
-
-                                        }]
-            },
-            {
-                    "employeeId":       00002,
-                    "qualifications":   [{
-                                            "status":           true,
-                                            "details":          "Saved Succesfully",
-                                            "qualificationId":      2,                                        
-                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
-
-                                        }]            
-            }
-            
-
-### Update employee qualifications [PUT]
-
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-
-    + Body
-    
-            {
-                    "employeeId":       00001,
-                    "qualifications":   [{
-                                            "qualificationId":      1,
-                                            "qualificationCode":    "BEng: BEng",
-                                            "subject1":             "A400: Clinical Dentistry",
-                                            "subject2":             "B400: Nutrition",
-                                            "classOfDegree":        "5: Third Degree honours",
-                                            "verified":             true
-                                        }]
-            },
-            {
-                    "employeeId":       00002,
-                    "qualifications":   [{
-                                            "qualificationId":      2,                                        
-                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
-                                            "subject1":             "B100: Anatomy, Physiology and Pathology ",
-                                            "subject2":             "A400: Clinical Dentistry ",
-                                            "classOfDegree":        "2: Upper Second Class honours",
-                                            "verified":             true  
-                                        }            
-            }
-
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                    "employeeId":       00001,
-                    "qualifications":   [{
-                                            "status":           true,
-                                            "details":          "Saved Succesfully",
-                                            "qualificationId":      1,
-                                            "qualificationCode":    "BEng: BEng",
-
-                                        }]
-            },
-            {
-                    "employeeId":       00002,
-                    "qualifications":   [{
-                                            "status":           true,
-                                            "details":          "Saved Succesfully",
-                                            "qualificationId":      2,                                        
-                                            "qualificationCode":    "BAG: Bachelor of Agriculture ",
-
-                                        }]            
-            }
 
     
 # Group Contacts
@@ -5819,54 +5697,7 @@ Create one to many academic terms
             }
 
 
-### Update Academic Term [PUT]
 
-Update one to many academic terms
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-    + Body
-    
-            {
-                "AcademicYearId":   1,
-                "Name":             "Autumn",
-                "StartDate":        "05/09/2014",
-                "endDate":          "19/12/2014"
-                
-            },
-            {
-               "AcademicYearId":   2,
-                "name":             "Spring",
-                "StartDate":        "05/01/2015",
-                "endDate":          "10/04/2015"
-                
-            }
-            
-+ Response 200 (application/json)
-
-    + Body
-    
-            {
-                "academicYearId":   1,
-                "academicTermId":   1,
-                "name":             "Autumn",
-                "StartDate":        "01/09/2014",
-                "endDate":          "19/12/2014"
-                
-             },
-            {
-                "academicYearId":   1,
-                "academicTermId":   2,
-                "name":             "Spring",
-                "StartDate":        "05/01/2015",
-                "endDate":          "10/04/2015"
-                
-            }
-            
 
 ## Term Breaks [/termBreaks/{?AcYearId}{?id}]
 
