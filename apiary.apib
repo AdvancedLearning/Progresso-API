@@ -2817,7 +2817,11 @@ Mandatory fields:
 
 
 ## Learner Contacts [/LearnerContacts{?since}{?status}{?responsibility}{?priority}]
+
+*Addtional fileds have been added to this method to make it more useful*
+
 ### Retrieve a Contacts associated to a learner [GET]
+
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
@@ -2836,51 +2840,56 @@ Mandatory fields:
     + Body
     
             {
-                
-                "LearnerCode":     "2013-00132",
-                "LearnerId":       0001,
-                "UPN":             "G999900210101",
-                "Contacts":         [{
-                                        "learnerContactRelId":      000003
-                                        "contactId":                00001,
-                                        "forename":                 "",
-                                        "surename":                 "",
-                                        "relationship":             "Father",
-                                        "writtenCommunication":     "",
-                                        "priority":                 1,
-                                        "contactPrioritySource":    "",
-                                        "emergencyContactLevel":    "Primary",
-                                        "nextOfKin":                false,
-                                        "addressDisclosure":        false,
-                                        "addressTransferred":       false,
-                                        "parentalResponsibility":   true,
-                                        "feePayer":                 false,
-                                        "parentalPortal":           true,
-                                        "homeAddressLink":          true,
-                                        "otherHomeAddressLink":     false,
-                                        "sendSMS":                  true
-                                    },
-                                    {
-                                        "learnerContactRelId":      000004
-                                        "contactId":                00006,
-                                        "forename":                 "",
-                                        "surename":                 "",
-                                        "relationship":             "Mother",
-                                        "writtenCommunication":     "",
-                                        "priority":                 2,
-                                        "contactPrioritySource":    "",
-                                        "emergencyContactLevel":    "",
-                                        "nextOfKin":                false,
-                                        "addressDisclosure":        false,
-                                        "addressTransferred":       false,
-                                        "parentalResponsibility":   true,
-                                        "feePayer":                 false,
-                                        "parentalPortal":           true,
-                                        "homeAddressLink":          true,
-                                        "otherHomeAddressLink":     false,
-                                        "sendSMS":                  true
-                                    }]
-            }
+                "LearnerId": 443756,
+                "LearnerCode": "7791",
+                "UPN": null,
+                "LearnerContactDetails": [
+                  {
+                    "ContactId": 949950,
+                    "ForeName": "Colleen",
+                    "SurName": "Sterling",
+                    "Relationship": "PAM",
+                    "WrittenCommunication": "",
+                    "Priority": 1,
+                    "ContactPrioritySource": "",
+                    "EmergencyContactLevel": "Primary",
+                    "NextOfKin": true,
+                    "AddressDisclosure": false,
+                    "AddressTransferred": false,
+                    "ParentalResponsibility": true,
+                    "FeePayer": false,
+                    "ParentalPortal": true,
+                    "HomeAddressLink": true,
+                    "OtherHomeAddressLink": false,
+                    "SendSMS": false,
+                    "Title": "Mrs",
+                    "Gender": "F",
+                    "Email": "CDavitt@advancedfirstline.com",
+                    "PhoneDetails": [
+                                      {
+                                        "Type": "H",
+                                        "Number": "01111567891",
+                                        "SMSFlag": false,
+                                        "PhoneId": 2165134
+                                      }
+                                    ],
+                    "AddressDetails": [
+                                      {
+                                        "Country": "GBR",
+                                        "Type": "H",
+                                        "Flat": "",
+                                        "Number": "23",
+                                        "Street": "Orchard Gardens",
+                                        "Locality": "Derby",
+                                        "Town": "",
+                                        "County": "",
+                                        "PostCode": "DE21 4FL",
+                                        "AddressId": 1322284
+                                      }
+                                      ]
+                  }
+                ]
+              }
 
 
             
@@ -6531,6 +6540,44 @@ Create one to many exam result entries for a learner
             }
 
 
+## Assign Options to Candidates [/AssignOptionsToCandidate]
+
+All fields are mandatory
+
+### Assign Options To Candidates [POST]
+
+
++ Request 
+
+    + Header
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {  
+                "LearnerCode":      "115258",
+                "CandidateNumber":  "5298",
+                "AcademicYearId":   3220,
+                "ExamResults":  [{
+                                    "Board":                "10",
+                                    "Series":               "6G",
+                                    "Year":                 "2017",
+                                    "OptionCode":           "1MA0H",
+                                    "SyllabusCode":         "1MA0",
+                                    "ResultType":           "1"
+                                }]
+            }
+            
++ Response 200
+
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "LearnerCode": "2011-0551",
+                "ExamCandidateOptionId": 5529565
+            }
+
 
 # Group Groups
 
@@ -8937,46 +8984,165 @@ Collection of Behaviour methods
     + Body
     
             {
-                "LearnerId":    120318,
-                "LearnerCode":  "015234",
-                "RegGroup":     "11E",
-                "IncidentDate": "06-09-2016",
-                "Behaviour":    "Negative",
-                "Subject":      "MFL",
-                "Location":     "Classroom",
-                "Details":      [{
-                                    "Category":     "Classwork",
-                                    "Type":         "Ignoring Instructions",
-                                    "Points":       2,
-                                    "Severity":     "S2"
-                                },{
-                                    "Category":     "Classwork",
-                                    "Type":         "Disrespectful",
-                                    "Points":       1,
-                                    "Severity":     "S3"
-                                }],
-                "Comments":     [{
-                                    "Comment":      "Limited work completed, off task"
-                                },{
-                                    "Comment":      "Removed from Computers"
-                                }],
-                "Actions":      [{
-                                    "Action":       "Moved in Class"
-                                }'{
-                                    "Action":       "Warning 1"
-                                }],
-                "Published":    "Yes",
-                "Creator":      "SBr",
-                "Assignee":     "LCr",
-                "Status":       "Created"
+                "BehaviourEntryId": 13798177,
+                "LearnerId": 245277,
+                "LearnerCode": "2009-0080",
+                "RegGroup": "U6-RWE",
+                "Behaviour": "Negative",
+                "IncidentDate": "2017-02-07",
+                "Subject": "BE",
+                "Location": "CLS",
+                "Published": "Yes",
+                "Creator": "DhDr",
+                "Editor": null,
+                "Assignee": "DiRo",
+                "Status": "Completed",
+                "Details": [
+                              {
+                                "Category": "CL",
+                                "Type": "CLatt",
+                                "Severity": "S2",
+                                "point": 0
+                              },
+                              {
+                                "Category": "CL",
+                                "Type": "CLBEH",
+                                "Severity": "S2",
+                                "point": 2
+                              }
+                            ],
+                "Comments": [
+                              {
+                                "BehaviourEntryCommentId": 5648278,
+                                "Confidential": true,
+                                "Comment": "Asked to go to the toilet and went to the one furthest away just to waste time."
+                              },
+                              {
+                                "BehaviourEntryCommentId": 5648279,
+                                "Confidential": false,
+                                "Comment": "Spat gum out on floor"
+                              },
+                              {
+                                "BehaviourEntryCommentId": 5648280,
+                                "Confidential": false,
+                                "Comment": "Was rude to memeber of Staff"
+                              }
+                            ],
+                "Actions":  [
+                              "HTO",
+                              "ISO"
+                            ]
             }
  
 + Response 204                
 
+### Create Behaviour Events [POST]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Request
+
+            {
+                "LearnerId":    443790,
+                "Behaviour":    "Negative",
+                "IncidentDate": "2017-02-03",
+                "Subject":      "AD",
+                "Location":     "CLS",
+                "Published":    "No",
+                "Creator":      "AB",
+                "Assignee":     "ASJ",
+                "Status":       "Created",
+                "Types":            [
+                                        "01NCW", "02CG"                                    ],
+                "Comments":         [
+                                    {
+                                        "Confidential": true,
+                                        "Comment":      "Asked to go to the toilet and went to the one furthest away just to waste time.",
+                                        "StaffCode":    "AB"
+                                    },
+                                    {
+                                        "Confidential": false,
+                                        "Comment":      "Spat gum out on floor",
+                                        "StaffCode":    "CS"
+                                    }
+                                    ],
+                "Actions":          [
+                                        "03DB","10LP"
+                                    ]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "BehaviourEntryId": 13798182,
+                "LearnerId": 245922,
+                "Status": true,
+                "Details": "Saved successfully"
+            }
+
+
+### Update Behaviour Events [PUT]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Request
+
+            {
+                "BehaviourEntryId": 13798177,
+                "LearnerId":    443790,
+                "Behaviour":    "Negative",
+                "IncidentDate": "2017-02-03",
+                "Subject":      "AD",
+                "Location":     "CLS",
+                "Published":    "No",
+                "Creator":      "AB",
+                "Assignee":     "ASJ",
+                "Status":       "Created",
+                "Types":            [
+                                        "01NCW", "02CG"                                    ],
+                "Comments":         [
+                                    {
+                                        "Confidential": false,
+                                        "Comment":      "Failed to attend Isolation",
+                                        "StaffCode":    "ABc"
+                                    },
+                                    {
+                                        "BehaviourEntryCommentId": 5648281,
+                                        "Confidential": false,
+                                        "Comment":      "Spat gum out on floor and was abusive to staff",
+                                        "StaffCode":    "CS"
+                                    }
+                                    ],
+                "Actions":          [
+                                        "03DB","10LP"
+                                    ]
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "BehaviourEntryId": 13798182,
+                "LearnerId": 245922,
+                "Status": true,
+                "Details": "Saved successfully"
+            }
+
+
 ## Behaviour Structure Collection [/BMStructure/]
 
 ### Get Behaviour Structure [GET]
-**Due end of November**
 
 Retrieves the current behaviour structure
 
