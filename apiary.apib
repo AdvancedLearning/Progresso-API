@@ -1340,12 +1340,12 @@ Optional Parameter
                 "VisaNumber":           "",
                 "MemberOfArmedForces":  false,
                 "PhoneDetails":         [{
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "number":   "013332552552",
                                             "smsFlag":  false,
                                             "PhoneId":  1
                                         },{
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "07707707707",
                                             "smsFlag":  true,
                                             "PhoneId":  2
@@ -1446,17 +1446,17 @@ Minimum Parameters
                 "visaNumber":           "",
                 "memberOfArmedForces":  false,
                 "phoneDetails":         [{
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "number":   "013332552552",
                                             "smsFlag":  false
                                         },{
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "07707707707",
                                             "smsFlag":  true
                                         }],
                 "addressDetails":       [{
                                             "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
@@ -1486,17 +1486,17 @@ Minimum Parameters
                 "visaNumber":           "",
                 "memberOfArmedForces":  false,
                 "phoneDetails":         [{
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "number":   "01332225225",
                                             "smsFlag":  false
                                         },{
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "0777707777",
                                             "smsFlag":  true
                                         }],
                 "addressDetails":       [{
                                             "country":  "United Kingdom",
-                                            "type":     "Home",
+                                            "type":     "H",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
@@ -1514,54 +1514,20 @@ Minimum Parameters
     + Body
     
             {
-                "contactCode":          "3447",
-                "contactId":            000001,
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "013332552552",
-                                            "phoneId":  00004
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "07707707707",
-                                            "phoneId":  00005
-                                        }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "AddressId":  00003
-                                        }]
-            },
-            {
-                "contactCode":          "3448",
-                "contactId":            000002,
-                "phoneDetails":         [{
-                                            "type":     "Home",
-                                            "number":   "01332225225",
-                                            "phoneId":  00006
-                                        },{
-                                            "type":     "Mobile",
-                                            "number":   "0777707777",
-                                            "phoneId":  00007
-                                        }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "AddressId":  00004
-                                        }]
+                "Status": true,
+                "Details": "Saved successfully",
+                "ContactId": 000001,
+                "ContactCode": "",
+                "PhoneDetails": [
+                                  {
+                                    "PhoneId": 2446053
+                                  }
+                                ],
+                "AddressDetails":[
+                                  {
+                                    "AddressId": 1506677
+                                  }
+                                ]
             }
 
 
@@ -1598,20 +1564,20 @@ Update one to many contact records
                 "visaNumber":           "",
                 "memberOfArmedForces":  false,
                 "phoneDetails":         [{
-                                            "phoneId":  "00004",
-                                            "type":     "Home",
+                                            "phoneId":  "2446053",
+                                            "type":     "H",
                                             "number":   "0133321111111",
                                             "smsFlag":  false
                                         },{
                                              "phoneId":  00005,
-                                            "type":     "Mobile",
+                                            "type":     "M",
                                             "number":   "07707707707",
                                             "smsFlag":  false
                                         }],
                 "addressDetails":       [{
-                                            "AddressId":  "",
+                                            "AddressId":"1506677",
                                             "country":  "United Kingdom",
-                                            "type":     "Work",
+                                            "type":     "W",
                                             "flat":     "3a",
                                             "number":   "1",
                                             "street":   "The Street",
@@ -1621,52 +1587,29 @@ Update one to many contact records
                                             "postCode": "DD55 36DD"
                                             
                                         }]
-            },
-            {
-                "title":                "Ms",
-                "surname":              "Princess",
-                "forename":             "Fire",
-                "middleName":           "",
-                "gender":               "M",
-                "email":                "updated@emailaddress.com",
-                "language":             "English",
-                "occupation":           "",
-                "nationality":          "UK",
-                "isMedicalContact":     false,
-                "workEmail":            "",
-                "employer":             "",
-                "translatorReqiured":   false,
-                "exPupil":              false,
-                "medicalType":          "",
-                "visaNumber":           "",
-                "memberOfArmedForces":  false,
-                "phoneDetails":         [{}],
-                "addressDetails":       [{}]
             }
-    
-
 
 + Response 200
 
     + Body
     
-            [{
-                "contactId":            000001,
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "Home",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
-                                            "AddressId":  00007
-                                        }]
-                "contactId":            000002
-            },
-            ]
+            
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "ContactId": 000001,
+                "ContactCode": "",
+                "PhoneDetails": [
+                                  {
+                                    "PhoneId": 2446053
+                                  }
+                                ],
+                "AddressDetails":[
+                                  {
+                                    "AddressId": 1506677
+                                  }
+                                ]
+            }
 
 
             
