@@ -4829,7 +4829,300 @@ Collection of all Assessment related resources
                 "KS5ASociologyIfChallenged":           "B"     
             }
             
+## KS2 FFT Data [/LearnerAssessmentKS2FFTData/{?LearnerId}]
 
++ Parameters
+    + LearnerId (required, int, `35464`) ... unique id of Learner
+    
+
+### Retrieve KS2 FFT prediction data [GET]
+
+Retrieve KS2 FFT prediction data for a learner
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+                "LearnerId": 307188,
+                "LearnerCode": "962100",
+                "PredicationDetails":   [
+                                          {
+                                            "AssessmentYear": "2010",
+                                            "PriorAttainKeyStage": 1,
+                                            "PriorAttainRank": "A",
+                                            "PriorAttainGroup": "M",
+                                            "EstimateBasis": "SE(Socio-Economic)",
+                                            "EstimateRank": "5",
+                                            "Subject": "English",
+                                            "ProbLevel2": 2,
+                                            "ProbLevel3": 10,
+                                            "ProbLevel4": 77,
+                                            "ProbLevel5": 92,
+                                            "ProbLevel2Plus": 99,
+                                            "ProbLevel3Plus": 99,
+                                            "ProbLevel4Plus": 90,
+                                            "ProbLevel5Plus": 15,
+                                            "EstimateLevel": "4.49 ",
+                                            "ExpectedProgressLevel": null,
+                                            "BetterExpectedProgressLevel": null,
+                                            "ExpectedProgressProb": null,
+                                            "BetterExpectedProgressProb": null
+                                          },
+                                          {
+                                            "AssessmentYear": "2014",
+                                            "PriorAttainKeyStage": 1,
+                                            "PriorAttainRank": "A",
+                                            "PriorAttainGroup": "M",
+                                            "EstimateBasis": "SE(Socio-Economic)",
+                                            "EstimateRank": "50 (Type B)",
+                                            "Subject": "Reading",
+                                            "ProbLevel2": 1,
+                                            "ProbLevel3": 1,
+                                            "ProbLevel4": 8,
+                                            "ProbLevel5": 90,
+                                            "ProbLevel2Plus": 99,
+                                            "ProbLevel3Plus": 99,
+                                            "ProbLevel4Plus": 99,
+                                            "ProbLevel5Plus": 92,
+                                            "EstimateLevel": "5B   ",
+                                            "ExpectedProgressLevel": 5,
+                                            "BetterExpectedProgressLevel": 6,
+                                            "ExpectedProgressProb": 92,
+                                            "BetterExpectedProgressProb": 2
+                                          }
+                                        ]
+            }
+                
+
+## KS3 FFT Data [/LearnerAssessmentKS3FFTData/{?LearnerId}]
+
++ Parameters
+    + LearnerId (required, int, `35464`) ... unique id of Learner
+    
+
+### Retrieve KS3 FFT prediction data [GET]
+
+Retrieve KS3 FFT prediction data for a learner
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+ 
+            {
+                "LearnerId": 195837,
+                "LearnerCode": "011209",
+                "PredicationDetails":   [
+                                        {
+                                        "AssessmentYear": "2014",
+                                        "PriorAttainKeyStage": 2,
+                                        "PriorAttainRank": null,
+                                        "PriorAttainGroup": "U",
+                                        "EstimateBasis": "PA(Prior Attainment)",
+                                        "EstimateRank": "10",
+                                        "Subject": "English",
+                                        "ProbLevel2": 1,
+                                        "ProbLevel3": 1,
+                                        "ProbLevel4": 1,
+                                        "ProbLevel5": 5,
+                                        "ProbLevel6": 53,
+                                        "ProbLevel7": 42,
+                                        "ProbLevel2Plus": 99,
+                                        "ProbLevel3Plus": 99,
+                                        "ProbLevel4Plus": 99,
+                                        "ProbLevel5Plus": 99,
+                                        "ProbLevel6Plus": 95,
+                                        "ProbLevel7Plus": 42,
+                                        "EstimateLevel": "6A   ",
+                                        "ExpectedProgressLevel": null,
+                                        "ExpectedProgressProb": null
+                                        },
+                                        {
+                                        "AssessmentYear": "2014",
+                                        "PriorAttainKeyStage": 2,
+                                        "PriorAttainRank": null,
+                                        "PriorAttainGroup": "U",
+                                        "EstimateBasis": "PA(Prior Attainment)",
+                                        "EstimateRank": "10",
+                                        "Subject": "Mathematics",
+                                        "ProbLevel2": 1,
+                                        "ProbLevel3": 1,
+                                        "ProbLevel4": 1,
+                                        "ProbLevel5": 4,
+                                        "ProbLevel6": 38,
+                                        "ProbLevel7": 57,
+                                        "ProbLevel2Plus": 99,
+                                        "ProbLevel3Plus": 99,
+                                        "ProbLevel4Plus": 99,
+                                        "ProbLevel5Plus": 99,
+                                        "ProbLevel6Plus": 96,
+                                        "ProbLevel7Plus": 57,
+                                        "EstimateLevel": "6A   ",
+                                        "ExpectedProgressLevel": null,
+                                        "ExpectedProgressProb": null
+                                        }
+                                        ]
+            }
+                                                                      
+                                      
+## KS4 FFT Data [/LearnerAssessmentKS4FFTData/{?LearnerId}]
+
++ Parameters
+    + LearnerId (required, int, `35464`) ... unique id of Learner
+    
+
+### Retrieve KS4 FFT prediction data [GET]
+
+Retrieve KS4 FFT prediction data for a learner
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+            "LearnerId": 195335,
+            "LearnerCode": "008492",
+            "PredicationDetails": [
+                                  {
+                                    "AssessmentYear": "2014",
+                                    "QualificationType": "GCSE Full Course",
+                                    "PriorAttainKeyStage": 3,
+                                    "PriorAttainRank": null,
+                                    "PriorAttainGroup": "U",
+                                    "EstimateBasis": null,
+                                    "EstimateRank": "10",
+                                    "Subject": "Science",
+                                    "GProb": 1,
+                                    "FProb": 1,
+                                    "EProb": 1,
+                                    "DProb": 1,
+                                    "CProb": 4,
+                                    "BProb": 20,
+                                    "AProb": 41,
+                                    "AStarProb": 34,
+                                    "GPlusProb": 99,
+                                    "FPlusProb": 99,
+                                    "EPlusProb": 99,
+                                    "DPlusProb": 99,
+                                    "CPlusProb": 99,
+                                    "BPlusProb": 95,
+                                    "APlusProb": 75,
+                                    "PassProb": 99,
+                                    "GMProb": "A",
+                                    "HGMProb": 26,
+                                    "GAProb": "A",
+                                    "ExpectedProgressLevel": null,
+                                    "BetterExpectedProgressLevel": null,
+                                    "ExpectedProgressProb": null,
+                                    "BetterExpectedProgressProb": null
+                                  },
+                                  {
+                                    "AssessmentYear": "2014",
+                                    "QualificationType": "GCSE Full Course",
+                                    "PriorAttainKeyStage": 3,
+                                    "PriorAttainRank": null,
+                                    "PriorAttainGroup": "U",
+                                    "EstimateBasis": null,
+                                    "EstimateRank": "10",
+                                    "Subject": "Maths",
+                                    "GProb": 1,
+                                    "FProb": 1,
+                                    "EProb": 1,
+                                    "DProb": 1,
+                                    "CProb": 5,
+                                    "BProb": 24,
+                                    "AProb": 44,
+                                    "AStarProb": 26,
+                                    "GPlusProb": 99,
+                                    "FPlusProb": 99,
+                                    "EPlusProb": 99,
+                                    "DPlusProb": 99,
+                                    "CPlusProb": 99,
+                                    "BPlusProb": 94,
+                                    "APlusProb": 70,
+                                    "PassProb": 99,
+                                    "GMProb": "A",
+                                    "HGMProb": 48,
+                                    "GAProb": "B",
+                                    "ExpectedProgressLevel": null,
+                                    "BetterExpectedProgressLevel": null,
+                                    "ExpectedProgressProb": null,
+                                    "BetterExpectedProgressProb": null
+                                  }
+                                  ]
+            }
+            
+                                      
+## KS5 FFT Data [/LearnerAssessmentKS5FFTData/{?LearnerId}]
+
++ Parameters
+    + LearnerId (required, int, `35464`) ... unique id of Learner
+    
+
+### Retrieve KS5 FFT prediction data [GET]
+
+Retrieve KS5 FFT prediction data for a learner
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+                "LearnerId": 205103,
+                "LearnerCode": "20232",
+                "PredicationDetails": [
+                  {
+                    "AssessmentYear": "2014",
+                    "QualificationType": "GCE A level",
+                    "PriorAttainKeyStage": 4,
+                    "PriorAttainRank": null,
+                    "PriorAttainGroup": null,
+                    "EstimateBasis": "PA(Prior Attainment)",
+                    "EstimateRank": null,
+                    "Subject": "Mathematics",
+                    "EProb": 7,
+                    "DProb": 16,
+                    "CProb": 26,
+                    "BProb": 31,
+                    "AProb": 17,
+                    "AStarProb": 3,
+                    "EPlusProb": 99,
+                    "DPlusProb": 93,
+                    "CPlusProb": 77,
+                    "BPlusProb": 0,
+                    "APlusProb": 20,
+                    "PassProb": 99,
+                    "GMProb": "B",
+                    "HGMProb": 20,
+                    "GAProb": "A"
+                  }
+                ]
+            }
+                        
 
 ## KS1 FFT Aspire Prediction Data [/LearnerAssessmentKS1FFTAspireData/{?LearnerId}]
 
@@ -5013,7 +5306,7 @@ Retrieve KS2 FFT Aspire prediction data for a learner
                   }
                 ]
             }
-
+            
 
 ## KS4 A-G FFT Aspire Prediction Data [/LearnerAssessmentKS4CharFFTAspireData/{?LearnerId}]
 
