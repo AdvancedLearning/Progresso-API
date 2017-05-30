@@ -598,6 +598,8 @@ All other fields are mandatory.
 
 Collection of all employee checks for employees within a school
 
+**These methods have been updated to include new requirements**
+
 ### Retrieve collection of employee checks [GET]
 
 Retrieve one or more employee check records
@@ -617,104 +619,181 @@ Retrieve one or more employee check records
     + Body
     
             {
-                "EmployeeId":           0001,
-                "StaffCode":            "sc123",     
-                "ADD":                  [{
-                                            "CheckId":              1,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedById":          123456
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":       "John Don",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "AGN":                  [{ 
-                                            "CheckId":              2,
-                                            "AgencyName":           "Hays",
-                                            "PaperworkDate":       "12-09-2013"
-                                        }],
-                "DBS":                  [{
-                                            "CheckId":              3,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedById":          123456
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                            "ClearenceLevel":       "EN",
-                                            "Result":               "PASS",
-                                            "RequestDate":          "12-09-2013",
-                                            "ReviewDate":           "12-09-2013",
-                                            "DisclousureReference": "T000135"
-                                        }],
-                "GTC":                  [{ 
-                                            "CheckId":              4,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "ID":                   [{ 
-                                            "CheckId":              5,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "List99":               [{ 
-                                            "CheckId":              6,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "List99Clearence":      "Pass",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "MED":                  [{ 
-                                            "CheckId":              7,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "Qual":                 [{
-                                            "CheckId":              8,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "RED":                  [{ 
-                                            "CheckId":              9,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }],
-                "RTW":                  [{ 
-                                            "CheckId":              10,
-                                            "VerificationDate":     "12-09-2013",
-                                            "ExpiryDate":           "12-09-2014",
-                                            "CheckedByCode":        "JD",
-                                            "CheckedByName":        "John Doe",
-                                            "Position":             "DPHT",
-                                            "Evidence":             "Certificate Provided"
-                                        }]
+                "EmployeeId": 86531,
+                "StaffCode": "ZoTh",
+                "ADD":  [
+                          {
+                            "CheckId": 50716,
+                            "VerificationDate": "13/02/2016",
+                            "ExpiryDate": "14/02/2017",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Passport No: 1234564987"
+                          }
+                        ],
+                "AGN":  [
+                          {
+                            "CheckId": 50717,
+                            "AgencyName": "Hayes",
+                            "PaperworkDate": "2016-05-21"
+                          }
+                        ],
+                "CRB":  [
+                          {
+                            "CheckId": 50718,
+                            "VerificationDate": "13/02/2008",
+                            "ExpiryDate": "21/05/2016",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Certificate Provided",
+                            "ClearenceLevel": "EN",
+                            "Result": "PASS",
+                            "RequestDate": "01/01/2008",
+                            "ReviewDate": "01/05/2016",
+                            "DisclousureReference": "1188108206"
+                          }
+                        ],
+                "DBS":  [
+                          {
+                            "CheckId": 50719,
+                            "VerificationDate": "21/05/2016",
+                            "ExpiryDate": "21/05/2019",
+                            "CheckedById": 101210,
+                            "CheckedByCode": "KaLe",
+                            "Position": "ADMIN",
+                            "Evidence": "Certificate Provided",
+                            "ClearenceLevel": "EN",
+                            "Result": "PASS",
+                            "RequestDate": "15/03/2017",
+                            "ReviewDate": "15/03/2019",
+                            "DisclousureReference": "1188108206"
+                          }
+                        ],
+                "DISQbA":   [
+                              {
+                                "CheckId": 50720,
+                                "VerificationDate": "13/02/2017",
+                                "CheckedById": 68558,
+                                "CheckedByCode": "KaBe",
+                                "Position": "AC",
+                                "Evidence": "Certificate Provided",
+                                "Result": "Yes"
+                              }
+                            ],
+                "EEASAN":   [
+                              {
+                                "CheckId": 50721,
+                                "VerificationDate": "13/03/2016",
+                                "CheckedById": 68558,
+                                "CheckedByCode": "KaBe",
+                                "Position": "AC",
+                                "Evidence": "Certificate Provided",
+                                "Result": "Yes"
+                              }
+                            ],
+                "GTC":  [
+                          {
+                            "CheckId": 50722,
+                            "VerificationDate": "21/05/2015",
+                            "ExpiryDate": "21/05/2017",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Membership Card"
+                          }
+                        ],
+                "ID":   [
+                          {
+                            "CheckId": 50723,
+                            "VerificationDate": "13/02/2008",
+                            "ExpiryDate": "21/05/2020",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Passport No: 213456"
+                          }
+                        ],
+                "List99":   [
+                              {
+                                "CheckId": 50724,
+                                "VerificationDate": "13/05/2013",
+                                "ExpiryDate": "13/05/2016",
+                                "CheckedById": 68558,
+                                "CheckedByCode": "KaBe",
+                                "Position": "AC",
+                                "Evidence": "Certificate Provided",
+                                "List99Clearance": "PASS"
+                              }
+                            ],
+                "MED":  [
+                          {
+                            "CheckId": 50725,
+                            "VerificationDate": "15/05/2010",
+                            "ExpiryDate": null,
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Dr Certificate"
+                          }
+                        ],
+                "PRB":  [
+                          {
+                            "CheckId": 50726,
+                            "VerificationDate": "16/06/2016",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Certificate",
+                            "Result": "No"
+                          }
+                        ],
+                "QUAL": [
+                          {
+                            "CheckId": 50727,
+                            "VerificationDate": "13/02/2008",
+                            "ExpiryDate": "21/05/2016",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Certificates"
+                          }
+                        ],
+                "REF": [
+                          {
+                            "CheckId": 50728,
+                            "VerificationDate": "13/02/2008",
+                            "ExpiryDate": null,
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Letters from previous Employer"
+                          }
+                        ],
+                "RTW":  [
+                          {
+                            "CheckId": 50729,
+                            "VerificationDate": "21/05/2015",
+                            "ExpiryDate": "21/05/2020",
+                            "CheckedById": 68558,
+                            "CheckedByCode": "KaBe",
+                            "Position": "AC",
+                            "Evidence": "Permit"
+                          }
+                        ],
+                "SEC128":   [
+                              {
+                                "CheckId": 50730,
+                                "VerificationDate": "21/05/2015",
+                                "CheckedById": 68558,
+                                "CheckedByCode": "KaBe",
+                                "Position": "AC",
+                                "Evidence": "Police Record",
+                                "Result": "Yes"
+                              }
+                            ]
             }
-
 
 ## Create/Update Employee Checks [/employeeChecks]
 
@@ -732,24 +811,106 @@ Create Employee checks for one to multiple employees
     + Body
     
             {
-                "EmployeeId":       0001,
-                            "ADD":  [{ }],
-                            "AGN":  [{ }],
-                            "DBS":  [{ }],
-                            "GTC":  [{ }],
-                            "ID":   [{ }],
-                            "List99":   [{ 
-                                        "VerificationDate":     "12-09-2013",
-                                        "ExpiryDate":           "12-09-2014",
-                                        "List99Clearence":      "Pass",
-                                        "CheckedById":          123456,
-                                        "Position":             "DPHT",
+                "EmployeeId":       86531,
+                "ADD":              [{
+                                        "VerificationDate":     "13/02/2016",
+                                        "ExpiryDate":           "14/02/2017",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Passport No: 1234564987"
+                                    }],
+                "AGN":              [{
+                                        "AgencyName":           "Hayes",
+                                        "PaperWorkDate":        "21/05/2016",
+                                    }],
+                "CRB":              [{
+                                        "VerificationDate":     "13/02/2008",
+                                        "ExpiryDate":           "21/05/2016",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Certificate Provided",
+                                        "ClearenceLevel":       "EN",
+                                        "Result":               "PASS",
+                                        "RequestDate":          "01/01/2008",
+                                        "ReviewDate":           "01/05/2016",
+                                        "DisclousureReference": "1188108206"
+                                    }],
+                "DBS":              [{
+                                        "VerificationDate":     "21/05/2016",
+                                        "ExpiryDate":           "21/05/2019",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Certificate Provided",
+                                        "ClearenceLevel":       "EN",
+                                        "Result":               "PASS",
+                                        "RequestDate":          "15-03-2017",
+                                        "ReviewDate":           "15-03-2019",
+                                        "DisclousureReference": "1188108206"
+                                    }],
+                "DISQbA":           [{
+                                        "VerificationDate":     "13/02/2017",
+                                        "CheckedByCode":        "KaBe",
+                                        "Result":               "PASS",
                                         "Evidence":             "Certificate Provided"
-                                        }],
-                            "MED":  [{  }],
-                            "Qual": [{ }],
-                            "RED":  [{ }],
-                            "RTW":  [{ }]
+                                    }],
+                "EEASAN":           [{
+                                        "VerificationDate":     "13/03/2016",
+                                        "CheckedByCode":        "KaBe",
+                                        "Result":               "PASS",
+                                        "Evidence":             "Certificate Provided"
+                                    }],
+                "GTC":              [{
+                                        "VerificationDate":     "21/05/2015",
+                                        "ExpiryDate":           "21/05/2017",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Membership Card"
+                                    }],
+                "ID":               [{
+                                        "VerificationDate":     "13/02/2008",
+                                        "ExpiryDate":           "21/05/2020",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Passport No: 213456"
+                                    }],
+                "List99":           [{
+                                        "VerificationDate":     "13/05/2013",
+                                        "ExpiryDate":           "13/05/2016",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Certificate Provided",
+                                        "List99Clearance":      "PASS"
+                                    }],
+                "MED":              [{
+                                        "VerificationDate":     "15/05/2010",
+                                        "ExpiryDate":           null,
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Dr Certificate"
+                                    }],
+                "PRB":              [{
+                                        "VerificationDate":     "16/06/2016",
+                                        "Result":               "NO",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Certificate"
+                                    }],
+                "QUAL":             [{
+                                        "VerificationDate":     "13/02/2008",
+                                        "ExpiryDate":           "21/05/2016",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Certificates"
+                                    }],
+                "REF":              [{
+                                        "VerificationDate":     "13/02/2008",
+                                        "ExpiryDate":           null,
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Letters from previous Employer"
+                                    }],
+                "RTW":              [{
+                                        "VerificationDate":     "21/05/2015",
+                                        "ExpiryDate":           "21/05/2020",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Permit"
+                                    }],
+                "SEC128":           [{
+                                        "VerificationDate":     "21/05/2015",
+                                        "Result":               "YES",
+                                        "CheckedByCode":        "KaBe",
+                                        "Evidence":             "Police Record"
+                                    }]  
             }
 
 + Response 200 (application/json)
@@ -757,27 +918,99 @@ Create Employee checks for one to multiple employees
     + Body
     
             {
-                "Status":       true,
-                "Details":      "Saved successfully",
-                "EmployeeId":   0001,
-                            "ADD":  [{ }],
-                            "AGN":  [{ }],
-                            "DBS":  [{ }],
-                            "GTC":  [{ }],
-                            "ID":   [{ }],
-                            "List99":   [{
-                                        "CheckId":              00001,
-                                        "VerificationDate":     "12-09-2013",
-                                        "ExpiryDate":           "12-09-2014",
-                                        "List99Clearence":      "PASS",
-                                        "CheckedById":          123456,
-                                        "Position":             "DPHT",
-                                        "Evidence":             "Certificate Provided"
-                                        }],
-                            "MED":  [{  }],
-                            "Qual": [{ }],
-                            "RED":  [{ }],
-                            "RTW":  [{ }]
+                "Status": true,
+                "Details": "Saved successfully",
+                "EmployeeId": 86531,
+                "ADD":  [
+                          {
+                            "CheckId": 50746,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "AGN":  [
+                          {
+                            "CheckId": 50747,
+                            "CheckedById": null
+                          }
+                        ],
+                "CRB":  [
+                          {
+                            "CheckId": 50748,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "DBS":  [
+                          {
+                            "CheckId": 50749,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "DISQbA":   [
+                              {
+                                "CheckId": 50750,
+                                "CheckedById": 68558
+                              }
+                            ],
+                "EEASAN":   [
+                              {
+                                "CheckId": 50751,
+                                "CheckedById": 68558
+                              }
+                            ],
+                "GTC":  [
+                          {
+                            "CheckId": 50752,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "ID":   [
+                          {
+                            "CheckId": 50753,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "List99":   [
+                              {
+                                "CheckId": 50754,
+                                "CheckedById": 68558
+                              }
+                            ],
+                "MED":  [
+                          {
+                            "CheckId": 50755,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "PRB":  [
+                          {
+                            "CheckId": 50756,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "QUAL": [
+                          {
+                            "CheckId": 50757,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "REF":  [
+                          {
+                            "CheckId": 50758,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "RTW":  [
+                          {
+                            "CheckId": 50759,
+                            "CheckedById": 68558
+                          }
+                        ],
+                "SEC128":   [
+                              {
+                                "CheckId": 50760,
+                                "CheckedById": 68558
+                              }
+                            ]
             }
 
 ### Update Employee Checks [PUT]
@@ -794,25 +1027,121 @@ Update Employee checks for one to multiple contacts
     + Body
     
             {
-                "EmployeeId":   0001,
-                            "ADD":  [{ }],
-                            "AGN":  [{ }],
-                            "DBS":  [{ }],
-                            "GTC":  [{ }],
-                            "ID":   [{ }],
-                            "List99":   [{
-                                        "CheckId":              00001,
-                                        "VerificationDate":     "12-09-2013",
-                                        "ExpiryDate":           "12-09-2014",
-                                        "List99Clearence":      "PASS",
-                                        "CheckedById":          123456,
-                                        "Position":             "DPHT",
-                                        "Evidence":             "Certificate Provided"
+                "EmployeeId":           103278,
+                "ADD":                  [{
+                                            "CheckId": 1000,
+                                            "VerificationDate":     "13/02/2016",
+                                            "ExpiryDate":           "14/02/2017",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Passport No: 1234564987"
                                         }],
-                            "MED":  [{  }],
-                            "Qual": [{ }],
-                            "RED":  [{ }],
-                            "RTW":  [{ }]
+                "AGN":                  [{
+                                            "CheckId": 1001,
+                                            "AgencyName":           "Supply and Demand",
+                                            "PaperWorkDate":        "21/05/2016"
+                                        }],
+                "CRB":                  [{
+                                            "CheckId": 1002,
+                                            "VerificationDate":     "13/02/2008",
+                                            "ExpiryDate":           "21/05/2016",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Certificate Provided",
+                                            "ClearenceLevel":       "EN",
+                                            "Result":               "PASS",
+                                            "RequestDate":          "01/01/2008",
+                                            "ReviewDate":           "01/05/2016",
+                                            "DisclousureReference": "1188108206"
+                                        }],
+                "DBS":                  [{
+                                            "CheckId": 1003,
+                                            "VerificationDate":     "21/05/2016",
+                                            "ExpiryDate":           "21/05/2019",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Certificate Provided",
+                                            "ClearenceLevel":       "EN",
+                                            "Result":               "PASS",
+                                            "RequestDate":          "15-03-2017",
+                                            "ReviewDate":           "15-03-2019",
+                                            "DisclousureReference": "1188108444"
+                                        }],
+                "DISQbA":               [{
+                                            "CheckId": 1004,
+                                            "VerificationDate":     "13/02/2017",
+                                            "CheckedByCode":        "ALe",
+                                            "Result":               "PASS",
+                                            "Evidence":             "Certificate Provided"
+                                        }],
+                "EEASAN":               [{
+                                            "CheckId": 1005,
+                                            "VerificationDate":     "13/03/2016",
+                                            "CheckedByCode":        "ALe",
+                                            "Result":               "PASS",
+                                            "Evidence":             "Certificate Provided"
+                                        }],
+                "GTC":                  [{
+                                            "CheckId": 1006,
+                                            "VerificationDate":     "21/05/2015",
+                                            "ExpiryDate":           "21/05/2017",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Membership Card"
+                                        }],
+                "ID":                   [{
+                                            "CheckId": 1007,
+                                            "VerificationDate":     "13/02/2008",
+                                            "ExpiryDate":           "21/05/2020",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Passport No: 213456"
+                                        }],  
+                "List99":               [{
+                                            "CheckId": 1008,
+                                            "VerificationDate":     "13/05/2013",
+                                            "ExpiryDate":           "13/05/2016",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Certificate Provided",
+                                            "List99Clearance":      "PASS"
+                                        }],
+                "MED":                  [{
+                                            "CheckId": 1009,
+                                            "VerificationDate":     "15/05/2010",
+                                            "ExpiryDate":           null,
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Dr Certificate"
+                                        }],
+                "PRB":                   [{
+                                            "CheckId": 1010,
+                                            "VerificationDate":     "16/06/2016",
+                                            "Result":               "NO",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Certificate"
+                                        }],
+                "QUAL":                 [{
+                                            "CheckId": 1011,
+                                            "VerificationDate":     "13/02/2008",
+                                            "ExpiryDate":           "21/05/2016",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Certificates"
+                                        }],
+                "REF":                  [{
+                                            "CheckId": 1012,
+                                            "VerificationDate":     "13/02/2008",
+                                            "ExpiryDate":           null,
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Letters from previous Employer"
+                                        }],
+                "RTW":                  [{
+                                            "CheckId": 1013,
+                                            "VerificationDate":     "21/05/2015",
+                                            "ExpiryDate":           "21/05/2020",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Permit"
+                                        }],
+                "SEC128":                 [{
+                                            "CheckId": 1014,
+                                            "VerificationDate":     "21/05/2015",
+                                            "Result":               "YES",
+                                            "CheckedByCode":        "ALe",
+                                            "Evidence":             "Police Record"
+                                        }]  
             }
 
 + Response 200 (application/json)
