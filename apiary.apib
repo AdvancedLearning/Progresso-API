@@ -552,7 +552,86 @@ Mandtory parameters:
             
                             
 
-## Staff Absences [/StaffAbsences]
+## Staff Absences [/StaffAbsences{?EmployeeId}{?DateFrom}{?DateTo}]
+
+Collection of Staff Absence methods
+
+### Retrieve collection of Staff Absences [GET]
+
+Retrieve one or more employee check records
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Parameters
+    + EmployeeId (optional, int, `0001`) ... unique Id of Staff/Employee
+    + DateFrom (optional, date, `01-09-2015`) ... start date of the date range for Absences
+    + DateTo (optional, date, `31-08-2016` ... end date of the date range for Absences
+    
++ Response 200 (applicatoin/json)
+
+    + Body
+    
+            {
+                "AbsenceId": 4229458,
+                "EmployeeId": 68783,
+                "StaffCode": "MSO",
+                "Date": "15/09/2016",
+                "Type": "A",
+                "AbsenceCategory": "CONF",
+                "SWFMapping": "TRN",
+                "ClusterMapping": null,
+                "StartTime": "08:00",
+                "FinishTime": "16:00",
+                "Explained": false,
+                "Note": "Future Muhammad Abubakr Scholars National Conference"
+            },
+            {
+                "AbsenceId": 4229459,
+                "EmployeeId": 68714,
+                "StaffCode": "NC",
+                "Date": "05/09/2016",
+                "Type": "A",
+                "AbsenceCategory": "TRIPT",
+                "SWFMapping": "PUB",
+                "ClusterMapping": null,
+                "StartTime": "08:00",
+                "FinishTime": "16:00",
+                "Explained": false,
+                "Note": "Brazil Mufazzul to Paralympics"
+            },
+            {
+                "AbsenceId": 4229460,
+                "EmployeeId": 68714,
+                "StaffCode": "NC",
+                "Date": "06/09/2016",
+                "Type": "A",
+                "AbsenceCategory": "TRIPT",
+                "SWFMapping": "PUB",
+                "ClusterMapping": null,
+                "StartTime": "08:00",
+                "FinishTime": "16:00",
+                "Explained": false,
+                "Note": "Brazil Mufazzul to Paralympics"
+            },
+            {
+                "AbsenceId": 4229461,
+                "EmployeeId": 68714,
+                "StaffCode": "NC",
+                "Date": "07/09/2016",
+                "Type": "A",
+                "AbsenceCategory": "TRIPT",
+                "SWFMapping": "PUB",
+                "ClusterMapping": null,
+                "StartTime": "08:00",
+                "FinishTime": "16:00",
+                "Explained": false,
+                "Note": "Brazil Mufazzul to Paralympics"
+            }
+
 
 ### Create one to many staff absences [POST]
 
