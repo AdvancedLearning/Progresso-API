@@ -2729,7 +2729,8 @@ Response codes used are:
             "PPI":              false,
             "AdoptedFromCare":  "N",
             "Notes":            "Lorem ipsum",
-            "Refugee":          true           
+            "CountryOfBirth":   "NYO",
+            "Refugee":          true,           
             "ExclusionDetails": [{
                                     "ExclusionId":          0001,
                                     "Category":             "FIXD",
@@ -2962,11 +2963,30 @@ Mandatory fields:
                                     "EntryDate":    "2010-09-01",
                                     "LeavingDate":  "2016-02-05",
                                     "LeavingReason":"OT"
-                                    }]
+                                    }],
             "LeavingDetails":       {
                                         "LeavingDate":          "10-08-2015",
                                         "Destination":          "Progresso Academy",
                                         "Reason":               "EL"
+                                    },
+                                    {
+            "ProficiencyDetails":   [
+                                      {
+                                        "Proficiency": "C",
+                                        "AssessedDate": "2015-09-21"
+                                      },
+                                      {
+                                        "Proficiency": "D",
+                                        "AssessedDate": "2016-09-26"
+                                      }
+                                    ],
+            "NationalityDetails":   [
+                                      {
+                                        "Type": "FRSTN",
+                                        "Nationality": "GRC"
+                                      }
+                                    ],
+            "CountryOfBirth":       "GRL"
                                     }
             }
           
