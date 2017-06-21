@@ -3292,6 +3292,192 @@ Mandatory fields:
               }
 
 
+### Create Contacts associated to a learner [POST]
+
++ Mandatory fields
+    + LearnerCode (required, string, '015234') ... unique code of the Learner
+    + Title (required, string, 'Mr') ... title of the Contact
+    + Surname (required, string, 'King') ... surname of the Contact
+    + Forename (required, string, 'Jo') ... forename of the Contact
+    + Gender (required, string, 'M') ... gender of the Contact
+    + Relationship (required, string, 'PAF') ... relationship of the Contact to Learner
+
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerCode":          "115246",
+                "Title":                "Mr",
+                "Surname":              "King",
+                "Forename":             "Jo",
+                "MiddleName":           "John",
+                "Gender":               "M",
+                "Email":                "jo.king@home.com",
+                "Language":             "Eng",
+                "Occupation":           "Builder",
+                "Nationality":          "GBR",
+                "IsMedicalContact":     true,
+                "WorkEmail":            "Ice.King@oneadvanced.com",
+                "Employer":             "Advanced",
+                "TranslatorReqiured":   false,
+                "ExPupil":              false,
+                "MedicalType":          "DR",
+                "VisaNumber":           "09823452",
+                "MemberOfArmedForces":  false,
+                "PhoneDetails":         [{
+                                            "Type":     "H",
+                                            "Number":   "013332552552",
+                                            "SmsFlag":  false
+                                        },{
+                                            "Type":     "M",
+                                            "Number":   "07707707707",
+                                            "SmsFlag":  true
+                                        }],
+                "AddressDetails":       [{
+                                            "Country":      "GBR",
+                                            "Type":         "H",
+                                            "Flat":         "3a",
+                                            "Number":       "1",
+                                            "Street":       "The Street",
+                                            "Locality":     "Belper",
+                                            "Town":         "Derby",
+                                            "County":       "Derbyshire",
+                                            "PostCode":     "DD55 36DD"
+                                        }],
+                "Relationship":             "PAF",
+                "WrittenCommunication":    "E",
+                "Priority":                 1,
+                "PrioritySource":           "O",
+                "EmergencyLevel":           "Primary",
+                "NextOfKin":                true,
+                "AddressDisclosure":        false,
+                "AddressTransferred":       false,
+                "ParentalResponsibility":   true,
+                "FeePayer":                 false,
+                "ParentalPortal":           true,
+                "HomeAddressLink":          true,
+                "OtherHomeAddressLink":     false,
+                "SendSMS":                  true
+            }
+ 
+ 
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "LearnerId":    123456,
+                "LearnerCode":  "015234",
+                "ContactId":    456789,
+                "PhoneDetails": [
+                                  {
+                                    "PhoneId": 2446053
+                                  }
+                                ],
+                "AddressDetails":[
+                                  {
+                                    "AddressId": 1506677
+                                  }
+                                ]
+            }
+            
+            
+ 
+### Update Contacts associated to a learner [PUT]
+
++ Mandatory fields
+    + LearnerCode (required, string, '015234') ... unique code of the Learner
+    + ContactId (required, int, 456789) ... unique id of the Contact
+    
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "LearnerId": 460382,
+                "ContactId": 1578478,
+                "LearnerCode":          "116335",
+                "Title":                "Mr",
+                "Surname":              "King",
+                "Forename":             "Joe",
+                "MiddleName":           "John",
+                "Gender":               "M",
+                "Email":                "joe.king@home.com",
+                "Language":             "Eng",
+                "Occupation":           "Builder",
+                "Nationality":          "GBR",
+                "IsMedicalContact":     true,
+                "WorkEmail":            "Ice.King@oneadvanced.com",
+                "Employer":             "Advanced",
+                "TranslatorReqiured":   false,
+                "ExPupil":              false,
+                "MedicalType":          "DR",
+                "VisaNumber":           "09823452",
+                "MemberOfArmedForces":  false,
+                "PhoneDetails":         [{
+                                            "PhoneId": 3030394,
+                                            "Type":     "H",
+                                            "Number":   "013352552552",
+                                            "SmsFlag":  false
+                                        },{
+                                            "PhoneId": 3030395,
+                                            "Type":     "M",
+                                            "Number":   "077077076217",
+                                            "SmsFlag":  true
+                                        }],
+                "AddressDetails":       [{
+                                            "AddressId": 2092739,
+                                            "Country":      "GBR",
+                                            "Type":         "H",
+                                            "Flat":         "3a",
+                                            "Number":       "1",
+                                            "Street":       "The High Street",
+                                            "Locality":     "Belper",
+                                            "Town":         "Derby",
+                                            "County":       "Derbyshire",
+                                            "PostCode":     "DD55 36DD"
+                                        }]
+            }
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "LearnerId":    123456,
+                "LearnerCode":  "015234",
+                "ContactId":    456789,
+                "PhoneDetails": [
+                                  {
+                                    "PhoneId": 2446053
+                                  }
+                                ],
+                "AddressDetails":[
+                                  {
+                                    "AddressId": 1506677
+                                  }
+                                ]
+            }
+
             
 ## Learner Health Details [/LearnerHealth{?since}]
 
@@ -3994,6 +4180,41 @@ Create SEN Major Needs for one to many learners
                                 }]
             }
            
+
+# Group Documents
+
+## Documents [/Document{?IsEmployee}{?Id}{?DateFrom}{?DateTo}]
+
+### Retrieve Documents for Learners or Staff [GET]
+
++ Parameters
+    + IsEmployee (required, boolean, `false`) ... LEarner or Employee documents
+    + Id (required, int, `987465`) ... unique Id of Learner or Exmployee
+    + DateFrom (optional, string, `01-09-2016`) ... Start of date range
+    + DateTo (optional, string, `31-08-2017`) ... End of date range
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            {
+              "Id":         20156,
+              "Document":   "0xFFD8FFE000104A46494600010101006000600000FFDB0043000604050",
+              "DocumentURL":"https://ASChool-my.sharepoint.com/personal//OneNote.aspx?id=%2fpersonal%2fiferrier_utcoxfordshire_org_uk%2fDocuments%2fClass%20Notebooks%2fSEND%20Student%20Support&wd=target%28Y12%20Ro&end",
+              "Title":      "Spring 2 Report to Parents KS3 - 10-11",
+              "Name":       "L20156_2930_993030_Spring 2 Report to Parents KS3 - 10-11_03_05_2011_time_12_24_53.pdf"
+              "CreatedDate":"14-03-2017"
+            }
+
+
+
+
 
 # Group Learner Attendnace
 
@@ -7551,30 +7772,30 @@ Create Group Association for one to many Learners and Groups
     + Body
     
             {
-                    "groupId":   1,
-                    "learners":   [{
-                                        "learnerId":                1,
-                                        "startDate":                "01-09-2014",
-                                        "endDate":                  "30-08-2015"
+                    "GroupId":   1,
+                    "Learners":   [{
+                                        "LearnerId":                1,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
                                 },
                                 {
-                                        "learnerId":                2,
-                                        "startDate":                "01-09-2014",
-                                        "endDate":                  "30-08-2015"
+                                        "LearnerId":                2,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
 
                                 }]
             },
             {
-                   "groupId":   2,
-                    "learners":   [{
-                                        "learnerId":                1,
-                                        "startDate":                "01-09-2014",
-                                        "endDate":                  "30-08-2015"
+                   "GroupId":   2,
+                    "Learners":   [{
+                                        "LearnerId":                1,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
                                 },
                                 {
-                                        "learnerId":                2,
-                                        "startDate":                "01-09-2014",
-                                        "endDate":                  "30-08-2015"
+                                        "LearnerId":                2,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
 
                                 }]
 
@@ -7704,6 +7925,47 @@ Update Group Association for one to many Learners and Groups
 
 # Group  Academic Data
 Group of all Academic Resources
+
+## School [/School]
+
+### Retrieve School Details [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "SchoolId":           20156,
+              "EstablishmentName":  "A School Name",
+              "Street":             "Street Lane",
+              "Locality":           "Denby",
+              "Town":               "Streettown",
+              "County":             "Derbyshire",
+              "Postcode":           "KT3 5HL",
+              "LAName":             "Derbyshire",
+              "LANumber":           "830",
+              "DfENumber":          "2045",
+              "Status":             "Open",
+              "EstablishmentType":  "Independant",
+              "OpenDate":           "01/09/2000",
+              "HeadPreferredJobTitle":  "Principal",
+              "HeadTitle":          "Mr",
+              "HeadFirstName":      "John",
+              "HeadLastName":       "Depp",
+              "TelephoneSTDCode":   "01335",
+              "TelephoneNumber":    "123456",
+              "WebsiteAddress":     "http://www.vischool.sch.uk",
+              "EmailAddress":       "info@vischool.com"
+            }
+    
+    
 
 ## AcademicYear [/academicYear/{?id}]
 
@@ -9183,6 +9445,7 @@ Update one to many Day Composition Periods
             {
             "EventId":      124512732,
             "Date":         "2015-12-01",
+            "PeriodId":     123456
             "StartTime":    "09:00",
             "FinishTime":   "10:00",
             "Day":          "Tue1",
