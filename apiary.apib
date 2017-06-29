@@ -145,7 +145,16 @@ Retrieve one to many employee basic records
                                             "Level":    "4",
                                             "LanguageUsageId": 434000
                                         }],
-                "QualificationDetails": null
+                "QualificationDetails": [
+                                        {
+                                            "QualificationCode": "FRST",
+                                            "Subject1": "W900",
+                                            "Subject2": "",
+                                            "ClassOfDegree": "1",
+                                            "Verified": "False",
+                                            "EmployeeQaulificationId": 22324
+                                        }
+                                        ],
                 "Nationality":          "GBR",
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
@@ -1974,14 +1983,14 @@ Update one to many contact records
 
 # Group Learners
 
-## Learners Collection [/Learners{?status}{?since}]
+## Learners Collection [/Learners{?Status}]
 
 Collection of all learner-related resources
 
 ### Retrieve a collection of learners [GET]
 
 + Parameters
-    + since (optional, dateTime, `01-04-2014T18:00:00`)
+    + Status (optional, string, `Active`) ... returns Active, Draft or Left Learners
     
 + Request
 
