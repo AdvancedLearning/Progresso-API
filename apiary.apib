@@ -7619,6 +7619,14 @@ Create one or many groups
 
 ### Update Group [PUT]
 Update one or many groups
+
++ Mandatory fields
+    + GroupId
+    + GroupCode
+    + Type
+    + DateFrom
+    + DateTo
+    + SubjectCode (only for TeachingGroup)
             
 + Request (application/json)
 
@@ -7630,22 +7638,22 @@ Update one or many groups
     + Body
     
              [{
-                "groupId":      000001,
-                "groupCode":    "9B",
-                "course":       "Key Stage 4",
-                "dateFrom":     "",
-                "dateTo":       "",
-                "employee":   [{
+                "GroupId":      000001,
+                "GroupCode":    "9B",
+                "Course":       "Key Stage 4",
+                "DateFrom":     "",
+                "DateTo":       "",
+                "Employee":   [{
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   00001},
                                 {
                                     "employeeId":   54321,
                                     "staffCode":    "JDo"
                                 }],
-                "name":         "9A",
-                "subjectCode":  "",
-                "subjectName":  "",
-                "type":         "RegistrationGroup",
+                "Name":         "9A",
+                "SubjectCode":  "",
+                "SubjectName":  "",
+                "Type":         "RegistrationGroup",
                 "Year":         "9"
             }]
 
@@ -7654,10 +7662,10 @@ Update one or many groups
     + Body
     
             {
-                "status":       true,
-                "details":      "Saved Successfully"
-                "groupId":      000001,
-                "groupCode":    "9B"
+                "Status":       true,
+                "Details":      "Saved Successfully"
+                "GroupId":      000001,
+                "GroupCode":    "9B"
              }
 
 
