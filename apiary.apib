@@ -60,6 +60,13 @@ Methods for all employee-related resources
 
 Collection of Employee related resources
 
+**Please note Gender values:**
+
+    + 0 = Not known
+    + 1 = Male
+    + 2 = Female
+    + 9 = Not specified
+
 ### Retrieve one to many basic employee records [GET]
 
 Retrieve one to many employee basic records
@@ -171,7 +178,7 @@ Retrieve one to many employee basic records
 
 + Mandatory fields
 
-    + EmployeeId, Surname, Forename are mandatory fields
+    + StaffCode, Surname, Forename are mandatory fields
     
     + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
 
@@ -197,16 +204,16 @@ Retrieve one to many employee basic records
                 "Surname":              "Bloggs",
                 "Forname":              "Joe",
                 "Department":           "MAT",
-                "Position":             "Teacher",
+                "Position":             "TCR",
                 "LegalSurname":         "Bloggs",
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
                 "MiddleName":           "Bob",
-               "DisplayName":          "Mr J B Bloggs",
-                "DateOfBirth":          "31-12-1968 00:00:00",
+                "DisplayName":          "Mr J B Bloggs",
+                "DateOfBirth":          "31-12-1968",
                 "Gender":               "1",
-                "StartDate":            "28-02-2014 00:00:00",
-                "LeftDate":             "31-12-2015 00:00:00",
+                "StartDate":            "28-02-2014",
+                "LeftDate":             "31-12-2015",
                 "DestinationType":      2,
                 "Destination":          "Hermitage on Skye",
                 "LeavingReason":        "Wants to be a hermit"'
@@ -231,7 +238,7 @@ Retrieve one to many employee basic records
                                             "Locality": "Belper",
                                             "Town":     "Derby",
                                             "County":   "Derbyshire"
-                                            "PostCode": "DD55 36DD"
+                                            "PostCode": "DD55 6FD"
                                         }],
                 "Status":               "Left",
                 "ExcludeFromCensus":    true
@@ -1983,7 +1990,7 @@ Update one to many contact records
 
 # Group Learners
 
-## Learners Collection [/Learners{?Status}]
+## Learners Collection [/Learners{?Status}{?LearnerId}]
 
 Collection of all learner-related resources
 
@@ -1991,6 +1998,7 @@ Collection of all learner-related resources
 
 + Parameters
     + Status (optional, string, `Active`) ... returns Active, Draft or Left Learners
+    + LearnerId (optional, int, `12344567`) ...returns a specific Learner
     
 + Request
 
