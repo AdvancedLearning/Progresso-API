@@ -260,6 +260,7 @@ Retrieve one to many employee basic records
                                             "Subject2": "C100",
                                             "ClassOfDegree": "3",
                                             "Verified":   true
+                                        }],
                 "Nationality":          "GBR",
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
@@ -1357,8 +1358,7 @@ Create one to many contract records
     
             {
                 "EmployeeId":   00001,
-                "Contracts":    [{
-                                    "ContractId":   0,    
+                "Contracts":    [{    
                                     "Type":         "PRM",
                                     "Name":         "Main Contract",
                                     "StartDate":    "01-09-2013",
@@ -1453,13 +1453,13 @@ Collection of all employee roles for employee contracts within a school
                 "EmployeeId":       00001,
                 "ContractId":       00001,
                 "Roles":    [{
-                                "Role":             "Teaching Assistant",
+                                "Role":             "ADVT",
                                 "HoursPerWeek":     32.50,
                                 "FTEHours":         32.50,
                                 "WeeksPerYear":     52.14,
                                 "PayrollNumber":    "123456",
-                                "NIRate":           "Contracted In",
-                                "Superannuation":   "Teachers Superannuation",
+                                "NIRate":           "CI",
+                                "Superannuation":   "TEAC",
                                 "CostCentre":       "TEACH",
                                 "LedgerCode":       "A040"
                             }]
@@ -1487,24 +1487,24 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "employeeId":       00001,
-                "contractId":       00001,
-                "roles":    [{
-                                "status":           true,
-                                "details":          "Saved Succesfully",
-                                "roleId":           0001,
-                                "role":             "Teaching Assistant",
+                "EmployeeId":       00001,
+                "ContractId":       00001,
+                "Roles":    [{
+                                "Status":           true,
+                                "Details":          "Saved Succesfully",
+                                "RoleId":           0001,
+                                "Role":             "Teaching Assistant",
 
                             }]
             },
             {
-                "employeeId":       00002,
-                "contractId":       00002,
-                "roles":    [{
-                                "status":           true,
-                                "details":          "Saved Succesfully",
-                                "roleId":           0002,
-                                "role":             "Teaching Assistant",
+                "EmployeeId":       00002,
+                "ContractId":       00002,
+                "Roles":    [{
+                                "Status":           true,
+                                "Details":          "Saved Succesfully",
+                                "RoleId":           0002,
+                                "Role":             "Teaching Assistant",
 
                             }]
             }
