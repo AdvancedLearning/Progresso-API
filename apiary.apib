@@ -3512,7 +3512,6 @@ Create and update one to many learner heatlh records
     
             {
                 "LearnerId": 443790,
-                "LearnerCode": "9196",
                 "Allergies": [{
                                 "Allergy": "EGG"
                               },{
@@ -7677,14 +7676,14 @@ Update one or many groups
              }
 
 
-## Group Association [/groupAssociation/{?groupId}{?since}{?groupStartDate}{?groupEndDate}]
+## Group Association [/GroupAssociation/{?GroupId}{?GroupStartDate}{?GroupEndDate}]
 
 **Please note: StartDate and EndDate in the response are the dates the Learner joined and left the group**
 
 + Parameters
-    + groupId (optional, number, `12345`) ... The unique identifier of a Learner Group
-    + groupStartDate (optional, dateTime, `01-04-2014`) ... Optional filter to retrieve all groups with a start date after specified date
-    + groupEndDate (optional, dateTime, `01-04-2014`) ... Optional filter to retrieve all groups with an end date before specified date.
+    + GroupId (optional, number, `12345`) ... unique identifier of a Learner Group
+    + GroupStartDate (optional, dateTime, `01-04-2014`) ... optional filter to retrieve all groups with a start date after specified date
+    + GroupEndDate (required, dateTime, `01-04-2014`) ... required if GroupStartDate exist to retrieve all groups with an end date before specified date
     
 
 ### Retrieve Learner Group Association [GET]
