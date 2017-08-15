@@ -3183,15 +3183,15 @@ Mandatory fields:
 
 
 
-## Learner Contacts [/LearnerContacts{?since}{?status}{?responsibility}{?priority}]
+## Learner Contacts [/LearnerContacts{?LearnerId}{?status}{?responsibility}{?priority}]
 
 *Addtional fileds have been added to this method to make it more useful*
 
 ### Retrieve a Contacts associated to a learner [GET]
 
 + Parameters
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
-    + status (optional, boolean, `Active`) ... returns Active, Draft or Left learners when used
+    + LearnerId (optional, int, `123456`) ... unique Id of Learner
+    + status (optional, string, `Active`) ... returns Active, Draft or Left learners when used
     + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
     + priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
 
@@ -3210,53 +3210,53 @@ Mandatory fields:
                 "LearnerId": 443756,
                 "LearnerCode": "7791",
                 "UPN": null,
-                "LearnerContactDetails": [
-                  {
-                    "ContactId": 949950,
-                    "ForeName": "Colleen",
-                    "SurName": "Sterling",
-                    "Relationship": "PAM",
-                    "WrittenCommunication": "",
-                    "Priority": 1,
-                    "ContactPrioritySource": "",
-                    "EmergencyContactLevel": "Primary",
-                    "NextOfKin": true,
-                    "AddressDisclosure": false,
-                    "AddressTransferred": false,
-                    "ParentalResponsibility": true,
-                    "FeePayer": false,
-                    "ParentalPortal": true,
-                    "HomeAddressLink": true,
-                    "OtherHomeAddressLink": false,
-                    "SendSMS": false,
-                    "Title": "Mrs",
-                    "Gender": "F",
-                    "Email": "CDavitt@advancedfirstline.com",
-                    "PhoneDetails": [
-                                      {
-                                        "Type": "H",
-                                        "Number": "01111567891",
-                                        "SMSFlag": false,
-                                        "PhoneId": 2165134
-                                      }
-                                    ],
-                    "AddressDetails": [
-                                      {
-                                        "Country": "GBR",
-                                        "Type": "H",
-                                        "Flat": "",
-                                        "Number": "23",
-                                        "Street": "Orchard Gardens",
-                                        "Locality": "Derby",
-                                        "Town": "",
-                                        "County": "",
-                                        "PostCode": "DE21 4FL",
-                                        "AddressId": 1322284
-                                      }
-                                      ]
-                  }
-                ]
-              }
+                "LearnerContactDetails":[
+                                        {
+                                            "ContactId": 949950,
+                                            "ForeName": "Colleen",
+                                            "SurName": "Sterling",
+                                            "Relationship": "PAM",
+                                            "WrittenCommunication": "",
+                                            "Priority": 1,
+                                            "ContactPrioritySource": "",
+                                            "EmergencyContactLevel": "Primary",
+                                            "NextOfKin": true,
+                                            "AddressDisclosure": false,
+                                            "AddressTransferred": false,
+                                            "ParentalResponsibility": true,
+                                            "FeePayer": false,
+                                            "ParentalPortal": true,
+                                            "HomeAddressLink": true,
+                                            "OtherHomeAddressLink": false,
+                                            "SendSMS": false,
+                                            "Title": "Mrs",
+                                            "Gender": "F",
+                                            "Email": "CDavitt@advancedfirstline.com",
+                                            "PhoneDetails": [
+                                                              {
+                                                                "Type": "H",
+                                                                "Number": "01111567891",
+                                                                "SMSFlag": false,
+                                                                "PhoneId": 2165134
+                                                              }
+                                                            ],
+                                            "AddressDetails": [
+                                                              {
+                                                                "Country": "GBR",
+                                                                "Type": "H",
+                                                                "Flat": "",
+                                                                "Number": "23",
+                                                                "Street": "Orchard Gardens",
+                                                                "Locality": "Derby",
+                                                                "Town": "",
+                                                                "County": "",
+                                                                "PostCode": "DE21 4FL",
+                                                                "AddressId": 1322284
+                                                              }
+                                                              ]
+                                        }
+                                        ]
+            }
 
 
 ### Create Contacts associated to a learner [POST]
@@ -7676,7 +7676,7 @@ Update one or many groups
              }
 
 
-## Group Association [/GroupAssociation/{?GroupId}{?GroupStartDate}{?GroupEndDate}]
+## Group Association [/GroupAssociation/{?GroupId}{?GroupStartDate}{?GroupEndDate}{?IncludePast}]
 
 **Please note: StartDate and EndDate in the response are the dates the Learner joined and left the group**
 
@@ -7684,6 +7684,7 @@ Update one or many groups
     + GroupId (optional, number, `12345`) ... unique identifier of a Learner Group
     + GroupStartDate (optional, dateTime, `01-04-2014`) ... optional filter to retrieve all groups with a start date after specified date
     + GroupEndDate (required, dateTime, `01-04-2014`) ... required if GroupStartDate exist to retrieve all groups with an end date before specified date
+    + IncludePast (optional, boolean, `true`) ... reutrns past learners in the group as well as current if true
     
 
 ### Retrieve Learner Group Association [GET]
@@ -7702,15 +7703,18 @@ Update one or many groups
     
             {
                     "GroupId":      1,
-                    "Code":         "10SA"
+                    "Code":         "10SA",
+                    "GroupType":    "RegistrationGroup"
                     "Learners":     [{
                                         "LearnerId":                0001,
+                                        "LearnerCode":              "2016-0123",
                                         "LearnerGroupLearnerId":    00001,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
                                     },
                                     {
                                         "LearnerId":                0002,
+                                        "LearnerCode":              "2014-1234",
                                         "LearnerGroupLearnerId":    00002,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
@@ -7721,12 +7725,14 @@ Update one or many groups
                     "Code":         "7BG"
                     "Learners":     [{
                                         "LearnerId":                00001,
+                                        "LearnerCode":              "2016-0123",
                                         "LearnerGroupLearnerId":    000003,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
                                     },
                                     {
                                         "LearnerId":                00002,
+                                        "LearnerCode":              "2014-1234",
                                         "LearnerGroupLearnerId":    000004,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
@@ -7748,9 +7754,10 @@ Create Group Association for one to many Learners and Groups
     + Body
     
             {
-                    "GroupId":   1,
-                    "Learners":   [{
-                                        "LearnerId":                1,
+                    "Code":     "10AR1",
+                    "GroupType":"TeachingGroup",
+                    "Learners": [{
+                                        "LearnerCode":                1,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
                                 },
@@ -7762,8 +7769,9 @@ Create Group Association for one to many Learners and Groups
                                 }]
             },
             {
-                   "GroupId":   2,
-                    "Learners":   [{
+                    "Code":     "10A",
+                    "GroupType":"RegistrationGroup",
+                    "Learners": [{
                                         "LearnerId":                1,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
@@ -7772,6 +7780,38 @@ Create Group Association for one to many Learners and Groups
                                         "LearnerId":                2,
                                         "StartDate":                "01-09-2014",
                                         "EndDate":                  "30-08-2015"
+
+                                }]
+
+            },
+            {
+                    "Code":     "Ski Trip",
+                    "GroupType":"AdHocGroup",
+                    "Learners": [{
+                                        "LearnerId":                1,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
+                                },
+                                {
+                                        "LearnerId":                2,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  "30-08-2015"
+
+                                }]
+
+            },
+            {
+                    "Code":     "Dove",
+                    "GroupType":"AcademicHouseGroup",
+                    "Learners": [{
+                                        "LearnerId":                1,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  null
+                                },
+                                {
+                                        "LearnerId":                2,
+                                        "StartDate":                "01-09-2014",
+                                        "EndDate":                  null
 
                                 }]
 
@@ -9381,9 +9421,14 @@ Update one to many Day Composition Periods
 
 ## Timetable Events  [/ttEvents/{?SourceId}{?EmployeeId}{?LearnerId}{?StartDate}{?EndDate}{?DayCompositionId}]
 
+
+### Retrieve Timetable Events [GET]
+
 - Mandatory fields
     - SourceId is a mandatory field
-*And either*
+
+And either
+
     - LearnerId
     - EmployeeID
     - StartDate and EndDate
@@ -9396,8 +9441,6 @@ Update one to many Day Composition Periods
     + EndDate (optional, date, `2015-12-08`) ... End of date range
     + DayCompositionId (optional, number, `1234`) ... filter for event for a single day
 
-
-### Retrieve Timetable Events [GET]
 
 + Request
 
@@ -9430,23 +9473,27 @@ Update one to many Day Composition Periods
             "NCAEventType": "",
             "Employees":[
                           {
+                            "EventTeacherAssociationId":    48523,
                             "EmployeeId": 104034,
                             "EmployeeCode": "KBr"
                           }
                         ],
             "Groups":   [
                           {
+                            "EventLearnerGroupAssociationId":   15684,
                             "GroupId": 1044341,
                             "GroupCode": "11En1"
                           }
                         ],
             "Subjects": [
                           {
+                            "EventSubjectAssociationId":        87131,
                             "Subject": "EN"
                           }
                         ],
             "Rooms":    [
                           {
+                            "EventRoomAssociationId":           184615,
                             "Room": "CE06"
                           }
                         ]
@@ -9454,6 +9501,180 @@ Update one to many Day Composition Periods
             
 
 + Response 204
+
+
+### Create Timetable Events [POST]
+
+**Pre-requisites**
+* Timetable Source, Day Structure, Date Mappings, Day Compositoin and Week Ranges have already been created
+
++ Fields
+    + Source (required, string, `TT2016/17`) ... code of Timetable Source
+    + DayComposition (required, string, `Lessons`) ... name of Day Composition
+    + EffectiveDate (required, string, `28\06\2017`)
+    + EventType (required, string, `Timetable`) ... option of Timetable or AdHoc
+    + Iterations (required, int, `1,2,3,4,5`) ... number of the Iterations the event is required for
+    + Day (required, string, `MonA`) ... code of the day the event is required for
+    + StartTime (required, string, `09:00`) ... start time of the event
+    + EndTime (required, string, `10:00`) ... end time of the event
+    + Employees (required, string, `Abc,CDe`) ... code of staff assigned to the event
+    + Subjects (required, string, `ART,AR/TX`) ... code of subjects assigned to the event 
+    + Rooms (optional, string, `6ART,AWE05`) ... code of rooms assigned to the event
+    + Groups (optional, string, `10.1ART,10.2ART`) ... code of groups assigned to the event
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+            
+            {
+                "Source":           "TT2016/17",
+                "DayComposition":   "Lessons",
+                "EventType":        "Timetable",
+                "EffectiveDate":    "19/06/2017",
+                "Iterations":       [
+                                    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+                                    ],
+                "Day":              "MonA",
+                "StartTime":        "09:00",
+                "EndTime":          "10:00",
+                "Employees":        [
+                                        "ABc","CDe"
+                                    ],
+                "Subjects":          [
+                                        "ART","AR/TX"
+                                    ],
+                "Rooms":            [
+                                        "6ART","AWE05"
+                                    ],
+                "TeachingGroups":           [
+                                        "10.1ART","10.2ART"
+                                    ]
+            },
+            {
+                "Source":           "TT2016/17",
+                "DayComposition":   "Lessons",
+                "EventType":        "Timetable",
+                "EffectiveDate":    "19/06/2017",
+                "Iterations":       [
+                                    1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+                                    ],
+                "Day":              "MonA",
+                "StartTime":        "09:00",
+                "EndTime":          "10:00",
+                "Employees":        [
+                                        "ABc","CDe"
+                                    ],
+                "Subjects":          [
+                                        "ART","AR/TX"
+                                    ],
+                "Rooms":            [
+                                        "6ART","AWE05"
+                                    ],
+                "RegistrationGroups":   [
+                                            "10.1ART","10.2ART"
+                                        ]
+            }
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "EventStructureId":         6543,
+                "EventId":                  [123456, 123457,123458,123459]
+            },
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "EventStructureId":         4567,
+                "EventId":                  [987654, 987655,987656,987657]
+            }
+            
+                    
+### Update Timetable Events [PUT]
+
+**Mandatory field**
+
++ EventId
+
+All below fields are required if anyone is present
+
++ Source
++ DayComposition
++ Iteration
++ Day
++ StartTime
++ EndTime
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "Source":               "TT2016/17",
+                "EventId":              6521,
+                "DayComposition":       "AllDay",
+                "EventType":            "AdHoc",
+                "Iteration":            1,
+                "Day":                  "MonA",
+                "StartTime":            "09:00",
+                "EndTime":              "10:00"
+                "Employees":            [
+                                        {
+                                            "EventTeacherAssociationId":    1234,
+                                            "EmployeeCode":                 "ABc"
+                                        }
+                                        ],
+                "Subjects":             [
+                                        {
+                                            "EventSubjectAssociationId":    8463,
+                                            "Subject":                      "ART"
+                                        }
+                                        ],
+                "Rooms":                [
+                                        {
+                                            "EventRoomAssociationId":       7561,
+                                            "Room":                         "6ART"
+                                        }
+                                        ],
+                "TeachingGroups":       [
+                                        {
+                                            "EventLearnerGroupAssociationId":   4567,
+                                            "GroupCode":                        "10.1ART"
+                                        }
+                                        ],
+                "RegistrationGroups":   [
+                                        {
+                                            "EventLearnerGroupAssociationId":   5216,
+                                            "GroupCode":                        "10A"
+                                        }
+                                        ]
+            }
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "EventId":              6521
+            }
+        
 
 
 # Group Physical
