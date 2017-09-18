@@ -1346,7 +1346,6 @@ Collection of all employee checks for employees within a school
 
 Create one to many contract records  
 
-
 + Request (application/json)
 
     + Headers
@@ -1359,14 +1358,18 @@ Create one to many contract records
             {
                 "EmployeeId":   00001,
                 "Contracts":    [{    
-                                    "Type":         "PRM",
-                                    "Name":         "Main Contract",
-                                    "StartDate":    "01-09-2013",
-                                    "EndDate":      "31-08-2015",
-                                    "PostCode":     "AHT",
-                                    "DailyRate":    true,
-                                    "Origin":       "OTHEDU",
-                                    "Destination":  ""                           
+                                    "Type":             "PRM",
+                                    "Name":             "Main Contract",
+                                    "StartDate":        "01-09-2013",
+                                    "EndDate":          "31-08-2015",
+                                    "PostCode":         "AHT",
+                                    "DailyRate":        true,
+                                    "Origin":           "OTHEDU",
+                                    "Destination":      "",
+                                    "PayReviewDate":    "27/05/2014",
+                                    "PayFrameworkCode": "2014",
+                                    "MinRange":         "45000",
+                                    "MaxRange":         "75000"
                                 }]
             }
 
@@ -1414,7 +1417,11 @@ Update one to many contract records
                                     "DailyRate":    true,
                                     "Base Pay":     36588.00,
                                     "Origin":       "OTHEDU",
-                                    "Destination":  ""                           
+                                    "Destination":  "",
+                                    "PayReviewDate":    "27/05/2014",
+                                    "PayFrameworkCode": "2014",
+                                    "MinRange":         "45000",
+                                    "MaxRange":         "75000"                           
                                 }]
             }
 
@@ -1524,37 +1531,37 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "employeeId":       0001,
-                "roleId":           0001,
-                "salary":           [{
-                                        "effectiveFrom":        "01-09-2014",
-                                        "effectiveTo":          "31-08-2015",
-                                        "payScaleCode":         "OT",
-                                        "payScaleName":         "Leadership",
-                                        "regionalSpine":        "EW",
-                                        "point":                "1",
-                                        "safeguardedSalary":    true,
-                                        "includeInPensionCalc": false,
-                                        "includeInNICalc":      true,
-                                        "basePay":              15000.25
+                "EmployeeId":       0001,
+                "RoleId":           0001,
+                "Salary":           [{
+                                        "EffectiveFrom":        "01-09-2014",
+                                        "EffectiveTo":          "31-08-2015",
+                                        "PayScaleCode":         "OT",
+                                        "PayScaleName":         "Leadership",
+                                        "RegionalSpine":        "EW",
+                                        "Point":                "1",
+                                        "SafeguardedSalary":    true,
+                                        "IncludeInPensionCalc": false,
+                                        "IncludeInNICalc":      true,
+                                        "BasePay":              15000.25
                 
                                     }]
             
             
             },
             {
-                "employeeId":       0002,
-                "roleId":           0003,
-                "salary":           [{
-                                        "effectiveFrom":        "01-09-2014",
-                                        "effectiveTo":          "31-08-2015",
-                                        "payScale":             "",
-                                        "regionalSpine":        "",
-                                        "point":                "",
-                                        "safeguardedSalary":    true,
-                                        "includeInPensionCalc": false,
-                                        "includeInNICalc":      true,
-                                        "basePay":              15000.25
+                "EmployeeId":       0002,
+                "RoleId":           0003,
+                "Salary":           [{
+                                        "EffectiveFrom":        "01-09-2014",
+                                        "EffectiveTo":          "31-08-2015",
+                                        "PayScale":             "",
+                                        "RegionalSpine":        "",
+                                        "Point":                "",
+                                        "SafeguardedSalary":    true,
+                                        "IncludeInPensionCalc": false,
+                                        "IncludeInNICalc":      true,
+                                        "BasePay":              15000.25
                                     }]
             
             }
@@ -1565,25 +1572,25 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "employeeId":       0001,
-                "roleId":           0001,
-                "salary":           [{
-                                        "status":           true,
-                                        "details":          "Saved Succesfully",
-                                        "salaryId":         1,
-                                        "roleSalaryId":     1
+                "EmployeeId":       0001,
+                "RoleId":           0001,
+                "Salary":           [{
+                                        "Status":           true,
+                                        "Details":          "Saved Succesfully",
+                                        "SalaryId":         1,
+                                        "RoleSalaryId":     1
                                     }]
             
             
             },
             {
-                "employeeId":       0002,
-                "roleId":           0003,
-                "salary":           [{
-                                        "status":           true,
-                                        "details":          "Saved Succesfully",
-                                        "salaryId":         2,
-                                        "roleSalaryId":     2
+                "EmployeeId":       0002,
+                "RoleId":           0003,
+                "Salary":           [{
+                                        "Status":           true,
+                                        "Details":          "Saved Succesfully",
+                                        "SalaryId":         2,
+                                        "RoleSalaryId":     2
                                     }]
             
             }
@@ -1665,8 +1672,82 @@ Collection of all employee roles for employee contracts within a school
                                     }]
             
             }
-            
+ 
+ 
+           
+## Create Employee Allowances [/EmployeeAllowances]
+Collection of all employee Allowances for employee Roles within a school
 
++ Fields
+    + StaffCode (required, string, `4569`) ... unqiue Id of Staff
+    + ContractName (required, string, `Main Contract 1`) ... unique name of Contract
+    + RoleType (required, string, `TCHR`) ... unique code of the Role associated with the Contract
+    + AllowanceCategory (required, string, `SEN`) ... unique code of Allowance Category
+    + EffectiveFrom (required, string, `01/09/2017`) ... start date of the Allowance
+    + EffectiveFrom (optional, string, `31/09/2018`) ... end date of the Allowance
+    + AnnualAmount (required, dec, `2563.00`) ... annual Allowance amount
+    + Description (optional, string, `Lorem Ipsum`) ... descriptoin of Allowance
+    + IncludeInPensionCalc (optional, boolean, `false`) ... Is this to be included in the Pension calulation?
+    + IncludeInNICalc (optional, boolean, `false`) ... Is this to be included in the National Insurance calulation?
+    + BasePay (required, string, `55000`) ... the annual amount of salary
+
+### Create Allowances for Roles for employees [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "StaffCode":    "ABc"
+                "Allowances":   [{   
+                                    "ContractName":         "Main Contract 1",
+                                    "RoleType":             "TCHR",
+                                    "AllowanceCategory":    "SEN",
+                                    "EffectiveFrom":        "01/09/2016",
+                                    "EffectiveTo":          "31/08/2017",
+                                    "AnnualAmount":         "2563.00",
+                                    "Description":          "Lorem ipsum",
+                                    "IncludeInPensionCalc": false,
+                                    "IncludeInNICalc":      false
+                                },{
+                                    "ContractName":         "Main Contract 1",
+                                    "RoleType":             "GTC",
+                                    "AllowanceCategory":    "RES",
+                                    "EffectiveFrom":        "01/09/2016",
+                                    "EffectiveTo":          "31/08/2017",
+                                    "AnnualAmount":         "1395.00",
+                                    "Description":          "Lorem ipsum",
+                                    "IncludeInPensionCalc": false,
+                                    "IncludeInNICalc":      false
+                                }]
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+            "EmployeeId": "15234",
+            "StaffCode": "ABc", 
+            "Status": true,
+            "Details": "Saved successfully",
+            "Allowances":   [
+                            {
+                            "AllowanceId": 2446053
+                            "Status": true,
+                            "Details": "Saved successfully",
+                            },
+                            {
+                            "AllowanceId": 2446054
+                            "Status": true,
+                            "Details": "Saved successfully",
+                            }
+                            ]
+            }
     
 # Group Contacts
 Group of all contact-related resources
@@ -2884,13 +2965,13 @@ Mandatory fields:
                                 "StartDate":    "2014-02-12",
                                 "ReviewDate":   "",
                                 "EndDate":      "2015-02-12",
-                                "CoutnryOfUk":  "ENG"
+                                "CountryOfUk":  "ENG"
                             },
                             {
                                 "StartDate":    "2015-02-12",
                                 "ReviewDate":   "2015-12-08",
                                 "EndDate":      "2016-02-12",
-                                "CoutnryOfUk":  "ENG"
+                                "CountryOfUk":  "ENG"
                             }],
             "PPI1314Details":       [{
                                     "PPIndicator":  "DPP",
@@ -4147,15 +4228,18 @@ Create SEN Major Needs for one to many learners
 
 # Group Documents
 
-## Documents [/Document{?IsEmployee}{?Id}{?DateFrom}{?DateTo}]
+## Documents [/Document{?IsEmployee}{?Id}{?DocumentId}{?DateFrom}{?DateTo}]
+
+**If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned**
 
 ### Retrieve Documents for Learners or Staff [GET]
 
 + Parameters
     + IsEmployee (required, boolean, `false`) ... Learner or Employee documents
-    + Id (required, int, `987465`) ... unique Id of Learner or Exmployee
+    + Id (required, int, `987465`) ... unique Id of Learner or Employee
     + DateFrom (optional, string, `01-09-2016`) ... Start of date range
     + DateTo (optional, string, `31-08-2017`) ... End of date range
+    + DocumentId (optional, int, `654321`) ... unique Id of Document
 
 + Request (application/json)
 
