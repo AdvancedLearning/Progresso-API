@@ -4589,6 +4589,14 @@ A collection of all UDF-related resources
 Notes on using DataType:
     If DataType = PickValue then PickListValues cannot be null
     If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
+    
++ Fields
+    ++ Code (required, string, `LP`) ... unique Code of UDF
+    ++ Name (required, string, `Learner Photo`) ... unique Name of UDF
+    ++ Entity (required, string, `Learner`) ... valid values are School Staff, Learner, Contact
+    ++ DataType (required, string, `MasterData` ... valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
+    ++ Masterdata (required, string, `Gender`) ... valid MasterData names e.g. Learners, Subject, Country
+    ++ FieldLength (require, int, `5`) ... NOT required if DataType = PickValue
 
 + Request (application/json)
 
