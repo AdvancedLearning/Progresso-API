@@ -1356,7 +1356,7 @@ Create one to many contract records
     + Body
     
             {
-                "EmployeeId":   00001,
+                "StaffCode":    "ZoTh",
                 "Contracts":    [{    
                                     "Type":             "PRM",
                                     "Name":             "Main Contract",
@@ -1457,8 +1457,8 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "EmployeeId":       00001,
-                "ContractId":       00001,
+                "StaffCode":    "ZoTh",
+                "ContractName": "Contract 1",
                 "Roles":    [{
                                 "Role":             "ADVT",
                                 "HoursPerWeek":     32.50,
@@ -1470,23 +1470,6 @@ Collection of all employee roles for employee contracts within a school
                                 "CostCentre":       "TEACH",
                                 "LedgerCode":       "A040"
                             }]
-            },
-            {
-                "EmployeeId":       00002,
-                "ContractId":       00002,
-                "Roles":    [{
-                                "RoleId":           0,
-                                "Role":             "Teaching Assistant",
-                                "HoursPerWeek":     32.50,
-                                "FTEHours":         32.50,
-                                "WeeksPerYear":     52.14,
-                                "PayrollNumber":    "123456",
-                                "NIRate":           "Contracted In",
-                                "Superannuation":   "Teachers Superannuation",
-                                "CostCentre":       "TEACH",
-                                "LedgerCode":       "A040"
-                            }]
-            
             }
 
 + Response 200 (application/json)
@@ -1494,28 +1477,21 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "EmployeeId":       00001,
-                "ContractId":       00001,
-                "Roles":    [{
-                                "Status":           true,
-                                "Details":          "Saved Succesfully",
-                                "RoleId":           0001,
-                                "Role":             "Teaching Assistant",
-
-                            }]
-            },
-            {
-                "EmployeeId":       00002,
-                "ContractId":       00002,
-                "Roles":    [{
-                                "Status":           true,
-                                "Details":          "Saved Succesfully",
-                                "RoleId":           0002,
-                                "Role":             "Teaching Assistant",
-
-                            }]
+                    "Status": true,
+                    "Details": "Saved successfully",
+                    "EmployeeId": 86531,
+                    "StaffCode": "ZoTh",
+                    "ContractId": 100034,
+                    "ContractName": "Contract 1",
+                    "Roles": [
+                                {
+                                    "RoleId": 78664,
+                                    "Role": "ADVT",
+                                    "Status": true,
+                                    "Details": "Saved successfully"
+                                }
+                            ]
             }
-
 
 ## Create/Update Employees Salary [/employeeRoleSalary]
 Collection of all employee roles for employee contracts within a school
@@ -1531,8 +1507,9 @@ Collection of all employee roles for employee contracts within a school
     + Body
     
             {
-                "EmployeeId":       0001,
-                "RoleId":           0001,
+                "StaffCode":        "ZoTh",
+                "ContractName":     "Contract 1",
+                "RoleType":         "ADVT",
                 "Salary":           [{
                                         "EffectiveFrom":        "01-09-2014",
                                         "EffectiveTo":          "31-08-2015",
@@ -1544,26 +1521,7 @@ Collection of all employee roles for employee contracts within a school
                                         "IncludeInPensionCalc": false,
                                         "IncludeInNICalc":      true,
                                         "BasePay":              15000.25
-                
                                     }]
-            
-            
-            },
-            {
-                "EmployeeId":       0002,
-                "RoleId":           0003,
-                "Salary":           [{
-                                        "EffectiveFrom":        "01-09-2014",
-                                        "EffectiveTo":          "31-08-2015",
-                                        "PayScale":             "",
-                                        "RegionalSpine":        "",
-                                        "Point":                "",
-                                        "SafeguardedSalary":    true,
-                                        "IncludeInPensionCalc": false,
-                                        "IncludeInNICalc":      true,
-                                        "BasePay":              15000.25
-                                    }]
-            
             }
             
             
@@ -1571,28 +1529,20 @@ Collection of all employee roles for employee contracts within a school
 
     + Body
     
-            {
-                "EmployeeId":       0001,
-                "RoleId":           0001,
-                "Salary":           [{
-                                        "Status":           true,
-                                        "Details":          "Saved Succesfully",
-                                        "SalaryId":         1,
-                                        "RoleSalaryId":     1
-                                    }]
-            
-            
-            },
-            {
-                "EmployeeId":       0002,
-                "RoleId":           0003,
-                "Salary":           [{
-                                        "Status":           true,
-                                        "Details":          "Saved Succesfully",
-                                        "SalaryId":         2,
-                                        "RoleSalaryId":     2
-                                    }]
-            
+            {    
+                "Status": true,
+                "Details": "Saved successfully",
+                "EmployeeId": 86531,
+                "StaffCode": "ZoTh",
+                "ContractName": "Contract 1",
+                "RoleId": 78664,
+                "Salary": [
+                    {
+                        "SalaryId": 94162,
+                        "Status": true,
+                        "Details": "Saved successfully"
+                    }
+                ]
             }
 
 
