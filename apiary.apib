@@ -944,7 +944,7 @@ Create Employee checks for one to multiple employees
     + Body
     
             {
-                "EmployeeId":       86531,
+                "StaffCode":        "ABc",
                 "ADD":              [{
                                         "VerificationDate":     "13/02/2016",
                                         "ExpiryDate":           "14/02/2017",
@@ -1443,7 +1443,7 @@ Update one to many contract records
     + Body
     
             {
-                "EmployeeId":   00001,
+                "StaffCode":    00001,
                 "Contracts":    [{
                                     "ContractId":       1,    
                                     "Type":         "PRM",
@@ -2331,20 +2331,27 @@ Mandatory fields:
                 "ServiceChild":       "N",
                 "ServiceChildSource": "P",
                 "TopUpFunding":       true,
+                "ThirtyHourCode":     123456789,
                 "FundedHours":        0,
                 "HoursAtSetting":     0.0,
+                "ExtendedChildcareHours":   10.25,
                 "UnitContactTime":    0.0,
+                "EYPPEligibility":    true,
+                "EYPPBasisOfEligibility":   "EE",
                 "SchoolLunchTaken":   true,
                 "MealType":           "CSM",
                 "AsylumSeeker":       false,
                 "Religion":           "HI",
+                "ReligionSource":     "P",
+                "DisabilityAccessFundIndicator":    true
                 "DisabilityDetails":   [{
                                             "Disability":  "CON"
                                         }],
-                "LanguageDetails":  [{
-                                        "TypeCode":             "F",
-                                        "LanguageCode":         "ENG"
-                                    }],
+                "LanguageDetails":      [{
+                                            "TypeCode":             "F",
+                                            "LanguageCode":         "ENG",
+                                            "LevelOfLanguage":      "5"
+                                        }],
                 "SENProvisionDetails":  [{
                                             "ProvisionTypeCode":    "E",
                                             "StartDate":            "19/09/2014"
@@ -2922,7 +2929,9 @@ Mandatory fields:
             "PPI":              false,
             "AdoptedFromCare":  "N",
             "Notes":            "Lorem ipsum",
-            "Refugee":          true
+            "Refugee":          true,
+            "EvidenceProvided": true,
+            "ProofOfId":        "PASS"
             "ExclusionDetails":[{
                                 "Category":         "FIXD",
                                 "Reason":           "PP",
@@ -3883,35 +3892,35 @@ Update Exclusions for one to many learners
             
             [{
             
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "provisions":   [{
-                                    "provisionId":          00001
-                                    "provisionTypeCode":    "E",
-                                    "provisionTypeName":    "Education, Health and Care Plan",
-                                    "startDate":            "19/09/2014",
-                                    "reviewDate":           "20/09/2014",
-                                    "endDate":              "20/09/2014"
+                "LearnerCode":      "2013-00001",
+                "LearnerId":       0001,
+                "Provisions":   [{
+                                    "ProvisionId":          00001
+                                    "ProvisionTypeCode":    "E",
+                                    "ProvisionTypeName":    "Education, Health and Care Plan",
+                                    "StartDate":            "19/09/2014",
+                                    "ReviewDate":           "20/09/2014",
+                                    "EndDate":              "20/09/2014"
                                 },
                                 {
-                                    "provisionId":          00002
-                                    "provisionTypeCode":    "P",
-                                    "provisionTypeName":    "School Action Plus",
-                                    "startDate":            "21/09/2014",
-                                    "reviewDate":           "",
-                                    "endDate":              ""
+                                    "ProvisionId":          00002
+                                    "ProvisionTypeCode":    "P",
+                                    "ProvisionTypeName":    "School Action Plus",
+                                    "StartDate":            "21/09/2014",
+                                    "ReviewDate":           "",
+                                    "EndDate":              ""
                                 }]
                 },
                 {
-                "learnerCode":      "2013-00002",
-                "learnerId":       0002,
-                "provisions":   [{
-                                    "provisionId":          00003
-                                    "provisionTypeCode":    "P",
-                                    "provisionTypeName":    "School Action Plus",
-                                    "startDate":            "21/09/2014",
-                                    "reviewDate":           "01/01/2015",
-                                    "endDate":              "30/08/2015"
+                "LearnerCode":      "2013-00002",
+                "LearnerId":       0002,
+                "Provisions":   [{
+                                    "ProvisionId":          00003
+                                    "ProvisionTypeCode":    "P",
+                                    "ProvisionTypeName":    "School Action Plus",
+                                    "StartDate":            "21/09/2014",
+                                    "ReviewDate":           "01/01/2015",
+                                    "EndDate":              "30/08/2015"
                                 }]
                 }
                 ]
@@ -3937,7 +3946,7 @@ Create SEN Provisions for one to many learners
                 "Provisions":   [{
                                     "ProvisionTypeCode":    "A",
                                     "ProvisionTypeName":    "School Action",
-                                    "StartDate":            "2015-11-25",
+                                    "StartDate":            "01/09/2015",
                                     "ReviewDate":           "",
                                     "EndDate":              ""
                                 }]
@@ -3973,15 +3982,15 @@ Update SEN Provisions for one to many learners
           
             [{
             
-                "learnerCode":      "2013-00001",
-                "learnerId":       0001,
-                "provisions":   [{
-                                    "provisionId":          0001
-                                    "provisionTypeCode":    "",
-                                    "provisionTypeName":    "",
-                                    "startDate":            "",
-                                    "reviewDate":           "",
-                                    "endDate":              ""
+                "LearnerCode":      "2013-00001",
+                "LearnerId":       0001,
+                "Provisions":   [{
+                                    "ProvisionId":          0001
+                                    "ProvisionTypeCode":    "",
+                                    "ProvisionTypeName":    "",
+                                    "StartDate":            "",
+                                    "ReviewDate":           "",
+                                    "EndDate":              ""
                                 }]
             }]
               
@@ -3990,19 +3999,19 @@ Update SEN Provisions for one to many learners
     + Body
     
             {
-                "learnerCode":      "2013-00001",
-                "learnerId":        0001,
-                "status":           true,
-                "details":          "",
-                "provisions":   [{
-                                    "status":               true,
-                                    "details":              ""
-                                    "provisionId":          00001
-                                    "provisionTypeCode":    "",
-                                    "provisionTypeName":    "",
-                                    "startDate":            "",
-                                    "reviewDate":           "",
-                                    "endDate":              ""
+                "LearnerCode":      "2013-00001",
+                "LearnerId":        0001,
+                "Status":           true,
+                "Details":          "",
+                "Provisions":   [{
+                                    "Status":               true,
+                                    "Details":              ""
+                                    "ProvisionId":          00001
+                                    "ProvisionTypeCode":    "",
+                                    "ProvisionTypeName":    "",
+                                    "StartDate":            "",
+                                    "ReviewDate":           "",
+                                    "EndDate":              ""
                                 }]
             }
 
@@ -4032,7 +4041,9 @@ Update SEN Provisions for one to many learners
                                     "LearnerMajorNeedId":   00001
                                     "MajorNeedCode":        "SLD",
                                     "MajorNeedDescription": "Severe Learning Difficulty ",
-                                    "Ranking":            1
+                                    "Ranking":              1,
+                                    "StartDate":            "01/09/2017",
+                                    "EndDate":              "31/08/2018"
                                 }]
             }
 
@@ -4051,20 +4062,24 @@ Create SEN Major Needs for one to many learners
         
     + Body
           
-            [{
+            {
             
                 "LearnerCode":      "2013-00001",
                 "LearnerId":        0001,
                 "MajorNeeds":   [{
                                     "MajorNeedCode":        "SPLD",
                                     "MajorNeedDescription": "Specific Learning Difficulty ",
-                                    "Ranking":              1
+                                    "Ranking":              1,
+                                    "StartDate":            "01/09/2017",
+                                    "EndDate":              "31/08/2018"
                                 },{
                                     "MajorNeedCode":        "SEMH",
                                     "MajorNeedDescription": "Social, Emotional and Mental Health",
-                                    "Ranking":              2
+                                    "Ranking":              2,
+                                    "StartDate":            "01/09/2017",
+                                    "EndDate":              "31/08/2018"
                                 }
-            }]
+            }
 
 
 + Response 200 (application/json)
@@ -4076,17 +4091,22 @@ Create SEN Major Needs for one to many learners
                 "LearnerCode":      "2013-00001",
                 "LearnerId":        0001,
                 "MajorNeeds":   [{
-                                    "LearnerMajorNeedId":   00005
-                                    "MajorNeedCode":        "SLD",
-                                    "MajorNeedDescription": "Severe Learning Difficulty ",
-                                    "Ranking":            1
-                                }]
+                                    "LearnerMajorNeedId":   00005,
+                                    "MajorNeedCode":        "SPLD",
+                                    "MajorNeedDescription": "Specific Learning Difficulty ",
+                                    "Ranking":              1,
+                                },{
+                                    "LearnerMajorNeedId":   00006,
+                                    "MajorNeedCode":        "SEMH",
+                                    "MajorNeedDescription": "Social, Emotional and Mental Health",
+                                    "Ranking":              2,
+                                ]
             }
             
 
 ### Update Learner SEN Major Needs [PUT]
 
-Create SEN Major Needs for one to many learners
+Update SEN Major Needs for one to many learners
 
 + Request (application/json)
 
@@ -4096,7 +4116,7 @@ Create SEN Major Needs for one to many learners
         
     + Body
           
-            [{
+            {
             
                 "LearnerCode":      "2013-00001",
                 "LearnerId":        0001,
@@ -4104,9 +4124,11 @@ Create SEN Major Needs for one to many learners
                                     "LearnerMajorNeedId":          00005
                                     "MajorNeedCode":        "SLD",
                                     "MajorNeedDescription": "Severe Learning Difficulty ",
-                                    "Ranking":            2
+                                    "Ranking":              2,
+                                    "StartDate":            "01/09/2017",
+                                    "EndDate":              "31/08/2018"
                                 }]
-            }]
+            }
 
 + Response 200 (application/json)
 
