@@ -567,7 +567,44 @@ Mandtory parameters:
                             }]
             }
             
-                            
+
+## Staff Absence Categories [/AbsenceCategory]
+
+Collection of Staff Absence Categories
+
+### Create Staff Absence Categories [POST]
+
+Create one to many Staff Absence Categories
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "Code":             "CONF",
+                "Name":             "Conference",
+                "Description":      "Attending a school-related conference",
+                "Category":         "Absence",
+                "Statistical":      false,
+                "Authorised":       true,
+                "Explained":        true,
+                "SWFMapping":       "SIC",
+                "ClusterMapping":   "SIC"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "AbsenceCategoryId":    123456
+            }
 
 ## Staff Absences [/StaffAbsences{?EmployeeId}{?DateFrom}{?DateTo}]
 
@@ -3476,7 +3513,36 @@ Mandatory fields:
                                 ]
             }
 
+## Learner Medical Conditions [/MedicalConditions]
+
+### Create Medical Conditions for Learners [POST]
+
+Create one to many Learner medical condition categories
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
             
+    + Body
+    
+            {
+                "Code":     "MIG",
+                "Name":     "Migraine"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":        true,
+                "Details":       "Saved successfully",
+                "ConditionId":   123456
+            }
+            
+
 ## Learner Health Details [/LearnerHealth{?since}]
 
 ### Retrieve a learner Health Details [GET]
@@ -7984,6 +8050,8 @@ Group of all Academic Resources
 
 ## School [/School]
 
+**NOT AVAILABLE YET**
+
 ### Retrieve School Details [GET]
 
 + Request
@@ -8795,6 +8863,40 @@ Create association of one to many Course to Years
                 "Code":             "FRE",
                 "Name":             "French,
                 "Description":      "French"
+            }
+
+
+### Create School Subjects [POST]
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "Code":     "AAA",
+                "Name":     "Athletics",
+                "Type":     "Core",
+                "MappedTo": "PE"
+            },
+            {
+                "Code":     "CoS",
+                "Name":     "Computer Science",
+                "Type":     "Core",
+                "MappedTo": "ICT"
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "SubjectId":    123456
             }
 
 
