@@ -7346,6 +7346,57 @@ Retrieve KS5 FFT Aspire prediction data for a learner
 
 
 
+# Group Exams
+
+Group of all Exam-related resources
+
+## Exam Candidates [/ExamCandidate]
+
+### Create Exam Candidates [POST]
+
+Create one to many exam candidates
+
++ Fields
+    + AcademicYearId (required, int, `5412`) ... Id of Academic Year
+    + CentreNumber (required, int, `23456`) ... unique Examination Centre Number of the School
+    + LearnerCode (required, string, `2014-3456`) ... unique Code of Learner
+    + Number (required, int, `1000`) ... unique number of Candidate within the Academic Year
+    + UCI (required, string, `221550175610F`) ... unique Candidate Identifier
+    + Status (required, string, `P`) ... choice of P = Private, C = Internal, X = Non Statistical
+    + RestrictedSeat (optional, boolean, `false`) ... choice of true or false
+    + ApplyFee (optional, boolean, `false`) ... choice of true or false
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "AcademicYearId":   3892,
+                "CentreNumber":     22155,
+                "LearnerCode":      "2012-0403",
+                "Number":           "1000",
+                "UCI":              "221550175610F",
+                "Status":           "C",
+                "RestrictedSeat":   false,
+                "ApplyFee":         false 
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":        true,
+                "Details":       "Saved successfully",
+                "CandidateId":   123456
+            }
+
+
+
 ## Exams Results [/LearnerExamOptionResult/{?AcYearId}{?Year}{?LearnerId}{?Status}]
 
 
