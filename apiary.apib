@@ -462,38 +462,82 @@ Retrive a collection of employees contacts
 
 Associate one or more Employees to one or more contacts
 
-Mandtory parameters:
-
-- EmployeeId
-- ContactId
++ Mandatory fileds
+    + StaffCode (required, string, `ABc`) ... unique Code of Staff
+    + Title (required, string, `Mr`) ... title of Contact
+    + Forename (required, string, `Joe`) ... forename of Contact
+    + Surname (required, string, `Bloggs`) ... surname of Contact
+    + Gender (required, string, `M`) ... gender of Staff Contact
+    + Relationship (required, string, `PTNR`) ... relationship of Contact to Staff
++ If IsMedicalContact = true
+    + MedicalType (required, string, `DOC`) ... this is required if IsMedicalContact = true
++ If Address is present then the following are Mandatory
+    + Country
+    + AddressType
+    + NumberName
+    + Street
+    + PostCode
++If Phone is present then the following fields are Mandatory
+    + PhoneType
+    + PhoneNumber
 
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-
-
+            
     + Body
     
-            [{
-                "EmployeeId":           12345,
-                "Contacts": 
-                            [{
-                                        "ContactId":    00001,
-                                        "Relationship": "PTNR",
-                                        "Priority":     1,
-                                        "Emergency":    "Primary",
-                                    `   "NextOfKin":    true
-                            },
-                            {  
-                                        "ContactId":    00002,
-                                        "Relationship": "OTHR",
-                                        "Priority":     2,
-                                        "Emergency":    "",
-                                    `   "NextOfKin":    false
-                            }]
-            }]
+            {
+                "StaffCode":    'ABc',
+                "Contacts":     [{
+                                    "Title":        "Mr",
+                                    "Forename":     "Joe",
+                                    "Surname":      "Bloggs",
+                                    "MiddleName":   "John",
+                                    "Gender":       "M",
+                                    "Relationship": "PTNR",
+                                    "Priority":     1,
+                                    "EmergencyContactLevel":  "Primary",
+                                    "NextOfKin":    true,
+                                    "PersonalEmail":"abc@fakeemail.com",
+                                    "Language":     "ENG",
+                                    "Occupation":   "Lawyer",
+                                    "Nationality":  "GBR",
+                                    "VisaNumber":   "1234567",
+                                    "Employer":     "M & J Smith",
+                                    "WorkEmail":    "abc@fakeworkemail.co.uk",
+                                    "IsMedicalContact":     true,
+                                    "MedicalType":          "DOC",
+                                    "TranslatorRequired":   false,
+                                    "MemberOfArmedForces":  false,
+                                    "ExPupil":              false,
+                                    "WirttenCommunication": "E",    
+                                    "AddressDetails":       [{
+                                                                "Country":  "GBR",
+                                                                "Type":     "H",
+                                                                "Flat":     "3a",
+                                                                "Number":   "1",
+                                                                "Street":   "The Street",
+                                                                "Locality": "Belper",
+                                                                "Town":     "Derby",
+                                                                "County":   "Derbyshire"
+                                                                "PostCode": "DD55 36DD"
+                                                            }],
+                                    "PhoneDetails":         [{
+                                            
+                                                                "Type":     "H",
+                                                                "Number":   "015555555",
+                                                                "SmsFlag":  false,
+                                                                "PhoneId":  12334
+                                                            },{
+                                                                "Type":     "M",
+                                                                "Number":   "075555555",
+                                                                "SmsFlag":  true
+                                                            }]
+                                }]
+            }
             
 
 + Response 200
@@ -507,8 +551,6 @@ Mandtory parameters:
                 "Contacts": 
                             [{
                                 "ContactId":            00001
-                            {  
-                                "ContactId":            00002
                             }]
             }
 
