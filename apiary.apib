@@ -8064,41 +8064,41 @@ Create Group Association for one to many Learners and Groups
     + Body
     
             {
-                   "GroupId":       1,
-                    "status":       true,
-                    "details":      "Saved successfully",
-                    "learners":   [{
-                                        "status":       true,
-                                        "details":      "Saved successfully",
-                                        "learnerId":                1,
-                                        "learnerGroupLearnerId":    1
+                    "GroupId":      1,
+                    "Status":       true,
+                    "Details":      "Saved successfully",
+                    "Learners":   [{
+                                        "Status":       true,
+                                        "Details":      "Saved successfully",
+                                        "LearnerId":                1,
+                                        "LearnerGroupLearnerId":    1
 
                                 },
                                 {
-                                        "status":       true,
-                                        "details":      "Saved successfully",
-                                        "learnerId":                2,
-                                        "learnerGroupLearnerId":    2
+                                        "Status":       true,
+                                        "Details":      "Saved successfully",
+                                        "LearnerId":                2,
+                                        "LearnerGroupLearnerId":    2
 
 
                                 }]
             },
             {
-                    "groupId":      2,
-                    "status":       true,
-                    "details":      "Saved successfully",                  
-                    "learners":   [{
-                                        "status":       true,
-                                        "details":      "Saved successfully",
-                                        "learnerId":                1,
-                                        "learnerGroupLearnerId":    3
+                    "GroupId":      2,
+                    "Status":       true,
+                    "Details":      "Saved successfully",                  
+                    "Learners":   [{
+                                        "Status":       true,
+                                        "Details":      "Saved successfully",
+                                        "LearnerId":                1,
+                                        "LearnerGroupLearnerId":    3
 
                                 },
                                 {
-                                        "status":       true,
-                                        "details":      "Saved successfully",                                
-                                        "learnerId":                2,
-                                        "learnerGroupLearnerId":    4
+                                        "Status":       true,
+                                        "Details":      "Saved successfully",                                
+                                        "LearnerId":                2,
+                                        "LearnerGroupLearnerId":    4
 
                                 }]            
         
@@ -8674,24 +8674,24 @@ Create one to many Academic Calendar Events
             
     
 + Response 200 (application/json)
-    
+
     + Body
     
             {
                 "Status":               true,
                 "Details":              "Saved successfully",
-                "name":                 "Inset Day",
-                "startDate":            "02-09-2014",
-                "endDate":              "02-09-2014",
-                "calendarEventId":      0003
+                "Name":                 "Inset Day",
+                "StartDate":            "02-09-2014",
+                "WndDate":              "02-09-2014",
+                "CalendarEventId":      0003
             },
             {
                 "Status":               true,
                 "Details":              "Saved successfully",
-                "name":                 "Inset Day",
-                "startDate":            "20-09-2014",
-                "endDate":              "20-09-2014",
-                "calendarEventId":      0004
+                "Name":                 "Inset Day",
+                "StartDate":            "20-09-2014",
+                "EndDate":              "20-09-2014",
+                "CalendarEventId":      0004
             }
 
 ### Update Academic Calendar Events [PUT]
@@ -8763,16 +8763,16 @@ Optional Parameters
     + Body
     
             {
-               "acYearId":          1,
-                "courseCode":       "KS3",
-                "courseName":       "Key Stage 3",
-                "courseId":         0001
+                "AcYearId":          1,
+                "CourseCode":       "KS3",
+                "CourseName":       "Key Stage 3",
+                "CourseId":         0001
             },
             {
-                "acYearId":         1,
-                "courseCode":       "KS4",
-                "courseName":       "Key Stage 4",
-                "courseId":         0002
+                "AcYearId":         1,
+                "CourseCode":       "KS4",
+                "CourseName":       "Key Stage 4",
+                "CourseId":         0002
 
             }
 
