@@ -178,7 +178,7 @@ Retrieve one to many employee basic records
 
 + Mandatory fields
 
-    + StaffCode, Surname, Forename are mandatory fields
+    + StaffCode, Surname, Forename, Middlename are mandatory fields
     
     + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
 
@@ -208,7 +208,7 @@ Retrieve one to many employee basic records
                 "LegalSurname":         "Bloggs",
                 "LegalForename":        "Joseph",
                 "FormerSurname":        "",
-                "MiddleName":           "Bob",
+                "MiddleName":           "",
                 "DisplayName":          "Mr J B Bloggs",
                 "DateOfBirth":          "31-12-1968",
                 "Gender":               "1",
@@ -7895,8 +7895,8 @@ Update one or many groups
                                     "StaffCode":    "JDo",
                                     "EmployeeId":   00001},
                                 {
-                                    "employeeId":   54321,
-                                    "staffCode":    "JDo"
+                                    "EmployeeId":   54321,
+                                    "StaffCode":    "JDo"
                                 }],
                 "Name":         "9A",
                 "SubjectCode":  "",
