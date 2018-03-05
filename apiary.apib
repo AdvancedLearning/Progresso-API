@@ -4518,6 +4518,8 @@ Create and amend Attendance for one to many learners
 
 ### Create Learner Lesson Attendance [POST]
 
+*This is currently being re-written*
+
 Create Learner Lesson Atendance by Period or Time
 
 + Request (application/json)
@@ -4555,11 +4557,13 @@ Create Learner Lesson Atendance by Period or Time
     
             {
                  "LearnerCode":         "2013-00001",
-                 "Status":              "Success"
+                 "Status":              "Success",
+                 "Details": "Saved successfully"
             },
             {
                 "LearnerCode":          "2013-00002",
-                "Status":               "Success"
+                "Status":               "Success",
+                "Details": "Saved successfully"
                 
             },
             {
@@ -7731,7 +7735,7 @@ Group of all Group-related resources
                 "Course":       "Vertical Groups",
                 "DateFrom":     "30-08-2015 00:00:00",
                 "DateTo":       "27-08-2016 00:00:00",
-                "employeeId":   [
+                "EmployeeId":   [
                                   {
                                     "StaffCode": "DO",
                                     "EmployeeId": "104006"
@@ -7744,7 +7748,7 @@ Group of all Group-related resources
                 "SubjectName":  "",
                 "Type":         "AcademicHouseGroup",
                 "Year":         "M"
-                },{
+                                },{
                 "GroupCode":    "10EN4b",
                 "Course":       "Key Stage 4",
                 "DateFrom":         "30-08-2015 00:00:00",
@@ -7762,7 +7766,7 @@ Group of all Group-related resources
                 "SubjectName":  "English Literature",
                 "Type":         "TeachingGroup",
                 "Year":         "10"
-                },{
+                                },{
                 "GroupCode":    "SIX",
                 "Course":       "",
                 "DateFrom":     "30-08-2015 00:00:00",
@@ -7780,7 +7784,7 @@ Group of all Group-related resources
                 "SubjectName":  "",
                 "Type":         "RegistrationGroup",
                 "Year":         ""
-                },{
+                                },{
                 "GroupCode":    "Ski Trip",
                 "Course":       "",
                 "DateFrom":     "01-04-2016 00:00:00",
