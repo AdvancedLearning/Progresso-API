@@ -4365,7 +4365,7 @@ Update SEN Major Needs for one to many learners
 
 # Group Learner Attendance
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
@@ -4380,6 +4380,8 @@ Update SEN Major Needs for one to many learners
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
 
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
+    
+    + IncludeMissingRollCall (optional, boolean, `true`) ... if this is included then all roll call including missing marks will be returned
 
 
 + Request (application/json)
