@@ -73,12 +73,13 @@ Collection of Employee related resources
 
 Retrieve one to many employee basic records
 
+**PersonId is unique across the school's database**
+
 + Parameters
     + EmployeeId (optional, int, `1023454`) ... unique Id of Employee
     + StaffCode (optional, string, `ABc`) ... unique code of Staff
     + Status (optional, string, `Active`) ... Status of the Employee Active, Left or Draft
     + Since (optional, dateTime, `01-04-2014T18:00:00`) ... Employee records modified since
-
 
 + Response 200 (application/json)
 + Response 204
@@ -94,6 +95,8 @@ Retrieve one to many employee basic records
     + Body
     
             {
+                
+                "PersonId":             56123,
                 "EmployeeId":           12345,
                 "StaffCode":            "JBl",
                 "Title":                "Mr",
@@ -416,7 +419,7 @@ Update one to many employee records
 
 ## Employees Contacts [/EmployeeContacts{?Status}]
 
-Retrive a collection of employees contacts
+Retrieve a collection of employees contacts
 
 ### Retrieve collection of employees contacts [GET]
 
@@ -446,7 +449,7 @@ Retrive a collection of employees contacts
                                         "Relationship": "Partner",
                                         "Priority":     1,
                                         "Emergency":    "primary",
-                                    `   "NextOfKin":    true
+                                        "NextOfKin":    true
                             },
                             {  
                                         "ContactId":    00002,
@@ -455,7 +458,7 @@ Retrive a collection of employees contacts
                                         "Relationship": "Other",
                                         "Priority":     2,
                                         "Emergency":    "",
-                                    `   "NextOfKin":    false
+                                        "NextOfKin":    false
                             }]
             }
     
@@ -1438,6 +1441,7 @@ Collection of all employee checks for employees within a school
             }
             
             
+
 ## Create/Update Employee Contracts [/EmployeeContracts]
 
 ### Create Contract [POST]
@@ -1489,6 +1493,7 @@ Create one to many contract records
             }
             
             
+
 ### Update Contract [PUT]
 
 Update one to many contract records  
@@ -1500,7 +1505,6 @@ Update one to many contract records
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
     
             {
@@ -1721,8 +1725,7 @@ Collection of all employee roles for employee contracts within a school
             
             }
  
- 
-           
+
 ## Create Employee Allowances [/EmployeeAllowances]
 Collection of all employee Allowances for employee Roles within a school
 
@@ -1797,6 +1800,7 @@ Collection of all employee Allowances for employee Roles within a school
                             ]
             }
     
+
 # Group Contacts
 Group of all contact-related resources
 
@@ -2123,6 +2127,8 @@ Update one to many contact records
 
 Collection of all learner-related resources
 
+**PersonId is unique across the school's database**
+
 ### Retrieve a collection of learners [GET]
 
 + Parameters
@@ -2140,6 +2146,7 @@ Collection of all learner-related resources
     + Body
     
             {
+                "PersonId": 654987,
                 "LearnerId": 98136,
                 "LearnerCode": "000869",
                 "UPN": "N870202302327",
@@ -8887,7 +8894,99 @@ Create association of one to many Course to Years
                 "CourseYearId":     0003
             }
             
+
+## CourseSubject [/CourseSubject]
+
+Create association of one to many Course to Subjects
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
             
+    + Body
+    
+            {
+                    "Course":   "KS3",
+                    "Subjects": [
+                                   "Bs","By","Ch","Cm","Ct"
+                                ]
+            },{
+                    "Course":   "KS4",
+                    "Subjects": [
+                                   "Bs","By","Ch","Cm","Ct"
+                                ]
+            }
+            
++ Response 200 (application.json)
+
+    + Body
+    
+            {
+                "CourseSubjectId":  2446053,
+                "Status":           true,
+                "Course":           "KS3", 
+                "Subject":          "AD",
+                "Details":          "Saved successfully"
+            },{
+                "CourseSubjectId":  2446054,
+                "Status":           true,
+                "Course":           "KS3", 
+                "Subject":          "BI",
+                "Details":          "Saved successfully"
+            }, {
+                "CourseSubjectId":  2446055,
+                "Status":           true,
+                "Course":           "KS3", 
+                "Subject":          "CH",
+                "Details":          "Saved successfully"
+            }, {
+                "CourseSubjectId":  2446056,
+                "Status":           true,
+                "Course":           "KS3", 
+                "Subject":          "CS",
+                "Details":          "Saved successfully"
+            }, {
+                "CourseSubjectId":  2446057,
+                "Status":           true,
+                "Course":           "KS3", 
+                "Subject":          "EN",
+                "Details":          "Saved successfully"
+            },{
+                "CourseSubjectId":  2446058,
+                "Status":           true,
+                "Course":           "KS4", 
+                "Subject":          "AD-GCSE",
+                "Details":          "Saved successfully"
+            },{
+                "CourseSubjectId":  2446059,
+                "Status":           true,
+                "Course":           "KS4", 
+                "Subject":          "BI-GCSE",
+                "Details":          "Saved successfully"
+            },  {
+                "CourseSubjectId":  2446060,
+                "Status":           true,
+                "Course":           "KS4", 
+                "Subject":          "CH-GCSE",
+                "Details":          "Saved successfully"
+            },  {
+                "CourseSubjectId":  2446061,
+                "Status":           true,
+                "Course":           "KS4", 
+                "Subject":          "CS-GCSE",
+                "Details":          "Saved successfully"
+            },  {
+                "CourseSubjectId":  2446062,
+                "Status":           true,
+                "Course":           "KS4", 
+                "Subject":          "EN-GCSE",
+                "Details":          "Saved successfully"
+            }  
+            
+                
+
 ## Departments [/Departments]
 
 ### Retrieve a list of Departments
@@ -9273,8 +9372,6 @@ Create one to many Timetable Sources
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
-+ Request (application/json)
 
     + Body
     
@@ -9348,10 +9445,9 @@ Update one to many Timetable Sources
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
+            
 + Response 200 (application/json)
-
+            
     + Body
     
             {
@@ -9361,7 +9457,53 @@ Update one to many Timetable Sources
                 "DayOrder":         1
             }
 
-+ Response 204
+
+### Create Day Structure [POST]
+
+Create one to many days for a school timetable
+
+*Fields:*
++ Source (required, string, `TT2016/17`) ... code of Timetable Source
++ DayCode (required, string, 'Mon1') ... code of Day
++ DayName (required, string, `Monday1`) ... name of Day
++ DayOrder (required, int, '1') ... position of the day in the week i.e. 1 - 14
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Source":           "TT2016/17",
+                "DayCode":          "Mon1",
+                "DayName":          "Monday1",
+                "DayOrder":         1
+            },
+            {
+                "Source":           "TT2016/17",
+                "DayCode":          "Tue1",
+                "DayName":          "Tuesday",
+                "DayOrder":         2
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "DaySTructureId":   6543
+            },
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "DayStructureId":   6544
+            }
+
 
 
 ## Date Mappings [/DateMappings/{?SourceId}]
@@ -10399,6 +10541,61 @@ Update one to many Sites
 # Group Behaviour
 
 Collection of Behaviour methods
+
+## Assign Staff Behaviour Position [/StaffPosition]
+
+Assign a memeber of staff a potion for Behaviour Management
+
+*Value:*
+*Code*  *Description*
+1       Whole School
+2       Course
+3       Year
+4       Academic House
+5       Department
+6       Subject
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+
+    + Body
+    
+            {
+                    "StaffCode":    "SCaAt",
+                    "Position":     "TCHR",
+                    "MappedFor":    2,
+                    "Value":        "KS3"
+            },{
+                    "StaffCode":    "MSe",
+                    "Position":     "TCHR",
+                    "MappedFor":    3,
+                    "Value":        "10"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "EmployeeId":   123456,
+                "StaffCode":    "ABc",
+                "StaffPositionMappingId":   1000
+                
+            },{
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "EmployeeId":   123457,
+                "StaffCode":    "DEf",
+                "StaffPositionMappingId":   1001
+                
+            }
+
+
 
 ## Behaviour Events Collection [/BMEvents/{?LearnerId}{?FromDate}{?ToDate}{?Behaviour}]
 
