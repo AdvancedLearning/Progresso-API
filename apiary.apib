@@ -10851,6 +10851,26 @@ Assign a memeber of staff a potion for Behaviour Management
                 "Details": "Saved successfully"
             }
 
+## Behaviour Confirguation [/BMConfiguration]
+
+### Get Behaviour configuration [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "DefaultBehaviour":     "Positive",
+                "DefaultComments":      "GeneralComments"
+                "CommentBoxSettings":   "Rtf"
+            }
+
 
 ## Behaviour Structure Collection [/BMStructure/]
 
