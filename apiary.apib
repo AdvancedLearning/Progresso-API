@@ -4455,7 +4455,7 @@ Update SEN Major Needs for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
 
-+ Response 200
++ Response 200 (appication/json)
 
     + Body
     
@@ -4469,6 +4469,76 @@ Update SEN Major Needs for one to many learners
             }
 
 # Group Learner Attendance
+
+## Retrieve Roll Call Times [/RollCallTimes]
+
+### Return Roll Call Times [GET]
+
++ Request (applicaiton/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                 "RollCallId":  1000,
+                 "Code":        "AM,
+                 "Name":        "Morning Roll Call",
+                 "DefaultTime": "09:00"
+            },
+            {
+                 "RollCallId":  1001,
+                 "Code":        "PM,
+                 "Name":        "Afternoon Roll Call",
+                 "DefaultTime": "12:30"
+            }
+             
+
+## Retrieve Learner Attendance Codes [/AttendanceCodes]
+
+### Return Learner Attendance Codes [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (applicatoni/json)
+
+    + Body
+    
+            {
+                 "CategoryId":      1,
+                 "Code:":           "/\"
+                 "Name":            "Present",
+                 "LessonByLesson":  false,
+                 "Present":         true,
+                 "StatisticalAbs":  false,
+                 "Late":            false,
+                 "Authorised":      true,
+                 "Medical":         false,
+                 "Explained":       false,
+                 "ApprovedEducationalActivity": true
+            },
+            {
+                 "CategoryId":      13,
+                 "Code:":           "N"
+                 "Name":            "No Reason",
+                 "LessonByLesson":  true,
+                 "Present":         false,
+                 "StatisticalAbs":  true,
+                 "Late":            false,
+                 "Authorised":      false,
+                 "Medical":         false,
+                 "Explained":       false,
+                 "ApprovedEducationalActivity": false
+            }
+            
 
 ## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
 
@@ -4557,6 +4627,64 @@ Create and amend Attendance for one to many learners
                 "Details":              "Saved successfully"
             }
         
+
+## Add Learner Roll Call Atendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
+This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance session at a time can be passed.
+
++ Parameters
+    + LearnerCode (required, string, `2015-00001`) ... the unique code of the learner
+    + Date (required, dateTime, `01-04-2014T18:00:00`) ... date of the attendance/absence
+    + RollCallSession (required, string, `AM`) ... unique roll call session - 'AM' or 'PM'
+    + AttendanceCode (required, string, `L`) ... attendance code for session
+    + MinutesLate (optional, string, `5`) ... string of number minutes late
+    + Notes (optional, string, `Lorem ipsum`) ... any notes attached to the attendance
+    
+
+### Add Learner Roll Call with Notes and Minutes Late [POST]
+
++ Request
+
+    + Headers
+    
+            Auhtorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "LearnerId":            0001
+                "learnerCode":          "2013-00001",
+                "Date":                 "16-06-2014",
+                "RollCallSession":      "AM",
+                "AttendanceCode":       "L",
+                "MinutesLate":          5,
+                "Notes":                "Lorem ipsum"
+
+            },
+            {
+                "LearnerId":            0002
+                "learnerCode":          "2013-00002",
+                "Date":                 "16-06-2014",
+                "RollCallSession":      "AM",
+                "AttendanceCode":       "L", 
+                "MinutesLate":          10,
+                "Notes":                "Lorem ipsum"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerCode": "0001",
+                "Status": true,
+                "Details": "Saved successfully"
+            },
+            {
+                "LearnerCode": "0002",
+                "Status": true,
+                "Details": "Saved successfully"
+            }
+            
 
 ## Learner Lesson Attendance [/LearnerLessonAttendance{?LearnerId}{?StartDate}{?EndDate}{?GroupCode}{?Status}]
 
@@ -10002,43 +10130,44 @@ And either
 
     + Body
             
-            {
-            "EventId":      124512732,
-            "Date":         "2015-12-01",
-            "PeriodId":     123456
-            "StartTime":    "09:00",
-            "FinishTime":   "10:00",
-            "Day":          "Tuesday1",
-            "EventType":    "Timetable",
-            "Duration":     60,
-            "NCAEventType": "",
-            "Employees":[
-                          {
-                            "EventTeacherAssociationId":    48523,
-                            "EmployeeId": 104034,
-                            "EmployeeCode": "KBr"
-                          }
-                        ],
-            "Groups":   [
-                          {
-                            "EventLearnerGroupAssociationId":   15684,
-                            "GroupId": 1044341,
-                            "GroupCode": "11En1"
-                          }
-                        ],
-            "Subjects": [
-                          {
-                            "EventSubjectAssociationId":        87131,
-                            "Subject": "EN"
-                          }
-                        ],
-            "Rooms":    [
-                          {
-                            "EventRoomAssociationId":           184615,
-                            "Room": "CE06"
-                          }
-                        ],
-            "WeekRangeId":  45488LEarners
+            {            
+                "EventId":      124512732,
+                "Date":         "2015-12-01",
+                "PeriodId":     123456
+                "StartTime":    "09:00",
+                "FinishTime":   "10:00",
+                "Day":          "Tuesday1",
+                "EventType":    "Timetable",
+                "Duration":     60,
+                "NCAEventType": "",
+                "Employees":[
+                              {
+                                "EventTeacherAssociationId":    48523,
+                                "EmployeeId": 104034,
+                                "EmployeeCode": "KBr"
+                              }
+                            ],
+                "Groups":   [
+                              {
+                                "EventLearnerGroupAssociationId":   15684,
+                                "GroupId": 1044341,
+                                "GroupCode": "11En1",
+                                "Type": "TeachingGroup"
+                              }
+                            ],
+                "Subjects": [
+                              {
+                                "EventSubjectAssociationId":        87131,
+                                "Subject": "EN"
+                              }
+                            ],
+                "Rooms":    [
+                              {
+                                "EventRoomAssociationId":           184615,
+                                "Room": "CE06"
+                              }
+                            ],
+                "WeekRangeId":  45488LEarners
             }
             
 
@@ -10750,6 +10879,10 @@ Assign a memeber of staff a potion for Behaviour Management
 
 ### Create Behaviour Events [POST]
 
+Updated to include detentions
+
+*If Scheduled = false, then tType must be OOB*
+
 + Request
 
     + Headers
@@ -10784,7 +10917,16 @@ Assign a memeber of staff a potion for Behaviour Management
                                     ],
                 "Actions":          [
                                         "03DB","10LP"
-                                    ]
+                                    ],
+                "DetentionDetails": {
+                                        "Source":           "2017/2018",
+                                        "DayComposition":   "Detentions",
+                                        "Scheduled":        false,
+                                        "Type":             "OOD",
+                                        "Date":             "11/01/2018",
+                                        "TimeFrom":         "12:45",
+                                        "TimeTo":           "13:00"
+                                    }
             }
             
 + Response 200 (application/json)
@@ -11367,4 +11509,172 @@ A collection of Post 16 Learning Aim methods
                 "Details":                          "Saved successfully",
                 "SubjectCode":                      "HB-A2", 
                 "SubjectClassifiactionCodeDetailId":456127  
+            }
+            
+
+## Post 16 Learning Aims [/LearningAims]
+
+### Create Learning Aims for a Learner [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":          "012342",               
+                "LearningAimDetails":   [
+                                            {
+                                                "Subject":          "AD",
+                                                "StartDate":        "08/08/2017",
+                                                "PlannedEndDate":   "31/07/2018",
+                                                "ActualEndDate":    null,
+                                                "SubjectClassCode":    "2350",
+                                                "Status":           1,
+                                                "CoreAimIndicator": true,
+                                                "QNCode":           "60149450",
+                                                "UKPRN":            10029085,
+                                                "Traineeship":      false
+                                            },
+                                            {
+                                                "Subject":          "BI",
+                                                "StartDate":        "08/08/2016",
+                                                "PlannedEndDate":   "31/07/2017",
+                                                "ActualEndDate":    "25/01/2017",
+                                                "SubjectClassCode":    "1010",
+                                                "Status":           3,
+                                                "CoreAimIndicator": false,
+                                                "QNCode":           "50022362",
+                                                "UKPRN":            10027380,
+                                                "Traineeship":      false
+                                            }
+                                        ]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "Post16LearnerAimOutcomeID":123456,            
+            }
+
+
+## Post 16 Employment Details [/Post16Employment]
+
+### Create Post 16 employment details for a learner [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":          "012342",
+                "Post16EmploymentDetails":     [
+                                            {
+                                                "StartDate":   "01/09/2016",
+                                                "EndDate":   "21/08/2018",
+                                                "Notes":            "Lorem ipsum"
+                                            }
+                                        ]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":                               true,
+                "Details":                              "Saved successfully",
+                "LearnerFullTimeEmploymentDetailsID":   123456,            
+            }
+            
+
+## Post 16 Planned Hours [/Post16PlannedHour]
+
+### Assign Planned Hours to a QN code [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "AcademicYear":     "2017/2018",
+                "QNCode":           "10034341",
+                "SubjClassCode":    "2210",
+                "PlannedHours":     162
+            },
+            {
+                "AcademicYear":     "2017/2018",
+                "QNCode":           "10034353",
+                "SubjClassCode":    "2210",
+                "PlannedHours":     162
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "QNCode":               "10034341",
+                "LearnerAimsQanDataId": 10003824
+            },
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "QNCode":               "10034353",
+                "LearnerAimsQanDataId": 10010293
+            }
+
+## Post 16 Pastoral Hours [/Post16PastoralHours]
+
+### Assign Pastoral Hours to a Learner [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "AcademicYear":         "2017/2018",
+                "LearnerCode":          "2011-4561",
+                "PlannedPastoralHours": 20
+            },
+            {
+                "AcademicYear":         "2017/2018",
+                "LearnerCode":          "2125165",
+                "PlannedPastoralHours": 15
+            }
+            
++ Response 200 (appicaltion/json)
+
+    + Body
+    
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "LearnerCode":      "2011-4561"
+            },
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "LearnerCode":          "2125165"
             }
