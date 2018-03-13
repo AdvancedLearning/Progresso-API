@@ -2879,7 +2879,7 @@ Update one to many learner records
 
 Retrieve one or more Learner Other Details records
 
-**Deployed to Live PROAPI-26**
+*Updated to include Prior Attainment*
 
 Response codes used are:
 
@@ -3177,7 +3177,25 @@ Mandatory fields:
                                         "Nationality": "GRC"
                                       }
                                     ],
-            "CountryOfBirth":       "GRL"
+            "CountryOfBirth":       "GRL",
+            "EnglishAttainment":    "A"        
+            "EnglishAttainmentYear":1,
+            "EnglishExemption":     "L",
+            "MathsAttainment":      "B",
+            "MathsAttainmentYear":  2,
+            "MathsExemption":       "O",
+            "FullTimeEmployment":   false,
+            "SupportCodeDetails":   [
+                                            {
+                                                "SupportCode":      32,
+                                                "AwardedDate"       "16/11/2017"
+                                            },
+                                            {
+                                                "SupportCode":      55,
+                                                "AwardedDate"       "16/11/2017"
+                                            }
+                                        ],
+            "FullTimeEmployment":   false
             }
           
 
@@ -3213,6 +3231,22 @@ Mandatory fields:
                                     },{
                                     "SchoolHistoryId":0002
                                     }]
+            "ProficiencyDetails:    [{
+                                    "ProficiencyId": 0001
+                                    },{
+                                    "ProficiencyId": 0002
+                                    }]
+            "NatoinalityDetails":   [{
+                                    "NationalityId": 0001
+                                    }],
+            "SupportCodeDetails":   [
+                                    {
+                                        "LearnerSupportCodeDetailId": 16609
+                                    },
+                                    {
+                                        "LearnerSupportCodeDetailId": 16610
+                                    }
+                                    ]
             }
 
 
@@ -11237,3 +11271,80 @@ Updates an Behaviour Management Structure
             
 
 # Group Post 16
+A collection of Post 16 Learning Aim methods
+
+## Enable Subject Classification Codes [/EnableSubjectCodes]
+
+### Enable Subject Classification Codes [POST]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+               "SubjectCalssificationCode": [
+                                                "0016","0021","2330","FK5S"
+                                            ]
+            }  
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "SubjectClassificationCodeStatusId":              123456,            
+            }
+
+## Map Subject Classification Codes [/MapSubjectDiscountCodes]
+
+### Map Subject Classification Codes [POST]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+               "Subject":                   "AD",
+               "SubjectClassificationCode": ["3510","2613"]
+            },{
+               "Subject":                   "CO",
+               "SubjectClassificationCode": ["2610","5436"]
+            },{
+               "Subject":                   "HB-A2",
+               "SubjectClassificationCode": ["4010"]
+            }
+            
++ Response 200 (appication/json)
+
+    + Body
+    
+            {
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "SubjectCode":                      "AD", 
+                "SubjectClassifiactionCodeDetailId":456125  
+            },+ Body
+    
+            {
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "SubjectCode":                       "CO", 
+                "SubjectClassifiactionCodeDetailId":456127  
+            },+ Body
+    
+            {
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "SubjectCode":                      "HB-A2", 
+                "SubjectClassifiactionCodeDetailId":456127  
+            }
