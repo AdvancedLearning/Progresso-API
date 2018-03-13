@@ -53,6 +53,7 @@ Required parameters are:
                 ".issued": "Wed, 30 Dec 2015 11:22:48 GMT",
                 ".expires": "Thu, 31 Dec 2015 11:22:48 GMT"
             }
+            
 
 # Group Employees Collection
 Methods for all employee-related resources
@@ -95,7 +96,6 @@ Retrieve one to many employee basic records
     + Body
     
             {
-                
                 "PersonId":             56123,
                 "EmployeeId":           12345,
                 "StaffCode":            "JBl",
@@ -192,6 +192,7 @@ Retrieve one to many employee basic records
     + Language is not mandatory but if included: TypeCode and LangCode are mandatory
     
     + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
+    
     
 + Response 200 (application/json)
 
@@ -1003,7 +1004,6 @@ Create Employee checks for one to multiple employees
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
 
     + Body
     
@@ -1209,6 +1209,7 @@ Create Employee checks for one to multiple employees
                               }
                             ]
             }
+            
 
 ### Update Employee Checks [PUT]
 Update Employee checks for one to multiple Staff
@@ -1454,7 +1455,6 @@ Create one to many contract records
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
     
             {
@@ -1526,6 +1526,7 @@ Update one to many contract records
                                     "MaxRange":         "75000"                           
                                 }]
             }
+            
 
 + Response 200 (application/json)
 
@@ -1543,6 +1544,7 @@ Update one to many contract records
                                     "EndDate":      "31-08-2015"
                                 }]
             }
+            
 
 ## Create/Update Employees Contract Roles [/EmployeeContractRoles]
 
@@ -1727,6 +1729,7 @@ Collection of all employee roles for employee contracts within a school
  
 
 ## Create Employee Allowances [/EmployeeAllowances]
+
 Collection of all employee Allowances for employee Roles within a school
 
 + Fields
@@ -1857,7 +1860,7 @@ Optional Parameter
                                             "SmsFlag":  true,
                                             "PhoneId":  2
                                         }],
-                "addressDetails":       [{
+                "AddressDetails":       [{
                                             "Country":  "GBR",
                                             "Type":     "H",
                                             "Flat":     "3a",
@@ -1915,6 +1918,7 @@ Optional Parameter
             }
             
             
+
 ## Create/Update Contact Records [/contacts]
 
 ### Create Contact [POST]
@@ -1935,42 +1939,42 @@ Minimum Parameters
     
             {
                 "ContactCode":          "3447", ...this is user field to match what is returned
-                "title":                "Mr",
-                "surname":              "King",
-                "forename":             "Ice",
-                "middleName":           "",
-                "gender":               "M",
-                "email":                "ice.king@home.com",
-                "language":             "English",
-                "occupation":           "",
-                "nationality":          "UK",
-                "isMedicalContact":     true,
-                "workEmail":            "",
-                "employer":             "",
-                "translatorReqiured":   false,
-                "exPupil":              false,
-                "medicalType":          "",
-                "visaNumber":           "",
-                "memberOfArmedForces":  false,
-                "phoneDetails":         [{
-                                            "type":     "H",
-                                            "number":   "013332552552",
-                                            "smsFlag":  false
+                "Title":                "Mr",
+                "Surname":              "King",
+                "Forename":             "Ice",
+                "MiddleName":           "",
+                "Gender":               "M",
+                "Email":                "ice.king@home.com",
+                "Language":             "English",
+                "Occupation":           "",
+                "Nationality":          "UK",
+                "IsMedicalContact":     true,
+                "WorkEmail":            "",
+                "Employer":             "",
+                "TranslatorReqiured":   false,
+                "ExPupil":              false,
+                "MedicalType":          "",
+                "VisaNumber":           "",
+                "MemberOfArmedForces":  false,
+                "PhoneDetails":         [{
+                                            "Type":     "H",
+                                            "Number":   "013332552552",
+                                            "SmsFlag":  false
                                         },{
-                                            "type":     "M",
-                                            "number":   "07707707707",
-                                            "smsFlag":  true
+                                            "Type":     "M",
+                                            "Number":   "07707707707",
+                                            "SmsFlag":  true
                                         }],
-                "addressDetails":       [{
-                                            "country":  "United Kingdom",
-                                            "type":     "H",
-                                            "flat":     "3a",
-                                            "number":   "1",
-                                            "street":   "The Street",
-                                            "locality": "Belper",
-                                            "town":     "Derby",
-                                            "county":   "Derbyshire"
-                                            "postCode": "DD55 36DD"
+                "AddressDetails":       [{
+                                            "Country":  "United Kingdom",
+                                            "Type":     "H",
+                                            "Flat":     "3a",
+                                            "Number":   "1",
+                                            "Street":   "The Street",
+                                            "Locality": "Belper",
+                                            "Town":     "Derby",
+                                            "County":   "Derbyshire"
+                                            "PostCode": "DD55 36DD"
                                         }]
             },
             {
@@ -2048,7 +2052,6 @@ Update one to many contact records
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
     
             {
@@ -2118,8 +2121,6 @@ Update one to many contact records
                                 ]
             }
 
-
-            
 
 # Group Learners
 
@@ -2611,7 +2612,9 @@ Mandatory fields:
                   }
             
             
+
 ### Update Learner [PUT]
+
 **Fields marked with ** are newly added**
 
 Update one to many learner records            
@@ -2810,7 +2813,6 @@ Response codes used are:
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
             
 + Response 200 (application/json)
 
@@ -3421,8 +3423,6 @@ Mandatory fields:
         
             Authorization: Bearer [CURRENT_TOKEN]
             
-+ Response 200 (application/json)
-
     + Body
     
             {
@@ -3503,8 +3503,7 @@ Mandatory fields:
                                 ]
             }
             
-            
- 
+
 ### Update Contacts associated to a learner [PUT]
 
 + Mandatory fields
@@ -3517,8 +3516,6 @@ Mandatory fields:
         
             Authorization: Bearer [CURRENT_TOKEN]
             
-+ Response 200 (application/json)
-
     + Body
             
             {
@@ -3670,7 +3667,6 @@ Create one to many Learner medical condition categories
                                         }]
             }
             
-## Create/Update Learner Health Details [/LearnerHealth]
 
 ### Create/Update Learner Health [PUT]
 
@@ -3757,6 +3753,7 @@ Create and update one to many learner heatlh records
                                 }]
             }
  
+
 ## Learner Exclusions [/LearnerExclusions{?StartDate}{?EndDate}]
 
 ### Retrieve a learner Exclusion Details [GET]
@@ -3808,8 +3805,6 @@ Create and update one to many learner heatlh records
                                     }]
             }
             
-                
-## Create/Update Learner Exclusions [/learnerExclusions]
 
 ### Create Learner Exclusions [POST]
 
@@ -3890,7 +3885,6 @@ Update Exclusions for one to many learners
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
     + Body
     
             {
@@ -3993,8 +3987,6 @@ Update Exclusions for one to many learners
                 }
                 ]
                 
-                
-## Create/Update Learner SEN Provisions [/learnerSENProvision]
 
 ### Create Learner SEN Provisions [POST]
 
@@ -4114,9 +4106,6 @@ Update SEN Provisions for one to many learners
                                     "EndDate":              "31/08/2018"
                                 }]
             }
-
-
-## Create/Update Learner SEN Major Needs [/LearnerSENMajorNeeds]
 
 ### Create Learner SEN Major Needs [POST]
 
@@ -4366,10 +4355,6 @@ Update SEN Major Needs for one to many learners
               "CreatedDate":"14-03-2017"
             }
 
-
-
-
-
 # Group Learner Attendance
 
 ## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
@@ -4420,8 +4405,6 @@ Update SEN Major Needs for one to many learners
                 "MinutesLate":     5,
                 "Notes":           "Lorem Ipsum"
             }
-            
-+ Response 204
 
 
 ### Create Learner Roll Call Attendance [POST]
@@ -4522,8 +4505,6 @@ Create and amend Attendance for one to many learners
                             "Notes":            "Lorem ipsum dolor sit amet."                                
                             }
                             
-+ Response 204
-
 
 ### Create Learner Lesson Attendance [POST]
 
@@ -4581,8 +4562,6 @@ Create Learner Lesson Atendance by Period or Time
                 "Details": "Saved successfully"
             }
 
-+ Response 204
-
 
 # Group Photo
 
@@ -4619,8 +4598,6 @@ Retrieve one to many one to many employee/learner photos
                 "PhotoData":  "0xFFD8FFE000104A46494600010101006000600000FFDB001684974"
                 ]
             }
-
-+ Response 204
 
 
 # Group User Defined Fields
@@ -4693,8 +4670,6 @@ A collection of all UDF-related resources
                 "ToolTip":          "What is the relationship of the Contact to the Learner?"    
             }
             
-+ Response 204
-
 
 ### Create one to many UDFs [POST]
 
@@ -4801,7 +4776,7 @@ Notes on using DataType:
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
+
     + Body
     
             {
@@ -4920,7 +4895,6 @@ Collection od User Defined Values resources
                 "Value":            "Mother"   
             }
             
-+ Response 204
 
 ### Create/Update UDF values for a UDF [POST]
 
@@ -4983,8 +4957,6 @@ Collection od User Defined Values resources
                 "Entity":           "Contact"
             }
             
-+ Response 204
-
 
 # Group Assessments
 
@@ -5680,6 +5652,7 @@ Collection of all Assessment related resources
                 "KS5ASociologyIfChallenged":           "B"     
             }
             
+
 ## KS2 FFT Data [/LearnerAssessmentKS2FFTData/{?LearnerId}]
 
 + Parameters
@@ -5827,7 +5800,7 @@ Retrieve KS3 FFT prediction data for a learner
                                         ]
             }
                                                                       
-                                      
+
 ## KS4 FFT Data [/LearnerAssessmentKS4FFTData/{?LearnerId}]
 
 + Parameters
@@ -5921,7 +5894,7 @@ Retrieve KS4 FFT prediction data for a learner
                                   ]
             }
             
-                                      
+
 ## KS5 FFT Data [/LearnerAssessmentKS5FFTData/{?LearnerId}]
 
 + Parameters
@@ -7420,8 +7393,6 @@ Retrieve KS5 FFT Aspire prediction data for a learner
                                     ]
             }
 
-
-
 # Group Exams
 
 Group of all Exam-related resources
@@ -7630,7 +7601,7 @@ Create one to many exam result entries for a learner
     + Header
     
             Authorization: Bearer [CURRENT_TOKEN]
-            
+
     + Body
     
             {
@@ -7687,7 +7658,7 @@ All fields are mandatory
     + Header
     
             Authorization: Bearer [CURRENT_TOKEN]
-            
+
     + Body
     
             {  
@@ -7813,9 +7784,8 @@ Group of all Group-related resources
                 "Year":         ""
               }
               
-  
-## Create/Update Group [/groups]
 
+## Create/Update Group [/groups]
 
 ### Create Group [POST]
 
@@ -7922,6 +7892,7 @@ Update one or many groups
 
 
 + Response 200
+
     + Body
     
             {
@@ -7995,8 +7966,8 @@ Update one or many groups
                                     }]
             }
             
-## Create/Update Group Association [/groupAssociation]
 
+## Create/Update Group Association [/groupAssociation]
 
 ### Create Group Association [POST]
 Create Group Association for one to many Learners and Groups
@@ -8121,12 +8092,12 @@ Create Group Association for one to many Learners and Groups
 
 ### Update Group Association [PUT]
 Update Group Association for one to many Learners and Groups
+
 + Request (application/json)
 
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
             
     + Body
     
@@ -8152,7 +8123,6 @@ Update Group Association for one to many Learners and Groups
                                         "learnerGroupLearnerId":    4,
                                         "startDate":                "01-09-2014",
                                         "endDate":                  "30-08-2015"
-
                                 }]
             }
 
@@ -8199,8 +8169,6 @@ Update Group Association for one to many Learners and Groups
 Group of all Academic Resources
 
 ## School [/School]
-
-**NOT AVAILABLE YET**
 
 ### Retrieve School Details [GET]
 
@@ -8277,8 +8245,6 @@ Group of all Academic Resources
 
 ### Create Academic Year [POST]
 
-This method has been amended to fix an issue with Week Structure
-
 **If a school already exists then this method should be used to create future Academic Years**
 
 Create one to many current or future academic years
@@ -8331,7 +8297,7 @@ Create one to many current or future academic years
             }
             
 
-## Academic Terms [/academicTerms/{?id}{?AcYearId}]
+## Academic Terms [/AcademicTerms/{?id}{?AcYearId}]
 
 + Parameters
     + id (optional, number, `12345`) ... The unique identifier of the Academic Term
@@ -8420,9 +8386,6 @@ Create one to many academic terms
                 
             }
 
-
-
-
 ## Term Breaks [/termBreaks/{?AcYearId}{?id}]
 
 + Parameters
@@ -8462,9 +8425,7 @@ Create one to many academic terms
 
 ## Create/Update Term Breaks [/TermBreaks]
 
-
 ### Create Term Breaks [POST]
-
 
 Create one to many terms breaks
 
@@ -8686,7 +8647,6 @@ Create one to many Academic Calendar Events
                 "EndDate":              "2016-09-05",
                 "FullHalfDay":          "FD"
             }
-            
     
 + Response 200 (application/json)
 
@@ -8720,7 +8680,7 @@ Update one to many Academic Calendar Events
         
     + Body
 
-            [{
+            {
                 "AcYearId":             1
                 "name":                 "Inset Day",
                 "category":             "Inset Day",
@@ -8735,14 +8695,13 @@ Update one to many Academic Calendar Events
                 "startDate":            03-09-2014,
                 "endDate":              03-09-2014,
                 "fullHalfDay":          "Half Day AM"
-            }]
+            }
             
-    
 + Response 200 (application/json)
-    
+
     + Body
         
-            [{
+            {
                 "name":                 "Inset Day",
                 "startDate":            02-09-2014,
                 "endDate":              02-09-2014,
@@ -8753,13 +8712,9 @@ Update one to many Academic Calendar Events
                 "startDate":            02-09-2014,
                 "endDate":              02-09-2014,
                 "calendarEventId":      0003
-            }]
-
+            }
 
 ## Courses [/courses/{?AcYearId}]
-
-Optional Parameters
-- AcYearId - Academic Year Id
 
 + Parameters
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
@@ -8772,7 +8727,6 @@ Optional Parameters
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -8794,9 +8748,6 @@ Optional Parameters
 
 ## CourseYears [/courseYear/{?AcYearId}]
 
-Optional Parameters
-- AcYearId - Academic Year Id
-    
 + Parameters
     + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
@@ -8808,7 +8759,6 @@ Optional Parameters
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -8985,7 +8935,6 @@ Create association of one to many Course to Subjects
                 "Details":          "Saved successfully"
             }  
             
-                
 
 ## Departments [/Departments]
 
@@ -9089,7 +9038,6 @@ Create association of one to many Course to Subjects
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -9215,21 +9163,18 @@ Code will always be OT
     
             {
                 "Name":             "My Teachers",
-                "RegionalSpine":    "EW",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",
                 "Point":            "9",
                 "Amount":           "35000"
             },{
                 "Name":             "My Teachers",
-                "RegionalSpine":    "EW",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",
                 "Point":            "10",
                 "Amount":           "40000"
             },{
-                 "Name":             "My Teachers",
-                "RegionalSpine":    "EW",
+                "Name":             "My Teachers",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",
                 "Point":            "11",
@@ -9256,7 +9201,6 @@ Code will always be OT
             }
             
 
- 
 ### Update Pay Scales [PUT]
 
 + Request
@@ -9332,7 +9276,6 @@ Group of all Timetable Resources
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -9359,7 +9302,6 @@ Group of all Timetable Resources
                 "splitMultiplePeriods": false,
                 "ActiveSource": "Y"
             }
-            
 
 ## Create/Update Timetable Sources [/TTSources/]
 
@@ -9406,8 +9348,6 @@ Update one to many Timetable Sources
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
-+ Request (application/json)
 
     + Body
 
@@ -9462,11 +9402,11 @@ Update one to many Timetable Sources
 
 Create one to many days for a school timetable
 
-*Fields:*
-+ Source (required, string, `TT2016/17`) ... code of Timetable Source
-+ DayCode (required, string, 'Mon1') ... code of Day
-+ DayName (required, string, `Monday1`) ... name of Day
-+ DayOrder (required, int, '1') ... position of the day in the week i.e. 1 - 14
++ Fields
+    + Source (required, string, `TT2016/17`) ... code of Timetable Source
+    + DayCode (required, string, 'Mon1') ... code of Day
+    + DayName (required, string, `Monday1`) ... name of Day
+    + DayOrder (required, int, '1') ... position of the day in the week i.e. 1,2,3,4
 
 + Request
 
@@ -9547,7 +9487,6 @@ Create one to many days for a school timetable
 ## Day Compositions  [/dayCompositions/{?TTSourceId}]
 
 + Parameters
-
     + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
 ### Retrieve Day Compositions [GET]
@@ -9563,7 +9502,6 @@ Response codes used are:
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -9578,8 +9516,6 @@ Response codes used are:
                 "DayCompositionId":         2,
                 "Name":                    "Day Comp 2014/2015 For KS5"
              }
-             
-+ Response 204
 
 
 ### Create Day Compositions [POST]
@@ -9591,8 +9527,6 @@ Create one to many Day Compositions
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
-+ Request (application/json)
 
     + Body
 
@@ -9623,8 +9557,6 @@ Update one to many Day Compositions
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-            
-+ Request (application/json)
 
     + Body
 
@@ -9633,7 +9565,6 @@ Update one to many Day Compositions
                 "DayCompositionId":         1,
                 "Name":                     "DC 2014/2015 Updated"
             }
-
 
 + Response 200 (application/json)
 
@@ -9653,7 +9584,6 @@ Update one to many Day Compositions
 ** Please note the lowercase 'd' in this call **
 
 + Parameters
-
     + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
 
 ### Retrieve Day Composition Periods [GET]
@@ -9704,8 +9634,6 @@ Response codes used are:
                 "EndTime": "12:20",
                 "WeekDay": "Monday"
             }
-            
-+ Response 204
 
 
 ### Create Day Compositions Periods [POST]
@@ -9717,9 +9645,6 @@ Create one to many Day Composition Periods
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-+ Request (application/json)
 
     + Body
     
@@ -9741,7 +9666,6 @@ Create one to many Day Composition Periods
                 "StartTime":                "08:30",
                 "EndTime":                  "09:50"
             }
-
 
 + Response 200 (application/json)
 
@@ -9770,8 +9694,6 @@ Update one to many Day Composition Periods
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-+ Request (application/json)
 
     + Body
     
@@ -9795,7 +9717,6 @@ Update one to many Day Composition Periods
                 "StartTime":                "08:30",
                 "EndTime":                  "09:50"
             }
-
 
 + Response 200 (application/json)
 
@@ -9817,8 +9738,6 @@ Update one to many Day Composition Periods
                 "WeekDay":                  "Tuesday",
                 "PeriodCode":               "P1"
             }
-
-
 
 ## Week Ranges [/WeekRanges/{?SourceId}]
 
@@ -9846,7 +9765,6 @@ Update one to many Day Composition Periods
     
 
 ## Timetable Events  [/ttEvents/{?SourceId}{?EmployeeId}{?LearnerId}{?StartDate}{?EndDate}{?DayCompositionId}]
-
 
 ### Retrieve Timetable Events [GET]
 
@@ -9882,7 +9800,6 @@ And either
                 "EndDate":      '2015-12-08'
             }
         
-
 + Response 200 (application/json)
 
     + Body
@@ -9925,9 +9842,6 @@ And either
                         ]
             }
             
-
-+ Response 204
-
 
 ### Create Timetable Events [POST]
 
@@ -10024,12 +9938,11 @@ And either
                 "EventId":                  [987654, 987655,987656,987657]
             }
             
-                    
+
 ### Update Timetable Events [PUT]
 
-**Mandatory field**
-
-+ EventId
++ Fields
+    + EventId (required, int, `12345`) ... unique Event Id
 
 All below fields are required if anyone is present
 
@@ -10147,12 +10060,11 @@ Retrieve all room categories
                 "RoomCategoryName": "Technology Room",
                 "Description": null
             }
-            
-### Create Room categories [POST]
 
+### Create Room categories [POST]
 Create one to many room categories
 
-+ Mandatory fields
++ Fields
     + RoomCategoryCode (required, string, 'HALL') ... unique code of the RoomCategory
     + RoomCategoryName (required, string, 'Hall') ... name of the RoomCategory
 
@@ -10161,8 +10073,6 @@ Create one to many room categories
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-+ Request (application/json)
 
     + Body
     
@@ -10172,7 +10082,6 @@ Create one to many room categories
                 "Description":            "Art Block"                                   
             }
             
-
 + Response 200 (application/json)
 
     + Body
@@ -10183,13 +10092,12 @@ Create one to many room categories
                 "RoomCategoryId":       0456,
                 "RoomCategoryCode":     "ART"
             }
-            
-            
+
 ### Update Room Categories [PUT]
 
 Update one to many room categories
 
-+ Mandatory fields
++ Fields
     + RoomCategoryID (required, int, '00001') ... unique code of the RoomCategory
 
 + Request
@@ -10197,8 +10105,6 @@ Update one to many room categories
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-
-+ Request (application/json)
 
     + Body
     
@@ -10219,8 +10125,6 @@ Update one to many room categories
                 "RoomCategoryId":       0001,
                 "RoomCategoryCode":     "HALL"
             }
-    
-
 
 ## Room Types [/RoomTypes]
 
@@ -10250,12 +10154,12 @@ Retrieve all room types
                 "Description":  "ICT Suite"
             }
             
-            
+
 ### Create Room Types [POST]
 
 Create one to many room types
 
-+ Mandatory fields
++ Fields
     + TypeName (required, string, 'Art and Design') ... Room type name
     + TypeCode (required, string, 'AD') ... Room type code
 
@@ -10264,8 +10168,6 @@ Create one to many room types
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-
-+ Request (application/json)
 
     + Body
     
@@ -10295,12 +10197,11 @@ Create one to many room types
                 "TypeCode":             "ICT"
             }
             
-            
-### Update Room Types [PUT]
 
+### Update Room Types [PUT]
 Update one to many room types
 
-+ Mandatory fields
++ Fields
     + TypeId (required, int, '0001') ... unique id of room type
     
 + Request
@@ -10308,8 +10209,6 @@ Update one to many room types
     + Headers
     
             Authorization: Bearer [CURRENT_TOKEN]
-        
-+ Request (application.json)
             
     + Body
 
@@ -10340,7 +10239,6 @@ Update one to many room types
                 "TypeId":               0002,
                 "TypeCode":             "ICT"
             }
-            
 
 ## Rooms  [/rooms/{?RoomId}]
 
@@ -10357,7 +10255,6 @@ Retrieve one to many rooms
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -10397,9 +10294,6 @@ Retrieve one to many rooms
                                     ]
             }
 
-+ Response 204 (applicatin/json)
-
-
 ### Create Rooms [POST]
 
 Create one to many Rooms. If the associated equipment does not exist it will create this too.
@@ -10409,8 +10303,6 @@ Create one to many Rooms. If the associated equipment does not exist it will cre
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-+ Request (application/json)
 
     + Body
     
@@ -10432,7 +10324,6 @@ Create one to many Rooms. If the associated equipment does not exist it will cre
                                         }]
             }
         
-
 + Response 200 (application/json)
 
     + Body
@@ -10461,7 +10352,6 @@ Retrieve one or more Sites
         
             Authorization: Bearer [CURRENT_TOKEN]
         
-
 + Response 200 (application/json)
 
     + Body
@@ -10471,9 +10361,6 @@ Retrieve one or more Sites
                 "SiteCode":     "Main site",
                 "SiteName":     "The Main Site of School"
             }
-            
-+ Response 204 (application/json)
-            
 
 ### Create Site [POST]
 
@@ -10484,9 +10371,6 @@ Create one to many Sites
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-+ Request (application/json)
 
     + Body
     
@@ -10515,9 +10399,6 @@ Update one to many Sites
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
-        
-
-+ Request (application/json)
 
     + Body
     
@@ -10666,9 +10547,7 @@ Assign a memeber of staff a potion for Behaviour Management
                               "HTO",
                               "ISO"
                             ]
-            }
- 
-+ Response 204                
+            }           
 
 ### Create Behaviour Events [POST]
 
@@ -10678,7 +10557,7 @@ Assign a memeber of staff a potion for Behaviour Management
         
             Authorization: Bearer [CURRENT_TOKEN]
 
-+ Request
+    + Body
 
             {
                 "LearnerId":    443790,
@@ -10729,7 +10608,7 @@ Assign a memeber of staff a potion for Behaviour Management
         
             Authorization: Bearer [CURRENT_TOKEN]
 
-+ Request
+    + Body
 
             {
                 "BehaviourEntryId": 13798177,
@@ -10900,14 +10779,11 @@ Retrieves the current behaviour structure
                             }]
             }
 
-
-+ Response 204 (application/json)
-
 ### Create Behaviour Structure [POST]
 
 Creates a new Behaviour Management Structure
 
-+ Mandatory fields for Types
++ Fields
     + Code (required, string, '01Conf') ... Unique code for the type of behaviour
     + Description (required, string, 'Abusive/Threating Language') ... Description of the type of behaviour
     + Points (required, number, '0') ... Number of points, defaults to zero
@@ -11020,8 +10896,6 @@ Creates a new Behaviour Management Structure
                                 }]
             }
             
-
-
 + Response 200 (application/json)
 
     + Body
