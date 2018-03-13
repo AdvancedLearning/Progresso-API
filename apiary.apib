@@ -270,7 +270,11 @@ Retrieve one to many employee basic records
                 "Nationality":          "GBR",
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
-                "Disability":           "No"
+                "Disability":           "No",
+                "SubjectsTaught":       [{
+                                            "Subject":          "EN"'
+                                            "TotalPlannedEffort": 20
+                                        }]
             }
                     
 + Response 200
@@ -4469,6 +4473,38 @@ Update SEN Major Needs for one to many learners
             }
 
 # Group Learner Attendance
+
+## Retrieve Atttendance Configuration
+Returns the default configuration for attendance
+
++ BulkPopulationSetting
+
+    + 1 = Enter Attendance Manually for all the students
+    + 2 = Enter Absences (blank entries will be saved as Present)
+    + 3 = Enter Presents (blank entries will be saved as Absent)
+
+*RollCallAbsenceCode and LessonByLessonAbsenceCode are mandatory only when BulkPopulationSetting = 3. If this is either 1 or 2 then the fields are null*
+
+### Get Attendance Configuration [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "BulkPopulateSetting":        3,
+              "RollCallAbsenceCode":        "N",
+              "LessonbyLessonAbsenceCode":  "N",
+              "RegisterNotification":       "true",
+              "MinutesToSubmit":             10
+            }
+
 
 ## Retrieve Roll Call Times [/RollCallTimes]
 
@@ -11014,15 +11050,99 @@ Updated to include detentions
             }
 
 
-## Get BM On behalf Of [/BMStaffOnBehalf]
+## BM On Behalf Of [/BMStaffOnBehalf]
 Used to populate the 'On behalf of' field with Staff Code and Name
 
 ### Return a list of Staff who the Event can be taken on behalf of [GET]
 
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "SchoolOrClusterEmployeeId": 86078,
+                "EmployeeId": 86531,
+                "StaffCode": "ZoTh",
+                "StaffName": "Aayliah Kurokawa",
+                "Position": "TCR",
+                "IsTeaching": true
+            }
+
+## BM Assign To [/BMAssignTo{?BehaviourEntryId}{?LearnerId}{?SubjectId}]
+Used to populate the 'Assign To' field with Staff Code and Name
+
++ Parameters:
+    + BehaviourEntryId (optional, int, `1001`) ... Id of the behaviour entry
+    + LearnerID (optional, int, `374658`) ... array of LearnerId's
+    + SubjectId (optional, int, `3456`) ... Lookup Id of Subject
+
+### Return a list of Staff who the Event can be assigned to [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "SchoolOrClusterEmployeeId": 68446,
+                "EmployeeId": 68944,
+                "StaffCode": "NR",
+                "StaffName": "Jadha IBRAHEIM",
+                "Position": "TCHR",
+                "IsTeaching": true
+            }
+
+## Detention Slots [/DetentionEvent{?IncidentDate}]
+Retruns a list of the available detention slots for a given date
+
++ Parameters
+    + IncidentDate (required, string, `18/01/2018`) ... date of the Incident
+
+### Retrieve a lst of Detetion Slots [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "EventId":          1234,                                            
+                "Scheduled":        false,
+                "Type":             "OOD",
+                "DetentionDate":    "19/01/2018",
+                "StartTime":        "12:45",
+                "FinishTime":       "13:00",
+                "StaffCode":        ["ALe"]
+                "Room":             ["The Cabin", "111"]
+            },{
+                "EventId":          1235,
+                "Scheduled":        true,
+                "Type":             "TT",
+                "DetentionDate":    "19/01/2018",
+                "StartTime":        "15:30",
+                "FinishTime":       "16:00",
+                "StaffCode":        ["DYj"]
+                "Room":             ["112"]
+            }
 
 
-
-## Behaviour Structure Collection [/BMStructure/]
+## Behaviour Structure Collection [/BMStructure]
 
 ### Get Behaviour Structure [GET]
 
