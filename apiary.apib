@@ -434,16 +434,16 @@ Retrieve a collection of employees contacts
 
     + Status (optional, string, `Active`) ... Optional filter by status, valid values [ Active | Left ].
 
-
 + Response 200
 
     + Body
     
             {
-                "EmployeeId":           12345,
-                "StaffCode":            "sc123",
+                "EmployeeId":        12345,
+                "StaffCode":         "sc123",
                 "Contacts": 
                             [{
+                                    "PersonId":     9532145,
                                     "Title":        "Mr",
                                     "Forename":     "Joe",
                                     "Surname":      "Bloggs",
@@ -476,6 +476,7 @@ Retrieve a collection of employees contacts
                                                                 "Town":     "Derby",
                                                                 "County":   "Derbyshire",
                                                                 "PostCode": "DD55 36DD"
+                                                                "AddressId":45615
                                                             }],
                                     "PhoneDetails":         [{
                                             
@@ -487,6 +488,7 @@ Retrieve a collection of employees contacts
                                                                 "Type":     "M",
                                                                 "Number":   "075555555",
                                                                 "SmsFlag":  true
+                                                                "PhoneId":  12346
                                                             }]
                             }]
             }
@@ -801,6 +803,52 @@ All other fields are mandatory.
                 "EndTime":              "10:50"
                 }
 
+## Assign Cover [/AssignCover]
+
+### Assign Cover [POST]
+
+All fields are required
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "Staff":    [{
+                                "SourceCode":           "2017/2018",
+                                "DayComposition":       "School Day",
+                                "AbsentStaffCode":      "ABc",
+                                "Date":                 "10/11/2017",
+                                "StartTime":            "14:00",
+                                "FinishTime":           "14:50",
+                                "CoverStaffCode":       "CDe"
+                            }],
+                "Room"      {{
+                                "SourceCode":           "2017/2018",
+                                "DayComposition":       "School Day",
+                                "UnavailableRoomCode":  "MU3",
+                                "Date":                 "13/11/2017",
+                                "StartTime":            "08:00",
+                                "FinishTime":           "16:00",
+                                "FreeRoomCode":         "MU1"
+                            }}
+            }
+                            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully"
+            },{
+                "Status":       true,
+                "Details":      "Saved successfully"
+            } 
 
 
 ## Employees Checks [/EmployeeChecks{?Status}{?Employee}]
@@ -2157,6 +2205,7 @@ Update one to many contact records
 Collection of all learner-related resources
 
 **PersonId is unique across the school's database**
+**Updated to include EAL**
 
 ### Retrieve a collection of learners [GET]
 
@@ -2218,6 +2267,7 @@ Collection of all learner-related resources
                 "MealType": "",
                 "AsylumSeeker": true,
                 "Religion": "",
+                "EAL": false,
                 "PhoneDetails": [
                   {
                     "Type": "M",
@@ -3387,6 +3437,7 @@ Mandatory fields:
                 "UPN": null,
                 "LearnerContactDetails":[
                                         {
+                                            "PersonId": 458235,
                                             "ContactId": 949950,
                                             "ForeName": "Colleen",
                                             "SurName": "Sterling",
@@ -4392,15 +4443,10 @@ Update SEN Major Needs for one to many learners
     + Either LearnerId or Date Range is mandatory
 
 + Parameters
-
     + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
-
     + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
-
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
-
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-    
     + IncludeMissingRollCall (optional, boolean, `true`) ... if this is included then all roll call including missing marks will be returned
 
 
@@ -4423,13 +4469,14 @@ Update SEN Major Needs for one to many learners
                 "AttendanceCodeId":1,  
                 "MinutesLate":     0,
                 "Notes":           ""
+                "IncludeMissingRollCall
                 },{
                 "LearnerId":    0001,
                 "LearnerCode":  "2013-00001",
                 "Date":         "18-04-2016",
                 "Session":         "PM",
-                "AttendanceCode":  "L",
-                "AttendanceCodeId": 3,  
+                "AttendanceCode":  null,
+                "AttendanceCodeId":null,  
                 "MinutesLate":     5,
                 "Notes":           "Lorem Ipsum"
             }
@@ -7425,7 +7472,7 @@ Retrieve KS5 FFT Aspire prediction data for a learner
 
 Group of all Exam-related resources
 
-## Exam Candidates [/ExamCandidate]
+## Exam Candidates [/ondiandidate]
 
 ### Create Exam Candidates [POST]
 
@@ -7440,6 +7487,7 @@ Create one to many exam candidates
     + Status (required, string, `P`) ... choice of P = Private, C = Internal, X = Non Statistical
     + RestrictedSeat (optional, boolean, `false`) ... choice of true or false
     + ApplyFee (optional, boolean, `false`) ... choice of true or false
+    + OtherDetails (optional, string, `Lorem ipsum`) ... free text notes field
 
 + Request (application/json)
 
@@ -7457,7 +7505,8 @@ Create one to many exam candidates
                 "UCI":              "221550175610F",
                 "Status":           "C",
                 "RestrictedSeat":   false,
-                "ApplyFee":         false 
+                "ApplyFee":         false,
+                "OtherDetails":     "lorem ipsum"
             }
 
 + Response 200
@@ -9159,14 +9208,12 @@ Collection of all Pay Scale related methods
                 "Name":"My staffs",
                 "PayRangeSpinePints":   [{
                                         "PayScaleSpinePointId":304294,
-                                        "RegionalSpine":"LF",
                                         "EffectiveFrom":"2017-06-01",
                                         "EffectiveTo":"2017-09-29",
                                         "Point":"11",
                                         "Amount":41000.00
                                         },{
                                         "PayScaleSpinePointId":304293,
-                                        "RegionalSpine":"LO",
                                         "EffectiveFrom":"2016-08-01",
                                         "EffectiveTo":"2017-05-30",
                                         "Point":"10",
@@ -9242,7 +9289,6 @@ Code will always be OT
             {
                 "PayscaleId":       12346,
                 "Name":             "Leadership",
-                "RegionalSpine":    "EW",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",
                 "PayScalePointId":  5345,
@@ -9251,7 +9297,6 @@ Code will always be OT
             },{
                 "PayscaleId":       12346,
                 "Name":             "Leadership",
-                "RegionalSpine":    "EW",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",
                 "PayScalePointId":  5346,
@@ -9260,7 +9305,6 @@ Code will always be OT
             },{
                 "PayscaleId":       12346,
                 "Name":             "Leadership",
-                "RegionalSpine":    "EW",
                 "EffectiveFrom":    "01-09-2016",
                 "EffectiveTo":      "31-09-2017",                
                 "PayScalePointId":  5347,
@@ -9844,7 +9888,52 @@ Update one to many Day Composition Periods
                 "IterationNumber":  1
                 "StartDate":        "30-08-2015"
             }
+            
+
+### Create Week Range [POST]
+
++ Fields
+    + Source (required, string, `TT2016/17`) ... code of Timetable Source
+    + Name (required, string, '1-22') ... name of the Week Range
+    + Iterations (required, int, '1,2,3,4,5,6,7,8,9,10') ... array of iterations
     
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Source":           "TT2016/17",
+                "Name":             "1-4",
+                "Iterations":       [
+                                        1,2,3,4
+                                    ]
+            },{
+                "Source":           "TT2016/17",
+                "Name":             "1-11",
+                "Iterations":       [
+                                        1,2,3,4,5,6,7,8,9,10,11
+                                    ]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "WeekRangeId":            6543
+            },
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "WeekRangeId":            6544
+            }
+
 
 ## Timetable Events  [/ttEvents/{?SourceId}{?EmployeeId}{?LearnerId}{?StartDate}{?EndDate}{?DayCompositionId}]
 
@@ -9852,6 +9941,7 @@ Update one to many Day Composition Periods
 
 - Mandatory fields
     - SourceId is a mandatory field
+    - LearnerId if ILM events are to be returned
 
 And either
 
@@ -9874,14 +9964,6 @@ And either
         
             Authorization: Bearer [CURRENT_TOKEN]
             
-    + Body
-    
-            {
-                "SourceId":     2133,
-                "StartDate":    '2015-12-01',
-                "EndDate":      '2015-12-08'
-            }
-        
 + Response 200 (application/json)
 
     + Body
@@ -9892,7 +9974,7 @@ And either
             "PeriodId":     123456
             "StartTime":    "09:00",
             "FinishTime":   "10:00",
-            "Day":          "Tue1",
+            "Day":          "Tuesday1",
             "EventType":    "Timetable",
             "Duration":     60,
             "NCAEventType": "",
@@ -9921,7 +10003,8 @@ And either
                             "EventRoomAssociationId":           184615,
                             "Room": "CE06"
                           }
-                        ]
+                        ],
+            "WeekRangeId":  45488LEarners
             }
             
 
@@ -11151,3 +11234,6 @@ Updates an Behaviour Management Structure
             "DetentionType":[{}],
             "Location":     [{}]
             }
+            
+
+# Group Post 16
