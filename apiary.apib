@@ -272,7 +272,7 @@ Retrieve one to many employee basic records
                 "Religion":             "MU",
                 "Disability":           "No",
                 "SubjectsTaught":       [{
-                                            "Subject":          "EN"'
+                                            "Subject":          "EN",
                                             "TotalPlannedEffort": 20
                                         }]
             }
@@ -4626,6 +4626,8 @@ Returns the default configuration for attendance
 
 Create and amend Attendance for one to many learners
 
+*Amdended to allow addition of future absences*
+
 + Request (application/json)
 
     + Headers
@@ -4666,6 +4668,8 @@ Create and amend Attendance for one to many learners
 
 ## Add Learner Roll Call Atendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
 This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance session at a time can be passed.
+
+*Allows future absences*
 
 + Parameters
     + LearnerCode (required, string, `2015-00001`) ... the unique code of the learner
@@ -10873,8 +10877,11 @@ Assign a memeber of staff a potion for Behaviour Management
                 "Location": "CLS",
                 "Published": "Yes",
                 "Creator": "DhDr",
+                "CreateorId": 458264,
                 "Editor": null,
+                "EditorId": 8535,
                 "Assignee": "DiRo",
+                "AssigneeId": 59898,
                 "Status": "Completed",
                 "Details": [
                               {
@@ -10895,16 +10902,22 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "BehaviourEntryCommentId": 5648278,
                                 "Confidential": true,
                                 "Comment": "Asked to go to the toilet and went to the one furthest away just to waste time."
+                                "StaffCode":    "NS",
+                                "EmployeeId":   123456
                               },
                               {
                                 "BehaviourEntryCommentId": 5648279,
                                 "Confidential": false,
                                 "Comment": "Spat gum out on floor"
+                                "StaffCode":    "NS",
+                                "EmployeeId":   123456
                               },
                               {
                                 "BehaviourEntryCommentId": 5648280,
                                 "Confidential": false,
                                 "Comment": "Was rude to memeber of Staff"
+                                "StaffCode":    "NS",
+                                "EmployeeId":   123456
                               }
                             ],
                 "Actions":  [
