@@ -181,18 +181,12 @@ Retrieve one to many employee basic records
 
  Create one to many one to many employee records 
 
-+ Mandatory fields
-
-    + StaffCode, Surname, Forename, Middlename are mandatory fields
-    
++ Fields
+    + StaffCode, Surname, Forename are mandatory fields
     + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
-
     + Phone is not mandatory but if included: Type and Number are mandatory
-    
     + Language is not mandatory but if included: TypeCode and LangCode are mandatory
-    
     + Qualification is not mandatory but if included: QualificaitonCode and Subject1 are mandatory
-    
     
 + Response 200 (application/json)
 
@@ -225,6 +219,13 @@ Retrieve one to many employee basic records
                 "LeavingReason":        "Wants to be a hermit"'
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
+                "RegistrationNumber":   "NA14 CZX",
+                "CarType":              "Nissan Note",
+                "Colour":               "White",
+                "Notes":                "Has lots of notes",
+                "IsAlertNotification":  true,
+                "EmergencySMSNumber":   "07896453712",
+                "EmergencyEmailAddress":"afakeemail@fake.co.uk",
                 "PhoneDetails":         [{
                                             
                                             "Type":     "H",
@@ -4787,11 +4788,20 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
 ### Create Learner Lesson Attendance [POST]
 
-*This is currently being re-written*
+Create Learner Lesson Atendance by Time
 
-Create Learner Lesson Atendance by Period or Time
++ Fields:
+    + DayComposition (required, string, `Lessons`) ... name of the day Composition
+    + GroupCode (required, string, `7-AD-X1`) ... unique code of Group
+    + LearnerCode (required, string, `2010-1234`) ... code of Learner
+    + Date (required, string, `20/02/2018`) ... date of attendance to be recorded
+    + StartTime (required, string, `09:00`) ... time of the start of the lesson
+    + FinishTime (required, string, `10:00`) ... time of the end of lesson - required if start time present
+    + AttendanceCode (required, string, `/`) ... unique Attendance code
+    + Notes (optional, string, `Lorem ipsum`) ... free text
+    + MinutesLate (optional, int, `5`) ... number of minutes late for lesson
 
-+ Request (application/json)
++ Request
 
     + Headers
         
@@ -4800,27 +4810,18 @@ Create Learner Lesson Atendance by Period or Time
     + Body
             
             {
-                "LearnerCode":          "2013-00001",
-                "Iteration":            1,
-                "PeriodId":             1,
-                "AttendanceCode":       "/"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "Iteration":            1,
-                "PeriodId":             1,
-                "AttendanceCode":       "N"
-            },
-            {
+                "DayComposition":   "Lessons".
+                "GroupCode":        "7A-BC1",
                 "LearnerCode":      "7791",
                 "Date":             "16-03-2016",
                 "StartTime":        "09:15",
                 "FinishTime":       "10:15",
-                "AttendanceCode":   "/"
+                "AttendanceCode":   "/",
+                "Notes":            "On the ning nang nong"
             }
 
 
-+ Response 200
++ Response 200 (application/json)
 
     + Body
     
@@ -4828,17 +4829,6 @@ Create Learner Lesson Atendance by Period or Time
                  "LearnerCode":         "2013-00001",
                  "Status":              "Success",
                  "Details": "Saved successfully"
-            },
-            {
-                "LearnerCode":          "2013-00002",
-                "Status":               "Success",
-                "Details": "Saved successfully"
-                
-            },
-            {
-                "LearnerCode": "7791",
-                "Status": true,
-                "Details": "Saved successfully"
             }
 
 
@@ -7970,16 +7960,18 @@ All fields are mandatory
 
 Group of all Group-related resources
 
-## Groups Collection [/Groups{?GroupStartDate}{?GroupEndDate}{?Type}{?Since}]
+## Groups Collection [/Groups{?GroupStartDate}{?GroupEndDate}{?Type}{?Since}{?EmployeeId}{?LearnerId}]
+*New parameters of EmployeeId and LearnerId have been added*
+
+### Retrieve a collection of Groups [GET]
 
 + Parameters
     + GroupStartDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a start date on or after date
     + GroupEndDate (optional, dateTime, `01-04-2014T18:00:00`) ... Groups with a end date on or before date
     + Type (optional, string, `TeachingGroup`) ... Type of Group: TeachingGroup, ReigstrationGroup, AdhocGroup, AcademicHouseGroup
     + Since (optional, dateTime, `01-04-2014T18:00:00`) ... Groups modified since date provided
-
-    
-### Retrieve a collection of Groups [GET]
+    + EmployeeId (optional, int, `534678`) ... unique Id of Employee
+    + LearnerId (optional, int, `123098`) ... unique Id of Learner
 
 + Request
 
@@ -10143,6 +10135,8 @@ Update one to many Day Composition Periods
 
 ### Retrieve Timetable Events [GET]
 
+*This no longer returns event for Learners who have left the group*
+
 - Mandatory fields
     - SourceId is a mandatory field
     - LearnerId if ILM events are to be returned
@@ -10315,13 +10309,12 @@ And either
     + EventId (required, int, `12345`) ... unique Event Id
 
 All below fields are required if anyone is present
-
-+ Source
-+ DayComposition
-+ Iteration
-+ Day
-+ StartTime
-+ EndTime
+    + Source
+    + DayComposition
+    + Iteration
+    + Day
+    + StartTime
+    + EndTime
 
 
 + Request (application/json)
@@ -10384,6 +10377,114 @@ All below fields are required if anyone is present
                 "EventId":              6521
             }
         
+
+## Staff Timetable [/EmployeeTTEvents{?SourceId}{?EmployeeId}{?DateFrom}{?DateTo}]
+
+Retrieve the timetable of Employees including covered events
+There is a new field of 'IsCovered'. When this is true it means the Staff is covering this event for the specific day.
+
+### Retrieve Staff Timetable [GET]
+
++ Parameters
+    + SourceId (required, int, `1234`) ... unique Id of Timetable Source
+    + EmployeeId (required, int, `123420`) ... unique ID of Employee
+    + DateFrom (required, date, `01-09-2015`) ... start of the date range
+    + DateTo (required, date, `31-08-2016`) ... end of the date range
+
++ Request 
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                    "EventId": 157495759,
+                    "Date": "2018-02-20",
+                    "PeriodId": 107862,
+                    "StartTime": "08:30",
+                    "FinishTime": "08:50",
+                    "Day": "TuesdayA",
+                    "EventType": "Timetable",
+                    "Duration": 20,
+                    "NCAEventType": null,
+                     "Groups":   [
+                                    {
+                                        "EventLearnerGroupAssociationId": 152470414,
+                                        "GroupId": 1225798,
+                                        "GroupCode": "11O-REG",
+                                        "Type": "TeachingGroup"
+                                    }
+                                ],
+                    "Subjects": [
+                                    {
+                                        "EventSubjectAssociationId": 154211698,
+                                        "Subject": "REG"
+                                    }
+                                ],
+                    "Rooms":    [
+                                    {
+                                        "EventRoomAssociationId": 115036828,
+                                        "Room": "EN5"
+                                    }
+                                ],
+                    "WeekRangeId": 6852,
+                    "IsCovered": True
+                },
+                {
+                    "EventId": 157526347,
+                    "Date": "2018-02-20",
+                    "PeriodId": 107870,
+                    "StartTime": "13:10",
+                    "FinishTime": "14:50",
+                    "Day": "TuesdayA",
+                    "EventType": "NonContactActivities",
+                    "Duration": 100,
+                    "NCAEventType": "OFFSITE",
+                    "Employees":[
+                                    {
+                                        "EventTeacherAssociationId": 162844195,
+                                        "EmployeeId": 126049,
+                                        "EmployeeCode": "WiGr"
+                                    }
+                                ],
+                    "Groups": null,
+                    "Subjects": null,
+                    "Rooms": null,
+                    "WeekRangeId": 6852,
+                    "IsCovered": false
+                },
+                {
+                    "EventId": 157538008,
+                    "Date": "2018-02-20",
+                    "PeriodId": 107864,
+                    "StartTime": "09:40",
+                    "FinishTime": "10:30",
+                    "Day": "TuesdayA",
+                    "EventType": "Adhoc",
+                    "Duration": 50,
+                    "NCAEventType": null,
+                    "Employees": [
+                        {
+                            "EventTeacherAssociationId": 162857764,
+                            "EmployeeId": 126049,
+                            "EmployeeCode": "WiGr"
+                        }
+                    ],
+                    "Groups": null,
+                    "Subjects": [
+                        {
+                            "EventSubjectAssociationId": 154242301,
+                            "Subject": "AEN"
+                        }
+                    ],
+                    "Rooms": null,
+                    "WeekRangeId": null,
+                    "IsCovered": false
+                }
 
 
 # Group Physical
