@@ -2211,6 +2211,7 @@ Collection of all learner-related resources
 
 **PersonId is unique across the school's database**
 **Updated to include EAL**
+**Updated to include new Census fields**
 
 ### Retrieve a collection of learners [GET]
 
@@ -2273,72 +2274,77 @@ Collection of all learner-related resources
                 "AsylumSeeker": true,
                 "Religion": "",
                 "EAL": false,
-                "PhoneDetails": [
-                  {
-                    "Type": "M",
-                    "Number": "01111567891",
-                    "SMSFlag": true,
-                    "PhoneId": 1346330
-                  }
-                ],
-                "AddressDetails": [
-                  {
-                    "Country": "GBR",
-                    "Type": "H",
-                    "Flat": "",
-                    "Number": "25",
-                    "Street": "Portsmouth Road",
-                    "Locality": "Cobham",
-                    "Town": "Surrey",
-                    "County": "Derbyshire",
-                    "PostCode": "DE11 1TF",
-                    "AddressId": 319830
-                  }
-                ],
-                "ContactDetails": [
-                  {
-                    "ContactId": 223479,
-                    "ForeName": "Wyrner",
-                    "SurName": "Skordi",
-                    "Relationship": "FAM",
-                    "WrittenCommunication": "",
-                    "Priority": 3,
-                    "ContactPrioritySource": "",
-                    "EmergencyContactLevel": "None",
-                    "NextOfKin": false,
-                    "AddressDisclosure": false,
-                    "AddressTransferred": false,
-                    "ParentalResponsibility": false,
-                    "FeePayer": false,
-                    "ParentalPortal": false,
-                    "HomeAddressLink": false,
-                    "OtherHomeAddressLink": false,
-                    "SendSMS": false,
-                    "Title": "Mrs",
-                    "Gender": "F"
-                  },
-                  {
-                    "ContactId": 223480,
-                    "ForeName": "Valerie Giselle",
-                    "SurName": "Phipps",
-                    "Relationship": "PAF",
-                    "WrittenCommunication": "",
-                    "Priority": 2,
-                    "ContactPrioritySource": "",
-                    "EmergencyContactLevel": "",
-                    "NextOfKin": false,
-                    "AddressDisclosure": false,
-                    "AddressTransferred": false,
-                    "ParentalResponsibility": true,
-                    "FeePayer": false,
-                    "ParentalPortal": false,
-                    "HomeAddressLink": true,
-                    "OtherHomeAddressLink": false,
-                    "SendSMS": false,
-                    "Title": "Mr",
-                    "Gender": "M"
-                  }
-                ],
+                "IsEconomicCriteria": null,
+                "IsHighLevelSENorDisability": null,
+                "IsLookedAfterorAdoptedFromCare": null,
+                "PhoneDetails":     [
+                                      {
+                                        "Type": "M",
+                                        "Number": "01111567891",
+                                        "SMSFlag": true,
+                                        "PhoneId": 1346330
+                                      }
+                                    ],
+                "AddressDetails":   [
+                                      {
+                                        "Country": "GBR",
+                                        "Type": "H",
+                                        "Flat": "",
+                                        "Number": "25",
+                                        "Street": "Portsmouth Road",
+                                        "Locality": "Cobham",
+                                        "Town": "Surrey",
+                                        "County": "Derbyshire",
+                                        "PostCode": "DE11 1TF",
+                                        "AddressId": 319830
+                                      }
+                                    ],
+                "ContactDetails":   [
+                                      {
+                                        "ContactId": 223479,
+                                        "ForeName": "Wyrner",
+                                        "SurName": "Skordi",
+                                        "Relationship": "FAM",
+                                        "Description": "Father",
+                                        "WrittenCommunication": "",
+                                        "Priority": 3,
+                                        "ContactPrioritySource": "",
+                                        "EmergencyContactLevel": "None",
+                                        "NextOfKin": false,
+                                        "AddressDisclosure": false,
+                                        "AddressTransferred": false,
+                                        "ParentalResponsibility": false,
+                                        "FeePayer": false,
+                                        "ParentalPortal": false,
+                                        "HomeAddressLink": false,
+                                        "OtherHomeAddressLink": false,
+                                        "SendSMS": false,
+                                        "Title": "Mrs",
+                                        "Gender": "F"
+                                      },
+                                      {
+                                        "ContactId": 223480,
+                                        "ForeName": "Valerie Giselle",
+                                        "SurName": "Phipps",
+                                        "Relationship": "PAM",
+                                        "Description": "Mother",
+                                        "WrittenCommunication": "",
+                                        "Priority": 2,
+                                        "ContactPrioritySource": "",
+                                        "EmergencyContactLevel": "",
+                                        "NextOfKin": false,
+                                        "AddressDisclosure": false,
+                                        "AddressTransferred": false,
+                                        "ParentalResponsibility": true,
+                                        "FeePayer": false,
+                                        "ParentalPortal": false,
+                                        "HomeAddressLink": true,
+                                        "OtherHomeAddressLink": false,
+                                        "SendSMS": false,
+                                        "Title": "Mr",
+                                        "Gender": "M"
+                                      }
+                                    ],
                 "SiblingDetails":   [
                                       {
                                         "LearnerId": 98653,
@@ -2353,9 +2359,11 @@ Collection of all learner-related resources
                                     ],
                 "LanguageDetails":  [
                                       {
-                                        "LanguageUsageId": 66932,
+                                        "LanguageUsageId": 227853,
                                         "TypeCode": "F",
-                                        "LanguageCode": "ENG"
+                                        "LanguageCode": "ENG",
+                                        "LevelOfLanguage": null,
+                                        "Description": "English"
                                       }
                                     ],
                 "SENProvisionDetails": [
@@ -2410,198 +2418,106 @@ Mandatory fields:
     + Body
     
             {
-                "LearnerCode":        "2016-1000",
-                "Surname":            "James",
-                "Forename":           "Jeff",
-                "Status":             "Active",
-                "RegGroup":           "6AC",
-                "AcademicHouse":      "",
-                "DateOfBirth":        "04-08-1998 00:00:00",
-                "LegalSurname":       "Sterling",
-                "LegalForename":      "Geoffrey",
-                "MiddleName":         "James",
-                "FormerSurname":      "Silver",
-                "EmailAddress":       "a.b@c.co.uk",
-                "Gender":             "M",
-                "Notes":              "Lorem Ipsum",
-                "HomeSalutation":     "Mrs C Sterling",
-                "DateOfEntry":        "01-09-2010 00:00:00",
-                "Year":               "13",
-                "Course":             "KS5",
-                "NCYear":             "13",
-                "Boarder":            "N",
-                "AddressDetails":   [{
-                                        "Country":      "GBR",
-                                        "Type":         "H",
-                                        "Flat":         "",
-                                        "Number":       "23",
-                                        "Street":       "dfadf",
-                                        "Locality":     "Derby",
-                                        "Town":         "",
-                                        "County":       "",
-                                        "PostCode":     "DE21 4FL"
-                                    }],
-                "PhoneDetails":     [{
-                                        "Type":         "H",
-                                        "Number":       "01111567891",
-                                        "SMSFlag":      false
-                                    }],
-                "ContactDetails":   [{
-                                        "Title":        "Mrs",
-                                        "Forename":     "Trillian",
-                                        "Surname":      "Beelebrox",
-                                        "Relationship": "PAM",
-                                        "Gender":       "F",
-                                        "WrittenCommunication":     "",
-                                        "Priority":                 1,
-                                        "ContactPrioritySource":    "",
-                                        "EmergencyContactLevel":    "Primary",
-                                        "NextOfKin":                false,
-                                        "AddressDisclosure":        false,
-                                        "AddressTransferred":       false,
-                                        "ParentalResponsibility":   true,
-                                        "FeePayer":                 false,
-                                        "ParentalPortal":           true,
-                                        "HomeAddressLink":          true,
-                                        "OtherHomeAddressLink":     false,
-                                        "SendSMS":                  true
-                                    }],
-                "SiblingDetails":   [{
-                                        "LearnerCode":  "8848"
-                                    }],
-                "PartTime":           false,
-                "EnrolementStatus":   "C",
-                "UPN":                "",
-                "FormerUPN":          "",
-                "ULN":                "",
-                "GandT":              true,
-                "MedicalFlag":        true,
-                "YSSAIndicator":      "SNR",
-                "Nationality":        "GBR",
-                "Ethnicity":          "WBRI",
-                "EthnicitySource":    "P",
-                "ServiceChild":       "N",
-                "ServiceChildSource": "P",
-                "TopUpFunding":       true,
-                "ThirtyHourCode":     123456789,
-                "FundedHours":        0,
-                "HoursAtSetting":     0.0,
-                "ExtendedChildcareHours":   10.25,
-                "UnitContactTime":    0.0,
-                "EYPPEligibility":    true,
-                "EYPPBasisOfEligibility":   "EE",
-                "SchoolLunchTaken":   true,
-                "MealType":           "CSM",
-                "AsylumSeeker":       false,
-                "Religion":           "HI",
-                "ReligionSource":     "P",
-                "DisabilityAccessFundIndicator":    true
-                "DisabilityDetails":   [{
-                                            "Disability":  "CON"
-                                        }],
-                "LanguageDetails":      [{
-                                            "TypeCode":             "F",
-                                            "LanguageCode":         "ENG",
-                                            "LevelOfLanguage":      "5"
-                                        }],
-                "SENProvisionDetails":  [{
-                                            "ProvisionTypeCode":    "E",
-                                            "StartDate":            "19/09/2014"
-                                        }],
-                "SENMajorNeedsDetails": [{
-                                            "MajorNeedCode":        "SLD",
-                                            "Ranking":              1
-                                        }]
-            },
-            {
-                "LearnerCode":        "2016-0005",
-                "Surname":            "Flower",
-                "Forename":           "Lily",
-                "Status":             "Active",
-                "RegGroup":           "H3",
-                "AcademicHouse":      "",
-                "DateOfBirth":        "04-08-1998 00:00:00",
-                "LegalSurname":       "Petal",
-                "LegalForename":      "Lillian",
-                "MiddleName":         "Nectar",
-                "FormerSurname":      "",
-                "EmailAddress":       "a.b@c.co.uk",
-                "Gender":             "M",
-                "Notes":              "Lorem Ipsum",
-                "HomeSalutation":     "Mrs C Petal",
-                "DateOfEntry":        "01-09-2010 00:00:00",
-                "Year":               "13",
-                "Course":             "KS5",
-                "NCYear":             "13",
-                "Boarder":            "N",
-                "AddressDetails":   [{
-                                        "Country":      "GBR",
-                                        "Type":         "H",
-                                        "Flat":         "",
-                                        "Number":       "23",
-                                        "Street":       "Orange Blossom Road",
-                                        "Locality":     "Littleover",
-                                        "Town":         "Derby",
-                                        "County":       "Derbyshire",
-                                        "PostCode":     "DE21 4FL"
-                                    }],
-                "PhoneDetails":     [{
-                                        "Type":         "H",
-                                        "Number":       "079821364646",
-                                        "SMSFlag":      true
-                                    }],
-                "ContactDetails":   [{
-                                        "Title":        "Mrs",
-                                        "Forename":     "Trillian",
-                                        "Surname":      "Beelebrox",
-                                        "Relationship": "PAM",
-                                        "Gender":       "F",
-                                        "WrittenCommunication":     "",
-                                        "Priority":                 1,
-                                        "ContactPrioritySource":    "",
-                                        "EmergencyContactLevel":    "Primary",
-                                        "NextOfKin":                false,
-                                        "AddressDisclosure":        false,
-                                        "AddressTransferred":       false,
-                                        "ParentalResponsibility":   true,
-                                        "FeePayer":                 false,
-                                        "ParentalPortal":           true,
-                                        "HomeAddressLink":          true,
-                                        "OtherHomeAddressLink":     false,
-                                        "SendSMS":                  true
-                                    }],
-                "SiblingDetails":   [{
-                                        "LearnerCode":  "8848"
-                                    }],
-                "PartTime":           false,
-                "EnrolementStatus":   "C",
-                "UPN":                "",
-                "FormerUPN":          "",
-                "ULN":                "",
-                "GandT":              true,
-                "MedicalFlag":        true,
-                "YSSAIndicator":      "SNR",
-                "Nationality":        "GBR",
-                "Ethnicity":          "WBRI",
-                "EthnicitySource":    "P",
-                "ServiceChild":       "N",
-                "ServiceChildSource": "P",
-                "TopUpFunding":       true,
-                "FundedHours":        0.0,
-                "HoursAtSetting":     0.0,
-                "UnitContactTime":    0.0,
-                "SchoolLunchTaken":   true,
-                "MealType":           "CSM",
-                "AsylumSeeker":       false,
-                "Religion":           "HI",
-                "DisabilityDetails":   [{
-                                            "Disability":  "CON"
-                                        }],
-                "LanguageDetails":  [{
-                                        "TypeCode":             "F",
-                                        "LanguageCode":         "ENG"
-                                    }]
-            }
+                "LearnerCode": "1010104",
+                "Surname": "Bartkowicz",
+                "Forename": "Naomi",
+                "LegalSurname": "Bartkowicz",
+                "LegalForename": "Naomi",
+                "DateOfBirth": "23-10-1999 00:00:00",
+                "Year": "13",
+                "Course": "KS5",
+                "DateOfEntry": "06-09-2017 00:00:00",
+                "Gender": "F",
+                "RegGroup": "",
+                "Ethnicity": "WBRI",
+                "EthnicitySource": "P",
+                "EnrolementStatus": "C",
+                "NCYear": "11",
+                "Status": "Active",
+                "AcademicHouse": "",
+                "MiddleName": "",
+                "FormerSurname": "",
+                "EmailAddress": "",
+                "Notes": "",
+                "HomeSalutation": "",
+                "Boarder": "N",
+                "PartTime": false,
+                "FormerUPN": "",
+                "GAndT": false,
+                "MedicalFlag": false,
+                "YSSAIndicator": "",
+                "Nationality": "",
+                "ServiceChild": "N",
+                "ServiceChildSource": "",
+                "TopUpFunding": false,
+                "FundedHours": 0,
+                "HoursAtSetting": 0,
+                "UnitContactTime": null,
+                "SchoolLunchTaken": false,
+                "MealType": "",
+                "AsylumSeeker": true,
+                "Religion": "NO",
+                "ReligionSource": "P",
+                "ExtendedChildcareHours": 10.5,
+                "DisabilityAccessFundIndicator":true,
+                "EYPPEligibility":true,
+                "EYPPBasisOfEligibility":"EE",
+                "ThirtyHourCode": 123456789,
+                "IsEconomicCriteria": true,
+                "IsHighLevelSENorDisability": true,
+                "IsLookedAfterorAdoptedFromCare": true,
+                "PhoneDetails": [
+                                  {
+                                    "Type": "H",
+                                    "Number": "01332257536",
+                                    "SMSFlag": false
+                                  }
+                                ],
+                "AddressDetails":[
+                                  {
+                                    "Country": "GBR",
+                                    "Type": "H",
+                                    "Flat": "",
+                                    "Number": "256",
+                                    "Street": "Spencer Street",
+                                    "Locality": "Derby",
+                                    "Town": "",
+                                    "County": "",
+                                    "PostCode": "DE14 8SL"
+                                  }
+                                ],
+                "SiblingDetails": null,
+                "DisabilityDetails": [
+                                      {
+                                        "DisabilityTypeId": 489772,
+                                        "Disability": "NCOL"
+                                      }
+                                    ],
+                "LanguageDetails": [
+                                      {
+                                        "LanguageUsageId": 436663,
+                                        "TypeCode": "F",
+                                        "LanguageCode": "ENG"
+                                      }
+                                    ],
+                "SENProvisionDetails": [
+                                          {
+                                            "ProvisionId": 838218,
+                                            "ProvisionTypeCode": "A",
+                                            "StartDate": "06/03/2013",
+                                            "ReviewDate": null,
+                                            "EndDate": "07/01/2013"
+                                          }
+                                        ],
+                "SENMajorNeedsDetails": [
+                                          {
+                                          "LearnerMajorNeedId": 79411,
+                                          "MajorNeedCode": "SEMH",
+                                          "Ranking": 1
+                                            }
+                                        ]
+              }
+             ]
 
 + Response 200
 
@@ -2747,6 +2663,9 @@ Update one to many learner records
                 "Course":             "KS5",
                 "NCYear":             "13",
                 "Boarder":            "N",
+                "IsEconomicCriteria":               null,
+                "IsHighLevelSENorDisability":       null,
+                "IsLookedAfterorAdoptedFromCare":   null,
                 "AddressDetails":   [{
                                         "AddressId":    0001,
                                         "Country":      "GBR",
@@ -8179,6 +8098,7 @@ Update one or many groups
 ## Group Association [/GroupAssociation/{?GroupId}{?GroupStartDate}{?GroupEndDate}{?IncludePast}]
 
 **Please note: StartDate and EndDate in the response are the dates the Learner joined and left the group**
+* Learner Forename and Surname have been added to the response - 06/04/2018
 
 + Parameters
     + GroupId (optional, number, `12345`) ... unique identifier of a Learner Group
@@ -8202,41 +8122,60 @@ Update one or many groups
     + Body
     
             {
-                    "GroupId":      1,
-                    "Code":         "10SA",
-                    "GroupType":    "RegistrationGroup"
-                    "Learners":     [{
-                                        "LearnerId":                0001,
-                                        "LearnerCode":              "2016-0123",
-                                        "LearnerGroupLearnerId":    00001,
-                                        "StartDate":                "01-09-2014",
-                                        "EndDate":                  "30-08-2015"
-                                    },
-                                    {
-                                        "LearnerId":                0002,
-                                        "LearnerCode":              "2014-1234",
-                                        "LearnerGroupLearnerId":    00002,
-                                        "StartDate":                "01-09-2014",
-                                        "EndDate":                  "30-08-2015"
-                                    }]
-            },
-            {
-                    "GroupId":      2,
-                    "Code":         "7BG"
-                    "Learners":     [{
-                                        "LearnerId":                00001,
-                                        "LearnerCode":              "2016-0123",
-                                        "LearnerGroupLearnerId":    000003,
-                                        "StartDate":                "01-09-2014",
-                                        "EndDate":                  "30-08-2015"
-                                    },
-                                    {
-                                        "LearnerId":                00002,
-                                        "LearnerCode":              "2014-1234",
-                                        "LearnerGroupLearnerId":    000004,
-                                        "StartDate":                "01-09-2014",
-                                        "EndDate":                  "30-08-2015"
-                                    }]
+                "GroupId": 1208864,
+                "Code": "Ext-StuOth",
+                "GroupType": "AcademicHouseGroup",
+                "Learners": [
+                    {
+                        "LearnerId": 245218,
+                        "LearnerCode": "2009-0017",
+                        "Forename": "Sanelisiwe",
+                        "Surname": "Nazi-Angileh",
+                        "LearnerGroupLearnerId": 14719301,
+                        "StartDate": "2017-03-09",
+                        "EndDate": null
+                    },
+                    {
+                        "LearnerId": 246638,
+                        "LearnerCode": "2013-0076",
+                        "Forename": "Randal",
+                        "Surname": "Bodziarczyk",
+                        "LearnerGroupLearnerId": 14650361,
+                        "StartDate": "2017-02-20",
+                        "EndDate": null
+                    },
+                    {
+                        "LearnerId": 245253,
+                        "LearnerCode": "109056",
+                        "Forename": "Wafah",
+                        "Surname": "Dadisman",
+                        "LearnerGroupLearnerId": 14650360,
+                        "StartDate": "2017-02-20",
+                        "EndDate": null
+                    }
+            },{
+                        "GroupId": 1226419,
+                        "Code": "U6-JD",
+                        "GroupType": "RegistrationGroup",
+                        "Learners": [
+                            {
+                                "LearnerId": 245507,
+                                "LearnerCode": "110015",
+                                "Forename": "Nahomy",
+                                "Surname": "Osburn",
+                                "LearnerGroupLearnerId": 14918706,
+                                "StartDate": "2017-09-07",
+                                "EndDate": "2018-07-31"
+                            },
+                            {
+                                "LearnerId": 245994,
+                                "LearnerCode": "111624",
+                                "Forename": "Sherhona",
+                                "Surname": "Dobritoiu",
+                                "LearnerGroupLearnerId": 14707593,
+                                "StartDate": "2017-08-01",
+                                "EndDate": "2018-07-31"
+                            }
             }
             
 
@@ -10165,45 +10104,46 @@ And either
 + Response 200 (application/json)
 
     + Body
-            
+    
             {            
-                "EventId":      124512732,
-                "Date":         "2015-12-01",
-                "PeriodId":     123456
-                "StartTime":    "09:00",
-                "FinishTime":   "10:00",
-                "Day":          "Tuesday1",
-                "EventType":    "Timetable",
-                "Duration":     60,
-                "NCAEventType": "",
-                "Employees":[
-                              {
-                                "EventTeacherAssociationId":    48523,
-                                "EmployeeId": 104034,
-                                "EmployeeCode": "KBr"
-                              }
-                            ],
-                "Groups":   [
-                              {
-                                "EventLearnerGroupAssociationId":   15684,
-                                "GroupId": 1044341,
-                                "GroupCode": "11En1",
-                                "Type": "TeachingGroup"
-                              }
-                            ],
-                "Subjects": [
-                              {
-                                "EventSubjectAssociationId":        87131,
-                                "Subject": "EN"
-                              }
-                            ],
-                "Rooms":    [
-                              {
-                                "EventRoomAssociationId":           184615,
-                                "Room": "CE06"
-                              }
-                            ],
-                "WeekRangeId":  45488LEarners
+                "EventId":          124512732,
+                "Date":             "2015-12-01",
+                "DayComposition":   "Lessons",
+                "PeriodId":         123456,
+                "StartTime":        "09:00",
+                "FinishTime":       "10:00",
+                "Day":              "Tuesday1",
+                "EventType":        "Timetable",
+                "Duration":         60,
+                "NCAEventType":     "",
+                "Employees":        [
+                                      {
+                                        "EventTeacherAssociationId":    48523,
+                                        "EmployeeId": 104034,
+                                        "EmployeeCode": "KBr"
+                                      }
+                                    ],
+                "Groups":           [
+                                      {
+                                        "EventLearnerGroupAssociationId":   15684,
+                                        "GroupId": 1044341,
+                                        "GroupCode": "11En1",
+                                        "Type": "TeachingGroup"
+                                      }
+                                    ],
+                "Subjects":         [
+                                      {
+                                        "EventSubjectAssociationId":        87131,
+                                        "Subject": "EN"
+                                      }
+                                    ],
+                "Rooms":            [
+                                      {
+                                        "EventRoomAssociationId":           184615,
+                                        "Room": "CE06"
+                                      }
+                                    ],
+                "WeekRangeId":      45488LEarners
             }
             
 
@@ -10211,18 +10151,21 @@ And either
 
 **Pre-requisites**
 * Timetable Source, Day Structure, Date Mappings, Day Compositoin and Week Ranges have already been created
+* If EventCategory = NCA, then EventType must be populated and Subject is not required
+* If EventCategory = Timetable then Subject is required
 
 + Fields
     + Source (required, string, `TT2016/17`) ... code of Timetable Source
     + DayComposition (required, string, `Lessons`) ... name of Day Composition
-    + EffectiveDate (required, string, `28\06\2017`)
-    + EventType (required, string, `Timetable`) ... option of Timetable or AdHoc
+    + EffectiveDate (required, string, `28\06\2017`) ... start date of Iterations
+    + EventCategory (required, string, `NCA`) ... Category of Event. Valid values Timetable or NCA
+    + EventType (required, string, `PPA`) ... Type of NCA Event
     + Iterations (required, int, `1,2,3,4,5`) ... number of the Iterations the event is required for
     + Day (required, string, `MonA`) ... code of the day the event is required for
     + StartTime (required, string, `09:00`) ... start time of the event
     + EndTime (required, string, `10:00`) ... end time of the event
     + Employees (required, string, `Abc,CDe`) ... code of staff assigned to the event
-    + Subjects (required, string, `ART,AR/TX`) ... code of subjects assigned to the event 
+    + Subjects (optional, string, `ART,AR/TX`) ... code of subjects assigned to the event. Mandatory whre EventCategory = Timetable 
     + Rooms (optional, string, `6ART,AWE05`) ... code of rooms assigned to the event
     + Groups (optional, string, `10.1ART,10.2ART`) ... code of groups assigned to the event
 
@@ -10238,7 +10181,8 @@ And either
             {
                 "Source":           "TT2016/17",
                 "DayComposition":   "Lessons",
-                "EventType":        "Timetable",
+                "EventCategory":    "Timetable",
+                "EventType":        null,
                 "EffectiveDate":    "19/06/2017",
                 "Iterations":       [
                                     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
@@ -10262,7 +10206,8 @@ And either
             {
                 "Source":           "TT2016/17",
                 "DayComposition":   "Lessons",
-                "EventType":        "Timetable",
+                "EventCategory":    "NCA",
+                "EventType":        "PPA",
                 "EffectiveDate":    "19/06/2017",
                 "Iterations":       [
                                     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
@@ -11219,13 +11164,13 @@ Used to populate the 'Assign To' field with Staff Code and Name
                 "IsTeaching": true
             }
 
-## Detention Slots [/DetentionEvent{?IncidentDate}]
+## Detention Events [/DetentionEvent{?IncidentDate}]
 Retruns a list of the available detention slots for a given date
 
 + Parameters
     + IncidentDate (required, string, `18/01/2018`) ... date of the Incident
 
-### Retrieve a lst of Detetion Slots [GET]
+### Retrieve a lst of 10 Detetion Slots [GET]
 
 + Request (application/json)
 
@@ -11238,23 +11183,52 @@ Retruns a list of the available detention slots for a given date
     + Body
     
             {
-                "EventId":          1234,                                            
-                "Scheduled":        false,
-                "Type":             "OOD",
-                "DetentionDate":    "19/01/2018",
-                "StartTime":        "12:45",
-                "FinishTime":       "13:00",
-                "StaffCode":        ["ALe"]
-                "Room":             ["The Cabin", "111"]
-            },{
-                "EventId":          1235,
+                "EventId":          157540664,
                 "Scheduled":        true,
-                "Type":             "TT",
-                "DetentionDate":    "19/01/2018",
-                "StartTime":        "15:30",
-                "FinishTime":       "16:00",
-                "StaffCode":        ["DYj"]
-                "Room":             ["112"]
+                "Type":             "LT",
+                "DetentionDate":    "2018-04-16",
+                "StartTime":        "12:30",
+                "FinishTime":       "12:50",
+                "Day":              "MondayA",
+                "Source":           "2017/2018",
+                "DayComposition":   "Behaviour",
+                "Staff":            [
+                                        {
+                                            "StaffCode": "ViDu",
+                                            "Forename": "Anthonia Onyinoyi",
+                                            "Surname": "Bunte"
+                                        }
+                                    ],
+                "Room":             [
+                                        {
+                                            "Code": "SS",
+                                            "Name": "Student Services"
+                                        }
+                                    ]
+            },
+            {
+                "EventId":          157540671,
+                "Scheduled":        true,
+                "Type":             "LT",
+                "DetentionDate":    "2018-04-16",
+                "StartTime":        "12:50",
+                "FinishTime":       "13:10",
+                "Day":              "MondayA",
+                "Source":           "2017/2018",
+                "DayComposition":   "Behaviour",
+                "Staff":            [
+                                        {
+                                            "StaffCode": "ViDu",
+                                            "Forename": "Anthonia Onyinoyi",
+                                            "Surname": "Bunte"
+                                        }
+                                    ],
+                "Room":             [
+                                        {
+                                            "Code": "SS",
+                                            "Name": "Student Services"
+                                        }
+                                    ]
             }
 
 
