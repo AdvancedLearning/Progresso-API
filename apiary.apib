@@ -171,7 +171,8 @@ Retrieve one to many employee basic records
                 "Ethnicity":            "WBRI",
                 "Religion":             "MU",
                 "StartDate":            "",
-                "Disability":           "No"
+                "Disability":           "No",
+                "IsTeaching":           true
             }
 
 + Response 204
@@ -9471,6 +9472,27 @@ Code will always be OT
 # Group Timtetable
 
 Group of all Timetable Resources
+
+## Default Timetable Settings [/DefaultTTSource?]
+
+### Retrieve the default Timetable Source and Day Composition
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "DefaultTimeTableSourceID": 2462,
+                "DefaultTimetableSource": "2017/2018",
+                "DefaultDayCompositionID": 4407,
+                "DefaultDayComposition": "School Day"
+            }
 
 ## Timetable Sources [/TTSources?]
 
