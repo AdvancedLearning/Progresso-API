@@ -4522,24 +4522,25 @@ Returns the default configuration for attendance
     + Body
     
             {    
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "AM",
-                "AttendanceCode":  "//",
-                "AttendanceCodeId":1,  
-                "MinutesLate":     0,
-                "Notes":           ""
-                "IncludeMissingRollCall
+                "LearnerId":        0001,
+                "LearnerCode":      "2013-00001",
+                "Date":             "18-04-2016",
+                "Session":          "AM",
+                "AttendanceCode":   "//",
+                "AttendanceCodeId": 1,  
+                "MinutesLate":      0,
+                "Notes":            "",
+                "ClassRollDateId":  13456
                 },{
-                "LearnerId":    0001,
-                "LearnerCode":  "2013-00001",
-                "Date":         "18-04-2016",
-                "Session":         "PM",
-                "AttendanceCode":  null,
-                "AttendanceCodeId":null,  
-                "MinutesLate":     5,
-                "Notes":           "Lorem Ipsum"
+                "LearnerId":        0001,
+                "LearnerCode":      "2013-00001",
+                "Date":             "18-04-2016",
+                "Session":          "PM",
+                "AttendanceCode":   null,
+                "AttendanceCodeId": null,  
+                "MinutesLate":      5,
+                "Notes":            "Lorem Ipsum",
+                "ClassRollDateId":  null
             }
 
 
@@ -4681,6 +4682,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
                             "StartTime":    "09:00",
                             "EndTime":      "10:00",
                             "Period":       "1",
+                            "PeriodId":     123456,
                             "LearnerId":    0001,
                             "LearnerCode":  "2013-00001",
                             "AttendanceCode":   "//",
@@ -4693,7 +4695,8 @@ This method differs from the previous one with the addtion of Notes and Minutes 
                             "Date":         "18-04-2016",
                             "StartTime":    "10:00",
                             "EndTime":      "12:00",
-                            "Period":       "2,3",
+                            "Period":       "2",
+                            "PeriodId":     45625,
                             "Date":         "18-04-2016"
                             "LearnerId":    0002,
                             "LearnerCode":  "2013-00002",
