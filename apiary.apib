@@ -4714,6 +4714,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 Create Learner Lesson Atendance by Time
 
 + Fields:
+    + Source (required, string, `2017/2018`) ... code of Timetable Source
     + DayComposition (required, string, `Lessons`) ... name of the day Composition
     + GroupCode (required, string, `7-AD-X1`) ... unique code of Group
     + LearnerCode (required, string, `2010-1234`) ... code of Learner
@@ -4733,6 +4734,7 @@ Create Learner Lesson Atendance by Time
     + Body
             
             {
+                "Source":           "2017/2018"
                 "DayComposition":   "Lessons".
                 "GroupCode":        "7A-BC1",
                 "LearnerCode":      "7791",
