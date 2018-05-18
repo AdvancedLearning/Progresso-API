@@ -4383,6 +4383,55 @@ Update SEN Major Needs for one to many learners
                                     "learnerId":        0003
                                 }]
             }
+
+## School History [/LearnerSchoolHistory{?LearnerCode}{?SchoolName}{?SchoolNumber}{?LANumber}{?SchoolType}{?EntryDate}{?LeavingDate}{?LeavingReason}]
+
+Create school history records for Learners within a school
+
+### Create School History Records [POST]
+
++ Parameters
+    + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
+    + SchoolName (required, string, `St Louis National School`) ... name of School
+    + SchoolNumber (required, string, `1234`) ... IrishId or DfE number of school
+    + LANumber (optional, string, `830`) ... unique code of Local Authority
+    + SchoolType (optional, string, `2`) ... code of School Type (Irish only)
+    + EntryDate (required, string, `04/05/2014`) ... date of entry into the school
+    + LeavingDate (required, string, `04/05/2016`) ... leaving date from school
+    + LeavingReason (optional, string, `TR`) ... code of Reason for Leaving
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":      "2015-0001",
+                "SchoolHistory":    [{
+                                        "Name":         "St Louis National School",
+                                        "SchoolNumber": "1234",
+                                        "Address":      "Moneypenny lane, Crich, Derbyshire",
+                                        "LA":           "Derbyshire",
+                                        "LANumber":     "830",
+                                        "SchoolType":   "2",
+                                        "EntryDate":    "04/05/2014",
+                                        "LeavingDate":  "04/05/2016"
+                                    }]         
+            }
+           
++ Response 200
+
+    + Body
+    
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "SchoolHistoryId":  123456
+            }           
            
 
 # Group Documents
