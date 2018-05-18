@@ -53,11 +53,37 @@ Required parameters are:
                 ".issued": "Wed, 30 Dec 2015 11:22:48 GMT",
                 ".expires": "Thu, 31 Dec 2015 11:22:48 GMT"
             }
-            
+
+# Group Users
+Methods for all User related resources
+
+## User Details [/Users{?Entity}]
+
+### Retrieve Staff, Contact or Learner User details [GET]
+
++ Parameters
+    + Entity (required, string, `Learner`) ... valid values Staff, Learner or Contact
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            {
+                "Id":                           120318,
+                "Username":                     "AlJones"                
+            },{
+                "Id":                           120318,
+                "Username":                     "AcSmith"
+            }
 
 # Group Employees Collection
 Methods for all employee-related resources
-
 
 ## Employee Basic Records [/Employees{?EmployeeId}{?StaffCode}{?Status}{?Since}]
 
@@ -4761,7 +4787,7 @@ Create Learner Lesson Atendance by Time
 
 Group of Photo-related resources
 
-## Photo Colection [/GetPhoto{?IsLearnerRequest}{?Id}]
+## GET Photo [/GetPhoto{?IsLearnerRequest}{?Id}]
 
 ### Retrieve a collection of Photos [GET]
 
@@ -4793,6 +4819,43 @@ Retrieve one to many one to many employee/learner photos
                 ]
             }
 
+## Upload Photos [/Photo{?Code}{?EntityType}{?PhotoData}{?IsHidden}]
+
+### Upload photos for Staff and Learners [POST]
+
++ Parameters
+    + Code (required, string, `2015-0001`) ... unique code of Learner or Staff
+    + EntityType (required, string, `Learner`) ... valid values: Learner or Staff
+    + PhotoData (required, string, `0xFFD8FFE000104A46494600010101006000600000FFDB0043000`) ... 64bitString or Byte string of Photo
+    + IsHidden (optional, bollean, `false`) ... Is the photo to be hidden?
+    
++ Request
+    
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Code":             "2015-0001",
+                "EntityType":       "Learner",
+                "PhotoData":        "0xFFD8FFE000104A46494600010101006000600000FFDB0043000",
+                "IsHidden":         false  
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "Code":             "2015-0001",
+                "EntityType":       "Learner",
+                "PhotoId":          12345
+            }          
+            
 
 # Group User Defined Fields
 
