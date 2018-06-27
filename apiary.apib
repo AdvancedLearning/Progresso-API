@@ -2514,22 +2514,14 @@ Mandatory fields:
                                   }
                                 ],
                 "SiblingDetails": null,
-                "DisabilityDetails": [
-                                      {
-                                        "DisabilityTypeId": 489772,
-                                        "Disability": "NCOL"
-                                      }
-                                    ],
                 "LanguageDetails": [
                                       {
-                                        "LanguageUsageId": 436663,
                                         "TypeCode": "F",
                                         "LanguageCode": "ENG"
                                       }
                                     ],
                 "SENProvisionDetails": [
                                           {
-                                            "ProvisionId": 838218,
                                             "ProvisionTypeCode": "A",
                                             "StartDate": "06/03/2013",
                                             "ReviewDate": null,
@@ -2538,10 +2530,9 @@ Mandatory fields:
                                         ],
                 "SENMajorNeedsDetails": [
                                           {
-                                          "LearnerMajorNeedId": 79411,
                                           "MajorNeedCode": "SEMH",
                                           "Ranking": 1
-                                            }
+                                          }
                                         ]
               }
              ]
@@ -2576,10 +2567,6 @@ Mandatory fields:
                         "LearnerId": 443779
                       }
                     ],
-                    "DisabilityDetails": [
-                      {
-                        "DisabilityTypeId": 2648
-                      }
                     ],
                     "LanguageDetails": [
                       {
@@ -2596,47 +2583,7 @@ Mandatory fields:
                         "MajorNeedId": 115706
                       }
                     ]
-                  },
-                  {
-                    "Status": true,
-                    "Details": "Saved successfully",
-                    "LearnerId": 453759,
-                    "LearnerCode": "2016-0005",
-                    "PhoneDetails": [
-                      {
-                        "PhoneId": 2200856
-                      }
-                    ],
-                    "AddressDetails": [
-                      {
-                        "AddressId": 1353317
-                      }
-                    ],
-                    "ContactDetails": [
-                      {
-                        "ContactId": 968990,
-                        "LearnerContactRelationshipId": 2054
-                      }
-                    ],
-                    "SiblingDetails": [
-                      {
-                        "LearnerId": 443779
-                      }
-                    ],
-                    "DisabilityDetails": [
-                      {
-                        "DisabilityTypeId": 2648
-                      }
-                    ],
-                    "LanguageDetails": [
-                      {
-                        "LanguageId": 448984
-                      }
-                    ],
-                    "SENProvisionDetails": [],
-                    "SENMajorNeedsDetails": []
-                  }
-            
+            }
             
 
 ### Update Learner [PUT]
@@ -2670,6 +2617,7 @@ Update one to many learner records
     + Body
     
             {
+                "LearnerId":          123456
                 "LearnerCode":        "2010-0001",
                 "Surname":            "Sterling",
                 "Forename":           "Geoffrey",
@@ -2756,10 +2704,6 @@ Update one to many learner records
                 "MealType":           "CSM",
                 "AsylumSeeker":       false,
                 "Religion":           "HIN"
-                "DisabilityDetails":[{
-                                        "DisabilityTypeId":     0001,
-                                        "Disability":  "CON"
-                                    }],
                 "LanguageDetails":  [{
                                         "LanguageUsageId":      0001,
                                         "TypeCode":             "F",
