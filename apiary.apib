@@ -4518,7 +4518,7 @@ Returns the default configuration for attendance
             }
             
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
@@ -4526,6 +4526,7 @@ Returns the default configuration for attendance
 
 + Parameters
     + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
+    + GroupCode (optional, string, `10A`) ... unique code of Registration Group only
     + StartDate (optional, dateTime, `01-04-2014T18:00:00`) ... attendance recorded from
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
@@ -10462,7 +10463,8 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                                     }
                                 ],
                     "WeekRangeId": 6852,
-                    "IsCovered": True
+                    "IsCovered": True,
+                    "DayComposition":   "Lessons"
                 },
                 {
                     "EventId": 157526347,
@@ -10485,7 +10487,8 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     "Subjects": null,
                     "Rooms": null,
                     "WeekRangeId": 6852,
-                    "IsCovered": false
+                    "IsCovered": false,
+                    "DayComposition":   "Lessons"
                 },
                 {
                     "EventId": 157538008,
@@ -10513,7 +10516,8 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     ],
                     "Rooms": null,
                     "WeekRangeId": null,
-                    "IsCovered": false
+                    "IsCovered": false,
+                    "DayComposition":   "School Day"
                 }
 
 
