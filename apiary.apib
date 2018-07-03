@@ -2461,7 +2461,7 @@ Mandatory fields:
                 "EnrolementStatus": "C",
                 "NCYear": "11",
                 "Status": "Active",
-                "AcademicHouse": "",
+                "AcademicHouse": "10F",
                 "MiddleName": "",
                 "FormerSurname": "",
                 "EmailAddress": "",
@@ -4615,7 +4615,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
 *Allows future absences*
 
-+ Parameters
++ Fields
     + LearnerCode (required, string, `2015-00001`) ... the unique code of the learner
     + Date (required, dateTime, `01-04-2014T18:00:00`) ... date of the attendance/absence
     + RollCallSession (required, string, `AM`) ... unique roll call session - 'AM' or 'PM'
@@ -4635,7 +4635,6 @@ This method differs from the previous one with the addtion of Notes and Minutes 
     + Body
     
             {
-                "LearnerId":            0001
                 "learnerCode":          "2013-00001",
                 "Date":                 "16-06-2014",
                 "RollCallSession":      "AM",
@@ -4645,7 +4644,6 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
             },
             {
-                "LearnerId":            0002
                 "learnerCode":          "2013-00002",
                 "Date":                 "16-06-2014",
                 "RollCallSession":      "AM",
