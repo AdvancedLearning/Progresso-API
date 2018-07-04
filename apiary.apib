@@ -61,6 +61,8 @@ Methods for all User related resources
 
 ### Retrieve Staff, Contact or Learner User details [GET]
 
+*Id in the response is eiher EmployeeId, LearnerId or ContactId depending on the Entity in input parameter
+
 + Parameters
     + Entity (required, string, `Learner`) ... valid values Staff, Learner or Contact
     
@@ -69,6 +71,10 @@ Methods for all User related resources
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            "Entity":   'Staff'
 
 + Response 200
 
@@ -76,11 +82,17 @@ Methods for all User related resources
     
             {
                 "Id":                           120318,
+                "PersonId":                     45685,
+                "UserId":                       1234
                 "Username":                     "AlJones"                
             },{
-                "Id":                           120318,
+                "Id":                           120319,
+                "PersonId":                     456345,
+                "UserId":                       5248
                 "Username":                     "AcSmith"
             }
+            
+            
 
 # Group Employees Collection
 Methods for all employee-related resources
@@ -4851,9 +4863,65 @@ Retrieve one to many one to many employee/learner photos
             }          
             
 
+# Group GDPR
+
+A colletion of all GDPR related resources
+
+## Employee GDPR Consent [/EmployeeConsent]
+
+
+
++ **Either DataRetentionConsent, MarketingConsent, DataTransferConsent or GDPRTrained is mandatory**
+
+    
+    + StaffCode (required, string, `ABc`) ... code of Employee
+    + DataRetentionConsent (required, boolean, `true`) ... Has consent been given - true or false
+    + RetentionDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + MarketingConsent (required, boolean, `true`) ... Has consent been given - true or false
+    + MarketingDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + DataTransferConsent (required, boolean, `true`) ... Has consent been given - true or false
+    + TransferDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + GDPRTrained (required, boolean, `true`) ... Has consent been given - true or false
+    + TrainingDate (optinoal, string, `06-06-2018`) ... date consent was given
+    
+
+### Add or update GDPR consent filed for Employees [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "StaffCode":            "ABc",
+                "DataRetentionConsent": true,
+                "RetentionDateGiven":   "06/06/2018",
+                "MarketingConsent":     false,
+                "MarketingDateGiven":   null,
+                "DataTransferConsent":  true,
+                "TransferDateGiven":    "06/06/2018",
+                "GDPRTrained":          true,
+                "TrainingDate":         "01/05/2018"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "StaffCode":    "ABc"
+            }
+            
+            
+
 # Group User Defined Fields
 
-A collection of all UDF-related resources
+A collection of all UDF related resources
 
 ## UDF Collection [/UDF{?EntityType}{?Code}]
 
@@ -4929,12 +4997,12 @@ Notes on using DataType:
     If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
     
 + Fields
-    ++ Code (required, string, `LP`) ... unique Code of UDF
-    ++ Name (required, string, `Learner Photo`) ... unique Name of UDF
-    ++ Entity (required, string, `Learner`) ... valid values are School Staff, Learner, Contact
-    ++ DataType (required, string, `MasterData` ... valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
-    ++ Masterdata (required, string, `Gender`) ... valid MasterData names e.g. Learners, Subject, Country
-    ++ FieldLength (require, int, `5`) ... NOT required if DataType = PickValue
+    + Code (required, string, `LP`) ... unique Code of UDF
+    + Name (required, string, `Learner Photo`) ... unique Name of UDF
+    + Entity (required, string, `Learner`) ... valid values are School Staff, Learner, Contact
+    + DataType (required, string, `MasterData` ... valid values are String, Boolean, Integer, Double, PickValue, MasterData, Date
+    + Masterdata (required, string, `Gender`) ... valid MasterData names e.g. Learners, Subject, Country
+    + FieldLength (require, int, `5`) ... NOT required if DataType = PickValue
 
 + Request (application/json)
 
@@ -11982,4 +12050,39 @@ A collection of Post 16 Learning Aim methods
                 "Status":               true,
                 "Details":              "Saved successfully",
                 "LearnerCode":          "2125165"
+            }
+            
+
+# Group Lookups and Lists of values
+
+A collection of all Lookup related resources
+
+## Religion Lookup List of Values [//ReligionLookup]
+
+### Retrieve Religion lookup values [GET]
+
+Retrieve a list of religions used in school
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+        
+    + Body
+    
+            {
+                "ReligionId": 1234,
+                "Code:  "AG",
+                "Name": "Agnostic                
+            },{
+                "ReligionId": 1235,
+                "Code:  "MU",
+                "Name": "Muslim                
+            },{
+                "ReligionId": 1236,
+                "Code:  "BPT",
+                "Name": "Baptist                
             }
