@@ -2653,6 +2653,11 @@ Update one to many learner records
                 "IsEconomicCriteria":               null,
                 "IsHighLevelSENorDisability":       null,
                 "IsLookedAfterorAdoptedFromCare":   null,
+                "ExtendedChildcareHours":           2,
+                "ThirtyHourCode":                   "123456789",
+                "DisabilityAccessFundIndicator":    true,
+                "EYPPEligibility":                  true,
+                "EYPPBasisOfEligibility":           "EE"
                 "AddressDetails":   [{
                                         "AddressId":    0001,
                                         "Country":      "GBR",
@@ -2715,7 +2720,8 @@ Update one to many learner records
                 "SchoolLunchTaken":   false,
                 "MealType":           "CSM",
                 "AsylumSeeker":       false,
-                "Religion":           "HIN"
+                "Religion":           "HIN",
+                "ReliginSource";      "P"
                 "LanguageDetails":  [{
                                         "LanguageUsageId":      0001,
                                         "TypeCode":             "F",
@@ -4741,6 +4747,8 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
 ## Add Learner Lesson Attendance [/LearnerLessonAttendanceByLessonTime]
 
+*This method now overwrites roll call according to the School's setting*
+
 ### Create Learner Lesson Attendance [POST]
 
 Create Learner Lesson Atendance by Time
@@ -4787,6 +4795,55 @@ Create Learner Lesson Atendance by Time
                  "Status":              "Success",
                  "Details": "Saved successfully"
             }
+            
+
+## Add Learner Attendance History Summary [/AttendanceHistorySummary]
+
+### Create Roll call attendance history Summaries [POST}
+
++ Fields
+    + LearnerCode (required, string, `123456`) ... code of Learner
+    + AcademicYear (required, int, `2017`) ... start year of academic year
+    + Possible (required, int, `254`) ... number of possible attendances
+    + Attended (required, int, `234`) ... number of actual attendances
+    + Authorised (required, int, `15`) ... number of authorised absences
+    + Unauthorised (required, int, `5`) ... number of unauthorised absences
+    + SchoolName (required, string, `St Martin's in the Field`) ... name of the school
+    + LA (optional, string, `830`) ... code of the LA
+    + DfE (optional, string, '4700') ... school's DfE number
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":      "123456",
+                "AcademicYear":     2017,
+                "Possible":         254,
+                "Attended":         234,
+                "Authorised":       15,
+                "Unauthorised":     5,
+                "SchoolName":       "St Martin's in the Field",
+                "LA":               803,
+                "DfE":              4700
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                                       true,
+                "Details":                                      "Saved successfully",
+                "LearnerCode":                                  "123456",
+                "LearnerRollCallAttendanceHistorySummaryID":    4321
+            }           
+
 
 
 # Group Photo
@@ -4869,8 +4926,6 @@ A colletion of all GDPR related resources
 
 ## Employee GDPR Consent [/EmployeeConsent]
 
-
-
 + **Either DataRetentionConsent, MarketingConsent, DataTransferConsent or GDPRTrained is mandatory**
 
     
@@ -4917,6 +4972,112 @@ A colletion of all GDPR related resources
                 "StaffCode":    "ABc"
             }
             
+ 
+
+## Contact GDPR Consent [/ContactConsent]
+
+
+### Set Contact Consents [POST]
+
++ Fields
+*Either DataRetentionConsent, MarketingConsent or DataTransferConsent  is mandatory*
+    + Code (required, string, `2014-1234`) ... code of either Learner or Staff
+    + EntityType (required, string, `Learner`) ... type of Contact - valid values: Learner or Staff
+    + Forename (required, string, `Joe`) ... forename of Contact
+    + Surname (required, string, `Bloggs`) ... surname of Contact
+    + Gender (required, string, `M`) ... gender of Contact - valid values: M or F
+    + DataRetentionConsent (required, boolean, `true`) ... if consent is given then true otherwise false
+    + RetentionDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + MarketingConsent (optional, boolean, `true`) ... if consent is given then true otherwise false
+    + MarketingDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + DataTransferConsent (optional, boolean, `true`) ... if consent is given then true otherwise false
+    + TransferDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Code":                         "2014-1234",
+                "EntityType":                   "Learner",
+                "Forename":                     "Joe,
+                "Surname":                      "Bloggs",
+                "Gender":                       "M"
+                "DataRetentionConsent":         true,
+                "RetentionDateGiven":           "06/06/2018",
+                "MarketingConsent":             false,
+                "MarketingDateGiven":           null,              
+                "DataTransferConsent":          true,
+                "TransferDateGiven":            "06/06/2018"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "Code":         "2014-1234",
+                "EntityType":   "Learner",
+                "ContactId":    12345
+            }
+            
+            
+
+## Lerner GDPR Consent [/LearnerConsent]
+
+### Set GDRP Consent for Learners [POST]
+
++ Fields
+*Either DataRetentionConsent,  MarketingConsent  or DataTransferConsent are mandatory*
+    + LearnerCode (required, string, `2011-1025) ... code of Learner
+    + DataRetentionConsent (required, boolean, `true`) ... if consent is given then true otherwise false
+    + RetentionDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + RetentionConsentProvidedBy (optional, string, `A`) ... valid values: A = Learner, B = Parent/Guardian, C = Other 
+    + MarketingConsent (required, boolean, `true`) ... if consent is given then true otherwise false
+    + MarketingDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + MarketingConsentProvidedBy (optional, string, `B`) ... valid values: A = Learner, B = Parent/Guardian, C = Other 
+    + DataTransferConsent (required, boolean, `true`) ... if consent is given then true otherwise false
+    + TransferDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
+    + TransferConsentProvidedBy (optional, string, `C`) ... valid values: A = Learner, B = Parent/Guardian, C = Other 
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":                  "ABc",
+                "DataRetentionConsent":         true,
+                "RetentionDateGiven":           "06/06/2018",
+                "RetentionConsentProvidedBy":   "A",
+                "MarketingConsent":             false,
+                "MarketingDateGiven":           null,
+                "MarketingConsentProvidedBy":   null,                
+                "DataTransferConsent":          true,
+                "TransferDateGiven":            "06/06/2018",
+                "TransferConsentProvidedBy":    "C"
+            }
+            
++ Response 200
+
+    + Body
+            
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "LearnerCode":  "ABc"
+            }
+        
+                    
             
 
 # Group User Defined Fields
