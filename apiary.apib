@@ -892,7 +892,123 @@ All fields are required
             },{
                 "Status":       true,
                 "Details":      "Saved successfully"
+            }
+            
+
+## Teacher Preferences [/TeacherPreference]
+Specific to Irish Schools and Colleges
+
+### Assign Teacher Preferences [POST]
+
+Preference number can only be used once per staff record i.e. 1 can only be used once no matter which day it is used. This is across all Day Compositions.
+
+* *Fields*
+    + Source (required, string, `2017/2018`) ... code of Timetable Source
+    + DayComposition (required, string, `Lessons`) ... name of Day Composition
+    + StaffCode (required, string, `ABc`) ... code of Staff
+    + Day (required, string, `Mon`) ... code of Day of the week
+    + Period (required, string, `P1`) ... short name of the period of preference
+    + Preference (required, int, `1`) ... Preference for Cover on this particualr day
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "StaffCode":        "Abc",
+                "Day":              "Mon",
+                "Period"            "P1",
+                "Preference":       1
+            },{
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "StaffCode":        "Abc",
+                "Day":              "Mon",
+                "Period":           "P6",
+                "Preference":       5
+            },{
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "StaffCode":        "DFe",
+                "Day":              "Tue",
+                "Period":           "P3",,
+                "Preference":       20
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "TeacherCoverPreferenceID": 1000,
+                "Source":                   "2017/2018",
+                "DayComposition":           "Lessons",
+                "StaffCode":                "Abc",
+                "Day":                      "Mon",
+                "Period":                   "P6" 
+            }
+            
+
+## Cover Supervision Details [/CoverSupervision]
+Specific to Irish Schools and Colleges
+
+### POST Cover Supervision Details [POST]
+
+*Fields*
+    + Source (required, string, `2017/2018`) ... code of Timetable Source
+    + DayComposition (required, string, `Lessons`) ... name of Day Composition
+    + Day (required, string, `Mon`) ... code of Day of the week
+    + Period (required, string, `P1`) ... short name of Period of the day
+    + NoOfTeachers (required, int, `2`) ... number of teachers available for cover for that period on that day
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "Day":              "Mon",
+                "Period":           "P1",
+                "NoOfTeachers":     6
+            },{
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "Day":              "Mon",
+                "Period":           "P2",
+                "NoOfTeachers":     5
+            },{
+                "Source":           "2017/2018",
+                "DayComposition":   "Lessons",
+                "Day":              "Tue",
+                "Period":           "P1",
+                "NoOfTeachers":     12
             } 
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "CoverSupervisionDetailID": 1000, 
+                "Source":                   "2017/2018",
+                "DayComposition":           "Lessons",
+                "Day":                      "Mon",
+                "Period":                   "P1"
+            }
 
 
 ## Employees Checks [/EmployeeChecks{?Status}{?Employee}]
@@ -2728,6 +2844,7 @@ Update one to many learner records
                                         "LanguageUsageId":      0001,
                                         "TypeCode":             "F",
                                         "LangCode":             "ENG",
+                                        "LevelOfLanguage":      2
                                     }],
                 "SENProvisionDetails":  [{
                                         "ProvisionId":          0003,
@@ -3356,6 +3473,45 @@ Mandatory fields:
             }
 
 
+## New Entrant [/NewEntrant]
+
+### New Entrant Details [POST]
+This is specifice to Irish Schools and Colleges
+
+*Fields*
+    + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
+    + NewEntrant (required, boolean, 'true') ... Is the learner a new entrant (Irish only)
+    + SchoolName (optional, string, 'Adamstown College') ... Name of school where the Learner has come from (Irish only)
+    + Source (optional, string, '2') ... code of source of information (Irish only)
+    + Details (optional, string, '1' ) ... code of detail information (Irish only)
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":      "2015-0001",
+                "NewEntrant":        true,
+                "SchoolName":       "Adamstown College",
+                "Source":           "2",
+                "Details":          "1"      
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":           true,
+                "Details":          "Saved successfully",
+                "LearnerCode":      "2015-0001",
+                "LearnerID":        123456
+            }
+            
 
 ## Learner Contacts [/LearnerContacts{?LearnerId}{?status}{?responsibility}{?priority}]
 
@@ -4070,7 +4226,7 @@ Update SEN Provisions for one to many learners
         
     + Body
           
-            [{
+            {
             
                 "LearnerCode":     "2013-00001",
                 "LearnerId":       0001,
@@ -4082,7 +4238,7 @@ Update SEN Provisions for one to many learners
                                     "ReviewDate":           "",
                                     "EndDate":              ""
                                 }]
-            }]
+            }
               
 + Response 200
 
@@ -4397,7 +4553,57 @@ Create school history records for Learners within a school
                 "Status":           true,
                 "Details":          "Saved successfully",
                 "SchoolHistoryId":  123456
-            }           
+            }
+            
+
+## Learner Payments [/LearnerPayment]
+
+### Add Learner Payments [POST]
+
+*Fields*
+    + LearnerCode (required, string, `123456`) ... code of Learner
+    + PaymentDate (required, string, `06/06/2018`) ... date the payment was made
+    + PaymentTime (required, string, `15:02`) ... time the payment was made
+    + PaymentDescription (optional, string, `Lorem ipsum`) ... free text details about the payemnt amde
+    + PaymentMode (required, string, `Bank Draft`) ... how the payment was made Valid value Bank Draft, Cash, Cheque, Credit Card, Debit Card, Online Payment, Other
+    + Amount (required, dec, 50.00`) ... amount that was paid
+    + Payee (required, string, `St Martin's in the Field`) ... who the payment was made too
+ 
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":          "123456",
+                "PaymentDate":          "06/06/2018",
+                "PaymentTime":          "15:02",
+                "PaymentDescription":   "School blazer",
+                "PaymentMode":          "Bank Draft",
+                "Amount":               50.00,
+                "Payee":                "St Martin's in the Field",
+            },{
+                "LearnerCode":          "123456",
+                "PaymentDate":          "06/06/2018",
+                "PaymentTime":          "10:00",
+                "PaymentDescription":   "Part payment towards Ski Trip",
+                "PaymentMode":          "Bank Draft",
+                "Amount":               150.00,
+                "Payee":                "Parent Teacher Association",
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":       true,
+                "Details":      "Saved successfully",
+                "PaymentId":    1
+            }
            
 
 # Group Documents
@@ -4630,7 +4836,7 @@ Create and amend Attendance for one to many learners
             }
         
 
-## Add Learner Roll Call Atendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
+## Learner Roll Call Atendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
 This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance code at a time can be passed as opposed to a string of codes in the previous method.
 
 *Allows future absences*
@@ -4799,7 +5005,67 @@ Create Learner Lesson Atendance by Time
             }
             
 
-## Add Learner Attendance History Summary [/AttendanceHistorySummary]
+## Learner Roll Call Attendance Summary [/LearnerRollCallAttendanceSummary/{?LearnerId}{?Status}{?StartDate}{?EndDate}]
+
+### Retrieve Learner Roll Call Attendance Summaries [GET]
+
+*Parameters*
+    + LearnerId (required, int, '123420') ... unique ID of Learner for array
+    + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (optional, string, `29-06-2018`) ... end of date range
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"
+    
+    + Body
+    
+            [1234, 1000]
+            
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":                        1234,
+                "LearnerCode":                      "015234",
+                "PresentWithoutLate":               277,
+                "Late":                             4,
+                "Authorised":                       10,
+                "Unauthorised":                     1,
+                "PresentIncludingLate":             281,
+                "Absences":                         11 
+                "PossibleAttendances":              292
+                "PresentWithoutPercentage":         94.86
+                "PresentIncludingLatePercentage":   96.23
+                "LatePercentage":                   1.37
+                "AbsencePercentage":                3.77
+                "AuthorisedPercentage":             3.42
+                "UnauthorisedPercentage":           0.34
+            },{
+                "LearnerId":                        1000,
+                "LearnerCode":                      "017864",
+                "PresentWithoutLate":               277,
+                "Late":                             10,
+                "Authorised":                       15,
+                "Unauthorised":                     6,
+                "PresentIncludingLate":             287,
+                "Absences":                         21 
+                "PossibleAttendances":              308
+                "PresentWithoutPercentage":         94.86
+                "PresentIncludingLatePercentage":   96.23
+                "LatePercentage":                   1.37
+                "AbsencePercentage":                3.77
+                "AuthorisedPercentage":             3.42
+                "UnauthorisedPercentage":           0.34
+            }
+
+
+## Learner Attendance History Summary [/AttendanceHistorySummary]
 
 ### Create Roll call attendance history Summaries [POST}
 
@@ -4887,6 +5153,7 @@ Retrieve one to many one to many employee/learner photos
 ## Upload Photos [/Photo{?Code}{?EntityType}{?PhotoData}{?IsHidden}]
 
 ### Upload photos for Staff and Learners [POST]
+This method serves as both POST and PUT and will overwite an existing photo
 
 + Parameters
     + Code (required, string, `2015-0001`) ... unique code of Learner or Staff
@@ -8669,7 +8936,138 @@ Update Group Association for one to many Learners and Groups
                                 }]            
         
              }
+             
+             
+## Create/Update LearnerGroupAssociation [/LearnerGroupAssociation]
+Input is one row per Learner ins csv
 
++ *Fields*
+    + Code (required, string, `10AR1`) ... unique code of Group
+    + GroupType (required, string, `TeachingGroup`) ... type of Group. Valid values are RegistrationGroup, TeachingGroup, AdHocGroup and AcademicHouseGroup
+    + LearnerCode (required, string, `20014-1234`) ... code of Learner
+    + StartDate (required, string, `01-09-2017`) ... start date of Learner within the Group
+    + EndDate (required, string, `30-08-2018`) ... end date of Learner within the Group
+
+### Create Learner Group Association [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Code":         "10AR1",
+                "GroupType":    "TeachingGroup",
+                "LearnerCode":  "2014-1234",
+                "StartDate":    "01-09-2017",
+                "EndDate":      "30-08-2018"
+            },{
+                "Code":         "10AR1",
+                "GroupType":    "TeachingGroup",
+                "LearnerCode":  "2016-1244",
+                "StartDate":    "01-09-2017",
+                "EndDate":      "30-08-2018"
+            },{
+                "Code":         "Faraday",
+                "GroupType":    "RegistrationGroup",
+                "LearnerCode":  "2014-1234",
+                "StartDate":    "01-09-2017",
+                "EndDate":      "30-08-2018"
+            },{
+                "Code":         "Faraday",
+                "GroupType":    "RegistrationGroup",
+                "LearnerCode":  "2016-1244",
+                "StartDate":    "01-09-2017",
+                "EndDate":      "30-08-2018"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "Code":                     "10AR1",
+                "LearnerCode":              "2014-1234",
+                "LearnerGroupLearnerID":    4321
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "Code":                     "10AR1",
+                "LearnerCode":              "2016-1244",
+                "LearnerGroupLearnerID":    4322
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "Code":                     "Faraday",
+                "LearnerCode":              "2014-1234",
+                "LearnerGroupLearnerID":    4321
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "Code":                     "Faraday",
+                "LearnerCode":              "2016-1244",
+                "LearnerGroupLearnerID":    4321
+            }
+            
+            
+
+### Update LearnerGroupAssociation [PUT]
+Move a learner from one group to another
+
+*Fields*
+    + LearnerCode (required, string, `2012-9542) ... unique code of Learner
+    + GroupType (required, string, `TeachingGroup`) ... type of group Valid values are TeachingGroup, RegistrationGroup, AdHocGroup, AcademicHouseGroup
+    + PastGroupCode (required, string, `10-Bio2`) ...  code of the Group the Learner is leaving
+    + NewGroupCode (required, string, `10-Bio4) ... code of the Group the learner in joining
+    + StartDate (required, string, `09-01-2018`) ... start date of Learner within the New Group
+    + EndDate (required, string, `30-08-2018`) ... end date of Learner within the New Group
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":      "2012-5213",
+                "GroupType":        "TeachingGroup",
+                "PastGropuCode":    "10-Bio2",
+                "NewGroupCode":     "10-Bio4",
+                "StartDate":        "09/01/2018",
+                "EndDate":          "30/08/2018"
+            },{
+                "LearnerCode":      "2010-0001",
+                "GroupType":        "RegistrationGroup",
+                "PastGropuCode":    "Dove",
+                "NewGroupCode":      "Trent",
+                "StartDate":        "09/01/2018",
+                "EndDate":          "30/08/2018"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully","
+                "LearnerCode":              "2012-5213",
+                "NewGroupCode":             "10-Bio4",
+                "LearnerGroupLearnerId":    0001
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully","
+                "LearnerCode":              "2010-0001",
+                "NewGroupCode":             "Trent",
+                "LearnerGroupLearnerId":    0002
+            }
 
 # Group  Academic Data
 Group of all Academic Resources
@@ -11407,6 +11805,41 @@ Updated to include detentions
                 "Status": true,
                 "Details": "Saved successfully"
             }
+            
+            
+
+## Behaviour Summary [/BMSummary/{?LearnerId}{?Status}{?DateFrom}{?DateTo}{?Published}]
+
+### Retrieve Learner Behaviour Summary Details [GET]
+
+*Parameters*
+    + LearnerId (required, int, '123420') ... unique ID of Learner
+    + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
+    + DateFrom (optional, string, `29-06-2018`) ... start of date range
+    + DateTo (optional, string, `29-06-2018`) ... end of date range
+    + Published (optional, boolean, `true`) ... are only published events required?
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 
+
+    + Body
+    
+            {
+                "LearnerId":                        120318,
+                "LearnerCode":                      "015234", 
+                "Positive":                         10,
+                "PositivePoints":                   50
+                "Negative":                         2,
+                "NegativePoints":                   3
+                "Neutral":                          18
+            }
+
 
 ## Behaviour Confirguation [/BMConfiguration]
 
