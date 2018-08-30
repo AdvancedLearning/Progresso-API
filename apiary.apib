@@ -4660,10 +4660,11 @@ Create school history records for Learners within a school
 
 # Group Learner Attendance
 
-## Retrieve Atttendance Configuration
+## Retrieve Atttendance Configuration [/AttendanceConfiguration]
+
 Returns the default configuration for attendance
 
-### Get Attendance Configuration [GET]
+*RollCallAbsenceCode and LessonByLessonAbsenceCode are mandatory only when BulkPopulationSetting = 3. If this is either 1 or 2 then the fields are null*
 
 + BulkPopulationSetting
 
@@ -4671,8 +4672,8 @@ Returns the default configuration for attendance
     + 2 = Enter Absences (blank entries will be saved as Present)
     + 3 = Enter Presents (blank entries will be saved as Absent)
     
-*RollCallAbsenceCode and LessonByLessonAbsenceCode are mandatory only when BulkPopulationSetting = 3. If this is either 1 or 2 then the fields are null*
 
+### Get Attendance Configuration [GET]
 
 + Request (applicaiton/json)
 
@@ -4917,8 +4918,6 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
 ### Retrieve Learner Lesson Attendance [GET]
 
-*We have removed the 4 week date range restriction. Clients are advised to adjust their timeout if using a date range greater than four weeks as the API will continue for 20 mins.*
-
     + Either LearnerId, GroupCode or Date Range is mandatory
 
     
@@ -5028,8 +5027,9 @@ Create Learner Lesson Atendance by Time
 
 ### Retrieve Learner Roll Call Attendance Summaries [GET]
 
-*Parameters*
-    + LearnerId (required, int, '123420') ... unique ID of Learner for array
++ Parameters
+
+    + LearnerId (required, int, `123420`) ... unique ID of Learner for array
     + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
     + StartDate (optional, string, `29-06-2018`) ... start of date range
     + EndDate (optional, string, `29-06-2018`) ... end of date range
@@ -5214,9 +5214,10 @@ A colletion of all GDPR related resources
 
 ## Employee GDPR Consent [/EmployeeConsent]
 
-+ **Either DataRetentionConsent, MarketingConsent, DataTransferConsent or GDPRTrained is mandatory**
+**Either DataRetentionConsent, MarketingConsent, DataTransferConsent or GDPRTrained is mandatory**
 
-    
++ Fields
+
     + StaffCode (required, string, `ABc`) ... code of Employee
     + DataRetentionConsent (required, boolean, `true`) ... Has consent been given - true or false
     + RetentionDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
@@ -5228,7 +5229,7 @@ A colletion of all GDPR related resources
     + TrainingDate (optinoal, string, `06-06-2018`) ... date consent was given
     
 
-### Add or update GDPR consent filed for Employees [GET]
+### Add or update GDPR consent field for Employees [GET]
 
 + Request (application/json)
 
@@ -5267,8 +5268,10 @@ A colletion of all GDPR related resources
 
 ### Set Contact Consents [POST]
 
+**Either DataRetentionConsent, MarketingConsent or DataTransferConsent  is mandatory**
+
 + Fields
-*Either DataRetentionConsent, MarketingConsent or DataTransferConsent  is mandatory*
+
     + Code (required, string, `2014-1234`) ... code of either Learner or Staff
     + EntityType (required, string, `Learner`) ... type of Contact - valid values: Learner or Staff
     + Forename (required, string, `Joe`) ... forename of Contact
@@ -5317,12 +5320,14 @@ A colletion of all GDPR related resources
             
             
 
-## Lerner GDPR Consent [/LearnerConsent]
+## Learner GDPR Consent [/LearnerConsent]
 
 ### Set GDRP Consent for Learners [POST]
 
+**Either DataRetentionConsent,  MarketingConsent  or DataTransferConsent are mandatory**
+
 + Fields
-*Either DataRetentionConsent,  MarketingConsent  or DataTransferConsent are mandatory*
+
     + LearnerCode (required, string, `2011-1025) ... code of Learner
     + DataRetentionConsent (required, boolean, `true`) ... if consent is given then true otherwise false
     + RetentionDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
@@ -5442,10 +5447,13 @@ A collection of all UDF related resources
 ### Create one to many UDFs [POST]
 
 Notes on using DataType:
+
     If DataType = PickValue then PickListValues cannot be null
+    
     If DataType = MasterData then the type of MasterData must be defined in MasterData field e.g. Learners, Subject, Country
     
 + Fields
+
     + Code (required, string, `LP`) ... unique Code of UDF
     + Name (required, string, `Learner Photo`) ... unique Name of UDF
     + Entity (required, string, `Learner`) ... valid values are School Staff, Learner, Contact
@@ -8354,6 +8362,8 @@ Create one to many exam result entries for a learner
 
 **Either FirstGrade or SecondGrade is mandatory**
 
++ Fields
+
     + LearnerCode (required, string, '123456') ... code of Learner
     + CandidateNumber (required, string, '5004') ... unique candidate number of Learner
     + AcademicYearId (required, int, 1234) ... unique Id of the Academic Year in which the Examwas taken
@@ -8677,7 +8687,6 @@ Update one or many groups
 ## Group Association [/GroupAssociation/{?GroupId}{?GroupStartDate}{?GroupEndDate}{?IncludePast}]
 
 **Please note: StartDate and EndDate in the response are the dates the Learner joined and left the group**
-* Learner Forename and Surname have been added to the response - 06/04/2018
 
 + Parameters
     + GroupId (optional, number, `12345`) ... unique identifier of a Learner Group
@@ -8959,7 +8968,8 @@ Update Group Association for one to many Learners and Groups
 ## Create/Update LearnerGroupAssociation [/LearnerGroupAssociation]
 Input is one row per Learner ins csv
 
-+ *Fields*
++ Fields
+
     + Code (required, string, `10AR1`) ... unique code of Group
     + GroupType (required, string, `TeachingGroup`) ... type of Group. Valid values are RegistrationGroup, TeachingGroup, AdHocGroup and AcademicHouseGroup
     + LearnerCode (required, string, `20014-1234`) ... code of Learner
@@ -9037,11 +9047,12 @@ Input is one row per Learner ins csv
 ### Update LearnerGroupAssociation [PUT]
 Move a learner from one group to another
 
-*Fields*
++ Fields
+
     + LearnerCode (required, string, `2012-9542) ... unique code of Learner
     + GroupType (required, string, `TeachingGroup`) ... type of group Valid values are TeachingGroup, RegistrationGroup, AdHocGroup, AcademicHouseGroup
     + PastGroupCode (required, string, `10-Bio2`) ...  code of the Group the Learner is leaving
-    + NewGroupCode (required, string, `10-Bio4) ... code of the Group the learner in joining
+    + NewGroupCode (required, string, `10-Bio4`) ... code of the Group the learner in joining
     + StartDate (required, string, `09-01-2018`) ... start date of Learner within the New Group
     + EndDate (required, string, `30-08-2018`) ... end date of Learner within the New Group
 
@@ -9086,6 +9097,7 @@ Move a learner from one group to another
                 "NewGroupCode":             "Trent",
                 "LearnerGroupLearnerId":    0002
             }
+
 
 # Group  Academic Data
 Group of all Academic Resources
@@ -9860,7 +9872,7 @@ Create association of one to many Course to Subjects
 
 ## Departments [/Departments]
 
-### Retrieve a list of Departments
+### Retrieve a list of Departments [GET]
 
 + Request
 
@@ -10483,11 +10495,6 @@ Create one to many days for a school timetable
 
 ### Retrieve Day Compositions [GET]
 
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
-
 + Request
 
     + Headers
@@ -10580,10 +10587,6 @@ Update one to many Day Compositions
 
 ### Retrieve Day Composition Periods [GET]
 
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
@@ -11830,8 +11833,9 @@ Updated to include detentions
 
 ### Retrieve Learner Behaviour Summary Details [GET]
 
-*Parameters*
-    + LearnerId (required, int, '123420') ... unique ID of Learner
++ Parameters
+
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
     + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
     + DateFrom (optional, string, `29-06-2018`) ... start of date range
     + DateTo (optional, string, `29-06-2018`) ... end of date range
