@@ -61,7 +61,7 @@ Methods for all User related resources
 
 ### Retrieve Staff, Contact or Learner User details [GET]
 
-*Id in the response is eiher EmployeeId, LearnerId or ContactId depending on the Entity in input parameter
+*Id in the response is either EmployeeId, LearnerId or ContactId depending on the Entity in input parameter
 
 + Parameters
     + Entity (required, string, `Learner`) ... valid values Staff, Learner or Contact
@@ -103,10 +103,10 @@ Collection of Employee related resources
 
 **Please note Gender values:**
 
-    + 0 = Not known
-    + 1 = Male
-    + 2 = Female
-    + 9 = Not specified
+    0 = Not known
+    1 = Male
+    2 = Female
+    9 = Not specified
 
 ### Retrieve one to many basic employee records [GET]
 
@@ -902,7 +902,7 @@ Specific to Irish Schools and Colleges
 
 Preference number can only be used once per staff record i.e. 1 can only be used once no matter which day it is used. This is across all Day Compositions.
 
-* *Fields*
+* Fields
     + Source (required, string, `2017/2018`) ... code of Timetable Source
     + DayComposition (required, string, `Lessons`) ... name of Day Composition
     + StaffCode (required, string, `ABc`) ... code of Staff
@@ -910,6 +910,8 @@ Preference number can only be used once per staff record i.e. 1 can only be used
     + Period (required, string, `P1`) ... short name of the period of preference
     + Preference (required, int, `1`) ... Preference for Cover on this particualr day
 
++ Request    
+    
     + Headers
         
             Authorization: Bearer [CURRENT_TOKEN]
@@ -960,7 +962,8 @@ Specific to Irish Schools and Colleges
 
 ### POST Cover Supervision Details [POST]
 
-*Fields*
++ Fields
+
     + Source (required, string, `2017/2018`) ... code of Timetable Source
     + DayComposition (required, string, `Lessons`) ... name of Day Composition
     + Day (required, string, `Mon`) ... code of Day of the week
@@ -1018,21 +1021,36 @@ Collection of all employee checks for employees within a school
 **These methods have been updated to include new requirements**
 
 **Code details**
-ADD         Additional Checks for Staff who have lived or worked outside the UK
-AGN         Agency Check
-DBS         Disclosure and Barring Service Check
-CRB         Criminal Record Bureau Check
-DISQbA      Discqualification by Association
-EEASAN      European Economic Area (EEC) Teacher Sanctions and Restrictions 
-GTC         GTC Registration
-ID          Identification
-List99      List 99 Check
-MED         Medical Fitness
-PRB         Prohibition from Teaching Check
-QUAL        Qualifications
-REF         References
-RTW         Right to Work in the UK
-SEC128      Prohibition from Management
+
+**ADD**         Additional Checks for Staff who have lived or worked outside the UK
+
+**AGN**         Agency Check
+
+**DBS**         Disclosure and Barring Service Check
+
+**CRB**         Criminal Record Bureau Check
+
+**DISQbA**      Discqualification by Association
+
+**EEASAN**      European Economic Area (EEC) Teacher Sanctions and Restrictions 
+
+**GTC**         GTC Registration
+
+**ID**          Identification
+
+**List99**      List 99 Check
+
+**MED**         Medical Fitness
+
+**PRB**         Prohibition from Teaching Check
+
+**QUAL**        Qualifications
+
+**REF**        References
+
+**RTW**         Right to Work in the UK
+
+**SEC128**      Prohibition from Management
 
 ### Retrieve collection of employee checks [GET]
 
@@ -2362,10 +2380,12 @@ Update one to many contact records
 
 ## Learners Collection [/Learners{?Status}{?LearnerId}]
 
-Collection of all learner-related resources
+Collection of all learner related resources
 
 **PersonId is unique across the school's database**
+
 **Updated to include EAL**
+
 **Updated to include new Census fields**
 
 ### Retrieve a collection of learners [GET]
@@ -2543,7 +2563,6 @@ Collection of all learner-related resources
 ## Create/Update Learner Records [/learners]
 
 ### Create Learner [POST]
-**Further fields have been added to this method and are now available**
 
 Create one to many learner records  
 
@@ -2913,10 +2932,6 @@ Retrieve one or more Learner Other Details records
 
 *Updated to include Prior Attainment*
 
-Response codes used are:
-
-- 200: Returns with data
-- 204: No data available
 
 + Request
 
@@ -3067,14 +3082,13 @@ Response codes used are:
 
 Create one or more Learner Other Details records
 
-**Deployed to Live PROAPI-34**
 
 Mandatory fields:
 
-**LearnerId is mandatory**
-- Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
+**LearnerId or LearnerCode is mandatory**
+- Exclusion is not mandatory but if used: Category, Reason, StartDate are mandatory
     
-    If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+        If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
 - FSM is not mandatory but if used: StartDate is mandatory
 - Pupil Premium 13/14 is not mandatory but if used: Pupil Premium Indicator, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
 - Pupil Premiums is not mandatory but if used: Pupil Premium Cash Amount, Full Time Equivalent, Pupil Premium FY Start Date and Pupil Premium FY End Date are mandatory
@@ -3286,9 +3300,10 @@ Mandatory fields:
 
  Update one to many one to many learner other detail records    
 
-**LearnerId is mandatory**
+**LearnerId or LearnerCode is mandatory**
 - Exclusion in not mandatory but if used: Category, Reason, StartDate are mandatory
-                 (i) If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
+
+                If Category = FXD or LCH: EndDate, StartSession, EndSession are also mandatory
                  
 - FSM is not mandatory but if used: StartDate is mandatory
 
@@ -3478,7 +3493,8 @@ Mandatory fields:
 ### New Entrant Details [POST]
 This is specifice to Irish Schools and Colleges
 
-*Fields*
++ Fields
+
     + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
     + NewEntrant (required, boolean, 'true') ... Is the learner a new entrant (Irish only)
     + SchoolName (optional, string, 'Adamstown College') ... Name of school where the Learner has come from (Irish only)
@@ -3520,6 +3536,7 @@ This is specifice to Irish Schools and Colleges
 ### Retrieve a Contacts associated to a learner [GET]
 
 + Parameters
+
     + LearnerId (optional, int, `123456`) ... unique Id of Learner
     + status (optional, string, `Active`) ... returns Active, Draft or Left learners when used
     + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
@@ -3803,7 +3820,7 @@ Create one to many Learner medical condition categories
 
 ## Learner Health Details [/LearnerHealth{?since}]
 
-### Retrieve a learner Health Details [GET]
+### Retrieve Learner Health Details [GET]
 
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
@@ -3854,7 +3871,7 @@ Create one to many Learner medical condition categories
 
 ### Create/Update Learner Health [PUT]
 
-Create and update one to many learner heatlh records            
+Create and update one to many learner health records            
             
 + Request (application/json)
 
@@ -4560,7 +4577,8 @@ Create school history records for Learners within a school
 
 ### Add Learner Payments [POST]
 
-*Fields*
++ Fields
+
     + LearnerCode (required, string, `123456`) ... code of Learner
     + PaymentDate (required, string, `06/06/2018`) ... date the payment was made
     + PaymentTime (required, string, `15:02`) ... time the payment was made
@@ -4645,17 +4663,18 @@ Create school history records for Learners within a school
 ## Retrieve Atttendance Configuration
 Returns the default configuration for attendance
 
+### Get Attendance Configuration [GET]
+
 + BulkPopulationSetting
 
     + 1 = Enter Attendance Manually for all the students
     + 2 = Enter Absences (blank entries will be saved as Present)
     + 3 = Enter Presents (blank entries will be saved as Absent)
-
+    
 *RollCallAbsenceCode and LessonByLessonAbsenceCode are mandatory only when BulkPopulationSetting = 3. If this is either 1 or 2 then the fields are null*
 
-### Get Attendance Configuration [GET]
 
-+ Request (application/json)
++ Request (applicaiton/json)
 
     + Headers
         
