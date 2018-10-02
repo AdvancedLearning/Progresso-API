@@ -2000,6 +2000,7 @@ Collection of all employee roles for employee contracts within a school
 Collection of all employee Allowances for employee Roles within a school
 
 + Fields
+
     + StaffCode (required, string, `4569`) ... unqiue Id of Staff
     + ContractName (required, string, `Main Contract 1`) ... unique name of Contract
     + RoleType (required, string, `TCHR`) ... unique code of the Role associated with the Contract
@@ -2077,10 +2078,8 @@ Group of all contact-related resources
 ## Contacts Collection [/contacts/{id}]
 Get all or a single contact
 
-Optional Parameter
-- Id - Contact Id
-
 + Parameters
+
     + id (optional, int, `12345`) ... Contact with the id
 
     
@@ -2314,6 +2313,7 @@ Minimum Parameters
 Update one to many contact records
 
 + Mandatory fields
+
     + ContactId (required, int, `1234`) ... unique Id of Contact
             
 + Request (application/json)
@@ -2392,14 +2392,14 @@ Update one to many contact records
             }
             
 
-## Contact Learner Association [/ContactLearnerAssociation{ContactId}]
+## Contact Learner Association [/ContactLearnerAssociation{?ContactId}]
 This method takes the ContactId as an input and returns an array of LearnerId's associated with this. The method checks that Web Access has been given for each Learner associated to the Contact and will reutrn only those LearnerId's.
 
 ### Retrieve the Learners associated to a Contact [GET]
 
 + Parameters
-    + ContactId (required, int, `5445`) ... unique Id of Contact
-    
+
+    + ContactId (optional, int, `12345`) ... unique Id of Contact
     
 + Request (application/json)
 
@@ -2408,7 +2408,6 @@ This method takes the ContactId as an input and returns an array of LearnerId's 
             Authorization: Bearer [CURRENT_TOKEN]
             
     + Body
-            
             
             {ContactId=12345}
                 
@@ -3535,11 +3534,12 @@ Mandatory fields:
             
 
 ## Learner Details [/LearnerDetails{?LearnerIds}]
-This method returns a minimum amount of data and accepts an array of LEarnerId's as an input parameter.
+This method returns a minimum amount of data and accepts an array of LearnerId's as an input parameter.
 
 ### Return basic details for Learners [GET]
 
 + Parameters
+
     + LearnerIds (required, int, `1234, 1000, 1432`) ... array of unique Learner Ids
     
 + Request (application/json)
@@ -12069,7 +12069,7 @@ Retruns a list of the available detention slots for a given date
 + Parameters
     + IncidentDate (required, string, `18/01/2018`) ... date of the Incident
 
-### Retrieve a lst of 10 Detetion Slots [GET]
+### Retrieve a list of 10 Detetion Slots [GET]
 
 + Request (application/json)
 
