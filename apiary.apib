@@ -210,6 +210,18 @@ Retrieve one to many employee basic records
                 "Religion":             "MU",
                 "StartDate":            "",
                 "Disability":           "No",
+                "RegistrationNumber":   "NA14 CZX",
+                "CarType":              "Nissan Note",
+                "Colour":               "White",
+                "Notes":                "Has lots of notes",
+                "IsAlertNotification":  true,
+                "EmergencySMSNumber":   "07896453712",
+                "EmergencyEmailAddress":"afakeemail@fake.co.uk", 
+                "AvailableToTimetable": true, 
+                "SubjectsTaught":       [{
+                                            "Subject":          "EN",
+                                            "TotalPlannedEffort": 20
+                                        }] , 
                 "IsTeaching":           true
             }
 
@@ -265,6 +277,7 @@ Retrieve one to many employee basic records
                 "IsAlertNotification":  true,
                 "EmergencySMSNumber":   "07896453712",
                 "EmergencyEmailAddress":"afakeemail@fake.co.uk",
+                "AvailableToTimetable": true,
                 "PhoneDetails":         [{
                                             
                                             "Type":     "H",
@@ -287,7 +300,7 @@ Retrieve one to many employee basic records
                                             "PostCode": "DD55 6FD"
                                         }],
                 "Status":               "Left",
-                "ExcludeFromCensus":    true
+                "ExcludeFromCensus":    true,
                 "NINumber":             "AB123456D",
                 "PayrollNumber":        "A270515",            
                 "QtStatus":             false,
@@ -2298,7 +2311,10 @@ Minimum Parameters
 
 ### Update Contact [PUT]
 
-Update one to many contact records            
+Update one to many contact records
+
++ Mandatory fields
+    + ContactId (required, int, `1234`) ... unique Id of Contact
             
 + Request (application/json)
 
@@ -2374,7 +2390,35 @@ Update one to many contact records
                                   }
                                 ]
             }
+            
 
+## Contact Learner Association [/ContactLearnerAssociation{ContactId}]
+This method takes the ContactId as an input and returns an array of LearnerId's associated with this. The method checks that Web Access has been given for each Learner associated to the Contact and will reutrn only those LearnerId's.
+
+### Retrieve the Learners associated to a Contact [GET]
+
++ Parameters
+    + ContactId (required, int, `5445`) ... unique Id of Contact
+    
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+            
+            
+            {ContactId=12345}
+                
++ Response 200 (application/json)
+
+    + Body
+    
+            [1000, 1005, 2495]
+            
+            
 
 # Group Learners
 
@@ -2741,7 +2785,7 @@ Mandatory fields:
 
 Update one to many learner records            
             
-**LearnerId and LearnerCode are mandatory fields**
+**LearnerId OR LearnerCode are mandatory fields**
 
 - Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
 
@@ -3334,6 +3378,8 @@ Mandatory fields:
                 "CurrentAdoptedfromCare":   false,
                 "CurrentLookedAfter":       false,
                 "CurrentPupilPremium":      true,
+                "ProofOfId":        true,
+                "EvidenceProvided": "PASS",
                 "LAC":              true,
                 "LACCurSch":        true,
                 "LACLA":            "370",
@@ -3485,6 +3531,54 @@ Mandatory fields:
                                     },{
                                     "SchoolHistoryId":    0002
                                     }]
+            }
+            
+
+## Learner Details [/LearnerDetails{?LearnerIds}]
+This method returns a minimum amount of data and accepts an array of LEarnerId's as an input parameter.
+
+### Return basic details for Learners [GET]
+
++ Parameters
+    + LearnerIds (required, int, `1234, 1000, 1432`) ... array of unique Learner Ids
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                [1234, 1000, 1432]
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":    1234,
+                "LearnerCode":  "2014-0001",
+                "Forename":     "Joe",
+                "Surname":      "Bloggs",
+                "RegGroupCode": "10A",
+                "RegGroupName": "10A"
+            },{
+                "LearnerId":    1000,
+                "LearnerCode":  "2012-3946",
+                "Forename":     "Jane",
+                "Surname":      "Bloggs",
+                "RegGroupCode": "11C",
+                "RegGroupName": "11C"
+            },{
+                "LearnerId":    1432,
+                "LearnerCode":  "2010-0001",
+                "Forename":     "Jim",
+                "Surname":      "Bloggs",
+                "RegGroupCode": "8B",
+                "RegGroupName": "8B"
             }
 
 
@@ -3707,8 +3801,11 @@ This is specifice to Irish Schools and Colleges
 
 ### Update Contacts associated to a learner [PUT]
 
+
 + Mandatory fields
+*Either LearnerId or LearnerCode is mandatory plue ContactId*
     + LearnerCode (required, string, '015234') ... unique code of the Learner
+    + LearnerID (required, int, `1234`) ... unique Id of Learner
     + ContactId (required, int, 456789) ... unique id of the Contact
     
 + Request
@@ -3818,12 +3915,14 @@ Create one to many Learner medical condition categories
             }
             
 
-## Learner Health Details [/LearnerHealth{?since}]
+## Learner Health Details [/LearnerHealth{?since}{?LearnerId}{?LearnerCode}]
 
 ### Retrieve Learner Health Details [GET]
 
 + Parameters
     + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
+    + LearnerId (optional, int, `1234`) ... unique Id of Learner
+    + LearnerCode (optional, string, `2010-1234`) ... unqiue code of Learner
     
 
 + Request
@@ -4139,11 +4238,13 @@ Update Exclusions for one to many learners
             }
 
 
-## Learner SEN Provisions [/learnerSENProvisions{?status}]
+## Learner SEN Provisions [/learnerSENProvisions{?status}{?LearnerId}{?LearnerCode}]
 
 ### Retrieve a learner SEN Provision Details [GET]
 + Parameters
     + status (optional, string, `Active`) ... The staus of Learner e.g. Active, Draft, Left
+    + LearnerId (optional, int, `1324`) ... unique Id of Learner
+    + LearnerCode (optional, string, `2010-1234`) ... unique code of Learner
 
 + Request
 
@@ -4279,12 +4380,15 @@ Update SEN Provisions for one to many learners
             }
 
 
-## Learner SEN Major Needs [/LearnerSENMajorNeeds{?status}]
+## Learner SEN Major Needs [/LearnerSENMajorNeeds{?status}{?LearnerId}{?LearnerCode}]
 
 ### Retrieve a learner SEN Major Need Details [GET]
 
 + Parameters
     + status (optional, boolean, `true`) ... Filter learners returned to only those with the status passed
+    + LearnerId (optional, int, `1324`) ... unique Id of Learner
+    + LearnerCode (optional, string, `2010-1234`) ... unique code of Learner
+
 
 + Request
 
@@ -11835,7 +11939,7 @@ Updated to include detentions
 
 + Parameters
 
-    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + LearnerId (required, int, `123420,23469`) ... unique ID of Learner array
     + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
     + DateFrom (optional, string, `29-06-2018`) ... start of date range
     + DateTo (optional, string, `29-06-2018`) ... end of date range
@@ -11847,19 +11951,41 @@ Updated to include detentions
         
             Authorization: Bearer [CURRENT_TOKEN]
             
+    + Body
+    
+            {
+                [1234, 1000, 1432]
+            }
             
-+ Response 200 
+            
++ Response 200 (application/json)
 
     + Body
     
             {
-                "LearnerId":                        120318,
+                "LearnerId":                        1234,
                 "LearnerCode":                      "015234", 
                 "Positive":                         10,
                 "PositivePoints":                   50
                 "Negative":                         2,
                 "NegativePoints":                   3
                 "Neutral":                          18
+            },{
+                "LearnerId":                        1000,
+                "LearnerCode":                      "087654", 
+                "Positive":                         20,
+                "PositivePoints":                   80
+                "Negative":                         0,
+                "NegativePoints":                   0
+                "Neutral":                          16
+            },{
+                "LearnerId":                        1432,
+                "LearnerCode":                      "064565", 
+                "Positive":                         14,
+                "PositivePoints":                   14
+                "Negative":                         5,
+                "NegativePoints":                   20
+                "Neutral":                          12
             }
 
 
