@@ -267,7 +267,7 @@ Retrieve one to many employee basic records
                 "LeftDate":             "31-12-2015",
                 "DestinationType":      2,
                 "Destination":          "Hermitage on Skye",
-                "LeavingReason":        "Wants to be a hermit"'
+                "LeavingReason":        "Wants to be a hermit",
                 "TeacherNumber":        "12456",
                 "Email":                "joe.bloggs@theschool.edu",
                 "RegistrationNumber":   "NA14 CZX",
@@ -2665,7 +2665,6 @@ Mandatory fields:
                 "GAndT": false,
                 "MedicalFlag": false,
                 "YSSAIndicator": "",
-                "Nationality": "",
                 "ServiceChild": "N",
                 "ServiceChildSource": "",
                 "TopUpFunding": false,
@@ -2888,7 +2887,6 @@ Update one to many learner records
                 "GandT":              false,
                 "MedicalFlag":        false,
                 "YSSAIndicator":      "Y",
-                "Nationality":        "GBR",
                 "Ethnicity":          "WBRI",
                 "EthnicitySource":    "P",
                 "ServiceChild":       "N",
@@ -3939,29 +3937,36 @@ Create one to many Learner medical condition categories
                 "LearnerCode":          "2013-00132",
                 "LearnerId":             000001,
                 "Allergies":            [{
-                                            "Allergy": "EGG"
+                                            "Allergy": "EGG",
+                                            "AllergyNAme":  "Egg"
                                         },
                                         {
-                                            "Allergy": "MILK"
+                                            "Allergy": "MILK",
+                                            "AllergyName":  "Milk"
                                         }],
                 "FoodPreferences":      [{
-                                            "FoodPreference": "DAIFR"
+                                            "FoodPreference": "DAIFR",
+                                            "FoodPreferenceName":   "Dairy Free"
                                         }],
                 "DietaryNotes":         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                 "Disabilities":         [{,
-                                            "Disability": "NCOL"
+                                            "Disability": "NCOL",
+                                            "DisabilityName":   "Not Collected"
                                         }],
                 "DisabilityNotes":      "Lorem ipsum dolor sit amet",
                 "MedicalConditions":    [{
                                             "Condition":    "ASTH",
+                                            "ConditionName":    "Asthma",
                                             "InfoDate":     "2016-01-18",
                                             "Notes":        "Asthma Attack"
                                         }],
                 "MedicalEvents":        [{
                                             "EventType":        "ACC",
+                                            "EventTypeName":    "Accident",
                                             "FromDate":         "2016-01-18",
                                             "ToDate":           "2016-01-18",
-                                            "IncidentLocation": "Office",
+                                            "IncidentLocation": "OFF",
+                                            "IncidentLocationName": "Office",
                                             "Notes":            "Lorem ipsum dolor sit amet",
                                             "MedicalEventId":    408569
                                         }]
@@ -4730,7 +4735,7 @@ Create school history records for Learners within a school
 
 # Group Documents
 
-## Documents [/Document{?IsEmployee}{?Id}{?DocumentId}{?DateFrom}{?DateTo}]
+## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}]
 
 **If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned**
 
@@ -4739,6 +4744,7 @@ Create school history records for Learners within a school
 + Parameters
     + IsEmployee (required, boolean, `false`) ... Learner or Employee documents
     + Id (required, int, `987465`) ... unique Id of Learner or Employee
+    + RoleId (optional, string, `297459dfvsd90fg78er67d8f6g`) ... unique Id of Role
     + DateFrom (optional, string, `01-09-2016`) ... Start of date range
     + DateTo (optional, string, `31-08-2017`) ... End of date range
     + DocumentId (optional, int, `654321`) ... unique Id of Document
@@ -9171,7 +9177,7 @@ Move a learner from one group to another
             {
                 "LearnerCode":      "2012-5213",
                 "GroupType":        "TeachingGroup",
-                "PastGropuCode":    "10-Bio2",
+                "PastGroupCode":    "10-Bio2",
                 "NewGroupCode":     "10-Bio4",
                 "StartDate":        "09/01/2018",
                 "EndDate":          "30/08/2018"
@@ -9242,7 +9248,8 @@ Group of all Academic Resources
               "TelephoneSTDCode":   "01335",
               "TelephoneNumber":    "123456",
               "WebsiteAddress":     "http://www.vischool.sch.uk",
-              "EmailAddress":       "info@vischool.com"
+              "EmailAddress":       "info@vischool.com",
+              "URN":                12345679
             }
     
     
@@ -11273,6 +11280,69 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                 }
 
 
+## Learner Timetable Iteration [/LearnerTimetableIterations{?SourceId}{?LearnerId}{?DayComposition}]
+
+
+### Retrieve all the learner's timetable event for the current iteration [GET]
+
++ Parameters
+    + SourceId (required, int, `1001`) ... unique Id of Timetable Source
+    + LearnerId (required, int, `1843`) ... unique Id of Learner
+    + DayComposition (optional, string, `School Day`) ... name of Day Composition
+
+
++ Request
+
+    + Headers
+    
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                    "EventId": 157330744,
+                    "Date": "2018-02-27",
+                    "DayComposition":   "Lessons",
+                    "PeriodId": 107927,
+                    "StartTime": "11:40",
+                    "FinishTime": "12:30",
+                    "Day": "TuesdayB",
+                    "EventType": "Timetable",
+                    "Duration": 50,
+                    "NCAEventType": null,
+                    "Employees": [
+                                    {
+                                        "EventTeacherAssociationId": 162660118,
+                                        "EmployeeId": 68426,
+                                        "EmployeeCode": "MSW"
+                                    }
+                                ],
+                    "Groups":   [
+                                    {
+                                        "EventLearnerGroupAssociationId": 152322761,
+                                        "GroupId": 1226101,
+                                        "GroupCode": "8-EN-X4",
+                                        "Type": "TeachingGroup"
+                                    }
+                                ],
+                    "Subjects": [
+                                    {
+                                        "EventSubjectAssociationId": 154064045,
+                                        "Subject": "EN"
+                                    }
+                                ],
+                    "Rooms":    [
+                                    {
+                                        "EventRoomAssociationId": 114954806,
+                                        "Room": "EN8"
+                                    }
+                                ],
+                    "WeekRangeId": 6852
+            }
+            
+
 # Group Physical
 
 Collection of all Physical Resources
@@ -11735,12 +11805,13 @@ Assign a memeber of staff a potion for Behaviour Management
 
 
 
-## Behaviour Events Collection [/BMEvents/{?LearnerId}{?FromDate}{?ToDate}{?Behaviour}]
+## Behaviour Events Collection [/BMEvents/{?LearnerId}{?GroupId}{?FromDate}{?ToDate}{?Behaviour}]
 
 ### Get Behaviour Events [GET]
 
 + Parameters
     + LearnerId (optional, int, `123420`) ... unique ID of Learner
+    + GroupId (optional, int, `1235`) ... unique Id of Group
     + FromDate (optional, date, `05-09-2016`) ... the beginning of the date range
     + ToDate (optional, date, `31-12-2016`) ... the end of the date range
     + Behaviour (optional, string, `Positive`) ... Positive, Negative or Neutral BM Events
@@ -11762,28 +11833,30 @@ Assign a memeber of staff a potion for Behaviour Management
                 "RegGroup": "U6-RWE",
                 "Behaviour": "Negative",
                 "IncidentDate": "2017-02-07",
-                "Subject": "BE",
+                "Subject": "EN",
+                "SubjectNAme":  "English",
                 "Location": "CLS",
+                "LocationNAme": "Classroom",
                 "Published": "Yes",
-                "Creator": "DhDr",
+                "Creator": "DaDr",
+                "CreatorName":  "David Dring",
                 "CreateorId": 458264,
-                "Editor": null,
+                "Editor": "ABa",
+                "EditorNAme":   "Arthur Blogg",
                 "EditorId": 8535,
                 "Assignee": "DiRo",
+                "AssigneeName": "Diana Ross",
                 "AssigneeId": 59898,
                 "Status": "Completed",
                 "Details": [
                               {
                                 "Category": "CL",
+                                "CategoryName": "Classroom",
                                 "Type": "CLatt",
+                                "TypeName": "Attitude in Class",
                                 "Severity": "S2",
+                                "SeverityName": "Medium",
                                 "point": 0
-                              },
-                              {
-                                "Category": "CL",
-                                "Type": "CLBEH",
-                                "Severity": "S2",
-                                "point": 2
                               }
                             ],
                 "Comments": [
@@ -11792,6 +11865,7 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": true,
                                 "Comment": "Asked to go to the toilet and went to the one furthest away just to waste time."
                                 "StaffCode":    "NS",
+                                "StaffName":    "Nick Subotcvz",
                                 "EmployeeId":   123456
                               },
                               {
@@ -11799,6 +11873,7 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": false,
                                 "Comment": "Spat gum out on floor"
                                 "StaffCode":    "NS",
+                                "StaffName":    "Nick Subotcvz",
                                 "EmployeeId":   123456
                               },
                               {
@@ -11806,12 +11881,13 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": false,
                                 "Comment": "Was rude to memeber of Staff"
                                 "StaffCode":    "NS",
+                                "StaffName":    "Nick Subotcvz",
                                 "EmployeeId":   123456
                               }
                             ],
                 "Actions":  [
-                              "HTO",
-                              "ISO"
+                              "Head Teacher's Office",
+                              "Isolation"
                             ]
             }           
 
@@ -12063,7 +12139,7 @@ Used to populate the 'Assign To' field with Staff Code and Name
                 "IsTeaching": true
             }
 
-## Detention Events [/DetentionEvent{?IncidentDate}]
+## Detention Events [/DetentionEvents{?IncidentDate}]
 Retruns a list of the available detention slots for a given date
 
 + Parameters
