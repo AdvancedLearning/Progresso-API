@@ -3243,11 +3243,6 @@ Mandatory fields:
                                     "LeavingDate":  "2016-02-05",
                                     "LeavingReason":"OT"
                                     }],
-            "LeavingDetails":       {
-                                        "LeavingDate":          "10-08-2015",
-                                        "Destination":          "Progresso Academy",
-                                        "Reason":               "EL"
-                                    },
             "ProficiencyDetails":   [
                                       {
                                         "Proficiency": "C",
@@ -3470,12 +3465,7 @@ Mandatory fields:
                                         "EntryDate":    "2010-09-01",
                                         "LeavingDate":  "2016-02-05",
                                         "LeavingReason":"OT"
-                                        }]
-                "LeavingDetails":       {
-                                        "LeavingDate":          "10-08-2015",
-                                        "Destination":          "Progresso Academy",
-                                        "Reason":               "EL"
-                                    },
+                                        }],
                 "ProficiencyDetails":   [
                                         {
                                         "Proficiency": "C",
@@ -4680,6 +4670,102 @@ Create school history records for Learners within a school
                 "Details":          "Saved successfully",
                 "SchoolHistoryId":  123456
             }
+
+
+## Learner Leaving Details [/LearnerLeavingDetails]
+
+### Add Learner Leaving Details [POST]
+
++ Fields
+    + *Either LearnerCode or LearnerId is required*
+    + LearnerCode (required, string, `123456`) ... code of Learner
+    + LearnerId (required, int, `123456`) ... id of Learner
+    + LeavingDate (required, string, `12-07-2018`) ... Date of laeving
+    + TransferType (required, string, `3`) ... type of transfer Valid values: Known, Unknown, Other Known School, Other
+    *If TransferType = Known, both LA and DfE No are required*
+    + LA (optional, string, `830`) ... unique local authority code
+    + DfENo (optional, string, `1234`) ... DfE number of school
+    + DestinationName (required, string, `Progresso Primary School`) ... name of school
+    + ReasonForLeaving (required, string, `NT`) ... the reason for leaving
+    + GroundsForRemoval (optional, string, `B`) ... reason for removal from school
+    + *Previous School Transient Learner Details*
+    + PreviousAssessmentDate (optional, string, `21/08/2017`) ... previous assessment date
+    + PreviousMoveConcern (optional, string, `Acad`) ... code of previous move concern
+    + PreviousDeployConcern (optional, string, `Acad`) ... code of previous deploy concern
+    + PreviousSeperationConcern (optional, string, `Acad`) ... code of previous separation concern
+    + PreviousConcernDetails (optional, string, `Lorem ipsum`) ... free text around details for concern
+    + *Current school Transient Details*
+    + CurrentAssessmentDate (optional, string, `21/05/2018`) ... Current assessment date
+    + CurrentMoveConcern (optional, string, `Acad`) ... code of Current move concern
+    + CurrentDeployConcern (optional, string, `Acad`) ... code of Current deploy concern
+    + CurrentSeperationConcern (optional, string, `Acad`) ... code of Current separation concern
+    + CurrentConcernDetails (optional, string, `Lorem ipsum`) ... free text around details for concern
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            [{
+                "LearnerId":                1000,
+                "LearnerCode":              "2014-2345",
+                "LeavingDate":              "12-07-2018",
+                "TransferType":             2,
+                "LA":                       830,
+                "DfE":                      1234,
+                "DestinationName":          "St Joesphs RC Primary School",
+                "ReasonForLeaving":         "NT",
+                "GroundsForRemoval":        "B",
+                "PreviousAssessmentDate":   "21/08/2017",
+                "PreviousMoveConcern":      "Acad",
+                "PreviousDeployConcern":    "Acad",
+                "PreviousSeperationConcern":"Acad",
+                "PreviousConcernDetails":   "Lorem ipsum",
+                "CurrentAssessmentDate":    "21/05/2018",
+                "CurrentMoveConcern":       "Acad",
+                "CurrentDeployConcern":     "Acad",
+                "CurrentSeperationConcern": "Acad",
+                "CurrentConcernDetails":    "Acad"
+            },{
+                "LearnerId":                1054,
+                "LearnerCode":              "2012-2223",
+                "LeavingDate":              "28-04-2018",
+                "TransferType":             4,
+                "LA":                       null,
+                "DfE":                      null,
+                "DestinationName":          "St Joesphs RC Primary School",
+                "ReasonForLeaving":         "IM",
+                "GroundsForRemoval":        "E",
+                "PreviousAssessmentDate":   "16/10/2015",
+                "PreviousMoveConcern":      "Acad",
+                "PreviousDeployConcern":    "Emot",
+                "PreviousSeperationConcern":"Both",
+                "PreviousConcernDetails":   "Lorem ipsum",
+                "CurrentAssessmentDate":    "21/05/2018",
+                "CurrentMoveConcern":       "Emot",
+                "CurrentDeployConcern":     "Emot",
+                "CurrentSeperationConcern": "Both",
+                "CurrentConcernDetails":    "Lorem Ipsum"
+            }]
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                                       true,
+                "Details":                                      "Saved successfully",
+                "LearnerId":                                    1000
+            },{
+                "Status":                                       true,
+                "Details":                                      "Saved successfully",
+                "LearnerId":                                    1054
+            }
+            
             
 
 ## Learner Payments [/LearnerPayment]
@@ -4695,6 +4781,8 @@ Create school history records for Learners within a school
     + PaymentMode (required, string, `Bank Draft`) ... how the payment was made Valid value Bank Draft, Cash, Cheque, Credit Card, Debit Card, Online Payment, Other
     + Amount (required, dec, 50.00`) ... amount that was paid
     + Payee (required, string, `St Martin's in the Field`) ... who the payment was made too
+    + PaymentCode (optional, string, `A1234`) ... Account Code the payment has been made to
+    + Receipt (optional, string, `123456`) ... Receipt number
  
 + Request (application/json)
 
@@ -4712,6 +4800,8 @@ Create school history records for Learners within a school
                 "PaymentMode":          "Bank Draft",
                 "Amount":               50.00,
                 "Payee":                "St Martin's in the Field",
+                "PaymentCode":          "A1234",
+                "Receipt":              "A7643563"
             },{
                 "LearnerCode":          "123456",
                 "PaymentDate":          "06/06/2018",
@@ -4720,6 +4810,8 @@ Create school history records for Learners within a school
                 "PaymentMode":          "Bank Draft",
                 "Amount":               150.00,
                 "Payee":                "Parent Teacher Association",
+                "PaymentCode":          "A1334",
+                "Receipt":              "B58327547"
             }
             
 + Response 200
@@ -5148,7 +5240,7 @@ Create Learner Lesson Atendance by Time
 
     + Headers
         
-            Authorization: Bearer [CURRENT_TOKEN"
+            Authorization: Bearer [CURRENT_TOKEN"]
     
     + Body
     
@@ -11834,15 +11926,15 @@ Assign a memeber of staff a potion for Behaviour Management
                 "Behaviour": "Negative",
                 "IncidentDate": "2017-02-07",
                 "Subject": "EN",
-                "SubjectNAme":  "English",
+                "SubjectName":  "English",
                 "Location": "CLS",
-                "LocationNAme": "Classroom",
+                "LocationName": "Classroom",
                 "Published": "Yes",
                 "Creator": "DaDr",
                 "CreatorName":  "David Dring",
                 "CreateorId": 458264,
                 "Editor": "ABa",
-                "EditorNAme":   "Arthur Blogg",
+                "EditorName":   "Arthur Blogg",
                 "EditorId": 8535,
                 "Assignee": "DiRo",
                 "AssigneeName": "Diana Ross",
@@ -11956,6 +12048,14 @@ Updated to include detentions
 
 
 ### Update Behaviour Events [PUT]
+
++ Mandatory fields
+
+    + BehaviourEntryId (required, int, `13798177`) ... unique Id of Behaviour Entry
+    + LearnerId (required, int, `443790`) ... unique Id of Learner
+    + Behaviour (required, string, `Negative`) ... type of Behaviour Valid Values: Positive, Neutral, Negative
+    + Status (required, string, `Created`) ... status of Behaviour Event
+
 
 + Request
 
