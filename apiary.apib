@@ -92,7 +92,28 @@ Methods for all User related resources
                 "Username":                     "AcSmith"
             }
             
-            
+
+## Role Access [/RoleAccess/{?RoleId}]
+
+### Retrieve the access rights for Roles in a school [GET]
+
++ Parameters
+    + RoleId (required, string, `5787C447-0031-4340-9BE3-540F9AA33A56`) ... unique ID of Role
+
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
++ Response 200
+
+    + Body
+    
+            ["Attendance5", "Attendance5.RecordAttendance", "Attendance5.RecordAttendance.LessonbyLesson2", "Attendance5.RecordAttendance.RollCall2", "Behaviour4.RecordBehaviour", "Behaviour4.RecordBehaviour.Behaviour5","Behaviour4.RecordBehaviour.Behaviour6"]
+
+
 
 # Group Employees Collection
 Methods for all employee-related resources
@@ -1113,11 +1134,11 @@ Retrieve one or more employee check records
                             "CheckedByCode": "KaBe",
                             "Position": "AC",
                             "Evidence": "Certificate Provided",
-                            "ClearenceLevel": "EN",
+                            "ClearanceLevel": "EN",
                             "Result": "PASS",
                             "RequestDate": "01/01/2008",
                             "ReviewDate": "01/05/2016",
-                            "DisclousureReference": "1188108206"
+                            "DisclosureReference": "1188108206"
                           }
                         ],
                 "DBS":  [
@@ -1129,11 +1150,11 @@ Retrieve one or more employee check records
                             "CheckedByCode": "KaLe",
                             "Position": "ADMIN",
                             "Evidence": "Certificate Provided",
-                            "ClearenceLevel": "EN",
+                            "ClearanceLevel": "EN",
                             "Result": "PASS",
                             "RequestDate": "15/03/2017",
                             "ReviewDate": "15/03/2019",
-                            "DisclousureReference": "1188108206"
+                            "DisclosureReference": "1188108206"
                           }
                         ],
                 "DISQbA":   [
@@ -1291,22 +1312,22 @@ Create Employee checks for one to multiple employees
                                         "ExpiryDate":           "21/05/2016",
                                         "CheckedByCode":        "KaBe",
                                         "Evidence":             "Certificate Provided",
-                                        "ClearenceLevel":       "EN",
+                                        "ClearanceLevel":       "EN",
                                         "Result":               "PASS",
                                         "RequestDate":          "01/01/2008",
                                         "ReviewDate":           "01/05/2016",
-                                        "DisclousureReference": "1188108206"
+                                        "DisclosureReference": "1188108206"
                                     }],
                 "DBS":              [{
                                         "VerificationDate":     "21/05/2016",
                                         "ExpiryDate":           "21/05/2019",
                                         "CheckedByCode":        "KaBe",
                                         "Evidence":             "Certificate Provided",
-                                        "ClearenceLevel":       "EN",
+                                        "ClearanceLevel":       "EN",
                                         "Result":               "PASS",
                                         "RequestDate":          "15-03-2017",
                                         "ReviewDate":           "15-03-2019",
-                                        "DisclousureReference": "1188108206"
+                                        "DisclosureReference": "1188108206"
                                     }],
                 "DISQbA":           [{
                                         "VerificationDate":     "13/02/2017",
@@ -1511,11 +1532,11 @@ Update Employee checks for one to multiple Staff
                                             "ExpiryDate":           "21/05/2016",
                                             "CheckedByCode":        "ALe",
                                             "Evidence":             "Certificate Provided",
-                                            "ClearenceLevel":       "EN",
+                                            "ClearanceLevel":       "EN",
                                             "Result":               "PASS",
                                             "RequestDate":          "01/01/2008",
                                             "ReviewDate":           "01/05/2016",
-                                            "DisclousureReference": "1188108206"
+                                            "DisclosureReference": "1188108206"
                                         }],
                 "DBS":                  [{
                                             "CheckId": 1003,
@@ -1523,11 +1544,11 @@ Update Employee checks for one to multiple Staff
                                             "ExpiryDate":           "21/05/2019",
                                             "CheckedByCode":        "ALe",
                                             "Evidence":             "Certificate Provided",
-                                            "ClearenceLevel":       "EN",
+                                            "ClearanceLevel":       "EN",
                                             "Result":               "PASS",
                                             "RequestDate":          "15-03-2017",
                                             "ReviewDate":           "15-03-2019",
-                                            "DisclousureReference": "1188108444"
+                                            "DisclosureReference": "1188108444"
                                         }],
                 "DISQbA":               [{
                                             "CheckId": 1004,
@@ -2465,6 +2486,7 @@ Collection of all learner related resources
                 "RegGroup": "Leaving",
                 "Ethnicity": "WBRI",
                 "EthnicitySource": "P",
+                "EthnicityMappedTo": null
                 "EnrolementStatus": "C",
                 "NCYear": "14",
                 "Status": "Active",
@@ -2674,7 +2696,8 @@ Mandatory fields:
                 "SchoolLunchTaken": false,
                 "MealType": "",
                 "AsylumSeeker": true,
-                "Religion": "NO",
+                "Religion": "ANK",
+                "ReligionName": "Ankh",
                 "ReligionSource": "P",
                 "ExtendedChildcareHours": 10.5,
                 "DisabilityAccessFundIndicator":true,
@@ -2684,6 +2707,7 @@ Mandatory fields:
                 "IsEconomicCriteria": true,
                 "IsHighLevelSENorDisability": true,
                 "IsLookedAfterorAdoptedFromCare": true,
+                "ModeOfTravel": "BUS"
                 "PhoneDetails": [
                                   {
                                     "Type": "H",
@@ -3521,14 +3545,18 @@ Mandatory fields:
             }
             
 
-## Learner Details [/LearnerDetails{?LearnerIds}]
+## Learner Details [/LearnerDetails{?LearnerIds}{?GroupId}{?Year}]
 This method returns a minimum amount of data and accepts an array of LearnerId's as an input parameter.
 
 ### Return basic details for Learners [GET]
 
+*Either LearnerIds or GroupId is a required field*
+
 + Parameters
 
     + LearnerIds (required, int, `1234, 1000, 1432`) ... array of unique Learner Ids
+    + GroupId (required, string, `12345`) ... unique Id of Group
+    + Year (optional, string, `7`) ... Year group of Learner
     
 + Request (application/json)
 
@@ -3567,6 +3595,42 @@ This method returns a minimum amount of data and accepts an array of LearnerId's
                 "Surname":      "Bloggs",
                 "RegGroupCode": "8B",
                 "RegGroupName": "8B"
+            }
+            
+            
+
+## Learner Indicators [/LearnerIndicator/{?GroupId}{?LearnerId}]
+
+### Learner Indicator Details [GET]
+
++ Parameters
+    + GroupId (required, int, `123420`) ... unique Id of Group
+    + LearnerId (optional, int, `1000`) ... unique Id of Learner
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            "GroupId":  123420
+                
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "LearnerId":    1000,
+                "SEN":          true,
+                "PupilPremium": false,
+                "MedicalAlert": true
+            },{
+                "LearnerId":    2154,
+                "SEN":          flase,
+                "PupilPremium": true,
+                "MedicalAlert": true
             }
 
 
@@ -3611,7 +3675,7 @@ This is specifice to Irish Schools and Colleges
             }
             
 
-## Learner Contacts [/LearnerContacts{?LearnerId}{?status}{?responsibility}{?priority}]
+## Learner Contacts [/LearnerContacts{?LearnerId}{?LearnerCode}{?status}{?responsibility}{?priority}]
 
 *Addtional fileds have been added to this method to make it more useful*
 
@@ -3620,6 +3684,7 @@ This is specifice to Irish Schools and Colleges
 + Parameters
 
     + LearnerId (optional, int, `123456`) ... unique Id of Learner
+    + LearnerCode (optional, string, `2014-0001`) ... unique code of Learner
     + status (optional, string, `Active`) ... returns Active, Draft or Left learners when used
     + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
     + priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
@@ -3645,6 +3710,7 @@ This is specifice to Irish Schools and Colleges
                                             "ContactId": 949950,
                                             "ForeName": "Colleen",
                                             "SurName": "Sterling",
+                                            "MiddleName": "Jane",
                                             "Relationship": "PAM",
                                             "WrittenCommunication": "",
                                             "Priority": 1,
@@ -3661,7 +3727,18 @@ This is specifice to Irish Schools and Colleges
                                             "SendSMS": false,
                                             "Title": "Mrs",
                                             "Gender": "F",
-                                            "Email": "CDavitt@advancedfirstline.com",
+                                            "Email": "CSterl@fakeemail.com",
+                                            "Language": "GBR",
+                                            "Occupation": "Social Worker",
+                                            "Nationality": "British",
+                                            "IsMedicalContact": false,
+                                            "WorkEmail": "C.Sterling@advancedfirstline.com",
+                                            "Employer": "Advanced",
+                                            "TranslatorReqiured": false,
+                                            "ExPupil": false,
+                                            "MedicalType": 'DR',
+                                            "VisaNumber": '09823452',
+                                            "MemberOfArmedForces": false
                                             "PhoneDetails": [
                                                               {
                                                                 "Type": "H",
@@ -3691,12 +3768,12 @@ This is specifice to Irish Schools and Colleges
 
 ### Create Contacts associated to a learner [POST]
 
+
 + Mandatory fields
+*Either LearnerId or LearnerCode is a required field*
+    + LearnerId (required, string, '015234') ... unique Id of the Learner
     + LearnerCode (required, string, '015234') ... unique code of the Learner
-    + Title (required, string, 'Mr') ... title of the Contact
     + Surname (required, string, 'King') ... surname of the Contact
-    + Forename (required, string, 'Jo') ... forename of the Contact
-    + Gender (required, string, 'M') ... gender of the Contact
     + Relationship (required, string, 'PAF') ... relationship of the Contact to Learner
 
 
@@ -3760,7 +3837,8 @@ This is specifice to Irish Schools and Colleges
                 "ParentalPortal":           true,
                 "HomeAddressLink":          true,
                 "OtherHomeAddressLink":     false,
-                "SendSMS":                  true
+                "SendSMS":                  true,
+                "RequiresTranslatoer":      false
             }
  
  
@@ -3825,6 +3903,7 @@ This is specifice to Irish Schools and Colleges
                 "MedicalType":          "DR",
                 "VisaNumber":           "09823452",
                 "MemberOfArmedForces":  false,
+                "RequiresTranslatoer":      false
                 "PhoneDetails":         [{
                                             "PhoneId": 3030394,
                                             "Type":     "H",
@@ -3928,7 +4007,7 @@ Create one to many Learner medical condition categories
                 "LearnerId":             000001,
                 "Allergies":            [{
                                             "Allergy": "EGG",
-                                            "AllergyNAme":  "Egg"
+                                            "AllergyName":  "Egg"
                                         },
                                         {
                                             "Allergy": "MILK",
@@ -4622,13 +4701,13 @@ Update SEN Major Needs for one to many learners
                                 }]
             }
 
-## School History [/LearnerSchoolHistory{?LearnerCode}{?SchoolName}{?SchoolNumber}{?LANumber}{?SchoolType}{?EntryDate}{?LeavingDate}{?LeavingReason}]
+## School History [/LearnerSchoolHistory]
 
 Create school history records for Learners within a school
 
 ### Create School History Records [POST]
 
-+ Parameters
++ Fields
     + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
     + SchoolName (required, string, `St Louis National School`) ... name of School
     + SchoolNumber (required, string, `1234`) ... IrishId or DfE number of school
@@ -4637,6 +4716,8 @@ Create school history records for Learners within a school
     + EntryDate (required, string, `04/05/2014`) ... date of entry into the school
     + LeavingDate (required, string, `04/05/2016`) ... leaving date from school
     + LeavingReason (optional, string, `TR`) ... code of Reason for Leaving
+    + URN (optional, string, `123456`) ... unique reference number of school
+    + GroundForRemoval (optional, string, `L`) ... code of Grounds for Removal
     
 
 + Request (application/json)
@@ -4650,14 +4731,16 @@ Create school history records for Learners within a school
             {
                 "LearnerCode":      "2015-0001",
                 "SchoolHistory":    [{
-                                        "Name":         "St Louis National School",
-                                        "SchoolNumber": "1234",
-                                        "Address":      "Moneypenny lane, Crich, Derbyshire",
-                                        "LA":           "Derbyshire",
-                                        "LANumber":     "830",
-                                        "SchoolType":   "2",
-                                        "EntryDate":    "04/05/2014",
-                                        "LeavingDate":  "04/05/2016"
+                                        "SchoolName":       "St Louis National School",
+                                        "SchoolNumber":     "1234",
+                                        "Address":          "Moneypenny lane, Crich, Derbyshire",
+                                        "LA":               "Derbyshire",
+                                        "LANumber":         "830",
+                                        "SchoolType":       "2",
+                                        "EntryDate":        "04/05/2014",
+                                        "LeavingDate":      "04/05/2016",
+                                        "URN":              112968,
+                                        "GroundForRemoval": "L"
                                     }]         
             }
            
@@ -4827,7 +4910,7 @@ Create school history records for Learners within a school
 
 # Group Documents
 
-## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}]
+## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}{?SearchTitle}{?DocumentTag}]
 
 **If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned**
 
@@ -4840,6 +4923,8 @@ Create school history records for Learners within a school
     + DateFrom (optional, string, `01-09-2016`) ... Start of date range
     + DateTo (optional, string, `31-08-2017`) ... End of date range
     + DocumentId (optional, int, `654321`) ... unique Id of Document
+    + SearchTitle (optional, string, `Year 8`) ... free text to retrieve documents containing this text in the title
+    + DocumentTag (optional, string, `ATT`) ...  code of Document Tag
 
 + Request (application/json)
 
@@ -4858,7 +4943,28 @@ Create school history records for Learners within a school
               "Title":      "Spring 2 Report to Parents KS3 - 10-11",
               "Name":       "L20156_2930_993030_Spring 2 Report to Parents KS3 - 10-11_03_05_2011_time_12_24_53.pdf"
               "CreatedDate":"14-03-2017"
+              "DocumentTags":["General"]
             }
+            
+
+
+## Document Tags [/DocumentTags]
+
+### Retrieve the Document tags available [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            ["General", "Administration", "Assessment","Attendance", "Census", "Behaviour", "Exams", "Exclusion", "Health", "Personal", "Policy", "SEN", "Timetable", "Workforce", "GDPR: Access Request", "GDPR: Deletion Request", "GDPR: General", "GDPR: Processing Request"]
+
 
 # Group Learner Attendance
 
@@ -4970,6 +5076,8 @@ Returns the default configuration for attendance
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
+If no date range is used then it will return the Current academic year's data to date
+
     + Either LearnerId or Date Range is mandatory
 
 + Parameters
@@ -5058,7 +5166,7 @@ Create and amend Attendance for one to many learners
             }
         
 
-## Learner Roll Call Atendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
+## Learner Roll Call Attendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
 This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance code at a time can be passed as opposed to a string of codes in the previous method.
 
 *Allows future absences*
@@ -5229,9 +5337,11 @@ Create Learner Lesson Atendance by Time
 
 ### Retrieve Learner Roll Call Attendance Summaries [GET]
 
+*If LearnerId is not used then all Learners will be returned*
+
 + Parameters
 
-    + LearnerId (required, int, `123420`) ... unique ID of Learner for array
+    + LearnerId (optional, int, `123420`) ... unique ID of Learner for array
     + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
     + StartDate (optional, string, `29-06-2018`) ... start of date range
     + EndDate (optional, string, `29-06-2018`) ... end of date range
@@ -5284,6 +5394,9 @@ Create Learner Lesson Atendance by Time
                 "AuthorisedPercentage":             3.42
                 "UnauthorisedPercentage":           0.34
             }
+            
+            
+
 
 
 ## Learner Attendance History Summary [/AttendanceHistorySummary]
@@ -5299,7 +5412,8 @@ Create Learner Lesson Atendance by Time
     + Unauthorised (required, int, `5`) ... number of unauthorised absences
     + SchoolName (required, string, `St Martin's in the Field`) ... name of the school
     + LA (optional, string, `830`) ... code of the LA
-    + DfE (optional, string, '4700') ... school's DfE number
+    + DfE (optional, string, `4700`) ... school's DfE number
+    + URN (optional, string, `12345`) ... URN of school
     
 
 + Request (application/json)
@@ -5312,14 +5426,15 @@ Create Learner Lesson Atendance by Time
 
             {
                 "LearnerCode":      "123456",
-                "AcademicYear":     2017,
+                "AcademicYear":     "2017",
                 "Possible":         254,
                 "Attended":         234,
                 "Authorised":       15,
                 "Unauthorised":     5,
                 "SchoolName":       "St Martin's in the Field",
                 "LA":               803,
-                "DfE":              4700
+                "DfE":              4700,
+                "URN":              12345
             }
             
 + Response 200
@@ -9247,16 +9362,16 @@ Input is one row per Learner ins csv
             
 
 ### Update LearnerGroupAssociation [PUT]
-Move a learner from one group to another
+Move a learner from one group to another. If no NewGroupCode is specified the Learner will be removed from the group.
 
 + Fields
 
     + LearnerCode (required, string, `2012-9542) ... unique code of Learner
     + GroupType (required, string, `TeachingGroup`) ... type of group Valid values are TeachingGroup, RegistrationGroup, AdHocGroup, AcademicHouseGroup
     + PastGroupCode (required, string, `10-Bio2`) ...  code of the Group the Learner is leaving
-    + NewGroupCode (required, string, `10-Bio4`) ... code of the Group the learner in joining
+    + NewGroupCode (optional, string, `10-Bio4`) ... code of the Group the learner in joining
     + StartDate (required, string, `09-01-2018`) ... start date of Learner within the New Group
-    + EndDate (required, string, `30-08-2018`) ... end date of Learner within the New Group
+    + EndDate (required, string, `30-08-2018`) ... end date of Learner within the New Group 
 
 + Request (application/json)
 
@@ -10599,10 +10714,15 @@ Create one to many days for a school timetable
 
 
 
-## Date Mappings [/DateMappings/{?SourceId}]
+## Date Mappings [/DateMappings/{?SourceId}{?Date}{?Iteration}]
+
+When date is used, it will return the current, previous and next iteration details.
+When Iteration is used, it will return just that iteration details
 
 + Parameters
     + SourceId (required, number, `2731`) ... unique identifier of a timetable source
+    + Date (optional, string, `15/10/2018`) ... date within an iteration
+    + Iteration (optional, int, `4`) ... number of the iteration
 
 ### Retrieve Date Mappings [GET]
 
@@ -10709,14 +10829,20 @@ Create one to many days for a school timetable
     + Body
     
             {
-                "TimetableSourceId":        1,
-                "DayCompositionId":         1,
-                "Name":                    "Day Comp 2014/2015"
+                "TimetableSourceId":        1000,
+                "DayCompositionId":         1000,
+                "Name":                     "Day Comp 2014/2015",
+                "CurrentIteration":         1,
+                "IsFuture":                 false,
+                "IsDefault":                true
              },
             {
-                "TimetableSourceId":        1,
-                "DayCompositionId":         2,
-                "Name":                    "Day Comp 2014/2015 For KS5"
+                "TimetableSourceId":        1001,
+                "DayCompositionId":         1002,
+                "Name":                    "Day Comp 2014/2015 For KS5",
+                "CurrentIteration":         12,
+                "IsFuture":                 false,
+                "IsDefault":                false
              }
 
 
@@ -11057,7 +11183,8 @@ And either
                                       {
                                         "EventTeacherAssociationId":    48523,
                                         "EmployeeId": 104034,
-                                        "EmployeeCode": "KBr"
+                                        "EmployeeCode": "KBr",
+                                        "EmployeeName": "Mr K Bright"
                                       }
                                     ],
                 "Groups":           [
@@ -11071,16 +11198,18 @@ And either
                 "Subjects":         [
                                       {
                                         "EventSubjectAssociationId":        87131,
-                                        "Subject": "EN"
+                                        "Subject": "EN",
+                                        "SubjectName":  "English"
                                       }
                                     ],
                 "Rooms":            [
                                       {
                                         "EventRoomAssociationId":           184615,
-                                        "Room": "CE06"
+                                        "Room": "CE06",
+                                        "RoomName": "CE06"
                                       }
                                     ],
-                "WeekRangeId":      45488LEarners
+                "WeekRangeId":      45488
             }
             
 
@@ -11101,10 +11230,11 @@ And either
     + Day (required, string, `MonA`) ... code of the day the event is required for
     + StartTime (required, string, `09:00`) ... start time of the event
     + EndTime (required, string, `10:00`) ... end time of the event
-    + Employees (required, string, `Abc,CDe`) ... code of staff assigned to the event
+    + Employees (optional, string, `Abc,CDe`) ... code of staff assigned to the event
     + Subjects (optional, string, `ART,AR/TX`) ... code of subjects assigned to the event. Mandatory whre EventCategory = Timetable 
     + Rooms (optional, string, `6ART,AWE05`) ... code of rooms assigned to the event
     + Groups (optional, string, `10.1ART,10.2ART`) ... code of groups assigned to the event
+    + TimetableClass (optional, string, `101`) ... code of Timetable Class
 
 
 + Request (application/json)
@@ -11263,6 +11393,7 @@ All below fields are required if anyone is present
 ## Staff Timetable [/EmployeeTTEvents{?SourceId}{?EmployeeId}{?DateFrom}{?DateTo}]
 
 Retrieve the timetable of Employees including covered events
+
 There is a new field of 'IsCovered'. When this is true it means the Staff is covering this event for the specific day.
 
 ### Retrieve Staff Timetable [GET]
@@ -11293,7 +11424,7 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     "EventType": "Timetable",
                     "Duration": 20,
                     "NCAEventType": null,
-                     "Groups":   [
+                    "Groups":   [
                                     {
                                         "EventLearnerGroupAssociationId": 152470414,
                                         "GroupId": 1225798,
@@ -11304,13 +11435,15 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     "Subjects": [
                                     {
                                         "EventSubjectAssociationId": 154211698,
-                                        "Subject": "REG"
+                                        "Subject": "REG",
+                                        "SubjectName":  "Registration"
                                     }
                                 ],
                     "Rooms":    [
                                     {
                                         "EventRoomAssociationId": 115036828,
-                                        "Room": "EN5"
+                                        "Room": "EN5",
+                                        "RoomName": "Enlgish 5"
                                     }
                                 ],
                     "WeekRangeId": 6852,
@@ -11372,7 +11505,7 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                 }
 
 
-## Learner Timetable Iteration [/LearnerTimetableIterations{?SourceId}{?LearnerId}{?DayComposition}]
+## Learner Timetable Iteration [/LearnerTimetableIterations{?SourceId}{?LearnerId}{?DayComposition}{?IterationNumber}]
 
 
 ### Retrieve all the learner's timetable event for the current iteration [GET]
@@ -11381,6 +11514,7 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
     + SourceId (required, int, `1001`) ... unique Id of Timetable Source
     + LearnerId (required, int, `1843`) ... unique Id of Learner
     + DayComposition (optional, string, `School Day`) ... name of Day Composition
+    + IterationNumber (optional, int, `8`) ... number of the iteration
 
 
 + Request
@@ -11408,7 +11542,8 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                                     {
                                         "EventTeacherAssociationId": 162660118,
                                         "EmployeeId": 68426,
-                                        "EmployeeCode": "MSW"
+                                        "EmployeeCode": "MSW",
+                                        "EmployeeName": "Mrs M Swaler"
                                     }
                                 ],
                     "Groups":   [
@@ -11422,13 +11557,15 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     "Subjects": [
                                     {
                                         "EventSubjectAssociationId": 154064045,
-                                        "Subject": "EN"
+                                        "Subject": "EN",
+                                        "SubjectName":  "English"
                                     }
                                 ],
                     "Rooms":    [
                                     {
                                         "EventRoomAssociationId": 114954806,
-                                        "Room": "EN8"
+                                        "Room": "EN8",
+                                        "RoomName": "EN8"
                                     }
                                 ],
                     "WeekRangeId": 6852
@@ -11978,9 +12115,19 @@ Assign a memeber of staff a potion for Behaviour Management
                               }
                             ],
                 "Actions":  [
-                              "Head Teacher's Office",
+                              "Detention",
                               "Isolation"
                             ]
+                "DetentionDetails": [
+                                    {
+                                        "Scheduled":    false,
+                                        "Type":         "OOD",
+                                        "Date":         "02/01/2018",
+                                        "Time":         "15:30 - 16:00",
+                                        "StaffCode":    "ALe",
+                                        "Room":         "111",
+                                        "IsEscalated":  false
+                                    }]
             }           
 
 ### Create Behaviour Events [POST]
@@ -12109,13 +12256,57 @@ Updated to include detentions
             
             
 
+## Learner Detention Attendance [/LearnerDetentionAttendance/{?EventId}{?LearnerId}{?DateFrom}{?DateTo}]
+
+### Retrieve Learner Detention Attendance [GET]
+
++ Parameters
+    + EventId (optional, int, `123420`) ... unique ID of Detention Event
+    + LearnerId (optional, int, `1001`) ... unique Id of Learner
+    + DateFrom (optional, string, `01/10/2018`) ... start of date range of detentions
+    + DateTo (optional, string, `05/10/2018`) ... end of date range of detentions
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "LearnerId":    1001,
+                "DateFrom":     "01/10/2018",
+                "DateTo":       "05/10/2018"
+            }
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+                {
+                    "LearnerId":        "1001",
+                    "LearnerCode":      "2014-1001",
+                    "DetentionDate":    "04/10/2018",
+                    "DetentionTime":    "15:20 - 15:40"
+                    "RoomCode":         "AR1",
+                    "RoomName":         "Art 1",
+                    "AttendanceMark":   "/",
+                    "AttendanceName":   "Present"
+                }
+
+
+
+
 ## Behaviour Summary [/BMSummary/{?LearnerId}{?Status}{?DateFrom}{?DateTo}{?Published}]
 
 ### Retrieve Learner Behaviour Summary Details [GET]
 
+If LearnerId is not used as input parameter then all learners will be returned
+
 + Parameters
 
-    + LearnerId (required, int, `123420,23469`) ... unique ID of Learner array
+    + LearnerId (optional, int, `123420,23469`) ... unique ID of Learner array
     + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
     + DateFrom (optional, string, `29-06-2018`) ... start of date range
     + DateTo (optional, string, `29-06-2018`) ... end of date range
@@ -12163,7 +12354,7 @@ Updated to include detentions
                 "NegativePoints":                   20
                 "Neutral":                          12
             }
-
+            
 
 ## Behaviour Confirguation [/BMConfiguration]
 
