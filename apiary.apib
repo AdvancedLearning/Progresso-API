@@ -5356,7 +5356,7 @@ Create Learner Lesson Atendance by Time
 
 ### Retrieve Learner Roll Call Attendance Summaries [GET]
 
-*If LearnerId is not used then all Learners will be returned*
++ If LearnerId is not used then all Learners will be returned
 
 + Parameters
 
@@ -5414,13 +5414,128 @@ Create Learner Lesson Atendance by Time
                 "UnauthorisedPercentage":           0.34
             }
             
+ 
+
+## Learner Lesson Attendance Summary [/LessonAttendanceSummary{?LearnerId}{?Status}{?StartDate}{?EndDate}]
+
++ If no dates are selected then by default it should return the current Academic Year Summary for each Learner
++ If no LearnerId is input then by default it should return all Learners
+
+### Retrieve the lesson attendance summaries for Learners [GET]
+
++ Parameters
+    + LearnerId (optional, int, `123420`) ... unique ID of Learner for array
+    + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (optional, string, `29-06-2018`) ... end of date range
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
             
+    + Body
+    
+            [123420]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "LearnerId":                    120318,
+                "LearnerCode":                  "015234",
+                "PresentIncludingLate":         8,
+                "Present":                      6,
+                "Late":                         2,
+                "Authorised":                   1,
+                "Unauthorised":                 2,
+                "Absences":                     3,
+                "PresentIncludingLatePercentage":   72.14, 
+                "PresentPercentage":            62.07,
+                "LatePercentage":               10.34,
+                "AbsencePercentage":            15.51,
+                "AuthorisedPercentage":         5.17,
+                "UnauthorisedPercentage":       10.34
+            }
+        
+
+
+## LessonAttendanceSumaryBySubject [/SubjectLessonAttendanceSummary{?LearnerId}{?LearnerCode}{?StartDate}{?EndDate}]
+
++ If no dates are selected then by default it should return the current Academic Year Summary
++ *Either LearnerId or LearnerCode are mandatory*
+
+### Retrieve lseeson attendance by subject [GET]
+
++ Parameters
+    + LearnerId (required, int, `123420`) ... unique ID of Learner
+    + LearnerCode (required, string, `2002-1203`) ... unique code of Learner
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (optional, string, `29-06-2018`) ... end of date range
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
+            
+    + Body
+    
+            {"LearnerId": 1234}
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":             120318,
+                "LearnerCode":           "015234",
+                "SubjectSummary":       [{
+                                            "SubjectCode":                      "Ch",
+                                            "SubjectName":                      "Chemistry",
+                                            "Present":                          1,
+                                            "Late":                             1,
+                                            "Authorised":                       0,
+                                            "Unauthorised":                     1,
+                                            "PresentPercentage":                50.00,
+                                            "LatePercentage":                   0.00,
+                                            "AuthorisedPercentage":             0.00,
+                                            "UnauthorisedPercentage":           0.00
+                                        },{
+                                            "SubjectCode":                      "CSc",
+                                            "SubjectName":                      "Computer Science",
+                                            "Present":                          2,
+                                            "Late":                             0,
+                                            "Authorised":                       1,
+                                            "Unauthorised":                     0,
+                                            "PresentPercentage":                100.00,
+                                            "LatePercentage":                   0.00,
+                                            "AuthorisedPercentage":             50.00,
+                                            "UnauthorisedPercentage":           0.00
+                                        },{
+                                            "SubjectCode":                      "En"'
+                                            "SubjectName":                      "English",
+                                            "Present":                          3,
+                                            "Late":                             1,
+                                            "Authorised":                       0,
+                                            "Unauthorised":                     2,
+                                            "PresentPercentage":                50.00,
+                                            "LatePercentage":                   19.67,
+                                            "AuthorisedPercentage":             0.00,
+                                            "UnauthorisedPercentage":           33.33
+                                        }]
+            }
+        
+
 
 
 
 ## Learner Attendance History Summary [/AttendanceHistorySummary]
 
-### Create Roll call attendance history Summaries [POST}
+### Create Roll call attendance history Summaries [POST]
 
 + Fields
     + LearnerCode (required, string, `123456`) ... code of Learner
