@@ -4925,6 +4925,45 @@ Create school history records for Learners within a school
                 "Details":      "Saved successfully",
                 "PaymentId":    1
             }
+            
+            
+
+## Re-admit Learners [/ReAdmitLearner]
+
++ *Either LearnerId or Learner Code is required*
++ Return date will become the new Entry Date
++ By default, the Learner will be Active if the Entry Date is <= today
+
+### Re-admit a Learner in to school [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+    
+            {
+                "LearnerId":        120318,
+                "LearnerCode":      "015234",
+                "RetrunDate":       "01/01/2019",
+                "ReasonForReturn":  "OR",
+                "Notes":            "Decided to continue education. Additional funding found.",
+                "RegistrationGroup":"10A"
+            }
+
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "Status":   true,
+                "Details":  "Saved successfully",
+                "LearnerId": 120318
+                
+            }
+
            
 
 # Group Documents
@@ -8914,6 +8953,47 @@ All fields are mandatory
                 "LearnerCode": "2011-0551",
                 "ExamCandidateOptionId": 5529565
             }
+            
+
+## Exams Seasons [/ExamSeason]
+
+### Create exam seasons in a school [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "SeasonName":   "January 2019",
+                "Board":        "10",
+                "Series":       "1G",
+                "Year":         "2019"
+            },{
+                "SeasonName":   "January 2019",
+                "Board":        "70",
+                "Series":       "1A",
+                "Year":         "2019"
+            }
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":   true,
+                "Details":  "Saved successfully",
+                "SeasonName": "January 2019"
+            },{
+                "Status":   true,
+                "Details":  "Saved successfully",
+                "SeasonName": "January 2019"
+            }
+        
+            
 
 
 # Group Groups
@@ -9957,6 +10037,41 @@ Update one to many terms breaks
                 "WorkingNonWorking":    "Half Working Day - PM"
                 
             }
+            
+
+            
+## Academic Calendar Categories [/AcademicCalendarCategory]
+
+### Create claendar categories [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Code":                 "SD",
+                "Name":                 "Staff Day",
+                "AttendnaceForLearner": false,
+                "AttendnaceForStaff":   true,
+                "AttendnaceForTeacher": true,
+                "UsedForStatistics":    true
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":   true,
+                "Details":  "Saved successfully",
+                "Code":     "SD"
+            }     
+            
+
 
 
 ## Academic Calendar Events [/academicCalendarEvents/{?AcademicYearId}{?id}]
@@ -11705,6 +11820,53 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                     "WeekRangeId": 6852
             }
             
+            
+
+## Learner's Exam Timetable [/LearnerExamTimetable{LearnerId}{?DateFrom}{?DateTo}]
+
++ By default date range is not used then the current academic year's events will be returned
++ Events should be returned by date desc
++ This should show a consolidated view for both internal and external exams
+
+### Retrieve an Exam Timetable for a Learner [GET]
+
++ Parameters
+    + LearnerId (required, string, `1235`) ... unique Id of Learer
+    + DateFrom (optional, string, `01/11/2018`) ... start of Exam date range
+    + DateTo (optional, string, `31/12/2018`) ... end of Exam date range (required if DateFrom is used)
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {"LearnerId": 1235}
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Date":         "05/11/2018",
+                "Time":         "09:00 - 10:30",
+                "Session":      "A",
+                "SessionName":  "Morning",
+                "OptionCode":    "4368,
+                "OptionName":   "Mathematics Level 2",
+                "SubjectCode":  "Ma",
+                "SubjectName":  "Mathematics",
+                "RoomCode":     "HAL",
+                "RoomName":     "Hall",
+                "SeatNumber":   "5A",
+                "ExamType":     "External"
+            }
+    
+    
+            
 
 # Group Physical
 
@@ -12305,15 +12467,16 @@ Updated to include detentions
                 "Actions":          [
                                         "03DB","10LP"
                                     ],
-                "DetentionDetails": {
+                "DetentionDetails": [{
                                         "Source":           "2017/2018",
                                         "DayComposition":   "Detentions",
                                         "Scheduled":        false,
                                         "Type":             "OOD",
                                         "Date":             "11/01/2018",
                                         "TimeFrom":         "12:45",
-                                        "TimeTo":           "13:00"
-                                    }
+                                        "TimeTo":           "13:00",
+                                        "IsEscalated":      false
+                                    }]
             }
             
 + Response 200 (application/json)
@@ -12374,7 +12537,18 @@ Updated to include detentions
                                     ],
                 "Actions":          [
                                         "03DB","10LP"
-                                    ]
+                                    ],
+                "DetentionDetails": [{
+                                        "Source":           "2017/2018",
+                                        "DayComposition":   "Detentions",
+                                        "Scheduled":        false,
+                                        "Type":             "OOD",
+                                        "Date":             "11/01/2018",
+                                        "TimeFrom":         "12:45",
+                                        "TimeTo":           "13:00",
+                                        "IsEscalated":      false
+                                    }]
+ 
             }
             
 + Response 200
