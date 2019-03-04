@@ -1046,6 +1046,51 @@ Specific to Irish Schools and Colleges
                 "Day":                      "Mon",
                 "Period":                   "P1"
             }
+            
+
+## Teacher Cover Details [/StaffCoverDetails]
+Specific to Irish Schools and Colleges
+
+### Set Cover details for teachers in school
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "StaffCode":            "ABc,
+                "CoveringUse":          "High",
+                "ExcludeFromCover":     false,
+                "ExcludeFromSUPCover":  false,
+                "MaxCoveringPeriods":   2,
+                "Frequency":            "Per Cycle"
+            },{
+                "StaffCode":            "BDe,
+                "CoveringUse":          "Low",
+                "ExcludeFromCover":     false,
+                "ExcludeFromSUPCover":  true,
+                "MaxCoveringPeriods":   null,
+                "Frequency":            "Per Cycle"
+            }
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "StaffCode":                "ABc"
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "StaffCode":                "BDe"
+            }
 
 
 ## Employees Checks [/EmployeeChecks{?Status}{?Employee}]
@@ -2091,6 +2136,58 @@ Collection of all employee Allowances for employee Roles within a school
                             }
                             ]
             }
+            
+
+
+### Update Employee Allowances [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "EmployeeId":   "15234",
+                "StaffCode":    "ABc",
+                "Allowances":   [{   
+                                    "AllowanceId":          2446053,
+                                    "AllowanceCategory":    "SEN",
+                                    "EffectiveFrom":        "01/09/2016",
+                                    "EffectiveTo":          "31/08/2017",
+                                    "AnnualAmount":         "2563.00",
+                                    "Description":          "Lorem ipsum",
+                                    "IncludeInPensionCalc": false,
+                                    "IncludeInNICalc":       false
+                                },{
+                                    "AllowanceId":          2446054,
+                                    "AllowanceCategory":    "RES",
+                                    "EffectiveFrom":        "01/09/2016",
+                                    "EffectiveTo":          "31/08/2017",
+                                    "AnnualAmount":         "1395.00",
+                                    "Description":          "Lorem ipsum",
+                                    "IncludeInPensionCalc": false,
+                                    "IncludeInNICalc":       false
+                                }]
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "EmployeeId":134059,
+                "StaffCode":"RiSo",
+                "Status":true,"Details":"Saved successfully",
+                "Allowances":[{
+                                "AllowanceId":24075,
+                                "Status":true,
+                                "Details":"Saved successfully"}]
+            }
+
+
     
 
 # Group Contacts
@@ -3036,7 +3133,11 @@ Retrieve one or more Learner Other Details records
             "AdoptedFromCare":  "N",
             "Notes":            "Lorem ipsum",
             "CountryOfBirth":   "NYO",
-            "Refugee":          true,           
+            "Refugee":          true,
+            "GCSEAvPointScoreAcademic": 1000.24,
+            "GCSEAvPointScoreAppliedGen": 1025.32,
+            "GCSEEnglishResult": "A",
+            "GCSEMathematicsResult ": "B",
             "ExclusionDetails": [{
                                     "ExclusionId":          0001,
                                     "Category":             "FIXD",
@@ -3294,6 +3395,10 @@ Mandatory fields:
             "MathsAttainment":      "B",
             "MathsAttainmentYear":  2,
             "MathsExemption":       "O",
+            "GCSEAvPointScoreAcademic": 1000.24,
+            "GCSEAvPointScoreAppliedGen": 1025.32,
+            "GCSEEnglishResult": "A",
+            "GCSEMathematicsResult ": "B",
             "SupportCodeDetails":   [
                                             {
                                                 "SupportCode":      32,
@@ -4774,7 +4879,58 @@ Create school history records for Learners within a school
             }
 
 
-## Learner Leaving Details [/LearnerLeavingDetails]
+## Learner Leaving Details [/LearnerLeavingDetails{?LearnerCode}{?Status}{?DateFrom}{?DateTo}]
+
+### Retrieve leaving details for a Learner [GET]
+
++ Parameters
+    + LearnerCode (optional, string, `123420`) ... unique code of Learner
+    + Status (optional, string, `Left`) ... status of Learner = Draft, Active, Left
+    + DateFrom (optional, string, `01-09-2018`) ... Start date of Leaving date range
+    + DateTo (optional, string, `26-07-2019`) ... Start date of Leaving date range
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "LearnerId": 12345,
+                "LearnerCode": "150164",
+                "LeavingDate": "19/09/2018",
+                "TransferType": "Known",
+                "LA": "830",
+                "DfENo": "4089",
+                "DestinationName": "Aldercar Community Language College",
+                "ReasonForLeaving": "NT",
+                "ReasonForLeavingName": "Normal leaving age - Training",
+                "GroundsForRemoval": "G",
+                "GroundsForRemovalName": "Health",
+                "PreviousAssessmentDate": "11/11/2016",
+                "PreviousMoveConcern": "ACAD",
+                "PreviousMoveConcernName ": "Concerns relating to academic impact",
+                "PreviousDeployConcern": "EMOT",
+                "PreviousDeployConcernName": "Concerns relating to emotional impact",
+                "PreviousSeperationConcern": "BOTH",
+                "PreviousSeperationConcernName": "Concerns relating to both academic and emotional impact",
+                "PreviousConcernDetails": "Blah blah blah",
+                "CurrentAssessmentDate": "18/09/2018",
+                "CurrentMoveConcern": "ACAD",
+                "CurrentMoveConcernName": "Concerns relating to academic impact",
+                "CurrentDeployConcern": "EMOT",
+                "CurrentDeployConcernName": "Concerns relating to emotional impact",
+                "CurrentSeperationConcern": "BOTH",
+                "CurrentSeperationConcernName": "Concerns relating to both academic and emotional impact",
+                "CurrentConcernDetails": "A lost soul"
+            }
+            
+        
+    
 
 ### Add Learner Leaving Details [POST]
 
@@ -4927,6 +5083,51 @@ Create school history records for Learners within a school
             }
             
             
+            
+
+## Retrieve School Dinner details for Learners [/LearnerSchoolDinner{?LearnerCode}{?GroupCode}{?Date}]
+
+### Retrieve the School Dinners taken for learners in school [GET]
+
++ Parameters
+    + LearnerCode (optional, string, `123420`) ... unique code of Learner
+    + GroupCode (optional, string, `1000`) ... unique code of Registration Group
+    + Date (optional, string, `11-02-2019`) ... date of School Dinners taken
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "LearnerId":    120318,
+                "LearnerCode":  "0001",
+                "MealTypeId":   176483,
+                "MealTypeCode": "HSM",
+                "MealType":     "Hot School Meal"
+                "GroupId":      1000,
+                "GroupCode":    "10A",
+                "Date":         "11-02-2019"
+            },{
+                "LearnerId":    156354,
+                "LearnerCode":  "0048",
+                "MealTypeId":   176483,
+                "MealTypeCode": "CSM",
+                "MealType":     "Cold School Meal"
+                "GroupId":      1000,
+                "GroupCode":    "10A",
+                "Date":         "11-02-2019"
+            }
+
+
+            
+            
 
 ## Re-admit Learners [/ReAdmitLearner]
 
@@ -4963,8 +5164,8 @@ Create school history records for Learners within a school
                 "LearnerId": 120318
                 
             }
+            
 
-           
 
 # Group Documents
 
@@ -5163,7 +5364,8 @@ If no date range is used then it will return the Current academic year's data to
                 "Date":             "18-04-2016T10:15:39",
                 "Session":          "AM",
                 "AttendanceCode":   "//",
-                "AttendanceCodeId": 1,  
+                "AttendanceCodeId": 1,
+                "AttendanceName":   "Present",
                 "MinutesLate":      0,
                 "Notes":            "",
                 "ClassRollDateId":  13456
@@ -5173,6 +5375,7 @@ If no date range is used then it will return the Current academic year's data to
                 "Date":             "18-04-2016T10:15:39",
                 "Session":          "PM",
                 "AttendanceCode":   null,
+                "AttendanceName":   null,
                 "AttendanceCodeId": null,  
                 "MinutesLate":      5,
                 "Notes":            "Lorem Ipsum",
@@ -8663,7 +8866,7 @@ Retrieve KS5 FFT Aspire prediction data for a learner
 
 Group of all Exam-related resources
 
-## Exam Candidates [/ondiandidate]
+## Exam Candidates [/ExamCandidate{?AcademicYearId}{?LearnerCode}{?CandidateId}]
 
 ### Create Exam Candidates [POST]
 
@@ -8709,7 +8912,48 @@ Create one to many exam candidates
                 "Details":       "Saved successfully",
                 "CandidateId":   123456
             }
+            
 
+### Update Exam Candidates [PUT]
+
+*Either AcademicYearId/LearnerCode or CandidateId are required fields*
+
++ Parameters
+    + AcademicYearId (required, int, `4563`) ... unique Id of Academic Year
+    + LearnerCode (required, string, `2010-1203`) ... unique code of Learner
+    + CandidateId (required, int, `123456`) ... unique Id of Candidate
+  
+  
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "CandidateId":      123456
+                "AcademicYearId":   4563,
+                "CentreNumber":     '23456',
+                "LearnerCode":      '2014-3456',
+                "Number":           '1000',
+                "UCI":              '221550175610F',
+                "Status":           'C',
+                "RestrictedSeat":   false,
+                "ApplyFee":         false 
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":        true,
+                "Details":       "Saved successfully",
+                "CandidateId":   123456
+            }
+                   
 
 
 ## Exams Results [/LearnerExamOptionResult/{?AcYearId}{?Year}{?LearnerId}{?Status}]
@@ -11109,7 +11353,8 @@ Create one to many Day Compositions
 
             {           
                 "TimetableSourceId":        1,
-                "Name":                     "DC 2014/2015"
+                "Name":                     "DC 2014/2015",
+                "IsDetention":              false
             }
 
 
@@ -11862,7 +12107,9 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
                 "RoomCode":     "HAL",
                 "RoomName":     "Hall",
                 "SeatNumber":   "5A",
-                "ExamType":     "External"
+                "ExamType":     "External",
+                "AttendanceCode":   "/",
+                "AttendanceName":   "Present"
             }
     
     
@@ -12364,13 +12611,13 @@ Assign a memeber of staff a potion for Behaviour Management
                 "LocationName": "Classroom",
                 "Published": "Yes",
                 "Creator": "DaDr",
-                "CreatorName":  "David Dring",
+                "CreatorName":  "Mr R Dring",
                 "CreateorId": 458264,
                 "Editor": "ABa",
-                "EditorName":   "Arthur Blogg",
+                "EditorName":   "Mr A Blogg",
                 "EditorId": 8535,
                 "Assignee": "DiRo",
-                "AssigneeName": "Diana Ross",
+                "AssigneeName": "Miss D Ross",
                 "AssigneeId": 59898,
                 "Status": "Completed",
                 "Details": [
@@ -12390,7 +12637,7 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": true,
                                 "Comment": "Asked to go to the toilet and went to the one furthest away just to waste time."
                                 "StaffCode":    "NS",
-                                "StaffName":    "Nick Subotcvz",
+                                "StaffName":    "Mr N Subotcvz",
                                 "EmployeeId":   123456
                               },
                               {
@@ -12398,7 +12645,7 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": false,
                                 "Comment": "Spat gum out on floor"
                                 "StaffCode":    "NS",
-                                "StaffName":    "Nick Subotcvz",
+                                "StaffName":    "MR N Subotcvz",
                                 "EmployeeId":   123456
                               },
                               {
@@ -12406,7 +12653,7 @@ Assign a memeber of staff a potion for Behaviour Management
                                 "Confidential": false,
                                 "Comment": "Was rude to memeber of Staff"
                                 "StaffCode":    "NS",
-                                "StaffName":    "Nick Subotcvz",
+                                "StaffName":    "Mr N Subotcvz",
                                 "EmployeeId":   123456
                               }
                             ],
@@ -12422,7 +12669,9 @@ Assign a memeber of staff a potion for Behaviour Management
                                         "Time":         "15:30 - 16:00",
                                         "StaffCode":    "ALe",
                                         "Room":         "111",
-                                        "IsEscalated":  false
+                                        "IsEscalated":  false,
+                                        "AttendanceCode": "/",
+                                        "AttendanceName": "Present"
                                     }]
             }           
 
