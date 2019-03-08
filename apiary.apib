@@ -335,7 +335,7 @@ Retrieve one to many employee basic records
                                             "Level":    "4"
                                         }],
                 "QualificationDetails": [{
-                                            "Code":    "BEDO",
+                                            "QualificationCode":    "BEDO",
                                             "Subject1": "A100",
                                             "Subject2": "C100",
                                             "ClassOfDegree": "3",
@@ -459,7 +459,7 @@ Update one to many employee records
                                             "Level":    "4"
                                         }],
                 "QualificationDetails": [{
-                                            "Code":    "BEDO",
+                                            "QualificationCode":    "BEDO",
                                             "Subject1": "A100",
                                             "Subject2": "C100",
                                             "ClassOfDegree": "3",
@@ -11359,8 +11359,8 @@ Create one to many Day Compositions
     + Body
 
             {           
-                "TimetableSourceId":        1,
-                "Name":                     "DC 2014/2015",
+                "SourceCode":               "18/19",
+                "Name":                     "DC 2018/2019",
                 "IsDetention":              false
             }
 
@@ -11372,9 +11372,9 @@ Create one to many Day Compositions
             {
                 "Status":                   true,
                 "Details":                  "Saved successfully",  
-                "TimetableSourceId":        1,
-                "DayCompositionId":         1,
-                "Name":                     "DC 2014/2015"
+                "TimetableSourceId":        1000,
+                "DayCompositionId":         1000,
+                "Name":                     "DC 2018/2019"
             }
 
 ### Update Day Compositions [PUT]
@@ -11474,8 +11474,8 @@ Create one to many Day Composition Periods
     + Body
     
             {
-                "DayCompositionId":         1,
-                "TimetableSourceId":        1,
+                "DayComposition":           "DC 2018/2019",
+                "SourceCode":               "18/19",
                 "WeekDay":                  "Monday",
                 "PeriodCode":               "P1",
                 "PeriodName":               "Period 1",
@@ -11483,8 +11483,8 @@ Create one to many Day Composition Periods
                 "EndTime":                  "09:50"
             },
             {
-                "DayCompositionId":         1,
-                "TimetableSourceId":        1,
+                "DayComposition":           "DC 2018/2019",
+                "SourceCode":               "18/19",
                 "WeekDay":                  "Tuesday",
                 "PeriodCode":               "P1",
                 "PeriodName":               "Period 1",
@@ -11499,14 +11499,14 @@ Create one to many Day Composition Periods
             {
                 "Status":                   true,
                 "Details":                  "Saved successfully",  
-                "DayCompositionId":         1,
-                "PeriodId":                 1
+                "DayCompositionId":         1000,
+                "PeriodId":                 1000
             },
             {
                 "Status":                    true,
                 "Details":                  "Saved successfully",  
-                "DayCompositionId":         1,
-                "PeriodId":                 2
+                "DayCompositionId":         1000,
+                "PeriodId":                 1002
             }
 
 
