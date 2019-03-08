@@ -2141,6 +2141,8 @@ Collection of all employee Allowances for employee Roles within a school
 
 ### Update Employee Allowances [PUT]
 
+ContractName and RoleType are mandatory fields
+
 + Request (application/json)
 
     + Headers
@@ -2151,8 +2153,12 @@ Collection of all employee Allowances for employee Roles within a school
 
             {
                 "EmployeeId":   "15234",
-                "StaffCode":    "ABc",
+                "StaffCode":    "ABc"
+                "ContractName": "Contract 1",
+                "RoleTryp":     "DPHT",
                 "Allowances":   [{   
+                                    "ContractName":         "Contract 1",
+                                    "RoleType":             "DPHT",
                                     "AllowanceId":          2446053,
                                     "AllowanceCategory":    "SEN",
                                     "EffectiveFrom":        "01/09/2016",
@@ -2162,7 +2168,8 @@ Collection of all employee Allowances for employee Roles within a school
                                     "IncludeInPensionCalc": false,
                                     "IncludeInNICalc":       false
                                 },{
-                                    "AllowanceId":          2446054,
+                                    "ContractName":         "Contract 1",
+                                    "RoleType":             "DPHT",
                                     "AllowanceCategory":    "RES",
                                     "EffectiveFrom":        "01/09/2016",
                                     "EffectiveTo":          "31/08/2017",
