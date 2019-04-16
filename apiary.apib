@@ -4832,11 +4832,59 @@ Update SEN Major Needs for one to many learners
                                 }]
             }
 
-## School History [/LearnerSchoolHistory]
+## School History [/LearnerSchoolHistory{?LearnerId}{?LearnerCode}{?Status}]
 
-Create school history records for Learners within a school
+### Retreive School Histories for a Learner [GET]
+
+If no parameters are passed then all Learners will be returned
+
++ Parameters
+    + LearnerId (optional, int, `123420`) ... unique ID of Learner
+    + LearnerCode (optional, string, `2012-0125`) ... code of learner
+    + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
+
++ Response 200
+
+    + Body
+    
+            {
+                "LearnerId":        120318,
+                "LearnerCode":      "015234",
+                "SchoolHistories":  [{
+                                        "SchoolName":           "Lady Robinson Primary School",
+                                        "SchoolNumber":     "2145",
+                                        "LANumber":         "830",
+                                        "SchoolType":       null,
+                                        "EntryDate":        "01/09/2018",
+                                        "LeavingDate":      "21/07/2019",
+                                        "LeavingReason":    "Elective Home Education",
+                                        "URN":              "123456",
+                                        "GroundForRemoval": null
+                                    },{
+                                        "School":           "Killkenny College",
+                                        "SchoolNumber":     "64109M",
+                                        "LANumber":         "830",
+                                        "SchoolType":       "Post-primary within the state",
+                                        "EntryDate":        "01/09/2018",
+                                        "LeavingDate":      "21/07/2019",
+                                        "LeavingReason":    "Expelled",
+                                        "URN":              null,
+                                        "GroundForRemoval": null
+                                    }]
+            }
+
+
 
 ### Create School History Records [POST]
+
+Create school history records for Learners within a school
 
 + Fields
     + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
@@ -5213,7 +5261,6 @@ Create school history records for Learners within a school
             }
             
 
-
 ## Document Tags [/DocumentTags]
 
 ### Retrieve the Document tags available [GET]
@@ -5230,6 +5277,42 @@ Create school history records for Learners within a school
     + Body
     
             ["General", "Administration", "Assessment","Attendance", "Census", "Behaviour", "Exams", "Exclusion", "Health", "Personal", "Policy", "SEN", "Timetable", "Workforce", "GDPR: Access Request", "GDPR: Deletion Request", "GDPR: General", "GDPR: Processing Request"]
+
+
+
+## General documents [/GeneralDocument{?DocumentId}{?DateFrom}{?DateTo}{?DocumentTag}]
+
+### Retrieve General Documents [GET]
+
+Retrieve the General documents in school
+
++ Parameters
+    + DocumentId (optional, int, `123420`) ... unique ID of Document
+    + DateFrom (optional, date, `01-09-2015`) ... start of the Created date range
+    + DateTo (optional, date, `31-08-2016`) ... end of the Created date range. Mandatory if DateFrom has a value
+    + DocumentTag (optional, date, `Administration`) ... tag associated with a document
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+
+    + Body
+    
+            {
+                "DocumentId":   101998741,
+                "Document":     "DQpBUUEgQkFTRURBVEEgSU5G"'
+                "Location":     "pro-documents/Live/24656_AdvancedCollege/FredBlogss14.09.18_20180914_1147.docx"
+                "DocumentURL":  NULL
+                "Title":        "March Newsletter",
+                "Name":         March_Newsletter.pdf",
+                "CreatedDate":  "11/03/2019",
+                "DocumentTags": [Administration]
+            }
+        
 
 
 # Group Learner Attendance
@@ -5517,36 +5600,25 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
     + Body
     
-                           {
-                            "EventId":      1234,
-                            "GroupCode":  "9Sc1",
-                            "Date":         "18-04-2016T10:15:39",
-                            "StartTime":    "09:00",
-                            "EndTime":      "10:00",
-                            "Period":       "1",
-                            "PeriodId":     123456,
-                            "LearnerId":    0001,
-                            "LearnerCode":  "2013-00001",
-                            "AttendanceCode":   "//",
-                            "AttendanceCodeId": 1,  
-                            "MinutesLate":      0,
-                            "Notes":            ""
-                            },{
-                            "EventId":      6541,
-                            "GroupCode":   "10Ar3",
-                            "Date":         "18-04-2016T10:15:39",
-                            "StartTime":    "10:00",
-                            "EndTime":      "12:00",
-                            "Period":       "2",
-                            "PeriodId":     45625,
-                            "Date":         "18-04-2016"
-                            "LearnerId":    0002,
-                            "LearnerCode":  "2013-00002",
-                            "AttendanceCode":   "L",
-                            "AttendanceCodeId": 3,  
-                            "MinutesLate":      5,
-                            "Notes":            "Lorem ipsum dolor sit amet."                                
-                            }
+            {
+                "EventId": 157641173,
+                "GroupCode": "8-DT-Y1",
+                "SubjectCode": "DT"
+                "Subject": "Design and Technology",
+                "Date": "2019-02-27",
+                "StartTime": "09:05",
+                "EndTime": "10:05",
+                "LearnerId": 636531,
+                "LearnerCode": "170090",
+                "Period": "P 1",
+                "AttendanceCode": "/\\",
+                "AttendanceCodeId": 1,
+                "MinutesLate": null,
+                "Notes": null,
+                "PeriodId": 90052,
+                "EnteredDate": "2019-02-27 12:09:39"
+            }
+
                             
 
 ## Add Learner Lesson Attendance [/LearnerLessonAttendanceByLessonTime]
@@ -5630,37 +5702,46 @@ Create Learner Lesson Atendance by Time
     + Body
     
             {
-                "LearnerId":                        1234,
-                "LearnerCode":                      "015234",
-                "PresentWithoutLate":               277,
-                "Late":                             4,
-                "Authorised":                       10,
-                "Unauthorised":                     1,
-                "PresentIncludingLate":             281,
-                "Absences":                         11 
-                "PossibleAttendances":              292
-                "PresentWithoutPercentage":         94.86
-                "PresentIncludingLatePercentage":   96.23
-                "LatePercentage":                   1.37
-                "AbsencePercentage":                3.77
-                "AuthorisedPercentage":             3.42
-                "UnauthorisedPercentage":           0.34
-            },{
-                "LearnerId":                        1000,
-                "LearnerCode":                      "017864",
-                "PresentWithoutLate":               277,
-                "Late":                             10,
-                "Authorised":                       15,
-                "Unauthorised":                     6,
-                "PresentIncludingLate":             287,
-                "Absences":                         21 
-                "PossibleAttendances":              308
-                "PresentWithoutPercentage":         94.86
-                "PresentIncludingLatePercentage":   96.23
-                "LatePercentage":                   1.37
-                "AbsencePercentage":                3.77
-                "AuthorisedPercentage":             3.42
-                "UnauthorisedPercentage":           0.34
+                "LearnerId": 40874,
+                "LearnerCode": "003260",
+                "PresentWithoutLate": 11,
+                "Late": 1,
+                "Authorised": 1,
+                "Unauthorised": 0,
+                "PresentIncludingLate": 12,
+                "Absences": 1,
+                "PossibleAttendances": 13,
+                "PresentWithoutLatePercentage": 84.62,
+                "PresentIncludingLatePercentage": 92.31,
+                "LatePercentage": 7.69,
+                "AbsencePercentage": 7.69,
+                "AuthorisedPercentage": 7.69,
+                "UnauthorisedPercentage": 0,
+                "UnexplainedAbsence": 0,
+                "LateBeforeRegistration": 1,
+                "LateAfterRegistration": 0,
+                "ApprovedEducationActivity": 2
+            },
+            {
+                "LearnerId": 40877,
+                "LearnerCode": "003264",
+                "PresentWithoutLate": 13,
+                "Late": 1,
+                "Authorised": 1,
+                "Unauthorised": 0,
+                "PresentIncludingLate": 14,
+                "Absences": 1,
+                "PossibleAttendances": 15,
+                "PresentWithoutLatePercentage": 86.67,
+                "PresentIncludingLatePercentage": 93.33,
+                "LatePercentage": 6.67,
+                "AbsencePercentage": 6.67,
+                "AuthorisedPercentage": 6.67,
+                "UnauthorisedPercentage": 0,
+                "UnexplainedAbsence": 0,
+                "LateBeforeRegistration": 1,
+                "LateAfterRegistration": 0,
+                "ApprovedEducationActivity": 2
             }
             
  
@@ -9000,6 +9081,7 @@ Retrieve one to many exam results for a learner
                                     "Board":                "70",
                                     "Series":               "6G",
                                     "Year":                 "2015",
+                                    "ExamDate":             "21/06/2019",
                                     "OptionCode":           "ENL03",
                                     "Option":               "ENGLISH LANGUAGE UNIT 3",
                                     "SyllabusCode":         "4700",
@@ -9015,6 +9097,7 @@ Retrieve one to many exam results for a learner
                                     "ExamUnit":             "U",
                                     "QCAClassification":    "RB1",
                                     "QCANumber":            null,
+                                    "Subject":              "English Language",
                                     "FeeDefined":           false,
                                     "Fee":                  10.95
                                 },{
@@ -10599,6 +10682,8 @@ Create association of one to many Course to Years
 
 ## CourseSubject [/CourseSubject]
 
+### Create a Course Subject mapping [POST]
+
 Create association of one to many Course to Subjects
 
 + Request (application/json)
@@ -10610,15 +10695,17 @@ Create association of one to many Course to Subjects
     + Body
     
             {
-                    "Course":   "KS3",
-                    "Subjects": [
-                                   "Bs","By","Ch","Cm","Ct"
-                                ]
+                "Course":   "KS3",
+                "Subject":  "Bs",
             },{
-                    "Course":   "KS4",
-                    "Subjects": [
-                                   "Bs","By","Ch","Cm","Ct"
-                                ]
+                "Course":   "KS3",
+                "Subjects": "BY",
+            },{
+                "Course":   "KS3",
+                "Subjects": "Ch",
+            },{
+                "Course":   "KS3",
+                "Subjects": "Cm",
             }
             
 + Response 200 (application.json)
@@ -10629,25 +10716,25 @@ Create association of one to many Course to Subjects
                 "CourseSubjectId":  2446053,
                 "Status":           true,
                 "Course":           "KS3", 
-                "Subject":          "AD",
+                "Subject":          "Bs",
                 "Details":          "Saved successfully"
             },{
                 "CourseSubjectId":  2446054,
                 "Status":           true,
                 "Course":           "KS3", 
-                "Subject":          "BI",
+                "Subject":          "BY",
                 "Details":          "Saved successfully"
             }, {
                 "CourseSubjectId":  2446055,
                 "Status":           true,
                 "Course":           "KS3", 
-                "Subject":          "CH",
+                "Subject":          "Ch",
                 "Details":          "Saved successfully"
             }, {
                 "CourseSubjectId":  2446056,
                 "Status":           true,
                 "Course":           "KS3", 
-                "Subject":          "CS",
+                "Subject":          "Cm",
                 "Details":          "Saved successfully"
             }, {
                 "CourseSubjectId":  2446057,
@@ -10655,37 +10742,8 @@ Create association of one to many Course to Subjects
                 "Course":           "KS3", 
                 "Subject":          "EN",
                 "Details":          "Saved successfully"
-            },{
-                "CourseSubjectId":  2446058,
-                "Status":           true,
-                "Course":           "KS4", 
-                "Subject":          "AD-GCSE",
-                "Details":          "Saved successfully"
-            },{
-                "CourseSubjectId":  2446059,
-                "Status":           true,
-                "Course":           "KS4", 
-                "Subject":          "BI-GCSE",
-                "Details":          "Saved successfully"
-            },  {
-                "CourseSubjectId":  2446060,
-                "Status":           true,
-                "Course":           "KS4", 
-                "Subject":          "CH-GCSE",
-                "Details":          "Saved successfully"
-            },  {
-                "CourseSubjectId":  2446061,
-                "Status":           true,
-                "Course":           "KS4", 
-                "Subject":          "CS-GCSE",
-                "Details":          "Saved successfully"
-            },  {
-                "CourseSubjectId":  2446062,
-                "Status":           true,
-                "Course":           "KS4", 
-                "Subject":          "EN-GCSE",
-                "Details":          "Saved successfully"
-            }  
+            }
+              
             
 
 ## Departments [/Departments]
@@ -12232,6 +12290,33 @@ Update one to many room categories
                 "RoomCategoryCode":     "HALL"
             }
 
+## Free Rooms [/FreeRooms]            
+
+### Retrieve Free Rooms [GET]
+
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "RoomId": 1000,
+                "RoomCode": "B10",
+                "RoomName": "Blue 10 Classroom",
+                "SiteCode": "Main",
+                "Roomcategory": null,
+                "AssociatedEquipments": null,
+                "TypeAndCapacity": [{
+                                        "RoomType": "Gen",
+                                        "Capacity": 30
+                                    }]
+            }
+
 ## Room Types [/RoomTypes]
 
 ### Retrieve Room Types [GET]
@@ -13564,6 +13649,20 @@ A collection of Post 16 Learning Aim methods
 
 ### Create Learning Aims for a Learner [POST]
 
++ Fields
+    + LearnerCode (required, string, `012342`) ... unique code of Learner
+    + Subject (optinoal, string, `AD`) ... code of Subject
+    + StartDate (required, string, `08/08/2017`) ... start date of Learning aim
+    + PlannedEndDate (required, string, `31/07/2018`) ... planned end date of Learning aim
+    + ActualEndDate (optional, string, `25/01/2018`) ... actual end date of Learning aim
+    + SubjectClassCode (required, string, `2350`) ... code of Cubject classification
+    + Status (required, int, `1`) ... code of status of Learning aim
+    + WithdrawalReason (optional, int, `44`) code of Withdrawal reason. Mandatory if Status = 3
+    + CoreAimIndicator (optional, boolean, `true`) ... is the the Core Learner aim?
+    + QNCode (required, string, `60149450`) ... code of the Qualification number
+    + UKPRN (optional, int, `10029085`) ... UKPRN of the learning centre
+    + Traineeship (optional, boolean, `false`) ... is this part of a Traineeship?
+
 + Request (application/json)
 
     + Headers
@@ -13594,6 +13693,7 @@ A collection of Post 16 Learning Aim methods
                                                 "ActualEndDate":    "25/01/2017",
                                                 "SubjectClassCode":    "1010",
                                                 "Status":           3,
+                                                "WithdrawalReason": 44,
                                                 "CoreAimIndicator": false,
                                                 "QNCode":           "50022362",
                                                 "UKPRN":            10027380,
