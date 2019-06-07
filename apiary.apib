@@ -9912,14 +9912,25 @@ Input is one row per Learner ins csv
 ### Update LearnerGroupAssociation [PUT]
 Move a learner from one group to another. If no NewGroupCode is specified the Learner will be removed from the group.
 
+** To remove a Learner from a group **
 + Fields
 
-    + LearnerCode (required, string, `2012-9542) ... unique code of Learner
-    + GroupType (required, string, `TeachingGroup`) ... type of group Valid values are TeachingGroup, RegistrationGroup, AdHocGroup, AcademicHouseGroup
-    + PastGroupCode (required, string, `10-Bio2`) ...  code of the Group the Learner is leaving
-    + NewGroupCode (optional, string, `10-Bio4`) ... code of the Group the learner in joining
-    + StartDate (required, string, `09-01-2018`) ... start date of Learner within the New Group
-    + EndDate (required, string, `30-08-2018`) ... end date of Learner within the New Group 
+    + LearnerCode (required, string, `123420`) ... unique code of Learner
+    + GroupType (required, string, `TeachingGroup`) ... type of group - TeachingGroup, RegistrationGroup, AcademicHouseGroup, AdHocGroup
+    + PastGroupCode (required, string, `11-Sci-A`) ... the code of Group the Learner is being moved/removed from
+    + EndDate (required, string, `31/01/2019`) ... the end date of the Learner in the Group except for AcademicHouseGroup
+    + StartDate (required, string, `03/09/2018`) ... the start date of the Learner in the Group
+    
+** To move a Learner to another group**
++ Fields
+
+    + LearnerCode (required, string, `123420`) ... unique code of Learner
+    + GroupType (required, string, `TeachingGroup`) ... type of group - TeachingGroup, RegistrationGroup, AcademicHouseGroup, AdHocGroup
+    + PastGroupCode (required, string, `11-Sci-A`) ... the code of Group the Learner is being moved/removed from
+    + EndDate (required, string, `31/01/2019`) ... the end date of the Learner in the Group except for AcademicHouseGroup
+    + NewGroupCode (optional, string, `11-Sci-B`) ... the code of Group the Learner is being moved from
+    + StartDate (required, string, `03/09/2018`) ... the start date of the Learner in the Group
+
 
 + Request (application/json)
 
