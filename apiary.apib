@@ -2879,12 +2879,6 @@ Mandatory fields:
                         "AddressId": 1353316
                       }
                     ],
-                    "ContactDetails": [
-                      {
-                        "ContactId": 968989,
-                        "LearnerContactRelationshipId": 2054
-                      }
-                    ],
                     "SiblingDetails": [
                       {
                         "LearnerId": 443779
@@ -3899,6 +3893,8 @@ This is specifice to Irish Schools and Colleges
 
 ### Create Contacts associated to a learner [POST]
 
+In this method, if the Contact is a medical contact e.g. a Doctor, then the **Relationship** field should be left as **null**, **IsMedicalContact** should be **true** and **MedicalType** must have a value e.g. **Dr**.
+
 
 + Mandatory fields
 *Either LearnerId or LearnerCode is a required field*
@@ -4188,16 +4184,21 @@ Create and update one to many learner health records
             {
                 "LearnerId": 443790,
                 "Allergies": [{
-                                "Allergy": "EGG"
+                                "Allergy": "EGG",
+                                "AllergyName": "Egg"
                               },{
-                                "Allergy": "MILK"
+                                "Allergy": "MILK",
+                                "AllergyName": "Milk"
                               },{
-                                "Allergy": "PNUT"
+                                "Allergy": "PNUT",
+                                "AllergyNAme":  "Peanuts"
                               }],
                 "FoodPreferences":  [{
-                                        "FoodPreference": "DAIFR"
+                                        "FoodPreference": "DAIFR",
+                                        "FoodPreferenceName": "Dairy Free"
                                       },{
-                                        "FoodPreference": "GLFR"
+                                        "FoodPreference": "GLFR",
+                                        "FoodPreferenceName":   "Gluten Free"
                                     }],
                 "DietaryNotes": "Lorem ipsum",
                 "Disabilities": [{
@@ -13662,7 +13663,7 @@ A collection of Post 16 Learning Aim methods
 
 + Fields
     + LearnerCode (required, string, `012342`) ... unique code of Learner
-    + Subject (optinoal, string, `AD`) ... code of Subject
+    + Subject (optional, string, `AD`) ... code of Subject
     + StartDate (required, string, `08/08/2017`) ... start date of Learning aim
     + PlannedEndDate (required, string, `31/07/2018`) ... planned end date of Learning aim
     + ActualEndDate (optional, string, `25/01/2018`) ... actual end date of Learning aim
