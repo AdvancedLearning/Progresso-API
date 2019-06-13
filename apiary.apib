@@ -11961,7 +11961,7 @@ All below fields are required if anyone is present
             }
         
 
-## Staff Timetable [/EmployeeTTEvents{?SourceId}{?EmployeeId}{?DateFrom}{?DateTo}]
+## Staff Timetable [/EmployeeTTEvents{?SourceId}{?EmployeeId}{?StartDate}{?EndDate}]
 
 Retrieve the timetable of Employees including covered events
 
@@ -11972,8 +11972,8 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
 + Parameters
     + SourceId (required, int, `1234`) ... unique Id of Timetable Source
     + EmployeeId (required, int, `123420`) ... unique ID of Employee
-    + DateFrom (required, date, `01-09-2015`) ... start of the date range
-    + DateTo (required, date, `31-08-2016`) ... end of the date range
+    + StartDate (required, date, `01-09-2015`) ... start of the date range
+    + EndDate (required, date, `31-08-2016`) ... end of the date range
 
 + Request 
 
