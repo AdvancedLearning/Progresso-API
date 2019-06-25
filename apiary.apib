@@ -1738,7 +1738,11 @@ Collection of all employee checks for employees within a school
                                 "PostName":     "Assistant Head",
                                 "DailyRate":    False,
                                 "Origin":       "OTHEDU",
-                                "Destination":  "",                           
+                                "Destination":  "",
+                                "PayReviewDate":null,
+                                "PayFramework": null,
+                                "MinRange":     null,
+                                "MaxRange":     null,
                                 "Roles":    [{
                                                 "RoleId":           0001,
                                                 "Role":             "TASS",
@@ -3196,6 +3200,7 @@ Retrieve one or more Learner Other Details records
                                             "FTE":                  1,
                                             "FYStartDate":          "2014-04-01",
                                             "FYEndDate":            "2015-03-31",
+                                            "LastFSM":              "SPR19",
                                             "Notes":                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                     }]
                                     },
@@ -3349,6 +3354,7 @@ Mandatory fields:
                                     "FTE":              1.0,
                                     "FYStartDate":      "2014-04-01",
                                     "FYEndDate":        "2015-03-31",
+                                    "LastFSM":          "SPR19",
                                     "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                     }],
             "GandTDetails": [{
@@ -3572,6 +3578,7 @@ Mandatory fields:
                                         "FTE":              1.0,
                                         "FYStartDate":      "2014-04-01",
                                         "FYEndDate":        "2015-03-31",
+                                        "LastFSM":          "SPR19",
                                         "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                                         }],
                 "GandTDetails":         [{
@@ -5225,7 +5232,7 @@ Create school history records for Learners within a school
 
 # Group Documents
 
-## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}{?SearchTitle}{?DocumentTag}]
+## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}{?SearchTitle}{?DocumentTag}{?IsDocumentAccessible}]
 
 **If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned**
 
@@ -5240,6 +5247,7 @@ Create school history records for Learners within a school
     + DocumentId (optional, int, `654321`) ... unique Id of Document
     + SearchTitle (optional, string, `Year 8`) ... free text to retrieve documents containing this text in the title
     + DocumentTag (optional, string, `ATT`) ...  code of Document Tag
+    + IsDocumentAccessible (optional, boolean, `true`) ... Is the Learner have access to the document?
 
 + Request (application/json)
 
@@ -6755,7 +6763,78 @@ Collection of all Assessment related resources
                                 }
                                 ]
             }
+            
+            
 
+### Create SATs Results for Learners [POST]
+
+**Either LearnerID or Date Range is mandatory**
+
++ Fields
+    + LearnerId (required, int, `1234`) ... unique Id of Learner
+    + LearnerCode (required, string, `123456`) ... code of Learner
+    + KeyStage (required, string, `KS1`) ... SATs Key Stage
+    + Locale required, string, `ENG`) ... either ENG or WAL
+    + Year (required, string, `2018`) ... Year SATs were taken: yyyy
+    + Subject (required, string, `ENG`) ... subject of SAT
+    + Method (required, string, `TA`) ... method undertaken Valid values TA or TT
+    + Component (required, string, `SUB`) ... component of test/assessment
+    + ResultStatus (required, string, `R`) ... status of the result - estimated, an interim result, provisional, actual result or a target
+    + ResultQualifier(required, string, `FD`) ... Indicates whether the result is a level, individual mark, total marks etc.
+    + Result (required, string, `2`) ... the result itself
+    + ResultDate (required, string, `03/01/2019`) ... date of the results
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerId":        123456
+                "LearnerCode":      "1001",
+                "KeyStage":         "KS1",
+                "Locale":           "ENG",
+                "Year":             "2018",
+                "Subject":          "ENG",
+                "Method":           "TA",
+                "Component":        "SUB",
+                "ResultStatus":     "R",
+                "Results":          "2",
+                "ResultDate":       "03/01/2018
+            },{
+                "LearnerId":        123456
+                "LearnerCode":      "1001",
+                "KeyStage":         "KS1",
+                "Locale":           "ENG",
+                "Year":             "2018",
+                "Subject":          "MAT",
+                "Method":           "TA",
+                "Component":        "SUB",
+                "ResultStatus":     "R",
+                "Results":          "3A",
+                "ResultDate":       "03/01/2018
+            }
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "LearnerID":                "123456",
+                "AssessmentLearnerSATResultId": 1000
+            },{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "LearnerId":                "123456",
+                "AssessmentLearnerSATResultId": 1001
+            }
+        
 
 ## CATS Prediction Data [/LearnerAssessmentCATSData/{?LearnerId}{?DateFrom}{?DateTo}]
 
@@ -8955,7 +9034,43 @@ Retrieve KS5 FFT Aspire prediction data for a learner
 
 Group of all Exam-related resources
 
-## Exam Candidates [/ExamCandidate{?AcademicYearId}{?LearnerCode}{?CandidateId}]
+## Exam Candidates [/ExamCandidate{?AcademicYearId}{?LearnerId}{?CandidateId}]
+
+### Return Exam Candidates [GET]
+
+Get one or more Exam Candidates
+
++ Parameters
+    + AcademicYearId (required, int, `4563`) ... unique Id of Academic Year
+    + LearnerId (optional, int, `956481`) ... unique Id of Learner
+    + CandidateId (optional, int, `123456`) ... unique Id of Candidate
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+
+       + Body
+
+            {
+                "AcademicYearId":   4563,
+                "CentreNumber":     23456,
+                "LearnerIdId":      956481,
+                "LearnerCode":      "2014-3456",
+                "CandidateId":      123456,
+                "Number":           "1000",
+                "UCI":              "221550175610F",
+                "ULN":              "1021597352",
+                "Status":           "C",
+                "RestrictedSeat":   false,
+                "ApplyFee":         false 
+            }
+
+
+
 
 ### Create Exam Candidates [POST]
 
@@ -9007,7 +9122,7 @@ Create one to many exam candidates
 
 *Either AcademicYearId/LearnerCode or CandidateId are required fields*
 
-+ Parameters
++ Fields
     + AcademicYearId (required, int, `4563`) ... unique Id of Academic Year
     + LearnerCode (required, string, `2010-1203`) ... unique code of Learner
     + CandidateId (required, int, `123456`) ... unique Id of Candidate
@@ -10556,10 +10671,12 @@ Update one to many Academic Calendar Events
             },
             {
                 "name":                 "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "calendarEventId":      0003
+                "startDate":            03-09-2014,
+                "endDate":              03-09-2014,
+                "calendarEventId":      0004
             }
+
+
 
 ## Courses [/courses/{?AcYearId}]
 
@@ -11702,6 +11819,95 @@ Update one to many Day Composition Periods
                 "Details":                  "Saved successfully",
                 "WeekRangeId":            6544
             }
+            
+            
+
+### Update Week Range [PUT]
+
++ Fields
+    + WeekRangeId(required, int, `6543`) ... id of Week Range
+    + Name (optional, string, '1-22') ... name of the Week Range
+    + Iterations (required, int, '1,2,3,4,5,6,7,8,9,10') ... array of iterations
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "WeekRangeId":      6543,
+                "Name":             "1-5",
+                "Iterations":       [
+                                        1,2,3,4,5
+                                    ]
+             },{
+                "WeekRangeId":      6544,
+                "Name":             "Half Year",
+                "Iterations":       [
+                                        1,2,3,4,5,6,7,8,9,10,11
+                                    ]
+            }
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "WeekRangeId":     6543
+            },
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "WeekRangeId":            6544
+            }           
+                 
+
+
+
+## Timetable Event Types [/TTEventTypes]
+
+### Create Event Types [POST]
+
++ Fields
+    + EventType (required, string, `ILM Type`) ... type of Event: NCA Type, AD hov Event Type or ILM Type
+    + EventTypeCode (required, string, `LS`) ... code of Event Type
+    + EventTypeName (required, string, `Learning Support`) ... name of Event Type
+    + EventTypeDescription (optional, string, `Learning Support`) ... description of Event Type
+    + ForScheduling (optinal, boolean, `true`) ... Is this Event Type to be used for Scheduling purposes?
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "EventType":            "ILM Type",
+                "EventTypeCode":        "LS",
+                "EventTypeName":        "Learning Support",
+                "EventTypeDescription": "Learning Support",
+                "ForScheduling":        true
+            }
+            
++ Response 200
+
+    + Body
+    
+            [{
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "EventTypeId":              1001
+            }]
+
 
 
 ## Timetable Events  [/ttEvents/{?SourceId}{?EmployeeId}{?LearnerId}{?StartDate}{?EndDate}{?DayCompositionId}]
@@ -13657,7 +13863,64 @@ A collection of Post 16 Learning Aim methods
             }
             
 
-## Post 16 Learning Aims [/LearningAims]
+## Post 16 Learning Aims [/LearningAims/{?LearnerId}{?LearnerCode}]
+
+### Retrun Learning Aims for a Learner [GET]
+
+**Either LearnerId or LearnerCode is mandatory**
+
++ Parameters
+    + LearnerId (required, int, `1234`) ... unique Id of Learner
+    + LearnerCode (required, string, `2010-1234`) ... unique code of Learner
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerCode": "180026",
+                "LearnerId": 00123,
+                "LearningAimDetails": [
+                                          {
+                                            "Subject":          "AR",
+                                            "StartDate":        "04/09/2018",
+                                            "PlannedEndDate":   "31/07/2019",
+                                            "ActualEndDate":    "",
+                                            "SubjectClassCode": "5010",
+                                            "QNCode":           "10001037",
+                                            "QNDescription":    "AQA Advanced GCE in English Language and Literature A"
+                                            "Status":           "1 - Course undertaken but not completed",
+                                            "CoreAimIndicator": true,
+                                            "UKPRN":            "10032979",
+                                            "Traineeship":      false,
+                                            "WithdrawalReason": null
+                                          },{
+                                            "Subject":          "TT",
+                                            "StartDate":        "04/09/2018",
+                                            "PlannedEndDate":   "31/07/2019",
+                                            "ActualEndDate":    "26/02/2019",
+                                            "SubjectClassCode": "5030",
+                                            "QNCode":           "10001025",
+                                            "QNDesription":     "AQA Advanced GCE in English Language A",
+                                            "Status":           "3 - Withdrawn",
+                                            "CoreAimIndicator": false,
+                                            "QNCode":           "10017380",
+                                            "UKPRN": "10032979",
+                                            "Traineeship":      "FALSE"
+                                            "WithdrawalREason": ""2 - Learner has transferred to another provider""
+                                          }
+                                        ]
+            }
+            
+    
+    
 
 ### Create Learning Aims for a Learner [POST]
 
