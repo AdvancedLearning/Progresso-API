@@ -381,9 +381,9 @@ Retrieve one to many employee basic records
 
 Update one to many employee records
 
-+ Mandatory fields
++ Fields
 
-    + EmployeeId, Surname, Forename are mandatory fields
+    + EmployeeId or StaffCode are mandatory
     
     + Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
 
@@ -768,19 +768,20 @@ Collection of Staff Absence methods
 
 ### Retrieve collection of Staff Absences [GET]
 
-Retrieve one or more employee check records
 
-+ Request
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
 
 + Parameters
     + EmployeeId (optional, int, `0001`) ... unique Id of Staff/Employee
     + DateFrom (optional, date, `01-09-2015`) ... start date of the date range for Absences
     + DateTo (optional, date, `31-08-2016` ... end date of the date range for Absences
     
++ Request
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+
+
 + Response 200 (applicatoin/json)
 
     + Body
@@ -880,6 +881,90 @@ All other fields are mandatory.
                 "StartTime":            "08:45"  ,
                 "EndTime":              "10:50"
                 }
+                
+
+### Update one to many staff absences [PUT]
+
+**Either StaffCode or EmployeeId is mandatory**
+
++ Fields
+    + StaffCode (required, string, `1000`) ... code of staff
+    + StaffAbsenceEntryId (required, int, `1005`) ... id of Staff absence entry
+    + EmployeeId (required, int, `1001`) ... unique Id of staff
+    + AbsenceCategoryCode (optional, string, `SIC`)
+    + FromDate (required, string, `01/11/2018`) ... start date of absence
+    + ToDate (required, string, `03/11/2018`) ... end date of absence
+    + StartTime (oprional, string, `null`) ... start time of absence
+    + EndTime (optional, string, `null`) ... end time of absence
+    + Note (optional, string, `lorem ipsum`) ... notes
+    
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "StaffCode":            "AdGo",
+                "AbsenceCategoryCode":  "ABS",
+                "FromDate":             "2018-12-05",
+                "ToDate":               "2018-12-07",
+                "StartTime":            null,
+                "EndTime":              null,
+                "Note":                "Had flu"
+             },{
+                "EmployeeId":           1000,
+                "AbsenceCategoryCode":  "APP",
+                "FromDate":             "2018-12-05",
+                "ToDate":               "2018-12-05",
+                "StartTime":            "08:45",
+                "EndTime":              "10:50,
+                "Note":                 "Dr's appointment"
+             }
+             
+             
++ Response 200
+
+    + Body
+    
+            {
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "StaffAbsenceEntryId":  1000,
+                "EmployeeId":           1010,
+                "Date":                 "2018-12-05",
+                "StartTime":            null,
+                "EndTime":              null
+            },{
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "StaffAbsenceEntryId":  1001,
+                "EmployeeId":           1010,
+                "Date":                 "2018-12-06",
+                "StartTime":            null,
+                "EndTime":              null
+            },{
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "StaffAbsenceEntryId":  1002,
+                "EmployeeId":           1010,
+                "Date":                 "2018-12-07",
+                "StartTime":            null,
+                "EndTime":              null
+            },{
+                "Status":               true,
+                "Details":              "Saved successfully",
+                "StaffAbsenceEntryId":  1003,
+                "EmployeeId":           1000,
+                "Date":                 "2018-12-05" ,
+                "StartTime":            "08:45"  ,
+                "EndTime":              "10:50"
+            }
+                
+                
 
 ## Assign Cover [/AssignCover]
 
@@ -5467,8 +5552,12 @@ If no date range is used then it will return the Current academic year's data to
                 "AttendanceName":   "Present",
                 "MinutesLate":      0,
                 "Notes":            "",
-                "ClassRollDateId":  13456
-                },{
+                "ClassRollDateId":  13456,
+                "GroupCode":        "10BC",
+                "EnteredDate":      "2019-05-29 08:33:59",
+                "IsLocked":         false
+            },
+            {
                 "LearnerId":        0001,
                 "LearnerCode":      "2013-00001",
                 "Date":             "18-04-2016T10:15:39",
@@ -5477,8 +5566,11 @@ If no date range is used then it will return the Current academic year's data to
                 "AttendanceName":   null,
                 "AttendanceCodeId": null,  
                 "MinutesLate":      5,
-                "Notes":            "Lorem Ipsum",
-                "ClassRollDateId":  null
+                "Notes":            "Overslept",
+                "ClassDateRollId":  358381,
+                "GroupCode":        null,
+                "EnteredDate":      "2019-05-29 08:32:48",
+                "IsLocked":         true
             }
 
 
@@ -5610,22 +5702,23 @@ This method differs from the previous one with the addtion of Notes and Minutes 
     + Body
     
             {
-                "EventId": 157641173,
-                "GroupCode": "8-DT-Y1",
-                "SubjectCode": "DT"
-                "Subject": "Design and Technology",
-                "Date": "2019-02-27",
-                "StartTime": "09:05",
-                "EndTime": "10:05",
-                "LearnerId": 636531,
-                "LearnerCode": "170090",
-                "Period": "P 1",
-                "AttendanceCode": "/\\",
+                "EventId":          157641173,
+                "GroupCode":        "8-DT-Y1",
+                "Date":             "2019-02-27",
+                "StartTime":        "09:05",
+                "EndTime":          "10:05",
+                "LearnerId":        636531,
+                "LearnerCode":      "170090",
+                "Period":           "P 1",
+                "AttendanceCode":   "/\\",
                 "AttendanceCodeId": 1,
-                "MinutesLate": null,
-                "Notes": null,
-                "PeriodId": 90052,
-                "EnteredDate": "2019-02-27 12:09:39"
+                "MinutesLate":      5,
+                "Notes":            "Bus was late",
+                "PeriodId":         90052,
+                "EnteredDate":      "2019-02-27 12:09:39",
+                "SubjectCode":      "DT"
+                "Subject":          "Design and Technology",
+                "IsLocked":         true
             }
 
                             
@@ -5959,12 +6052,12 @@ Retrieve one to many one to many employee/learner photos
                 ]
             }
 
-## Upload Photos [/Photo{?Code}{?EntityType}{?PhotoData}{?IsHidden}]
+## Upload Photos [/Photo]
 
 ### Upload photos for Staff and Learners [POST]
 This method serves as both POST and PUT and will overwite an existing photo
 
-+ Parameters
++ Fields
     + Code (required, string, `2015-0001`) ... unique code of Learner or Staff
     + EntityType (required, string, `Learner`) ... valid values: Learner or Staff
     + PhotoData (required, string, `0xFFD8FFE000104A46494600010101006000600000FFDB0043000`) ... 64bitString or Byte string of Photo
@@ -5998,11 +6091,48 @@ This method serves as both POST and PUT and will overwite an existing photo
             }          
             
 
-# Group GDPR
+# Group GDPR Consent
 
 A colletion of all GDPR related resources
 
+## Return Employee GDPR Consents [/EmployeeGDPRConsent{?EmployeeId}{?StaffCode}{?Status}]
+
+### Return GDPR consent for Employees [GET]
+
++ Parameters
+    + EmployeeId (optional, int, `123420`) ... unique ID of Employee
+    + StaffCode (optional, string, `2010-1234`) ... unique code of Employee
+    + Status (optional, string, `Active`) ... status of Employee: Active, Left or Draft
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "EmployeeId":                        120318,
+                "StaffCode":                        "015234",
+                "DataRetentionConsent":             true,
+                "DataRetentionConsentDateGiven":    "02/05/2018",
+                "MarketingConsent":                 false,
+                "MarketingConsentDateGiven":        "02/05/2018",
+                "DataTransferConsent":              true,
+                "DataTransferConsentDateGiven":     "02/05/2018",                
+            }
+
+
+
+
 ## Employee GDPR Consent [/EmployeeConsent]
+
+A collection of createing GDPR related methods
+
+### Add or update GDPR consent field for Employees [POST]
 
 **Either DataRetentionConsent, MarketingConsent, DataTransferConsent or GDPRTrained is mandatory**
 
@@ -6017,9 +6147,6 @@ A colletion of all GDPR related resources
     + TransferDateGiven (optinoal, string, `06-06-2018`) ... date consent was given
     + GDPRTrained (required, boolean, `true`) ... Has consent been given - true or false
     + TrainingDate (optinoal, string, `06-06-2018`) ... date consent was given
-    
-
-### Add or update GDPR consent field for Employees [GET]
 
 + Request (application/json)
 
@@ -6051,10 +6178,39 @@ A colletion of all GDPR related resources
                 "StaffCode":    "ABc"
             }
             
- 
 
-## Contact GDPR Consent [/ContactConsent]
+## Return Contact GDPR Consents [/ContactGDPRConsent{?ContactId}]
 
+### Return GDPR consent for Contacts [GET]
+
++ Parameters
+    + ContactId (optional, int, '=`123420`) ... unique ID of Contact
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+                
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "ContactId":                        120318,
+                "Title":                            "Mr",
+                "Forename":                         "John",
+                "Surname":                          "Smith",
+                "DataRetentionConsent":             true,
+                "DataRetentionConsentDateGiven":    "02/05/2018",
+                "MarketingConsent":                 false,
+                "MarketingConsentDateGiven":        "02/05/2018",
+                "DataTransferConsent":              true,
+                "DataTransferConsentDateGiven":     "02/05/2018",                
+            }
+                        
+
+## Create Contact GDPR Consent [/ContactConsent]
 
 ### Set Contact Consents [POST]
 
@@ -6108,9 +6264,44 @@ A colletion of all GDPR related resources
                 "ContactId":    12345
             }
             
+
+
+## Return Learner GDPR Consents [/LearnerGDPRConsent{?LearnerId}{?LearnerCode}{?Status}]
+
+### Return GDPR consent for Learners [GET]
+
++   Parameters
+    + LearnerId (optional, int, `123420`) ... unique ID of Learner
+    + LearnerCode (optional, string, `2010-1234`) ... unique code of Learner
+    + Status (optional, string, `Active`) ... status of Learner: Active, Left or Draft
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+                
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":                        120318,
+                "LearnerCode":                      "015234",
+                "DataRetentionConsent":             true,
+                "DataRetentionConsentDateGiven":    "02/05/2018",
+                "DataRetentionConsentProvidedby":   "B",
+                "MarketingConsent":                 false,
+                "MarketingConsentDateGiven":        "02/05/2018",
+                "MarketingConsentProvidedby":       "A",
+                "DataTransferConsent":              true,
+                "DataTransferConsentDateGiven":     "02/05/2018",
+                "DataTransferConsentProvidedby":    "C"                           
+            }
+    
             
 
-## Learner GDPR Consent [/LearnerConsent]
+## Create Learner GDPR Consent [/LearnerConsent]
 
 ### Set GDRP Consent for Learners [POST]
 
@@ -6159,6 +6350,9 @@ A colletion of all GDPR related resources
                 "Details":      "Saved successfully",
                 "LearnerCode":  "ABc"
             }
+            
+            
+
         
                     
             
