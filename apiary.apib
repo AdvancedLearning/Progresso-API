@@ -728,6 +728,32 @@ Mandtory parameters:
 
 Collection of Staff Absence Categories
 
+### Return Absence Categories for Staff [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "Code":             "ABDO",
+                "Name":             "Abdominal Pain",
+                "Description":      null,
+                "Category":         "Absence",
+                "Statistical":      true,
+                "Authorised":       fale,
+                "Explained":        true,
+                "SWFMapping":       "SIC: Sickness",
+                "ClusterMapping":   "SIC: Sickness"
+            }
+
+
+
 ### Create Staff Absence Categories [POST]
 
 Create one to many Staff Absence Categories
@@ -761,6 +787,8 @@ Create one to many Staff Absence Categories
                 "Details":              "Saved successfully",
                 "AbsenceCategoryId":    123456
             }
+            
+            
 
 ## Staff Absences [/StaffAbsences{?EmployeeId}{?DateFrom}{?DateTo}]
 
@@ -2706,6 +2734,12 @@ Collection of all learner related resources
                 "MealType": "",
                 "AsylumSeeker": true,
                 "Religion": "",
+                "ReligionSource": "P",
+                "ExtendedChildcareHours": 10.5,
+                "DisabilityAccessFundIndicator":true,
+                "EYPPEligibility":true,
+                "EYPPBasisOfEligibility":"EE",
+                "ThirtyHourCode": 123456789,
                 "EAL": false,
                 "IsEconomicCriteria": null,
                 "IsHighLevelSENorDisability": null,
@@ -3174,7 +3208,6 @@ Update one to many learner records
 ## LearnerOtherDetails [/LearnerOtherDetails{LearnerId}{LearnerCode}{Status}{DateModified}]
 
 + Parameters
-
     + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
     + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
     + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
@@ -6777,15 +6810,69 @@ Collection of all Assessment related resources
                         "IsTargetColumn":   true
                     }]
             }
+            
+
+## Assessment Scale Collection [/AssessmentScaleValues{?AssessmentScaleListId}{?Name}]
+
+### Retrieve the Scale values for a List [GET]
+
++ Parameters
+    + AssessmentScaleListId (optional,integer,`1000`) ... unique Id of the Assessment Scale
+    + Name (optional, string, `A-Level Grades`) ... name of the Assessment Scale
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                
+                "AssessmentScaleListId":        1002,
+                "Name":                         "GCSE",
+                "AssessmentScaleListValueId":   1000,
+                "Value":                        "A*",
+                "Points":                       58.00,
+                "Progress8Points":              4.00,
+                "ClusterPoints":                4.00,
+                "Description":                  "First",
+                "Position":                     1
+            },{
+                
+                "AssessmentScaleListId":        1002,
+                "Name":                         "GCSE",
+                "AssessmentScaleListValueId":   1001,
+                "Value":                        "A",
+                "Points":                       52.00,
+                "Progress8Points":              2.00,
+                "ClusterPoints":                3.00,
+                "Description":                  null,
+                "Position":                     2
+            },{
+                
+                "AssessmentScaleListId":        1002,
+                "Name":                         "GCSE",
+                "AssessmentScaleListValueId":   1002,
+                "Value":                        "B",
+                "Points":                       46.00,
+                "Progress8Points":              4.00,
+                "ClusterPoints":                4.00,
+                "Description":                  null,
+                "Position":                     3
+            }
+
 
 ## Learner Assessment Results Collection [/LearnerAssessmentResult{AcademicYearId}{?AssessmentScreenId}{?LearnerId}{?GroupId}{?Year}]
 
-+  AcademicYearId is mandatory
 
-**And either**
+### Retrieve one or more Learner Assessment results [GET]
 
-+ AssessmentScreenId or LearnerId
-
++ **Either AssessmentSCreenId or LearnerId is a required field**
+    
 + Parameters
     + AcademicYearId (required, int, `1234`) ... unique ID of Academic Year
     + AssessmentScreenId (optional, int, `23344`) ... unique Id of the Assessment Screen
@@ -6793,12 +6880,6 @@ Collection of all Assessment related resources
     + GroupId (optional, int, `122434`) ... unique Id of Group
     + Year (optional, string, `Year 8`) ... name of the Year Group
     
-
-### Retrieve one or more Learner Assessment results [GET]
-
-+ Mandatory fields:
-
-    + Either AssessmentSCreenId or LearnerId is a required field
 
 + Request
 
@@ -13359,9 +13440,9 @@ Updated to include detentions
 
 
 
-## Behaviour Summary [/BMSummary/{?LearnerId}{?Status}{?DateFrom}{?DateTo}{?Published}]
+## Behaviour Type Summary [/BMSummary/{?LearnerId}{?Status}{?DateFrom}{?DateTo}{?Published}]
 
-### Retrieve Learner Behaviour Summary Details [GET]
+### Retrieve Learner Behaviour Type Summary Details [GET]
 
 If LearnerId is not used as input parameter then all learners will be returned
 
@@ -13415,6 +13496,49 @@ If LearnerId is not used as input parameter then all learners will be returned
                 "NegativePoints":                   20
                 "Neutral":                          12
             }
+            
+
+## Behaviour Event Summary [/BMEventSummary{?LearnerId}{?Status}{?DateFrom}{?DateTo}{?Published}]
+
+### Get Behaviour Event Summary for Learners [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerId":                        1234,
+                "LearnerCode":                      "015234", 
+                "Positive":                         10,
+                "PositivePoints":                   50
+                "Negative":                         2,
+                "NegativePoints":                   3
+                "Neutral":                          18
+            },{
+                "LearnerId":                        1000,
+                "LearnerCode":                      "087654", 
+                "Positive":                         20,
+                "PositivePoints":                   80
+                "Negative":                         0,
+                "NegativePoints":                   0
+                "Neutral":                          16
+            },{
+                "LearnerId":                        1432,
+                "LearnerCode":                      "064565", 
+                "Positive":                         14,
+                "PositivePoints":                   14
+                "Negative":                         5,
+                "NegativePoints":                   20
+                "Neutral":                          12
+            }
+            
+            
             
 
 ## Behaviour Confirguation [/BMConfiguration]
