@@ -3298,6 +3298,8 @@ Retrieve one or more Learner Other Details records
             "GCSEAvPointScoreAppliedGen": 1025.32,
             "GCSEEnglishResult": "A",
             "GCSEMathematicsResult ": "B",
+            "EvidenceProvided": true,
+            "ProofOfId":        "PASS"
             "ExclusionDetails": [{
                                     "ExclusionId":          0001,
                                     "Category":             "FIXD",
@@ -5585,7 +5587,7 @@ Returns the default configuration for attendance
             }
             
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}{?Session}{?AttendanceMark}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
@@ -5600,6 +5602,8 @@ If no date range is used then it will return the Current academic year's data to
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
     + IncludeMissingRollCall (optional, boolean, `true`) ... if this is included then all roll call including missing marks will be returned
+    + Session (optional, string, `AM`) ... code of Attendance session
+    + AttendanceMark (optional, string, `L`) ... code of attendance mark
 
 
 + Request (application/json)
@@ -9793,7 +9797,8 @@ Group of all Group-related resources
                 "EmployeeId":   [
                                   {
                                     "StaffCode": "DO",
-                                    "EmployeeId": "104006"
+                                    "EmployeeId": "104006",
+                                    "IsTeacher": false
                                   }
                                 ],
                 "GroupId":      "1044575",
@@ -9803,7 +9808,8 @@ Group of all Group-related resources
                 "SubjectName":  "",
                 "Type":         "AcademicHouseGroup",
                 "Year":         "M"
-                                },{
+                                },
+                                {
                 "GroupCode":    "10EN4b",
                 "Course":       "Key Stage 4",
                 "DateFrom":         "30-08-2015 00:00:00",
@@ -9811,7 +9817,8 @@ Group of all Group-related resources
                 "employeeId":   [
                                   {
                                     "StaffCode": "VG",
-                                    "EmployeeId": "104041"
+                                    "EmployeeId": "104041",
+                                    "IsTeacher": true
                                   }
                                 ],
                 "GroupId":      "1044313",
@@ -9821,7 +9828,8 @@ Group of all Group-related resources
                 "SubjectName":  "English Literature",
                 "Type":         "TeachingGroup",
                 "Year":         "10"
-                                },{
+                                },
+                                {
                 "GroupCode":    "SIX",
                 "Course":       "",
                 "DateFrom":     "30-08-2015 00:00:00",
@@ -9829,7 +9837,8 @@ Group of all Group-related resources
                 "employeeId":   [
                                   {
                                     "StaffCode": "KF",
-                                    "EmployeeId": "103973"
+                                    "EmployeeId": "103973",
+                                    "IsTeacher": true
                                   }
                                 ],
                 "GroupId":      "1044597",
@@ -9839,7 +9848,8 @@ Group of all Group-related resources
                 "SubjectName":  "",
                 "Type":         "RegistrationGroup",
                 "Year":         ""
-                                },{
+                                },
+                                {
                 "GroupCode":    "Ski Trip",
                 "Course":       "",
                 "DateFrom":     "01-04-2016 00:00:00",
@@ -9847,7 +9857,8 @@ Group of all Group-related resources
                 "employeeId":   [
                                   {
                                     "StaffCode": "EF",
-                                    "EmployeeId": "103995"
+                                    "EmployeeId": "103995",
+                                    "IsTeacher": false
                                   }
                                 ],
                 "GroupId":      "1074942",
