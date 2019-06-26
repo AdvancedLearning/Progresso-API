@@ -790,6 +790,43 @@ Create one to many Staff Absence Categories
             
             
 
+### Update Staff Absence Categories [PUT]
+
++ **Either AbsenceCodeId or Code is mandatory**
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+           
+    + Body
+    
+            {
+                "Code":             "ABDO",
+                "Name":             "Abdominal Pain",
+                "Description":      null,
+                "Category":         "Absence",
+                "Statistical":      true,
+                "Authorised":       false,
+                "Explained":        true,
+                "SWFMapping":       "SIC",
+                "ClusterMapping":   "SIC"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "AbsenceCodeId":            1002,
+            }
+        
+            
+            
+
 ## Staff Absences [/StaffAbsences{?EmployeeId}{?DateFrom}{?DateTo}]
 
 Collection of Staff Absence methods
