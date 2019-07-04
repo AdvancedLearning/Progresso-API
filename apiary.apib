@@ -553,7 +553,7 @@ Retrieve a collection of employees contacts
                                                                 "Locality": "Belper",
                                                                 "Town":     "Derby",
                                                                 "County":   "Derbyshire",
-                                                                "PostCode": "DD55 36DD"
+                                                                "PostCode": "DD55 36DD",
                                                                 "AddressId":45615
                                                             }],
                                     "PhoneDetails":         [{
@@ -673,10 +673,9 @@ Associate one or more Employees to one or more contacts
 
 Update the association between one or more Employees to one or more contacts
 
-Mandtory parameters:
-
-- EmployeeId
-- ContactId
++ Fields
+    + EmployeeId (required, int, '3420') ... unique Id of Employee
+    + ContactId (required, int, '9543') ...  unique Id of Contact
 
 + Request (application/json)
 
