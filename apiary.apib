@@ -19,8 +19,6 @@ Method for security and access.
 
 The UserId and Password will be issued to the Partner by the educational establishment and are establishment specific.
 
-**Passwords which contain special characters will need to be encoded prior to use
-
 ## Access Tokens [/Token]
 The Access Token used is an OAuth token and has an automatic expiry.
 
@@ -28,7 +26,8 @@ Required parameters are:
 
 - Username
 - Password
-  - NB: Passwords which contain special characters MUST be encoded
+
+**NB: Passwords which contain special characters MUST be encoded**
 
 ### Request token [POST]
 
@@ -61,7 +60,7 @@ Methods for all User related resources
 
 ### Retrieve Staff, Contact or Learner User details [GET]
 
-*Id in the response is either EmployeeId, LearnerId or ContactId depending on the Entity in input parameter
+Id in the response is either EmployeeId, LearnerId or ContactId depending on the Entity in input parameter
 
 + Parameters
     + Entity (required, string, `Learner`) ... valid values Staff, Learner or Contact
@@ -208,6 +207,8 @@ Retrieve one to many employee basic records
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
+                "QLTS":                 true,
+                "EYTS":                 false,
                 "HTLA":                 false,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
@@ -310,15 +311,16 @@ Retrieve one to many employee basic records
                                             "SmsFlag":  true
                                         }],
                 "AddressDetails":       [{
-                                            "Country":  "GBR",
-                                            "Type":     "H",
-                                            "Flat":     "3a",
-                                            "Number":   "1",
-                                            "Street":   "The Street",
-                                            "Locality": "Belper",
-                                            "Town":     "Derby",
-                                            "County":   "Derbyshire"
-                                            "PostCode": "DD55 6FD"
+                                            "Country":          "GBR",
+                                            "Type":             "P",
+                                            "AddressTypeName":  "Partners",
+                                            "Flat":             "3a",
+                                            "Number":           "The Cedars",
+                                            "Street":           "The Street",
+                                            "Locality":         "Belper",
+                                            "Town":             "Derby",
+                                            "County":           "Derbyshire"
+                                            "PostCode":         "DD55 6FD"
                                         }],
                 "Status":               "Left",
                 "ExcludeFromCensus":    true,
@@ -327,6 +329,8 @@ Retrieve one to many employee basic records
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
+                "QLTS":                 true,
+                "EYTS":                 false,
                 "HTLA":                 false,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
@@ -434,15 +438,17 @@ Update one to many employee records
                                             "SmsFlag":  true
                                         }],
                 "AddressDetails":       [{
-                                            "Country":  "GBR",
-                                            "Type":     "H",
-                                            "Flat":     "3a",
-                                            "Number":   "1",
-                                            "Street":   "The Street",
-                                            "Locality": "Belper",
-                                            "Town":     "Derby",
-                                            "County":   "Derbyshire"
-                                            "PostCode": "DD55 36DD"
+                                            "AddressId":        12346,
+                                            "Country":          "GBR",
+                                            "Type":             "P",
+                                            "AddressTypeName":  "Partners",
+                                            "Flat":             "3a",
+                                            "Number":           "The Cedars",
+                                            "Street":           "The Street",
+                                            "Locality":         "Belper",
+                                            "Town":             "Derby",
+                                            "County":           "Derbyshire"
+                                            "PostCode":         "DD55 6FD"
                                         }],
                 "Status":               "Left",
                 "ExcludeFromCensus":    true
@@ -451,6 +457,8 @@ Update one to many employee records
                 "QtStatus":             false,
                 "QtsRoute":             "",
                 "DateOfQTS":            "",
+                "QLTS":                 true,
+                "EYTS":                 false,
                 "HTLA":                 false,
                 "DateOfHTLAStatus":     "",
                 "LanguageDetails":      [{
@@ -576,7 +584,7 @@ Retrieve a collection of employees contacts
 
 Associate one or more Employees to one or more contacts
 
-+ Mandatory fileds
++ Fields
     + StaffCode (required, string, `ABc`) ... unique Code of Staff
     + Title (required, string, `Mr`) ... title of Contact
     + Forename (required, string, `Joe`) ... forename of Contact
@@ -629,15 +637,16 @@ Associate one or more Employees to one or more contacts
                                     "ExPupil":              false,
                                     "WirttenCommunication": "E",    
                                     "AddressDetails":       [{
-                                                                "Country":  "GBR",
-                                                                "Type":     "H",
-                                                                "Flat":     "3a",
-                                                                "Number":   "1",
-                                                                "Street":   "The Street",
-                                                                "Locality": "Belper",
-                                                                "Town":     "Derby",
-                                                                "County":   "Derbyshire"
-                                                                "PostCode": "DD55 36DD"
+                                                                "Country":          "GBR",
+                                                                "Type":             "P",
+                                                                "AddressTypeName":  "Partners",
+                                                                "Flat":             "3a",
+                                                                "Number":           "1",
+                                                                "Street":           "The Street",
+                                                                "Locality":         "Belper",
+                                                                "Town":             "Derby",
+                                                                "County":           "Derbyshire"
+                                                                "PostCode":         "DD55 36DD"
                                                             }],
                                     "PhoneDetails":         [{
                                             
@@ -694,14 +703,27 @@ Update the association between one or more Employees to one or more contacts
                                         "Relationship": "WIFE",
                                         "Priority":     1,
                                         "Emergency":    "Primary",
-                                    `   "NextOfKin":    true
+                                        "NextOfKin":    true,
+                                        "AddressDetails":   [{
+                                                                "AddressId":        10256,
+                                                                "Country":          "GBR",
+                                                                "Type":             "P",
+                                                                "AddressTypeName":  "Partners",
+                                                                "Flat":             "3a",
+                                                                "Number":           "1",
+                                                                "Street":           "The Street",
+                                                                "Locality":         "Belper",
+                                                                "Town":             "Derby",
+                                                                "County":           "Derbyshire"
+                                                                "PostCode":         "DD55 36DD"
+                                                            }],
                             },
                             {  
                                         "ContactId":    00002,
                                         "Relationship": "RELA",
                                         "Priority":     2,
                                         "Emergency":    "Secondary",
-                                    `   "NextOfKin":    false
+                                        "NextOfKin":    false
                             }]
             }]
             
@@ -755,8 +777,6 @@ Collection of Staff Absence Categories
 
 ### Create Staff Absence Categories [POST]
 
-Create one to many Staff Absence Categories
-
 + Request (application/json)
 
     + Headers
@@ -791,7 +811,7 @@ Create one to many Staff Absence Categories
 
 ### Update Staff Absence Categories [PUT]
 
-+ **Either AbsenceCodeId or Code is mandatory**
+**Either AbsenceCodeId or Code is mandatory**
 
 + Request (application/json)
 
@@ -2469,9 +2489,9 @@ Get all or a single contact
 
 Create one to many contact records  
 
-Minimum Parameters
-- Surname
-- Forename
++ Fields
+    + Surname (required, string, `Jones`) ... surname of contact
+    + Forename (required, string, `Johnny`) ... forename of contact
             
 + Request (application/json)
 
@@ -2590,7 +2610,7 @@ Minimum Parameters
 
 Update one to many contact records
 
-+ Mandatory fields
+Mandatory field
 
     + ContactId (required, int, `1234`) ... unique Id of Contact
             
@@ -2705,10 +2725,6 @@ Collection of all learner related resources
 
 **PersonId is unique across the school's database**
 
-**Updated to include EAL**
-
-**Updated to include new Census fields**
-
 ### Retrieve a collection of learners [GET]
 
 + Parameters
@@ -2753,6 +2769,7 @@ Collection of all learner related resources
                 "EmailAddress": "Yizhi.Phipps@advancedfirstline.com",
                 "Notes": "",
                 "HomeSalutation": "Mr and MrsPhipps",
+                "SafeGuarding": true
                 "Boarder": "N",
                 "PartTime": false,
                 "FormerUPN": "",
@@ -2865,6 +2882,7 @@ Collection of all learner related resources
                                         "LanguageUsageId": 227853,
                                         "TypeCode": "F",
                                         "LanguageCode": "ENG",
+                                        "LanguageName": "English",
                                         "LevelOfLanguage": null,
                                         "Description": "English"
                                       }
@@ -2879,11 +2897,20 @@ Collection of all learner related resources
                                           }
                                         ],
                 "SENMajorNeedsDetails": [
-                                          {
-                                            "LearnerMajorNeedId": 79411,
-                                            "MajorNeedCode": "SEMH",
-                                            "Ranking": 1
-                                          }
+                                            {
+                                                "LearnerMajorNeedId": 11718,
+                                                "MajorNeedCode": "MLD",
+                                                "Ranking": null,
+                                                "StartDate": "05/05/2017",
+                                                "EndDate": "15/11/2018"
+                                            },
+                                            {
+                                                "LearnerMajorNeedId": 11719,
+                                                "MajorNeedCode": "SEMH",
+                                                "Ranking": 1,
+                                                "StartDate": "16/11/2018"",
+                                                "EndDate": ""
+                                            }
                                         ]
             }
 
@@ -2939,6 +2966,7 @@ Mandatory fields:
                 "NCYear": "11",
                 "Status": "Active",
                 "AcademicHouse": "10F",
+                "SafeGuarding": true,
                 "MiddleName": "",
                 "FormerSurname": "",
                 "EmailAddress": "",
@@ -2980,15 +3008,16 @@ Mandatory fields:
                                 ],
                 "AddressDetails":[
                                   {
-                                    "Country": "GBR",
-                                    "Type": "H",
-                                    "Flat": "",
-                                    "Number": "256",
-                                    "Street": "Spencer Street",
-                                    "Locality": "Derby",
-                                    "Town": "",
-                                    "County": "",
-                                    "PostCode": "DE14 8SL"
+                                    "Country":          "GBR",
+                                    "Type":             "D",
+                                    "AddressTypeName":  "Dads",
+                                    "Flat":             "",
+                                    "Number":           "256",
+                                    "Street":           "Spencer Street",
+                                    "Locality":         "Derby",
+                                    "Town":             "",
+                                    "County":           "",
+                                    "PostCode":         "DE14 8SL"
                                   }
                                 ],
                 "SiblingDetails": [
@@ -3064,11 +3093,9 @@ Mandatory fields:
 
 ### Update Learner [PUT]
 
-**Fields marked with ** are newly added**
-
 Update one to many learner records            
             
-**LearnerId OR LearnerCode are mandatory fields**
+**LearnerId OR LearnerCode is mandatory**
 
 - Address is not mandatory but if included: Country, Type, Number, Street and Post Code are mandatory
 
@@ -3114,6 +3141,7 @@ Update one to many learner records
                 "Course":             "KS5",
                 "NCYear":             "13",
                 "Boarder":            "N",
+                "SafeGuarding":       true
                 "IsEconomicCriteria":               null,
                 "IsHighLevelSENorDisability":       null,
                 "IsLookedAfterorAdoptedFromCare":   null,
@@ -3123,16 +3151,17 @@ Update one to many learner records
                 "EYPPEligibility":                  true,
                 "EYPPBasisOfEligibility":           "EE"
                 "AddressDetails":   [{
-                                        "AddressId":    0001,
-                                        "Country":      "GBR",
-                                        "Type":         "H",
-                                        "Flat":         "",
-                                        "Number":       "23",
-                                        "Street":       "Orchard Gardens",
-                                        "Locality":     "Derby",
-                                        "Town":         "",
-                                        "County":       "",
-                                        "PostCode":     "DE21 4FL"
+                                        "AddressId":        0001,
+                                        "Country":          "GBR",
+                                        "Type":             "D",
+                                        "AddressTypeName":  "Dads",
+                                        "Flat":             "",
+                                        "Number":           "23",
+                                        "Street":           "Orchard Gardens",
+                                        "Locality":         "Derby",
+                                        "Town":             "",
+                                        "County":           "",
+                                        "PostCode":         "DE21 4FL"
                                     }],
                 "PhoneDetails":     [{
                                         "PhoneId":      0001,
@@ -3254,8 +3283,6 @@ Update one to many learner records
 ### Retrieve a collection of Learner Other Details [GET]
 
 Retrieve one or more Learner Other Details records
-
-*Updated to include Prior Attainment*
 
 
 + Request
@@ -3395,8 +3422,9 @@ Retrieve one or more Learner Other Details records
             "NationalityDetails":   [
                                       {
                                         "LearnerNationalityId": 212359,
-                                        "Type": "FRSTN",
-                                        "Nationality": "NYO"
+                                        "Type":                 "FRSTN",
+                                        "Nationality":          "AUS",
+                                        "NationalityName":      "Australia"
                                       }
                                     ],
             "LeavingDetails":        {
@@ -3838,7 +3866,7 @@ This method returns a minimum amount of data and accepts an array of LearnerId's
 
 ### Return basic details for Learners [GET]
 
-*Either LearnerIds or GroupId is a required field*
+**Either LearnerIds or GroupId is a required field**
 
 + Parameters
 
@@ -3925,7 +3953,7 @@ This method returns a minimum amount of data and accepts an array of LearnerId's
 ## New Entrant [/NewEntrant]
 
 ### New Entrant Details [POST]
-This is specifice to Irish Schools and Colleges
+Specific to Irish Schools and Colleges
 
 + Fields
 
@@ -3967,7 +3995,7 @@ This is specifice to Irish Schools and Colleges
 
 *Addtional fileds have been added to this method to make it more useful*
 
-### Retrieve a Contacts associated to a learner [GET]
+### Retrieve Contacts associated to a learner [GET]
 
 + Parameters
 
@@ -4058,9 +4086,9 @@ This is specifice to Irish Schools and Colleges
 
 In this method, if the Contact is a medical contact e.g. a Doctor, then the **Relationship** field should be left as **null**, **IsMedicalContact** should be **true** and **MedicalType** must have a value e.g. **Dr**.
 
+**Either LearnerId or LearnerCode is a required field**
 
 + Mandatory fields
-*Either LearnerId or LearnerCode is a required field*
     + LearnerId (required, string, '015234') ... unique Id of the Learner
     + LearnerCode (required, string, '015234') ... unique code of the Learner
     + Surname (required, string, 'King') ... surname of the Contact
@@ -4104,15 +4132,16 @@ In this method, if the Contact is a medical contact e.g. a Doctor, then the **Re
                                             "SmsFlag":  true
                                         }],
                 "AddressDetails":       [{
-                                            "Country":      "GBR",
-                                            "Type":         "H",
-                                            "Flat":         "3a",
-                                            "Number":       "1",
-                                            "Street":       "The Street",
-                                            "Locality":     "Belper",
-                                            "Town":         "Derby",
-                                            "County":       "Derbyshire",
-                                            "PostCode":     "DD55 36DD"
+                                            "Country":          "GBR",
+                                            "Type":             "D",
+                                            "AddressTypeName":  "Dads",
+                                            "Flat":             "3a",
+                                            "Number":           "1",
+                                            "Street":           "The Street",
+                                            "Locality":         "Belper",
+                                            "Town":             "Derby",
+                                            "County":           "Derbyshire",
+                                            "PostCode":         "DD55 36DD"
                                         }],
                 "Relationship":             "PAF",
                 "WrittenCommunication":    "E",
@@ -4157,9 +4186,10 @@ In this method, if the Contact is a medical contact e.g. a Doctor, then the **Re
 
 ### Update Contacts associated to a learner [PUT]
 
+**Either LearnerId or LearnerCode is mandatory plue ContactId**
 
 + Mandatory fields
-*Either LearnerId or LearnerCode is mandatory plue ContactId*
+
     + LearnerCode (required, string, '015234') ... unique code of the Learner
     + LearnerID (required, int, `1234`) ... unique Id of Learner
     + ContactId (required, int, 456789) ... unique id of the Contact
@@ -4206,16 +4236,17 @@ In this method, if the Contact is a medical contact e.g. a Doctor, then the **Re
                                             "SmsFlag":  true
                                         }],
                 "AddressDetails":       [{
-                                            "AddressId": 2092739,
-                                            "Country":      "GBR",
-                                            "Type":         "H",
-                                            "Flat":         "3a",
-                                            "Number":       "1",
-                                            "Street":       "The High Street",
-                                            "Locality":     "Belper",
-                                            "Town":         "Derby",
-                                            "County":       "Derbyshire",
-                                            "PostCode":     "DD55 36DD"
+                                            "AddressId":        2092739,
+                                            "Country":          "GBR",
+                                            "Type":             "D",
+                                            "AddressTypeName":  "Dads",
+                                            "Flat":             "3a",
+                                            "Number":           "1",
+                                            "Street":           "The High Street",
+                                            "Locality":         "Belper",
+                                            "Town":             "Derby",
+                                            "County":           "Derbyshire",
+                                            "PostCode":         "DD55 36DD"
                                         }]
             }
             
@@ -4277,7 +4308,6 @@ Create one to many Learner medical condition categories
 ### Retrieve Learner Health Details [GET]
 
 + Parameters
-    + since (optional, dateTime, `01-04-2014T18:00:00`) ... Return records that have changed since date provided
     + LearnerId (optional, int, `1234`) ... unique Id of Learner
     + LearnerCode (optional, string, `2010-1234`) ... unqiue code of Learner
     
@@ -5000,7 +5030,7 @@ Update SEN Major Needs for one to many learners
 
 ### Retreive School Histories for a Learner [GET]
 
-If no parameters are passed then all Learners will be returned
+If no parameters are passed then all Learner Histories will be returned
 
 + Parameters
     + LearnerId (optional, int, `123420`) ... unique ID of Learner
@@ -5153,25 +5183,29 @@ Create school history records for Learners within a school
 
 ### Add Learner Leaving Details [POST]
 
+**Either LearnerCode or LearnerId is required**
 + Fields
-    + *Either LearnerCode or LearnerId is required*
+
     + LearnerCode (required, string, `123456`) ... code of Learner
     + LearnerId (required, int, `123456`) ... id of Learner
     + LeavingDate (required, string, `12-07-2018`) ... Date of laeving
     + TransferType (required, string, `3`) ... type of transfer Valid values: Known, Unknown, Other Known School, Other
+    
     *If TransferType = Known, both LA and DfE No are required*
     + LA (optional, string, `830`) ... unique local authority code
     + DfENo (optional, string, `1234`) ... DfE number of school
     + DestinationName (required, string, `Progresso Primary School`) ... name of school
     + ReasonForLeaving (required, string, `NT`) ... the reason for leaving
     + GroundsForRemoval (optional, string, `B`) ... reason for removal from school
-    + *Previous School Transient Learner Details*
+    
+    **Previous School Transient Learner Details**
     + PreviousAssessmentDate (optional, string, `21/08/2017`) ... previous assessment date
     + PreviousMoveConcern (optional, string, `Acad`) ... code of previous move concern
     + PreviousDeployConcern (optional, string, `Acad`) ... code of previous deploy concern
     + PreviousSeperationConcern (optional, string, `Acad`) ... code of previous separation concern
     + PreviousConcernDetails (optional, string, `Lorem ipsum`) ... free text around details for concern
-    + *Current school Transient Details*
+    
+    **Current School Transient Details**
     + CurrentAssessmentDate (optional, string, `21/05/2018`) ... Current assessment date
     + CurrentMoveConcern (optional, string, `Acad`) ... code of Current move concern
     + CurrentDeployConcern (optional, string, `Acad`) ... code of Current deploy concern
@@ -5350,7 +5384,8 @@ Create school history records for Learners within a school
 
 ## Re-admit Learners [/ReAdmitLearner]
 
-+ *Either LearnerId or Learner Code is required*
+**Either LearnerId or Learner Code is required**
+
 + Return date will become the new Entry Date
 + By default, the Learner will be Active if the Entry Date is <= today
 
@@ -5390,7 +5425,7 @@ Create school history records for Learners within a school
 
 ## Documents [/Document{?IsEmployee}{?Id}{?RoleId}{?DocumentId}{?DateFrom}{?DateTo}{?SearchTitle}{?DocumentTag}{?IsDocumentAccessible}]
 
-**If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned**
+If DocumentId is not passed as a parameter then all DocumentId's and Titles will be returned. However if DocumnetId IS passed then the actual Document itself will be returned
 
 ### Retrieve Documents for Learners or Staff [GET]
 
@@ -5423,6 +5458,54 @@ Create school history records for Learners within a school
               "Name":       "L20156_2930_993030_Spring 2 Report to Parents KS3 - 10-11_03_05_2011_time_12_24_53.pdf"
               "CreatedDate":"14-03-2017"
               "DocumentTags":["General"]
+            }
+
+
+### Upload Documents for Learners [POST]
+
+Upload one to many documents for Learners
+
++ Fields
+    + LearnerCode (required, string, `123456`) ... code of Learner
+    + IsDocumentAccessible (required, boolean, `true`) ... Can the Learner see the document?
+    + Title (required, string, `A Brief History of Time`) ... Title of the document
+    + ByteArray (required, string, `UEsDBBQABgAIAAAAIQAAe542iAEAAFsGAAA`) ... converted Document to Base64
+    + FileName (required, string, `A Brief History of Time.pdf`) ... the file nameincluding extension
+    + RoleCode (optional, string, `PG`) ... Code of the Role to have access to the document
+    + RoleCategory (required, string, `School Users`) ... the Category of user to have access to the document. If no RoleCode is given then it will be assigned to all roles in the category.
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":          "25048",
+                "IsDocumentAccessible": true,
+                "Title":                "A Brief History of Time",
+                "ByteArray":            "UEsDBBQABgAIAAAAIQAAe542iAEAAFsGAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIoo",
+                "FileName":             "A Brief History of Time.pdf"
+                "Roles":                [{
+                                            "RoleCode":     "PG",
+                                            "RoleCategory": "Contacts"
+                                        },{
+                                            "RoleCode":     null,
+                                            "RoleCategory": "School User"
+                                        }]
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                   true,
+                "Details":                  "Saved successfully",
+                "LearnerCode":              "25048",
+                "DocumentMasterId":         123534
             }
             
 
@@ -5592,7 +5675,7 @@ Returns the default configuration for attendance
 
 If no date range is used then it will return the Current academic year's data to date
 
-    + Either LearnerId or Date Range is mandatory
+**Either LearnerId or Date Range is mandatory**
 
 + Parameters
     + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
@@ -5753,7 +5836,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
 ### Retrieve Learner Lesson Attendance [GET]
 
-    + Either LearnerId, GroupCode or Date Range is mandatory
+**Either LearnerId, GroupCode or Date Range is mandatory**
 
     
 + Parameters
@@ -6911,7 +6994,7 @@ Collection of all Assessment related resources
 
 ### Retrieve one or more Learner Assessment results [GET]
 
-+ **Either AssessmentSCreenId or LearnerId is a required field**
+**Either AssessmentSCreenId or LearnerId is a required field**
     
 + Parameters
     + AcademicYearId (required, int, `1234`) ... unique ID of Academic Year
@@ -9351,7 +9434,7 @@ Group of all Exam-related resources
 
 ## Exam Candidates [/ExamCandidate{?AcademicYearId}{?LearnerId}{?CandidateId}]
 
-### Return Exam Candidates [GET]
+### Retrieve Exam Candidates [GET]
 
 Get one or more Exam Candidates
 
@@ -9435,7 +9518,7 @@ Create one to many exam candidates
 
 ### Update Exam Candidates [PUT]
 
-*Either AcademicYearId/LearnerCode or CandidateId are required fields*
+**Either AcademicYearId/LearnerCode or CandidateId are required fields**
 
 + Fields
     + AcademicYearId (required, int, `4563`) ... unique Id of Academic Year
@@ -10350,7 +10433,7 @@ Input is one row per Learner ins csv
 ### Update LearnerGroupAssociation [PUT]
 Move a learner from one group to another. If no NewGroupCode is specified the Learner will be removed from the group.
 
-** To remove a Learner from a group **
+**To remove a Learner from a group**
 + Fields
 
     + LearnerCode (required, string, `123420`) ... unique code of Learner
@@ -10359,7 +10442,7 @@ Move a learner from one group to another. If no NewGroupCode is specified the Le
     + EndDate (required, string, `31/01/2019`) ... the end date of the Learner in the Group except for AcademicHouseGroup
     + StartDate (required, string, `03/09/2018`) ... the start date of the Learner in the Group
     
-** To move a Learner to another group**
+**To move a Learner to another group**
 + Fields
 
     + LearnerCode (required, string, `123420`) ... unique code of Learner
@@ -11919,7 +12002,6 @@ Update one to many Day Compositions
 
 ## Day Compositions Periods [/dayCompositionsPeriods/{?TTSourceId}]
 
-** Please note the lowercase 'd' in this call **
 
 + Parameters
     + TTSourceId (optional, number, `12345`) ... The unique identifier of a Timetable Source
@@ -12242,7 +12324,7 @@ Update one to many Day Composition Periods
     - SourceId is a mandatory field
     - LearnerId if ILM events are to be returned
 
-And either
+    And either
 
     - LearnerId
     - EmployeeID
@@ -13311,7 +13393,7 @@ Assign a memeber of staff a potion for Behaviour Management
 
 Updated to include detentions
 
-*If Scheduled = false, then tType must be OOB*
+**If Scheduled = false, then Type must be OOD**
 
 + Request
 
@@ -14472,9 +14554,9 @@ A collection of Post 16 Learning Aim methods
 
 A collection of all Lookup related resources
 
-## Religion Lookup List of Values [//ReligionLookup]
+## Religion List of Values [/ReligionLookup]
 
-### Retrieve Religion lookup values [GET]
+### Retrieve Religion values [GET]
 
 Retrieve a list of religions used in school
 
@@ -14500,4 +14582,41 @@ Retrieve a list of religions used in school
                 "ReligionId": 1236,
                 "Code:  "BPT",
                 "Name": "Baptist                
+            }
+
+## Meal Types Listof values [/MealType]
+
+### Create a Meal Type [POST]
+
++ Fields
+    + Code (required, string, `NLR`) ... unique code of Meal Type
+    + Name (required, string, `No Lunch Required`) ... name of Meal Type
+    + Description (optional, string, `No Lunch Required`) ... description of Meal Type
+    + MapppedTo (required, string, `CSM`) ... the parent code the new Meal Type is mapped to
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            [{
+                "Code":         "NON",
+                "Name":         "No Lunch Required",
+                "Description":  null,
+                "MappedTo":      "CSM"
+            }]
+                 
+                 
++ Response 200
+
+    + Body
+    
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "Code": "NON",
+                "MealTypeId":   1000
             }
