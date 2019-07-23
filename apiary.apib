@@ -683,8 +683,8 @@ Associate one or more Employees to one or more contacts
 Update the association between one or more Employees to one or more contacts
 
 + Fields
-    + EmployeeId (required, int, '3420') ... unique Id of Employee
-    + ContactId (required, int, '9543') ...  unique Id of Contact
+    + EmployeeId (required, int, `3420`) ... unique Id of Employee
+    + ContactId (required, int, `9543`) ...  unique Id of Contact
 
 + Request (application/json)
 
@@ -1286,7 +1286,7 @@ Collection of all employee checks for employees within a school
 
 **ID**          Identification
 
-**List99**      List 99 Check
+**List99**      List 99 or Children's Barred List check Check
 
 **MED**         Medical Fitness
 
@@ -1876,9 +1876,9 @@ Update Employee checks for one to multiple Staff
 
 ## Employees Contracts [/EmployeeContracts{?Employee}]
 
-Collection of all employee checks for employees within a school
+Collection of all employee Contracts for employees within a school
 
-### Retrieve collection of employee contracts [GET]
+### Retrieve contracts [GET]
 
 + Request
 
@@ -2381,7 +2381,7 @@ Get all or a single contact
     + id (optional, int, `12345`) ... Contact with the id
 
     
-### Retrieve a collection of contacts [GET]
+### Retrieve contacts [GET]
 
 + Request
 
@@ -2725,7 +2725,7 @@ Collection of all learner related resources
 
 **PersonId is unique across the school's database**
 
-### Retrieve a collection of learners [GET]
+### Retrieve learners [GET]
 
 + Parameters
     + Status (optional, string, `Active`) ... returns Active, Draft or Left Learners
@@ -3275,8 +3275,7 @@ Update one to many learner records
 + Parameters
     + LearnerId     (optional, int, `00001`) ... the unique identifier of the learner
     + LearnerCode   (optional, string, `2015-00001`) ... the unique code of the learner 
-    + DateModified  (optional, dateTime, `01-04-2014T18:00:00`) ... learner records modified since
-    + Status        (optional, string, `Active`) ... Status of the learner - Active, Lft, Draft
+    + Status        (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
     
            
 
@@ -3958,10 +3957,10 @@ Specific to Irish Schools and Colleges
 + Fields
 
     + LearnerCode (required, string, `2015-0001`) ... unique code of Learner 
-    + NewEntrant (required, boolean, 'true') ... Is the learner a new entrant (Irish only)
-    + SchoolName (optional, string, 'Adamstown College') ... Name of school where the Learner has come from (Irish only)
-    + Source (optional, string, '2') ... code of source of information (Irish only)
-    + Details (optional, string, '1' ) ... code of detail information (Irish only)
+    + NewEntrant (required, boolean, `true`) ... Is the learner a new entrant
+    + SchoolName (optional, string, `Adamstown College`) ... Name of school where the Learner has come from 
+    + Source (optional, string, `2`) ... code of source of information 
+    + Details (optional, string, `1` ) ... code of detail information 
 
 + Request (application/json)
 
@@ -3992,8 +3991,6 @@ Specific to Irish Schools and Colleges
             
 
 ## Learner Contacts [/LearnerContacts{?LearnerId}{?LearnerCode}{?status}{?responsibility}{?priority}]
-
-*Addtional fileds have been added to this method to make it more useful*
 
 ### Retrieve Contacts associated to a learner [GET]
 
@@ -4089,10 +4086,10 @@ In this method, if the Contact is a medical contact e.g. a Doctor, then the **Re
 **Either LearnerId or LearnerCode is a required field**
 
 + Mandatory fields
-    + LearnerId (required, string, '015234') ... unique Id of the Learner
-    + LearnerCode (required, string, '015234') ... unique code of the Learner
-    + Surname (required, string, 'King') ... surname of the Contact
-    + Relationship (required, string, 'PAF') ... relationship of the Contact to Learner
+    + LearnerId (required, string, `10025`) ... unique Id of the Learner
+    + LearnerCode (required, string, `015234`) ... unique code of the Learner
+    + Surname (required, string, `King`) ... surname of the Contact
+    + Relationship (required, string, `PAF`) ... relationship of the Contact to Learner
 
 
 + Request
@@ -4190,9 +4187,9 @@ In this method, if the Contact is a medical contact e.g. a Doctor, then the **Re
 
 + Mandatory fields
 
-    + LearnerCode (required, string, '015234') ... unique code of the Learner
+    + LearnerCode (required, string, `015234`) ... unique code of the Learner
     + LearnerID (required, int, `1234`) ... unique Id of Learner
-    + ContactId (required, int, 456789) ... unique id of the Contact
+    + ContactId (required, int, `456789`) ... unique id of the Contact
     
 + Request
 
