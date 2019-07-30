@@ -3315,10 +3315,19 @@ Retrieve one or more Learner Other Details records
             "CPRLA":            null,
             "PEP":              false,
             "PPI":              false,
-            "AdoptedFromCare":  "N",
-            "Notes":            "Lorem ipsum",
-            "CountryOfBirth":   "NYO",
-            "Refugee":          true,
+            "PostLookedAfterArrangement": null,
+            "Notes": "",
+            "Refugee": null,
+            "CountryOfBirth": null,
+            "EvidenceProvided": null,
+            "ProofOfId": null,
+            "EnglishAttainment": null,
+            "EnglishAttainmentYear": null,
+            "EnglishExemption": null,
+            "MathsAttainment": null,
+            "MathsAttainmentYear": null,
+            "MathsExemption": null,
+            "FullTimeEmployment": null,
             "GCSEAvPointScoreAcademic": 1000.24,
             "GCSEAvPointScoreAppliedGen": 1025.32,
             "GCSEEnglishResult": "A",
@@ -6991,7 +7000,7 @@ Collection of all Assessment related resources
 
 ### Retrieve one or more Learner Assessment results [GET]
 
-**Either AssessmentSCreenId or LearnerId is a required field**
+**Either AssessmentScreenId or LearnerId is a required field**
     
 + Parameters
     + AcademicYearId (required, int, `1234`) ... unique ID of Academic Year
@@ -7042,6 +7051,81 @@ Collection of all Assessment related resources
                                     }]
                             }
             }
+            
+            
+
+### Create  one or more Learner Assessment results [POST]
+
++ Fields
+    + LearnerCode (required, string, 2001-1293`) ... unique code of Learner
+    + LearnerId (required, int, `123456`) ... unique Id of Learner
+    + AcademicYearId (required, int, `1000`) ... Academic Year Id
+    + AssessemntScreenId (required, int, `1000`) ... Assessment screen Id
+    + Assessment TemplateId (required, int, `123098`) ... AssessmentTemplateId
+    + GroupId (required, int, `123`) ... Id of Group
+    + Subject (required, string, `AR`) ... unique code of subject
+    + ColumnName (required, string, `AUT`) ... unique column name
+    + ColumnValue (required, string, `5a`) ... assessment result value
+    + CreatedBy (required, string, `ABc`) ... code of Staff who created the assessment
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":          "2001-1293",
+                "AcademicYearId":       1000,
+                "AssessmentScreenId":   1234,
+                "AssessmentTempalteId": 1021,
+                "GroupId":              5454,
+                "Subject":              "AR",
+                "ColumnName":           "AUT",
+                "ColumnValue":          "5a"
+            },
+                "LearnerCode":          "2001-1293",
+                "AcademicYearId":       1000,
+                "AssessmentScreenId":   1234,
+                "AssessmentTempalteId": 1021,
+                "GroupId":              5454,
+                "Subject":              "AR",
+                "ColumnName":           "SPR",
+                "ColumnValue":          "6b"
+            },
+                "LearnerCode":          "2001-1293",
+                "AcademicYearId":       1000,
+                "AssessmentTempalteId": 1021,
+                "AssessmentScreenId":   1234,
+                "GroupId":              5454,
+                "Subject":              "AR",
+                "ColumnName":           "SUM",
+                "ColumnValue":          "7c"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "LearnerId":                        1000,
+                "AssessmentLearnerResultValueID":    4321
+            },{{
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "LearnerId":                      "1000
+                "AssessmentLearnerResultValueID":    4322
+            },{
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "LearnerId":                      1000,
+                "AssessmentLearnerResultValueID":    4323
+            }
+
 
 
 ## SATs Collection [/LearnerSATsResult/{?LearnerId}{?CourseCode}]
