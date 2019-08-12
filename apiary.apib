@@ -2697,7 +2697,7 @@ This method takes the ContactId as an input and returns an array of LearnerId's 
 
 + Parameters
 
-    + ContactId (optional, int, `12345`) ... unique Id of Contact
+    + ContactId (required, int, `12345`) ... unique Id of Contact
     
 + Request (application/json)
 
@@ -3301,6 +3301,7 @@ Retrieve one or more Learner Other Details records
             "Forename":         "Geoffrey",
             "Status":           "Active",
             "Traveller":        "GH",
+            "TravellerName":    "Gypsy/Roma (Housed)",
             "TravellerSource":  "P",
             "CurrentDeprivationEver6":  true,
             "CurrentServiceChild":      false,
@@ -3472,144 +3473,145 @@ Mandatory fields:
     + Body
             
             { 
-            "LearnerId":        443756,   
-            "LearnerCode":      "2010-0001",
-            "Traveller":        "GH",
-            "TravellerSource":  "P",
-            "CurrentDeprivationEver6":  true,
-            "CurrentServiceChild":      false,
-            "CurrentAdoptedfromCare":   false,
-            "CurrentLookedAfter":       false,
-            "CurrentPupilPremium":      true,
-            "LAC":              true,
-            "LACCurSch":        true,
-            "LACLA":            "370",
-            "HomeLA":           "871",
-            "CPR":              false,
-            "CPRLA":            null,
-            "PEP":              false,
-            "PPI":              false,
-            "AdoptedFromCare":  "N",
-            "Notes":            "Lorem ipsum",
-            "Refugee":          true,
-            "EvidenceProvided": true,
-            "ProofOfId":        "PASS"
-            "ExclusionDetails":[{
-                                "Category":         "FIXD",
-                                "Reason":           "PP",
-                                "StartDate":        "2014-07-02",
-                                "EndDate":          "2014-07-02",
-                                "StartSession":     "AM",
-                                "EndSession":       "PM",
-                                "Notes":            "Act of aggression towards another pupil",
-                                "TotalDays":        1,
-                                "TotalSessions":    2,
-                                "LAC":              false,
-                                "HeadNotified":     null,
-                                "GovMeeting":       null,
-                                "ProvisionStartDate":   null,
-                                "ProvisionDetails":     null,
-                                "Appeal":           false,
-                                "AppealDate":       null,
-                                "AppealCutOff":     null,
-                                "ExclusionHearing": null,
-                                "Outcome":          "E",
-                                "ReintegrationMeetingDate": null,
-                                "ReintegrationNotes":       null,
-                                "ReinstatementDate":        null,
-                                "ReinstatementNotes":       ""
-                            }],
-            "FSMDetails":   [{
-                                "StartDate":    "2014-02-12",
-                                "ReviewDate":   "",
-                                "EndDate":      "2015-02-12",
-                                "CountryOfUk":  "ENG"
-                            },
-                            {
-                                "StartDate":    "2015-02-12",
-                                "ReviewDate":   "2015-12-08",
-                                "EndDate":      "2016-02-12",
-                                "CountryOfUk":  "ENG"
-                            }],
-            "PPI1314Details":       [{
-                                    "PPIndicator":  "DPP",
-                                    "FTE":          1.00,
-                                    "FYStartDate":  "2013-12-20",
-                                    "FYEndDate":    "2014-12-14"
-                                    }],
-            "PupilPremiumDetails":  [{
-                                    "Deprivation":      true,
-                                    "AdoptedFromCare":  false,
-                                    "ServiceChild":     false,
-                                    "LookedAfter":      false
-                                    "CashAmount":       "935.00",
-                                    "FTE":              1.0,
-                                    "FYStartDate":      "2014-04-01",
-                                    "FYEndDate":        "2015-03-31",
-                                    "LastFSM":          "SPR19",
-                                    "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                                    }],
-            "GandTDetails": [{
-                                        "GandTStatus":    "Gifted",
-                                        "StartDate":    "2015-02-23",
-                                        "EndDate":      null,
-                                        "Subject":      "EN",
-                                        "Notes":        ""
-                                    }],
-            "SchoolHistoryDetails": [{
-                                    "LANumber":     "999",
-                                    "SchoolNumber":  "6213",
-                                    "SchoolName":   "Advanced Learninig Academy",                                
-                                    "EntryDate":    "2009-09-04",
-                                    "LeavingDate":  "2010-01-08",
-                                    "LeavingReason":"PM"
-                                    },{
-                                    "LANumber":     "999",
-                                    "SchoolNumber":  "1234",
-                                    "SchoolName":   "Queens College Academy",                                
-                                    "EntryDate":    "2010-09-01",
-                                    "LeavingDate":  "2016-02-05",
-                                    "LeavingReason":"OT"
-                                    }],
-            "ProficiencyDetails":   [
-                                      {
-                                        "Proficiency": "C",
-                                        "AssessedDate": "2015-09-21"
-                                      },
-                                      {
-                                        "Proficiency": "D",
-                                        "AssessedDate": "2016-09-26"
-                                      }
-                                    ],
-            "NationalityDetails":   [
-                                      {
-                                        "Type": "FRSTN",
-                                        "Nationality": "GRC"
-                                      }
-                                    ],
-            "CountryOfBirth":       "GRL",
-            "EnglishAttainment":    "A"        
-            "EnglishAttainmentYear":1,
-            "EnglishExemption":     "L",
-            "MathsAttainment":      "B",
-            "MathsAttainmentYear":  2,
-            "MathsExemption":       "O",
-            "GCSEAvPointScoreAcademic": 1000.24,
-            "GCSEAvPointScoreAppliedGen": 1025.32,
-            "GCSEEnglishResult": "A",
-            "GCSEMathematicsResult ": "B",
-            "SupportCodeDetails":   [
-                                            {
-                                                "SupportCode":      32,
-                                                "AwardedDate"       "16/11/2017"
-                                            },
-                                            {
-                                                "SupportCode":      55,
-                                                "AwardedDate"       "16/11/2017"
-                                            }
+                "LearnerId":        443756,   
+                "LearnerCode":      "2010-0001",
+                "Traveller":        "IT",
+                "TravellerName":    "Irish Traveller",
+                "TravellerSource":  "P",
+                "CurrentDeprivationEver6":  true,
+                "CurrentServiceChild":      false,
+                "CurrentAdoptedfromCare":   false,
+                "CurrentLookedAfter":       false,
+                "CurrentPupilPremium":      true,
+                "LAC":              true,
+                "LACCurSch":        true,
+                "LACLA":            "370",
+                "HomeLA":           "871",
+                "CPR":              false,
+                "CPRLA":            null,
+                "PEP":              false,
+                "PPI":              false,
+                "AdoptedFromCare":  "N",
+                "Notes":            "Lorem ipsum",
+                "Refugee":          true,
+                "EvidenceProvided": true,
+                "ProofOfId":        "PASS"
+                "ExclusionDetails":[{
+                                    "Category":         "FIXD",
+                                    "Reason":           "PP",
+                                    "StartDate":        "2014-07-02",
+                                    "EndDate":          "2014-07-02",
+                                    "StartSession":     "AM",
+                                    "EndSession":       "PM",
+                                    "Notes":            "Act of aggression towards another pupil",
+                                    "TotalDays":        1,
+                                    "TotalSessions":    2,
+                                    "LAC":              false,
+                                    "HeadNotified":     null,
+                                    "GovMeeting":       null,
+                                    "ProvisionStartDate":   null,
+                                    "ProvisionDetails":     null,
+                                    "Appeal":           false,
+                                    "AppealDate":       null,
+                                    "AppealCutOff":     null,
+                                    "ExclusionHearing": null,
+                                    "Outcome":          "E",
+                                    "ReintegrationMeetingDate": null,
+                                    "ReintegrationNotes":       null,
+                                    "ReinstatementDate":        null,
+                                    "ReinstatementNotes":       ""
+                                }],
+                "FSMDetails":   [{
+                                    "StartDate":    "2014-02-12",
+                                    "ReviewDate":   "",
+                                    "EndDate":      "2015-02-12",
+                                    "CountryOfUk":  "ENG"
+                                },
+                                {
+                                    "StartDate":    "2015-02-12",
+                                    "ReviewDate":   "2015-12-08",
+                                    "EndDate":      "2016-02-12",
+                                    "CountryOfUk":  "ENG"
+                                }],
+                "PPI1314Details":       [{
+                                        "PPIndicator":  "DPP",
+                                        "FTE":          1.00,
+                                        "FYStartDate":  "2013-12-20",
+                                        "FYEndDate":    "2014-12-14"
+                                        }],
+                "PupilPremiumDetails":  [{
+                                        "Deprivation":      true,
+                                        "AdoptedFromCare":  false,
+                                        "ServiceChild":     false,
+                                        "LookedAfter":      false
+                                        "CashAmount":       "935.00",
+                                        "FTE":              1.0,
+                                        "FYStartDate":      "2014-04-01",
+                                        "FYEndDate":        "2015-03-31",
+                                        "LastFSM":          "SPR19",
+                                        "Notes":            "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                                        }],
+                "GandTDetails": [{
+                                            "GandTStatus":    "Gifted",
+                                            "StartDate":    "2015-02-23",
+                                            "EndDate":      null,
+                                            "Subject":      "EN",
+                                            "Notes":        ""
+                                        }],
+                "SchoolHistoryDetails": [{
+                                        "LANumber":     "999",
+                                        "SchoolNumber":  "6213",
+                                        "SchoolName":   "Advanced Learninig Academy",                                
+                                        "EntryDate":    "2009-09-04",
+                                        "LeavingDate":  "2010-01-08",
+                                        "LeavingReason":"PM"
+                                        },{
+                                        "LANumber":     "999",
+                                        "SchoolNumber":  "1234",
+                                        "SchoolName":   "Queens College Academy",                                
+                                        "EntryDate":    "2010-09-01",
+                                        "LeavingDate":  "2016-02-05",
+                                        "LeavingReason":"OT"
+                                        }],
+                "ProficiencyDetails":   [
+                                          {
+                                            "Proficiency": "C",
+                                            "AssessedDate": "2015-09-21"
+                                          },
+                                          {
+                                            "Proficiency": "D",
+                                            "AssessedDate": "2016-09-26"
+                                          }
                                         ],
-            "FullTimeEmployment":   false
-            }
+                "NationalityDetails":   [
+                                          {
+                                            "Type": "FRSTN",
+                                            "Nationality": "GRC"
+                                          }
+                                        ],
+                "CountryOfBirth":       "GRL",
+                "EnglishAttainment":    "A"        
+                "EnglishAttainmentYear":1,
+                "EnglishExemption":     "L",
+                "MathsAttainment":      "B",
+                "MathsAttainmentYear":  2,
+                "MathsExemption":       "O",
+                "GCSEAvPointScoreAcademic": 1000.24,
+                "GCSEAvPointScoreAppliedGen": 1025.32,
+                "GCSEEnglishResult": "A",
+                "GCSEMathematicsResult ": "B",
+                "SupportCodeDetails":   [
+                                                {
+                                                    "SupportCode":      32,
+                                                    "AwardedDate"       "16/11/2017"
+                                                },
+                                                {
+                                                    "SupportCode":      55,
+                                                    "AwardedDate"       "16/11/2017"
+                                                }
+                                            ],
+                "FullTimeEmployment":   false
+                }
           
 
 + Response 200
@@ -3695,6 +3697,7 @@ Mandatory fields:
                 "LearnerId":        443756,   
                 "LearnerCode":      "2010-0001",
                 "Traveller":        "GH",
+                "TravellerName":    "Gypsy/Roma (Housed)",
                 "TravellerSource":  "P",
                 "CurrentDeprivationEver6":  true,
                 "CurrentServiceChild":      false,
@@ -7054,7 +7057,7 @@ Collection of all Assessment related resources
             
             
 
-### Create  one or more Learner Assessment results [POST]
+### Create one or more Learner Assessment results [POST]
 
 + Fields
     + LearnerCode (required, string, 2001-1293`) ... unique code of Learner
@@ -7123,6 +7126,54 @@ Collection of all Assessment related resources
                 "Status":                           true,
                 "Details":                          "Saved successfully",
                 "LearnerId":                      1000,
+                "AssessmentLearnerResultValueID":    4323
+            }
+            
+            
+
+### Update one or more Learner Assessment results [PUT]
+
++ Fields
+    + AssessmentLearnerResultValueID (required, int, `4321`) ... the existing Id of the Learner's assessment result
+    + ColumnValue (required, string, `5a`) ... assessment result value
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":                      "2001-1293",
+                "ColumnValue":                      "6c",
+                "AssessmentLearnerResultValueID":   4321
+            },
+                "LearnerCode":                      "2001-1293",
+                "ColumnValue":                      "7a",
+                "AssessmentLearnerResultValueID":   4322
+            },
+                "LearnerCode":                      "2001-1293",
+                "ColumnValue":                      "6b",
+                "AssessmentLearnerResultValueID":   4323
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "AssessmentLearnerResultValueID":    4321
+            },{{
+                "Status":                           true,
+                "Details":                          "Saved successfully",
+                "AssessmentLearnerResultValueID":    4322
+            },{
+                "Status":                           true,
+                "Details":                          "Saved successfully",
                 "AssessmentLearnerResultValueID":    4323
             }
 
@@ -10836,8 +10887,6 @@ Create one to many academic terms
             }
 
 
-## Create/Update Term Breaks [/TermBreaks]
-
 ### Create Term Breaks [POST]
 
 Create one to many terms breaks
@@ -10987,40 +11036,6 @@ Update one to many terms breaks
             
 
             
-## Academic Calendar Categories [/AcademicCalendarCategory]
-
-### Create claendar categories [POST]
-
-+ Request (application/json)
-
-    + Headers
-        
-            Authorization: Bearer [CURRENT_TOKEN]
-            
-    + Body
-
-            {
-                "Code":                 "SD",
-                "Name":                 "Staff Day",
-                "AttendnaceForLearner": false,
-                "AttendnaceForStaff":   true,
-                "AttendnaceForTeacher": true,
-                "UsedForStatistics":    true
-            }
-            
-+ Response 200
-
-    + Body
-    
-            {
-                "Status":   true,
-                "Details":  "Saved successfully",
-                "Code":     "SD"
-            }     
-            
-
-
-
 ## Academic Calendar Events [/academicCalendarEvents/{?AcademicYearId}{?id}]
 
 Optional parameters are:
@@ -14667,6 +14682,28 @@ Retrieve a list of religions used in school
 
 ## Meal Types Listof values [/MealType]
 
+### Retrieve Meal Types [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "MealTypeId":   1000
+                "Code":         "NON",
+                "Name":         "No Lunch Required",
+                "Description":  null,
+                "MappedTo":     "CSM"
+            }
+        
+
 ### Create a Meal Type [POST]
 
 + Fields
@@ -14700,4 +14737,75 @@ Retrieve a list of religions used in school
                 "Details": "Saved successfully",
                 "Code": "NON",
                 "MealTypeId":   1000
+            }
+            
+            
+### Update a Meal Type [PUT]
+
+**Either Code or MealTypeId is a mandatory field**
+
++ Fields
+    + MealTypeId (required, int, `1000`)
+    + Code (required, string, `NON`) ... unique code of Meal Type
+    + Name (optional, string, `No Lunch Required`) ... name of Meal Type
+    + Description (optional, string, `No Lunch Required`) ... description of Meal Type
+    + MapppedTo (optional, string, `CSM`) ... the parent code the new Meal Type is mapped to
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "MealTypeId":   1000
+                "Code":         "NON",
+                "Name":         "No Lunch Required",
+                "Description":  null,
+                "MappedTo":     "CSM"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "Code": "NON",
+                "MealTypeId":   1000
+            }
+        
+
+## Academic Calendar Categories [/AcademicCalendarCategory]
+
+### Create calendar categories [POST]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "Code":                 "SD",
+                "Name":                 "Staff Day",
+                "AttendnaceForLearner": false,
+                "AttendnaceForStaff":   true,
+                "AttendnaceForTeacher": true,
+                "UsedForStatistics":    true
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":   true,
+                "Details":  "Saved successfully",
+                "Code":     "SD"
             }
