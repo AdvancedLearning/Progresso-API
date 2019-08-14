@@ -113,6 +113,126 @@ Id in the response is either EmployeeId, LearnerId or ContactId depending on the
             ["Attendance5", "Attendance5.RecordAttendance", "Attendance5.RecordAttendance.LessonbyLesson2", "Attendance5.RecordAttendance.RollCall2", "Behaviour4.RecordBehaviour", "Behaviour4.RecordBehaviour.Behaviour5","Behaviour4.RecordBehaviour.Behaviour6"]
 
 
+## Password Policy [/PasswordPolicy/{?UserName}]
+
+### Retrieve the password policy for a school [GET]
+
++ Parameters
+
+    + UserName (required, string, `SaRobin`) ... unique UserName of User
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
+            
+    + Body
+    
+            {SaRobin}
+            
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+                "Description":  "Minimum length of password",
+                "ActualValue":  "6",
+                "ValidValue":   "6-99"
+            },{
+                "Description":  "Password history",
+                "ActualValue":  "1",
+                "ValidValue":   "1-99"
+            },{
+                "Description":  "Minimum number of lower characters (a-z)",
+                "ActualValue":  "1",
+                "ValidValue":   "0-99"
+            },{
+                "Description":  "Minimum number of upper characters (A-Z)",
+                "ActualValue":  "1",
+                "ValidValue":   "0-99"
+            },{
+                "Description":  "Minimum number of Numerics",
+                "ActualValue":  "1",
+                "ValidValue":   "0-99"
+            },{
+                "Description":  "Minimum number of special characters [@,#,$,(,),%,^,&,*]",
+                "ActualValue":  "1",
+                "ValidValue":   "0-99"
+            },{
+                "Description":  "Number of consecutive characters allowed",
+                "ActualValue":  "1",
+                "ValidValue":   "1"
+            },{
+                "Description":  "Password cannot contain Forename",
+                "ActualValue":  "Yes",
+                "ValidValue":   "Yes"
+            },{
+                "Description":  "Password cannot contain Last name",
+                "ActualValue":  "Yes",
+                "ValidValue":   "Yes"
+            },{
+                "Description":  "Password cannot contain User name",
+                "ActualValue":  "Yes",
+                "ValidValue":   "Yes"
+            }
+
+## Forgotten Password [/ForgottenPassword]
+
+Request a forgotten password. This will send an email to the User containing a Token code which the User will then use along with their UserName to reset their password.
+
+**Email text returned**
+
+Your <My_School_Or_Establishment_name> Progresso user account password reset
+<BR><BR>
+Dear <ForeName_SurnameName_Or_Display_Name>
+<BR><BR>
+You have requested <Instance_Name> user account password to be reset.
+<BR><BR>
+Your user name is <b><User_Name></b>
+<BR><BR>
+Your temporary Token code is <TokenCode>.
+<BR><BR>
+You must enter this temporary code and your new password to reset it.
+<BR><BR>
+This password reset request is valid for the next 24 hours. If the above token code has expired, you can still request to reset your password by clicking on 'Forgot password?' to generate another password reset request.
+<BR><BR>
+If you have any queries contact <Telephone_Number> or <Email_Address>.
+<BR><BR>
+Please do not reply to this email.
+<BR><BR>
+Regards,<BR>
+<Instance_Name>
+<BR>
+<Telephone_Number> 
+
+### Forgotten password request [POST]
+
++ Fields
+
+    + UserName (required, string, `SaRobin`) ... unique Username of Learner/Contact/Staff
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
+            
+    + Body
+    
+            {SaRobin}
+            
++ Response 200 (application/json)
+
+        "Status": true,
+        "Details": "Your Forgotten Password request has been sent"
+        
+
+
+
+
+
 
 # Group Employees Collection
 Methods for all employee-related resources
@@ -2690,14 +2810,15 @@ Mandatory field
             }
             
 
-## Contact Learner Association [/ContactLearnerAssociation{?ContactId}]
-This method takes the ContactId as an input and returns an array of LearnerId's associated with this. The method checks that Web Access has been given for each Learner associated to the Contact and will reutrn only those LearnerId's.
+## Contact Learner Association [/ContactLearnerAssociation{?ContactId}{?LearnerStatus}]
+This method takes the ContactId as an input and returns an array of LearnerId's associated with this. The method checks that Web Access has been given for each Learner associated to the Contact and will reutrn only those LearnerId's. Using the LearnerStaus parameter enables you to return only Active, Left or Draft Learners if required.
 
 ### Retrieve the Learners associated to a Contact [GET]
 
 + Parameters
 
     + ContactId (required, int, `12345`) ... unique Id of Contact
+    + LearnerStatus (optional, string, `Active`) ... valid values - Active, Draft and Left
     
 + Request (application/json)
 
@@ -6942,9 +7063,103 @@ Collection of all Assessment related resources
                         "IsTargetColumn":   true
                     }]
             }
+
+
+## Assessment Screen Templates [/AssessmentScreenTemplates/{?AssessmentScreenId}{?AssessmentTemplateId}{?AcademicYearId}]
+
+**If no AcademicYearId is specified then, by default, the current Academic Year's will be returned**
+
+### Retieve Assessment Templates associated to Assessment Screens [GET]
+
++ Parameters
+
+    + AssessmentScreenId (optional, int, `123420`) ... unique ID of the Assessment Screen
+    + AssessmentTemplateId (optional, int, `1000`) ... unique Id of Assessment Template
+    + AcademicYearId (optional, int, `1004`) ... unique Academic year Id
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
             
 
-## Assessment Scale Collection [/AssessmentScaleValues{?AssessmentScaleListId}{?Name}]
++ Response 200 (application/json)
+
+    + Body
+            
+            {
+                "AssessmentScreenId":   "38606",
+                "AssessmentScreenName": "KS4 Data Entry",
+                "AssessmentTemplates":  [{
+                                            "AssessmentTemplateId": 1000,
+                                            "Name":                 Full Year 8 Template 18/19",
+                                            "IsTarget":             false   
+                                        },{
+                                            "AssessmentTemplateId": 1001,
+                                            "Name":                 "Full Year 9 Template 18/19"
+                                            "IsTarget":             false   
+                                        },{
+                                            "AssessmentTemplateId": 1002,
+                                            "Name":                 "Full Year 10 Template 18/19"
+                                            "IsTarget":             false   
+                                        },{
+                                            "AssessmentTemplateId": 1003,
+                                            "Name":                 "Full Year 11 Template 18/19"
+                                            "IsTarget":             false   
+                                        }]
+            }
+            
+
+## Assessment Templates [/AssessmentTemplates{?AssessmentTemplateId}]
+
+### Retrieve a collection of Assessment Templates [GET]
+
++ Parameters
+
+    + AssessmentTemplateId (optional, int, `123420`) ... unique ID of the Assessment Template
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "AssessmentTemplateId":     "7661",
+                "AssessmentTemplateName":   "Year 11 Template 18/19"
+                "Year":                     "11",
+                "ColumnDetails":            [{
+                                                "Name":         "Aut 1 Current",
+                                                "ScaleListId":  1000
+                                            },{
+                                                "Name":         "Aut 2 Current",
+                                                "ScaleListId":  1002
+                                            },{
+                                                "Name":         "Spr 1 Current",
+                                                "ScaleListId":  1003
+                                            },{
+                                                "Name":         "Spr 2 Current",
+                                                "ScaleListId":  1004
+                                            },{
+                                                "Name":         "Sum 1 Current",
+                                                "ScaleListId":  1005
+                                            },{
+                                                "Name":         "Sum 2 Current",
+                                                "ScaleListId":  1006
+                                            }]
+            }
+
+
+            
+
+## Assessment Scales [/AssessmentScaleValues{?AssessmentScaleListId}{?Name}]
 
 ### Retrieve the Scale values for a List [GET]
 
