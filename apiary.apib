@@ -6949,7 +6949,7 @@ Collection of User Defined Values resources
 
 + Mandatory fields
     + FieldDefinitionId (required, int, `1111`) ... unique Id of UDF
-    + Id (required, int, `001234`) ... unique Id of Learner, Employee or Contact
+    + Code (required, int, `001234`) ... unique Id of Learner, Employee or Contact
     + Entity (required, string, `Learner`) ... type of UDF - valid values are School staff, Contact, Learner
     + Value (required, string, `Yes`) ... the values of the UDF
 
@@ -6963,7 +6963,7 @@ Collection of User Defined Values resources
     
             {
                 "FieldDefinitionID":1111,
-                "Id":               0123456,
+                "Code":               0123456,
                 "Entity":           "Learner",
                 "Value":            "Yes"
             },
@@ -7219,7 +7219,7 @@ Collection of all Assessment related resources
 
 ### Retrieve one or more Learner Assessment results [GET]
 
-**Either AssessmentScreenId or LearnerId is a required field**
+**AcademicYearId and either AssessmentScreenId or LearnerId is a required field**
     
 + Parameters
     + AcademicYearId (required, int, `1234`) ... unique ID of Academic Year
