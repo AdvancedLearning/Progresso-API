@@ -4768,6 +4768,113 @@ Update Exclusions for one to many learners
             }
 
 
+## Permanent Exclusion Review [/PermanentExclusionReview{?LearnerCode}{?LearnerId}{?PermanentExclusionReviewId}]
+
+### Retrieve Permanent Exclusion Review data [GET]
++ Parameters
+    + LearnerCode (optional, string, `2018-1000`) ... unique code of Learner
+    + LearnerId (optional, integer, `1234`) ... unique Id of Learner
+    + PermanentExclusionReviewId (optional, integer, `1000`) ... unique Esclusion Review Id
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+            
+    + Body
+
+            {
+                "PermanentExclusionReviewsId":  1000,
+                "LearnerCode":                  "2010-1234",
+                "LearnerId":                    1234
+                "GovernorReviewDate":           "14/12/2017",
+                "GovernorReviewResultCode":     "A",
+                "GovernorReviewResult":         "Exclusion upheld by initial governor review (confirmed)",
+                "IRPDate":                      "10/01/2018",
+                "IRPResultCode":                "F",
+                "IRPResult":                    "Pupil accespted offer of reinstatement after independent review panel recommended governing body to reconsider reinstatement",
+                "IRPSENExpert":                 true,
+                "ReinstatmentDate":             "10/01/2018"
+            }
+            
+            
+### Create Permanent Exclusion Reviews [POST]
+
++ Fields
+    + LearnerId (required, int, `123456`) ... unique Id of Learner
+    + LearnerCode (required, string, `2010-1192`) ... unique code of Learner
+    + GovernorReviewDate (required, date, `14/12/2017`) ... date the Governors reviewed the Exclusion
+    + GovernorReviewResultCode (optional, string, `A`) ... results of the Governors review
+    + IRPDate (optional, date, `110/01/2018`) ... date of the Independant Panel Review
+    + IRPResultCode (optional, string, `F`) ... results of the Independant Panel Review
+    + IRPSENExpert (optional, boolean, `true`) ... Was an SEN expert in the Independant Review Panel?
+    + ReinstatmentDate {optional, date, `10/01/2018) ... date of the Reinstatement
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "LearnerCode":              "2010-1192",
+                "GovernorReviewDate":       "14/12/2017",
+                "GovernorReviewResultCode": "A",
+                "IRPDate":                  "10/01/2018",
+                "IRPResultCode":            "F",
+                "IRPSENExpert":             true,
+                "ReinstatementDate":        "10/01/2018"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                       true,
+                "Details":                      "Saved successfully",
+                "PermanentExclusionReviewsId":  1000
+            }
+            
+
+### Update Permanent Exclusoin Reviews [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "PermanentExclusionReviewsId":  1000
+                "GovernorReviewDate":           "14/12/2017",
+                "GovernorReviewResult":         "A",
+                "IRPDate":                      "15/01/2018",
+                "IRPResult":                    "F",
+                "IRPSENExpert":                 true,
+                "ReinstatmentDate":             "16/01/2018"
+            }
+            
+
++ Response 200
+
+    + Body
+    
+            {
+                "Status":                       true,
+                "Details":                      "Saved successfully",
+                "PermanentExclusionReviewsId":  1000
+            }
+
+
+
 ## Learner SEN Provisions [/learnerSENProvisions{?status}{?LearnerId}{?LearnerCode}]
 
 ### Retrieve a learner SEN Provision Details [GET]
@@ -14860,6 +14967,103 @@ A collection of Post 16 Learning Aim methods
                 "Details":              "Saved successfully",
                 "LearnerCode":          "2125165"
             }
+            
+
+## Prior Attainment Details [/PriorAttaintment{?LearnerCode}{?LearnerId}{?AcademicYear}]
+
+DfE's change of requirements for Prior Attainmnet to be Academic Year specific
+
+### GET Prioir Attainment Details [GET]
+
++ Parameters
+    + LearnerCode (optional, string, `25048`) ... unique code of Learner
+    + LearnerId (optional, int, `1234`) ... unique Id of Learner
+    + AcademicYear (optional, string, `Academic Year 2017/2018`) ... Name of Academic Year
+    
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "LearnerCode":          "25048",
+                "LearnerId":            1234,
+                "AttainmentDetails":    [{
+                                            "PriorAttainmnetId":        1000,
+                                            "Academic Year 2017/2018",
+                                            "EnglishAttainmentCode":    "A",
+                                            "EnglishAttainment":        "Grade A", 
+                                            "EnglishAttainmentYearCode":"1",
+                                            "EnglishAttainmentYear":    "Learner has GCSE English (at grade A*-C/9 - 4)? achieved by end of year 11",   
+                                            "EnglishExemptionCode":     "L",
+                                            "EnglishExemption":         "A learning disability prevents the pupil from studying for the qualification(s)",
+                                            "MathsAttainmentCode":      "B",
+                                            "MathsAttainment":          "Grade B",
+                                            "MathsAttainmentYearCode":  "2",
+                                            "MathsAttainmentYear":      "Learner does not have GCSE Maths (at grade A*-C/9 - 4)",
+                                            "MathsExemptionCode":       "F"
+                                            "MathsExemption":           "Learner holds a pass grade for functional skills level 2"
+                                        },{
+                                            "PriorAttainmnetId":        1001,
+                                            "Academic Year 2018/2019",
+                                            "EnglishAttainmentCode":    "B",
+                                            "EnglishAttainment":        "Grade B", 
+                                            "EnglishAttainmentYearCode":"1",
+                                            "EnglishAttainmentYear":    "Learner has GCSE English (at grade A*-C/9 - 4)? achieved by end of year 11",   
+                                            "EnglishExemptionCode":     "L",
+                                            "EnglishExemption":         "A learning disability prevents the pupil from studying for the qualification(s)",
+                                            "MathsAttainmentCode":      "C",
+                                            "MathsAttainment":          "Grade C",
+                                            "MathsAttainmentYearCode":  "2",
+                                            "MathsAttainmentYear":      "Learner does not have GCSE Maths (at grade A*-C/9 - 4)",
+                                            "MathsExemptionCode":       "F"
+                                            "MathsExemption":           "Learner holds a pass grade for functional skills level 2"
+                                        }],
+            },
+            {
+                "LearnerCode":          "3219",
+                "LearnerId":            7489,
+                "AttainmentDetails":    [{
+                                            "PriorAttainmnetId":        1002,
+                                            "Academic Year 2017/2018",
+                                            "EnglishAttainmentCode":    "A",
+                                            "EnglishAttainment":        "Grade A", 
+                                            "EnglishAttainmentYearCode":"1",
+                                            "EnglishAttainmentYear":    "Learner has GCSE English (at grade A*-C/9 - 4)? achieved by end of year 11",   
+                                            "EnglishExemptionCode":     "L",
+                                            "EnglishExemption":         "A learning disability prevents the pupil from studying for the qualification(s)",
+                                            "MathsAttainmentCode":      "B",
+                                            "MathsAttainment":          "Grade B",
+                                            "MathsAttainmentYearCode":  "2",
+                                            "MathsAttainmentYear":      "Learner does not have GCSE Maths (at grade A*-C/9 - 4)",
+                                            "MathsExemptionCode":       "F"
+                                            "MathsExemption":           "Learner holds a pass grade for functional skills level 2"
+                                        },{
+                                            "PriorAttainmnetId":        1003,
+                                            "Academic Year 2018/2019",
+                                            "EnglishAttainmentCode":    "B",
+                                            "EnglishAttainment":        "Grade B", 
+                                            "EnglishAttainmentYearCode":"1",
+                                            "EnglishAttainmentYear":    "Learner has GCSE English (at grade A*-C/9 - 4)? achieved by end of year 11",   
+                                            "EnglishExemptionCode":     "L",
+                                            "EnglishExemption":         "A learning disability prevents the pupil from studying for the qualification(s)",
+                                            "MathsAttainmentCode":      "C",
+                                            "MathsAttainment":          "Grade C",
+                                            "MathsAttainmentYearCode":  "2",
+                                            "MathsAttainmentYear":      "Learner does not have GCSE Maths (at grade A*-C/9 - 4)",
+                                            "MathsExemptionCode":       "F"
+                                            "MathsExemption":           "Learner holds a pass grade for functional skills level 2"
+                                        }]
+            }
+   
+
+
             
 
 # Group Lookups and Lists of values
