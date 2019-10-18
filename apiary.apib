@@ -4053,7 +4053,7 @@ This method returns a minimum amount of data and accepts an array of LearnerId's
 ### Learner Indicator Details [GET]
 
 + Parameters
-    + GroupId (required, int, `123420`) ... unique Id of Group
+    + GroupId (optional, int, `123420`) ... unique Id of Group
     + LearnerId (optional, int, `1000`) ... unique Id of Learner
     
 + Request (application/json)
@@ -7363,17 +7363,23 @@ Collection of all Assessment related resources
                                         "AssementScreenColumnId":   1234,
                                         "ColumnName":       "AU1",
                                         "ColumnValue":      "7c",
-                                        "VaulePoints":      "36"
+                                        "VaulePoints":      "36",
+                                        "Progress8Points": null,
+                                        "AssessmentLearnerResultValueId": 1074
                                     },{
                                         "AssementScreenColumnId":   1235,
                                         "ColumnName":       "AU2",
                                         "ColumnValue":      "7b",
-                                        "VaulePoints":      "40"
+                                        "VaulePoints":      "40",
+                                        "Progress8Points":  "25",
+                                        "AssessmentLearnerResultValueId": 1075
                                     },{
                                         "AssementScreenColumnId":   1236,
                                         "ColumnName":       "AU_Eff",
                                         "ColumnValue":      "Could do better",
-                                        "VaulePoints":      null
+                                        "VaulePoints":      null,
+                                        "Progress8Points":  "54",
+                                        "AssessmentLearnerResultValueId": 1076
                                     }]
                             }
             }
@@ -12737,20 +12743,10 @@ Update one to many Day Composition Periods
 
 ### Retrieve Timetable Events [GET]
 
-*This no longer returns event for Learners who have left the group*
-
-- Mandatory fields
-    - SourceId is a mandatory field
-    - LearnerId if ILM events are to be returned
-
-    And either
-
-    - LearnerId
-    - EmployeeID
-    - StartDate and EndDate
+If not parameters are used then all events for the current Source are returned
 
 + Parameters
-    + SourceId (required, number, `2133`) ... unique Id of  the timetable source
+    + SourceId (optional, number, `2133`) ... unique Id of  the timetable source
     + EmployeeId (optional, number, `1023454`) ... unique Id of employee
     + LearnerId (optional, number, `123456`) ... unique Id of Learner
     + StartDate (optional, date, `2015-12-01`) ... Start of date range
@@ -13110,9 +13106,11 @@ There is a new field of 'IsCovered'. When this is true it means the Staff is cov
 
 ### Retrieve all the learner's timetable event for the current iteration [GET]
 
+If no parameters are used then all events for the current Source are returned
+
 + Parameters
-    + SourceId (required, int, `1001`) ... unique Id of Timetable Source
-    + LearnerId (required, int, `1843`) ... unique Id of Learner
+    + SourceId (optional, int, `1001`) ... unique Id of Timetable Source
+    + LearnerId (optional, int, `1843`) ... unique Id of Learner
     + DayComposition (optional, string, `School Day`) ... name of Day Composition
     + IterationNumber (optional, int, `8`) ... number of the iteration
 
@@ -13655,9 +13653,11 @@ Update one to many Sites
 
 Collection of Behaviour methods
 
-## Assign Staff Behaviour Position [/StaffPosition]
+## Assign Staff Behaviour Position [/StaffPosition1]
 
 Assign a memeber of staff a potion for Behaviour Management
+
+### Assign a Staff Behaviour Position [GET]
 
 *Value:*
 *Code*  *Description*
@@ -14108,6 +14108,36 @@ If LearnerId is not used as input parameter then all learners will be returned
                 "DefaultComments":      "GeneralComments"
                 "CommentBoxSettings":   "Rtf"
             }
+            
+            
+
+### Update BM Configuration [PUT]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "DefaultBehaviour":     "Positive",
+                "DefaultComments":      "Confidentail Comments",
+                "CommentBoxSettings":   "rtf"
+            }
+            
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status": true,
+                "Details": "Saved successfully"
+            }
+        
+            
 
 
 ## BM On Behalf Of [/BMStaffOnBehalf]
@@ -15066,11 +15096,99 @@ DfE's change of requirements for Prior Attainmnet to be Academic Year specific
 
             
 
-# Group Lookups and Lists of values
+# Group Master Data Lookups and Lists of Values
 
 A collection of all Lookup related resources
 
-## Religion List of Values [/ReligionLookup]
+## SEN Provision Type [/SENProvisionType]
+
+### Retrieve SEN Provision Types [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "ProvisionId":      1506,
+                "Code":             "A",
+                "Name":             "School Action Plus",
+                "MappedTo":         null
+            },{
+                "ProvisionId":      1508,
+                "Code":             "E",
+                "Name":             "Education Health and Care Plan",
+                "MappedTo":         null
+            }
+
+
+
+## Contact Relationships [/ContactRelationships]
+
+### Retrieve Learner Contact Relationship values [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "Code":         "CAR",
+                "Name":         "Carer",
+                "Description":  "Carer"                           
+            },{
+                "Code":         "PAM",
+                "Name":         "Mother",
+                "Description":  "Mother"                           
+            },{
+                "Code":         "FOF",
+                "Name":         "Foster Father",
+                "Description":  "Foster Father"                           
+            }
+            
+            
+
+## Staff Position [/StaffPosition]
+
+### Retrieve Staff Position values [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "StaffPositionID":      1506,
+                "Code":                 "AC",
+                "Name":                 "Other Admin/Clerical Staff",
+                "Type":                 "Non-Teaching",
+                "MappedTo":             null
+            },{
+                "StaffPostitionID":      1508,
+                "Code":                 "BEMAN",
+                "Name":                 "Behaviour Manager",
+                "Type":                 "Teaching",
+                "MappedTo":             "BFL Manager"
+            }
+
+
+## Religion [/ReligionLookup]
 
 ### Retrieve Religion values [GET]
 
@@ -15100,7 +15218,7 @@ Retrieve a list of religions used in school
                 "Name": "Baptist                
             }
 
-## Meal Types Listof values [/MealType]
+## Meal Types [/MealType]
 
 ### Retrieve Meal Types [GET]
 
