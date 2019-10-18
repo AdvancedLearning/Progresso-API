@@ -3405,6 +3405,8 @@ Update one to many learner records
 
 Retrieve one or more Learner Other Details records
 
+Due to changes in DfE requirements this now returns Prior Attainment for the current academic year
+
 
 + Request
 
@@ -4803,6 +4805,8 @@ Update Exclusions for one to many learners
             
 ### Create Permanent Exclusion Reviews [POST]
 
+**Either Learner Code or LearnerId is required**
+
 + Fields
     + LearnerId (required, int, `123456`) ... unique Id of Learner
     + LearnerCode (required, string, `2010-1192`) ... unique code of Learner
@@ -4843,6 +4847,8 @@ Update Exclusions for one to many learners
             
 
 ### Update Permanent Exclusoin Reviews [PUT]
+
+**PermanentExclusionReviewsId is a mandatroy field**
 
 + Request (application/json)
 
@@ -7505,6 +7511,49 @@ Collection of all Assessment related resources
                 "Details":                          "Saved successfully",
                 "AssessmentLearnerResultValueID":    4323
             }
+
+
+## Assessment Markbook Entries [/AssessmentMarkbookEntry]
+
+### Create one or more Markbook entries for learners within a school [POST]
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+
+            {
+                "AssessmentMarkbookID": 1000,
+                "LearnerCode":          "2010-1234,
+                "ColumnName":           "Homkework",
+                "ColumnValue":          "L1"
+            },{
+                "AssessmentMarkbookID": 1000,
+                "LearnerCode":          "2010-1234,
+                "ColumnName":           "A",
+                "ColumnValue":          "C"
+            }
+            
++ Response 200
+
+    + Body
+    
+            {
+                "Status": true,
+                "Details": "Saved successfully",
+                "MarkbookDataLearnerId": 1000 
+            },{
+                "Status": true,
+                "Details": "Saved successfully",
+                "MarkbookDataLearnerId": 1001 
+            }
+        
+
+
 
 
 
@@ -11021,18 +11070,18 @@ Group of all Academic Resources
     + Body
     
             {
-                "AcademicYearId":   1
-                "Name":             "Academic Year 2014/2015",
-                "StartDate":        "01-09-2014",
-                "EndDate":          "31-08-2015"
-                
-             },
+                "AcademicYearId": 3324,
+                "Name": "Academic Year 2018/2019",
+                "StartDate": "2018-08-27",
+                "EndDate": "2019-08-26",
+                "IsCurrent": "N"
+            },
             {
-                "AcademicYearId":   2
-                "Name":             "Academic Year 2013/2014",
-                "StartDate":        "01/09/2013",
-                "EndDate":          "31/08/2014"
-                
+                "AcademicYearId": 3325,
+                "Name": "Academic Year 2019/2020",
+                "StartDate": "2019-08-27",
+                "EndDate": "2020-08-26",
+                "IsCurrent": "Y"
             }
 
 
@@ -11110,19 +11159,17 @@ Create one to many current or future academic years
     + Body
     
             {
-                "academicYearId":   1,
-                "academicTermId":   1,
-                "name":             "Autumn",
-                "startDate":        "01/09/2014",
-                "endDate":          "19/12/2014"
+                "AcademicTermId":   1001,
+                "Name":             "Autumn",
+                "StartDate":        "01/09/2014",
+                "SndDate":          "19/12/2014"
                 
              },
             {
-                "academicYearId":   1,
-                "academicTermId":   2,
-                "name":             "Spring",
-                "startDate":        "05/01/2015",
-                "endDate":          "10/04/2015"
+                "AcademicTermId":   1002,
+                "Name":             "Spring",
+                "StartDate":        "05/01/2015",
+                "EndDate":          "10/04/2015"
                 
             }
 
@@ -15003,7 +15050,7 @@ A collection of Post 16 Learning Aim methods
 
 DfE's change of requirements for Prior Attainmnet to be Academic Year specific
 
-### GET Prioir Attainment Details [GET]
+### Retrieve Prioir Attainment Details [GET]
 
 + Parameters
     + LearnerCode (optional, string, `25048`) ... unique code of Learner
@@ -15025,7 +15072,7 @@ DfE's change of requirements for Prior Attainmnet to be Academic Year specific
                 "LearnerCode":          "25048",
                 "LearnerId":            1234,
                 "AttainmentDetails":    [{
-                                            "PriorAttainmnetId":        1000,
+                                            "PriorAttainmetId":         1000,
                                             "Academic Year 2017/2018",
                                             "EnglishAttainmentCode":    "A",
                                             "EnglishAttainment":        "Grade A", 
@@ -15093,12 +15140,286 @@ DfE's change of requirements for Prior Attainmnet to be Academic Year specific
             }
    
 
+### Add Prior Attainment Details for a Learner [POST]
 
++ Fields
+    + LearnerCode (required, string, `25048`) ... unique code of Learner
+    + AcademicYear (required, string, `Academic Year 2018/2019`) ... name of the Academic Year
+    + EnglishAttainment (optional, string, `A`)... English attainment grade
+    + EnglishAttainmentYear (optional, string, `1`)... English attainment year
+    + EnglishExemption (optional, string, `L`) ... English exemption code
+    + MathsAttainment (optional, string, `A`)... Maths attainment grade
+    + MathsAttainmentYear (optional, string, `1`)... Maths attainment year
+    + Mathsxemption (optional, string, `L`) ... Maths exemption code
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
             
+    + Body
+    
+            {
+                "LearnerCode":          "25048",
+                "AcademicYear":         "Academic Year 2017/2018",                                
+                "EnglishAttainment":    "A"        
+                "EnglishAttainmentYear":1,
+                "EnglishExemption":     "L",
+                "MathsAttainment":      "B",
+                "MathsAttainmentYear":  3,
+                "MathsExemption":       "O"
+            },{
+                "LearnerCode":          "25048",
+                "AcademicYear":         "Academic Year 2018/2019",
+                "EnglishAttainment":    "B"        
+                "EnglishAttainmentYear":1,
+                "EnglishExemption":     "L",
+                "MathsAttainment":      "B",
+                "MathsAttainmentYear":  1,
+                "MathsExemption":       "O"
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "Status":           true,
+            "Details":          "Saved successfully",
+            "PriorAttinmentId": 1000
+        },{
+            "Status":           true,
+            "Details":          "Saved successfully",
+            "PriorAttinmentId": 1001
+        }
+
+
+### Update Prior Attainment Detail [PUT]
+
+**Either PriorAttainmentId or AcademicYear are mandatory fields**
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+    + Body
+        
+            {
+                "LearnerCode":          "25048",
+                "PriorAttainmentId":     1000
+                "AcademicYear":         "Academic Year 2017/2018",                                
+                "EnglishAttainment":    "A"        
+                "EnglishAttainmentYear":1,
+                "EnglishExemption":     "L",
+                "MathsAttainment":      "B",
+                "MathsAttainmentYear":  3,
+                "MathsExemption":       "O"
+            },{
+                "LearnerCode":          "25048",
+                "PriorAttainmentId":     1001
+                "AcademicYear":         "Academic Year 2018/2019",
+                "EnglishAttainment":    "B"        
+                "EnglishAttainmentYear":1,
+                "EnglishExemption":     "L",
+                "MathsAttainment":      "B",
+                "MathsAttainmentYear":  1,
+                "MathsExemption":       "O"
+            }
+            
++ Response 200 (application/json)
+           
+    + Body
+
+            {
+                    "Status": true,
+                    "Details": "Saved successfully",
+                    "PriorAttainmentId": 1000
+            }
+            
+
 
 # Group Master Data Lookups and Lists of Values
 
 A collection of all Lookup related resources
+
+## Enrolment Status [/EnrolmentStatus]
+
+### Retrieve Enrolment Statuses [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "EnrolmentStatusId": 2406,
+                "Code": "G",
+                "Name": "Guest",
+                "MappedTo": null
+            },
+            {
+                "EnrolmentStatusId": 2407,
+                "Code": "F",
+                "Name": "FE College",
+                "MappedTo": null
+            },
+            {
+                "EnrolmentStatusId": 2408,
+                "Code": "C",
+                "Name": "Current",
+                "MappedTo": null
+            },
+            {
+                "EnrolmentStatusId": 2409,
+                "Code": "M",
+                "Name": "Current Main",
+                "MappedTo": null
+            }
+
+
+
+## Ethnicity [/Ethnicity]
+
+### Retrieve Ethnicity values [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "EthnicityId": 30264897,
+                "Code": "9",
+                "Name": "Other (inc. mixed background)",
+                "MainCode": null,
+                "SubCategory": null,
+                "MainCategory": null,
+                "MappedTo": null
+            },
+            {
+                "EthnicityId": 30264898,
+                "Code": "10",
+                "Name": "No Consent",
+                "MainCode": null,
+                "SubCategory": null,
+                "MainCategory": null,
+                "MappedTo": null
+            },
+            {
+                "EthnicityId": 30265230,
+                "Code": "12",
+                "Name": "Regression Test PRO 15901",
+                "MainCode": "APKN",
+                "SubCategory": "Pakistani",
+                "MainCategory": "Asian or Asian British",
+                "MappedTo": null
+            }
+
+
+
+## CRB Clearances [/CRBClearance]
+
+### Retrieve the CRB Clearance values
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "CRBClearanceId": 3355,
+                "Code": "ST",
+                "Name": "Standard check",
+                "MappedTo": null
+            },
+            {
+                "CRBClearanceId": 3356,
+                "Code": "EN",
+                "Name": "Enhanced check",
+                "MappedTo": null
+            },
+            {
+                "CRBClearanceId": 3357,
+                "Code": "OTH",
+                "Name": "Other",
+                "MappedTo": null
+            }
+            
+
+
+## Nationality/Country [/Nationality]
+
+### Retrieve Nationalities and Countries [GET]
+
+The numerical Code in the response are returned for Irish Schools
+
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "NationalityId": 236802,
+                "Code": "BES",
+                "Name": "Bonaire, Sint Eustatius and Saba",
+                "Description": "Bonaire, Sint Eustatius and Saba"
+            },
+            {
+                "NationalityId": 236803,
+                "Code": "ATB",
+                "Name": "British Antarctic Territory",
+                "Description": "British Antarctic Territory"
+            },
+            {
+                "NationalityId": 236804,
+                "Code": "BUR",
+                "Name": "Burma",
+                "Description": "Burma"
+            },
+            {
+                "NationalityId": 30265020,
+                "Code": "406",
+                "Name": "Cambodia",
+                "Description": "Cambodia"
+            },
+            {
+                "NationalityId": 30265021,
+                "Code": "407",
+                "Name": "Korea, Republic of",
+                "Description": "Korea, Republic of"
+            },
+            {
+                "NationalityId": 30265022,
+                "Code": "409",
+                "Name": "Korea, Democ. Peoples Rep",
+                "Description": "Korea, Democ. Peoples Rep"
+            }   
+    
+    
+
 
 ## SEN Provision Type [/SENProvisionType]
 
@@ -15319,7 +15640,31 @@ Retrieve a list of religions used in school
 
 ## Academic Calendar Categories [/AcademicCalendarCategory]
 
-### Create calendar categories [POST]
+### Retrieve Calendar categories values [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "AcademicCalendarCategoryId":   1205,
+                "Code":                         "T4",
+                "Name":                         "Test 4 Day",
+                "AttendanceForLearner":         false,
+                "AttendanceForStaff":           true,
+                "AttendanceForTeacher":         true,
+                "UsedForStatistics":            false
+            }
+            
+            
+
+### Create Calendar Categories [POST]
 
 + Request (application/json)
 
