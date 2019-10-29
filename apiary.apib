@@ -8,7 +8,7 @@ Provides the ability to manage school information.
 
 There are areas which are or will be under development in the near future.
 
-GET methods for LookUp date will be arriving over the next few months. If there are any you specifically require please contact:
+If there are any methods or fields you specifically require please contact:
 
  **sally.robinson@oneadvanced.com**
 
@@ -2891,7 +2891,9 @@ Collection of all learner related resources
                 "EmailAddress": "Yizhi.Phipps@advancedfirstline.com",
                 "Notes": "",
                 "HomeSalutation": "Mr and MrsPhipps",
-                "SafeGuarding": true
+                "SafeGuarding": true,
+                "SENIndicator": true,
+                "PPIndicator":  false,
                 "Boarder": "N",
                 "PartTime": false,
                 "FormerUPN": "",
@@ -3405,7 +3407,9 @@ Update one to many learner records
 
 Retrieve one or more Learner Other Details records
 
-Due to changes in DfE requirements this now returns Prior Attainment for the current academic year
+Due to changes in DfE requirements this now returns Prior Attainment for the current academic year only. 
+
+To return Prior Attainments for all years see GET PriorAttainment method on Post 16 section
 
 
 + Request
@@ -4161,6 +4165,7 @@ Specific to Irish Schools and Colleges
                                             "SurName": "Sterling",
                                             "MiddleName": "Jane",
                                             "Relationship": "PAM",
+                                            "RelationshipName": "Mother",
                                             "WrittenCommunication": "",
                                             "Priority": 1,
                                             "ContactPrioritySource": "",
@@ -5804,12 +5809,119 @@ Retrieve the General documents in school
                 "CreatedDate":  "11/03/2019",
                 "DocumentTags": [Administration]
             }
+            
+
+# Group School Attendance Summary
+
+## School Roll Call Attendance Summary by Year [/SchoolRollCallAttendanceSummaryByYear{?StartDate}{?EndDate}{?Year}]
+
+### Retrieve School Summary Roll CallAttendance [GET]
+
++ Parameters
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (optional, string, `29-06-2018`) ... end of date range
+    + Year (optional, string, `11`) ... code of Year group
+    
++ Request (application/json)
+
+    + Headers
         
+            Authorization: Bearer [CURRENT_TOKEN]
+            
+
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "Year": "Year 7",
+                "PresentWithoutLate": 1234,
+                "Late": 34,
+                "Authorised": 245,
+                "Unauthorised": 13,
+                "PresentIncludingLate": 6688,
+                "Absences": 258,
+                "PossibleAttendances": 6946,
+                "PresentWithoutLatePercentage": 95.80,
+                "PresentIncludingLatePercentage": 96.29,
+                "LatePercentage": 0.49,
+                "AbsencePercentage": 3.71,
+                "AuthorisedPercentage": 3.53,
+                "UnauthorisedPercentage": 0.24
+                "UnexplainedAbsence": 13,
+                "LateBeforeRegistration": 102,
+                "LateAfterRegistration": 34,
+                "ApprovedEducationActivity": 872
+            },{
+                "Year": "Year 8",
+                "PresentWithoutLate": 1250,
+                "Late": 34,
+                "Authorised": 245,
+                "Unauthorised": 13,
+                "PresentIncludingLate": 6688,
+                "Absences": 258,
+                "PossibleAttendances": 6946,
+                "PresentWithoutLatePercentage": 95.80,
+                "PresentIncludingLatePercentage": 96.29,
+                "LatePercentage": 0.49,
+                "AbsencePercentage": 3.71,
+                "AuthorisedPercentage": 3.53,
+                "UnauthorisedPercentage": 0.24
+                "UnexplainedAbsence": 13,
+                "LateBeforeRegistration": 102,
+                "LateAfterRegistration": 34,
+                "ApprovedEducationActivity": 872
+            }
+
+
+
+## School Roll Call Attendance Summary [/SchoolRollCallAttendanceSummary{?StartDate}{?EndDate}]
+
+### Retrieve the Roll Call Attendance Summary for the School [GET]
+
+If no dates are selected then the current Academic Year will be returned
+
++ Parameters
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (optional, string, `29-06-2018`) ... end of date range
+    
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                "PresentWithoutLate": 6654,
+                "Late": 34,
+                "Authorised": 245,
+                "Unauthorised": 13,
+                "PresentIncludingLate": 6688,
+                "Absences": 258,
+                "PossibleAttendances": 6946,
+                "PresentWithoutLatePercentage": 95.80,
+                "PresentIncludingLatePercentage": 96.29,
+                "LatePercentage": 0.49,
+                "AbsencePercentage": 3.71,
+                "AuthorisedPercentage": 3.53,
+                "UnauthorisedPercentage": 0.24
+                "UnexplainedAbsence": 13,
+                "LateBeforeRegistration": 102,
+                "LateAfterRegistration": 34,
+                "ApprovedEducationActivity": 872
+            }
+        
+            
 
 
 # Group Learner Attendance
 
-## Retrieve Atttendance Configuration [/AttendanceConfiguration]
+## Atttendance Configuration [/AttendanceConfiguration]
 
 Returns the default configuration for attendance
 
@@ -5896,12 +6008,13 @@ Returns the default configuration for attendance
                  "Authorised":      true,
                  "Medical":         false,
                  "Explained":       false,
-                 "ApprovedEducationalActivity": true
+                 "ApprovedEducationalActivity": true,
+                 "MappedTo":        null
             },
             {
                  "CategoryId":      13,
-                 "Code:":           "N"
-                 "Name":            "No Reason",
+                 "Code:":           "Q"
+                 "Name":            "Quit",
                  "LessonByLesson":  true,
                  "Present":         false,
                  "StatisticalAbs":  true,
@@ -5909,7 +6022,8 @@ Returns the default configuration for attendance
                  "Authorised":      false,
                  "Medical":         false,
                  "Explained":       false,
-                 "ApprovedEducationalActivity": false
+                 "ApprovedEducationalActivity": false,
+                 "MappedTo":        "Unauthorised Absence"
             }
             
 
@@ -5955,7 +6069,8 @@ If no date range is used then it will return the Current academic year's data to
                 "ClassRollDateId":  13456,
                 "GroupCode":        "10BC",
                 "EnteredDate":      "2019-05-29 08:33:59",
-                "IsLocked":         false
+                "IsLocked":         false,
+                "YearGroup":        "Year 10"
             },
             {
                 "LearnerId":        0001,
@@ -5970,7 +6085,8 @@ If no date range is used then it will return the Current academic year's data to
                 "ClassDateRollId":  358381,
                 "GroupCode":        null,
                 "EnteredDate":      "2019-05-29 08:32:48",
-                "IsLocked":         true
+                "IsLocked":         true,
+                "YearGroup":        "Year 9"
             }
 
 
@@ -6120,6 +6236,67 @@ This method differs from the previous one with the addtion of Notes and Minutes 
                 "Subject":          "Design and Technology",
                 "IsLocked":         true
             }
+
+
+## Learner Lesson Attendance Archive data [/LearnerLessonAttendanceArchive{?StartDate}{?EndDate}{?Status}{?LearnerCode}]
+
+### Retrieve Learner Lesson Attendance for the previous year [GET]
+
++ Parameters
+    + StartDate (optional, string, `29-06-2018`) ... start of date range
+    + EndDate (required, string, `29-06-2018`) ... end of date range - required if start date used
+    + Status (optional, string, `Active`) ... status of Learner Valid values Active, Draft and Left
+    + LearnerCode (optional, string, `2019-1000`) ... uniqure Learner code
+    
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+        
+        
++ Response 200 (application/json)
+           
+    + Body
+    
+            {
+                    "EventId": 157724156,
+                    "GroupCode": "10-ENG-A",
+                    "Date": "2018-09-09",
+                    "StartTime": "11:20",
+                    "EndTime": "12:20",
+                    "LearnerId": 274570,
+                    "LearnerCode": "140001",
+                    "Period": "P 3",
+                    "AttendanceCode": "/\\",
+                    "AttendanceCodeId": 1,
+                    "MinutesLate": null,
+                    "Notes": null,
+                    "PeriodId": 90110,
+                    "EnteredDate": "2019-10-08 09:25:59",
+                    "SubjectCode": "EN",
+                    "Subject": "English"
+                },
+                {
+                    "EventId": 157724156,
+                    "GroupCode": "10-ENG-A",
+                    "Date": "2018-09-09",
+                    "StartTime": "11:20",
+                    "EndTime": "12:20",
+                    "LearnerId": 274571,
+                    "LearnerCode": "140002",
+                    "Period": "P 3",
+                    "AttendanceCode": "/\\",
+                    "AttendanceCodeId": 1,
+                    "MinutesLate": null,
+                    "Notes": null,
+                    "PeriodId": 90110,
+                    "EnteredDate": "2019-10-08 09:25:59",
+                    "SubjectCode": "EN",
+                    "Subject": "English"
+            }
+            
+                   
 
                             
 
@@ -6420,7 +6597,7 @@ Create Learner Lesson Atendance by Time
 
 Group of Photo-related resources
 
-## GET Photo [/GetPhoto{?IsLearnerRequest}{?Id}]
+## GET Photo [/GetPhoto{?IsLearnerRequest}{?Id}{?HidePhoto}]
 
 ### Retrieve a collection of Photos [GET]
 
@@ -6431,6 +6608,7 @@ Retrieve one to many one to many employee/learner photos
 + Parameters
     + IsLearnerRequest (required, boolean, `true`) ... true/false marker for Learner or Staff photo
     + Id (optional, int, `1245698`) ... unique LearnerId or EmployeeId
+    + HidePhoto (optional, boolean, `true`) ... if this is true then hidden photos will not be returned
        
 + Request (application/json)
 
@@ -11246,19 +11424,19 @@ Create one to many academic terms
     + Body
     
             {
-                "academicYearId":   1,
+                "AcademicYearId":   1,
                 "TermBreakId":      1,
-                "name":             "Spring Half Term",
-                "startDate":        "2014-04-25",
-                "endDate":          "2014-06-01"
+                "Name":             "Spring Half Term",
+                "StartDate":        "2014-04-25",
+                "EndDate":          "2014-06-01"
                 
              },
             {
-                "academicYearId":   1,
+                "AcademicYearId":   1,
                 "TermBreakId":      2,
-                "name":             "Autumn Half Term",
-                "startDate":        "2013-10-26",
-                "endDate":          "2013-11-01"
+                "Name":             "Autumn Half Term",
+                "StartDate":        "2013-10-26",
+                "EndDate":          "2013-11-01"
                 
             }
 
@@ -11438,21 +11616,21 @@ Optional parameters are:
             
             {
                 "AcademicYearId":             1
-                "name":                 "Inset Day",
-                "category":             "IN",
-                "startDate":            "2014-09-02",
-                "endDate":              "2014-09-02",
-                "fullHalfDay":          "FD"
-                "calendarEventId":      0001
+                "Name":                 "Inset Day",
+                "Category":             "IN",
+                "StartDate":            "2014-09-02",
+                "EndDate":              "2014-09-02",
+                "FullHalfDay":          "FD"
+                "CalendarEventId":      0001
             },
             {
                 "AcademicYearId":             1
-                "name":                 "Teacher Training",
-                "category":             "#",
-                "startDate":            "2014-09-03",
-                "endDate":              "2014-09-03",
-                "fullHalfDay":          "HDA"
-                "calendarEventId":      0002
+                "Name":                 "Teacher Training",
+                "Category":             "#",
+                "StartDate":            "2014-09-03",
+                "EndDate":              "2014-09-03",
+                "FullHalfDay":          "HDA"
+                "CalendarEventId":      0002
             }
 
 
@@ -11480,8 +11658,8 @@ Create one to many Academic Calendar Events
             },
             {
                 "AcYearId":             1
-                "name":                 "Teacher Training",
-                "category":             "O~",
+                "Name":                 "Teacher Training",
+                "Category":             "O~",
                 "StartDate":            "2016-09-05",
                 "EndDate":              "2016-09-05",
                 "FullHalfDay":          "FD"
@@ -11521,19 +11699,19 @@ Update one to many Academic Calendar Events
 
             {
                 "AcYearId":             1
-                "name":                 "Inset Day",
-                "category":             "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "fullHalfDay":          "Full Day"
+                "Name":                 "Inset Day",
+                "Category":             "Inset Day",
+                "StartDate":            02-09-2014,
+                "EndDate":              02-09-2014,
+                "FullHalfDay":          "Full Day"
             },
             {
                 "AcYearId":             1
-                "name":                 "Teacher Training",
-                "category":             "Only staff should attend",
-                "startDate":            03-09-2014,
-                "endDate":              03-09-2014,
-                "fullHalfDay":          "Half Day AM"
+                "Name":                 "Teacher Training",
+                "Category":             "Only staff should attend",
+                "StartDate":            03-09-2014,
+                "EndDate":              03-09-2014,
+                "FullHalfDay":          "Half Day AM"
             }
             
 + Response 200 (application/json)
@@ -11541,16 +11719,16 @@ Update one to many Academic Calendar Events
     + Body
         
             {
-                "name":                 "Inset Day",
-                "startDate":            02-09-2014,
-                "endDate":              02-09-2014,
-                "calendarEventId":      0003
+                "Name":                 "Inset Day",
+                "StartDate":            02-09-2014,
+                "EndDate":              02-09-2014,
+                "CalendarEventId":      0003
             },
             {
-                "name":                 "Inset Day",
-                "startDate":            03-09-2014,
-                "endDate":              03-09-2014,
-                "calendarEventId":      0004
+                "Name":                 "Inset Day",
+                "StartDate":            03-09-2014,
+                "EndDate":              03-09-2014,
+                "CalendarEventId":      0004
             }
 
 
@@ -11862,12 +12040,13 @@ Create association of one to many Course to Subjects
                 "LookupId":         1525,
                 "Code":             "ENG",
                 "Name":             "English,
-                "Description":      "English"
+                "Description":      "English",
+                "MappedTo":         null
             },
             {
                 "LookupId":         1526,
-                "Code":             "FRE",
-                "Name":             "French,
+                "Code":             "AA_FRE",
+                "Name":             "Advanced Academy French,
                 "Description":      "French"
             }
 
@@ -12119,8 +12298,8 @@ Group of all Timetable Resources
                 "StartDate": "2015-08-30",
                 "EndDate": "2016-08-27",
                 "TimetableIterations": 52,
-                "splitCoverEvents": false,
-                "splitMultiplePeriods": false,
+                "SplitCoverEvents": false,
+                "SplitMultiplePeriods": false,
                 "ActiveSource": "N"
                 },
                 {
@@ -12130,8 +12309,8 @@ Group of all Timetable Resources
                 "StartDate": "2015-08-30",
                 "EndDate": "2016-08-27",
                 "TimetableIterations": 52,
-                "splitCoverEvents": false,
-                "splitMultiplePeriods": false,
+                "SplitCoverEvents": false,
+                "SplitMultiplePeriods": false,
                 "ActiveSource": "Y"
             }
 
@@ -12501,8 +12680,8 @@ Update one to many Day Compositions
                 "StartTime": "09:00",
                 "EndTime": "10:00",
                 "WeekDay": "Monday"
-                },
-                {
+            },
+            {
                 "DayCompositionId": 3706,
                 "TTSourceId": 2133,
                 "PeriodId": 83080,
@@ -12790,7 +12969,7 @@ Update one to many Day Composition Periods
 
 ### Retrieve Timetable Events [GET]
 
-If not parameters are used then all events for the current Source are returned
+If no parameters are used, all events for the current Source are returned
 
 + Parameters
     + SourceId (optional, number, `2133`) ... unique Id of  the timetable source
@@ -12963,7 +13142,8 @@ If not parameters are used then all events for the current Source are returned
 + Fields
     + EventId (required, int, `12345`) ... unique Event Id
 
-All below fields are required if anyone is present
++ All below fields are required if anyone is present
+
     + Source
     + DayComposition
     + Iteration
@@ -15048,7 +15228,7 @@ A collection of Post 16 Learning Aim methods
 
 ## Prior Attainment Details [/PriorAttaintment{?LearnerCode}{?LearnerId}{?AcademicYear}]
 
-DfE's change of requirements for Prior Attainmnet to be Academic Year specific
+New methods to reflect the DfE's change of requirements for Prior Attainment to be Academic Year specific
 
 ### Retrieve Prioir Attainment Details [GET]
 
@@ -15195,7 +15375,7 @@ DfE's change of requirements for Prior Attainmnet to be Academic Year specific
 
 ### Update Prior Attainment Detail [PUT]
 
-**Either PriorAttainmentId or AcademicYear are mandatory fields**
+Either PriorAttainmentId or AcademicYear are mandatory fields
 
 + Request (application/json)
 
@@ -15369,7 +15549,6 @@ A collection of all Lookup related resources
 
 The numerical Code in the response are returned for Irish Schools
 
-
 + Request (application/json)
 
     + Headers
@@ -15417,7 +15596,6 @@ The numerical Code in the response are returned for Irish Schools
                 "Name": "Korea, Democ. Peoples Rep",
                 "Description": "Korea, Democ. Peoples Rep"
             }   
-    
     
 
 
@@ -15512,8 +15690,6 @@ The numerical Code in the response are returned for Irish Schools
 ## Religion [/ReligionLookup]
 
 ### Retrieve Religion values [GET]
-
-Retrieve a list of religions used in school
 
 + Request (application/json)
 
