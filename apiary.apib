@@ -4130,7 +4130,7 @@ Specific to Irish Schools and Colleges
             }
             
 
-## Learner Contacts [/LearnerContacts{?LearnerId}{?LearnerCode}{?status}{?responsibility}{?priority}]
+## Learner Contacts [/LearnerContacts{?LearnerId}{?LearnerCode}{?Status}{?Responsibility}{?Priority}]
 
 ### Retrieve Contacts associated to a learner [GET]
 
@@ -4138,9 +4138,9 @@ Specific to Irish Schools and Colleges
 
     + LearnerId (optional, int, `123456`) ... unique Id of Learner
     + LearnerCode (optional, string, `2014-0001`) ... unique code of Learner
-    + status (optional, string, `Active`) ... returns Active, Draft or Left learners when used
-    + responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
-    + priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
+    + Status (optional, string, `Active`) ... returns Active, Draft or Left learners when used
+    + Responsibility (optional, boolean, `true`) ... Filter Contacts returned to contacts with Parental Responsibilty
+    + Priority (optional, int, `1`) ... Filter Contacts returned to contacts with priority of that passed
 
 
 + Request
@@ -6030,8 +6030,6 @@ Returns the default configuration for attendance
 ## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}{?Session}{?AttendanceMark}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
-
-If no date range is used then it will return the Current academic year's data to date
 
 **Either LearnerId or Date Range is mandatory**
 
