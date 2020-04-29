@@ -6092,7 +6092,8 @@ Returns the default configuration for attendance
 
 Create and amend Attendance for one to many learners
 
-*Amdended to allow addition of future absences*
+*Either Learner Code or LearnerId can be used*
+
 
 + Request (application/json)
 
@@ -6109,7 +6110,7 @@ Create and amend Attendance for one to many learners
                 "AttendanceString":     "////IINB"
             },
             {
-                "LearnerCode":          "2013-00002",
+                "LearnerId":            1234,
                 "AttendanceStartDate":  "16-06-2014",
                 "RollCallSessionStart": "PM",
                 "AttendanceString":     "B"
@@ -6132,10 +6133,10 @@ Create and amend Attendance for one to many learners
             }
         
 
-## Learner Roll Call Attendance with Minutes Late and Notes [/learnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
+## Learner Roll Call Attendance with Minutes Late and Notes [/LearnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
 This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance code at a time can be passed as opposed to a string of codes in the previous method.
 
-*Allows future absences*
+*Either Learner Code or LearnerId can be used*
 
 + Fields
     + LearnerCode (required, string, `2015-00001`) ... the unique code of the learner
@@ -6157,7 +6158,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
     + Body
     
             {
-                "learnerCode":          "2013-00001",
+                "LearnerCode":          "2013-00001",
                 "Date":                 "16-06-2014",
                 "RollCallSession":      "AM",
                 "AttendanceCode":       "L",
@@ -6166,7 +6167,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
 
             },
             {
-                "learnerCode":          "2013-00002",
+                "LearnerId":            1234,
                 "Date":                 "16-06-2014",
                 "RollCallSession":      "AM",
                 "AttendanceCode":       "L", 
@@ -11315,13 +11316,15 @@ Create one to many current or future academic years
             }
             
 
-## Academic Terms [/AcademicTerms/{?id}{?AcYearId}]
+## Academic Terms [/AcademicTerms/{?Id}{?AcYearId}]
 
-+ Parameters
-    + id (optional, number, `12345`) ... The unique identifier of the Academic Term
-    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
 
 ### Retrieve AcadmicTerms [GET]
+
++ Parameters
+    + Id (optional, number, `12345`) ... The unique identifier of the Academic Term
+    + AcYearId (optional, number, `12345`) ... The unique identifier of an Academic Year
+
 
 + Request
 
