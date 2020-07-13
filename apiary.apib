@@ -3998,7 +3998,8 @@ Mandatory fields:
                                     "SchoolHistoryId":    0002
                                     }]
             }
-            
+
+
 
 ## Learner Details [/LearnerDetails{?LearnerIds}{?GroupId}{?Year}]
 This method returns a minimum amount of data and accepts an array of LearnerId's as an input parameter.
@@ -5274,6 +5275,51 @@ Update SEN Major Needs for one to many learners
                                     "learnerId":        0003
                                 }]
             }
+            
+            
+
+## Learner Historic Year [/LearnerYear{?AcademicYearId}{?LearnerId}]
+
++ Parameters
+    + AcademicYearId(optional, integer, `1000`) ... unique Id for Academic Year
+    + LearnerId (optional, integer, `1234`) ... unique Id of Learner
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN"]
+
++ Response 200
+
+    + Body
+
+            {
+                    "LearnerId":        1234,
+                    "LearnerCode":      "2010-1000",
+                    "UPN":              "Z330400519006",
+                    "NCYear":           "Year 7",
+                    "Year":             "Year 7",
+                    "AcademicYearId":   1000,
+                    "AcademicYearName": "Academic Year 2107/2018"
+            },{
+                    "LearnerId":        1234,
+                    "LearnerCode":      "2010-1000",
+                    "UPN":              "Z330400519006",
+                    "NCYear":           "Year 7",
+                    "Year":             "Year 8",
+                    "AcademicYearId":   1001,
+                    "AcademicYearName": "Academic Year 2108/2019"
+            },{
+                    "LearnerId":        1234,
+                    "LearnerCode":      "2010-1000",
+                    "UPN":              "Z330400519006",
+                    "NCYear":           "Year 8",
+                    "Year":             "Year 9",
+                    "AcademicYearId":   1002,
+                    "AcademicYearName": "Academic Year 2109/2020"
+            }
+
 
 ## School History [/LearnerSchoolHistory{?LearnerId}{?LearnerCode}{?Status}]
 
@@ -7253,7 +7299,7 @@ Collection of User Defined Values resources
     
             {
                 "FieldDefinitionID":1111,
-                "Code":               0123456,
+                "Code":             "0123456",
                 "Entity":           "Learner",
                 "Value":            "Yes"
             },
@@ -10114,6 +10160,35 @@ Retrieve KS5 FFT Aspire prediction data for a learner
                                       }
                                     ]
             }
+            
+
+## Learner Attainment [/LearnerAttainment]
+
+### Retrieve Learner Attainment [GET]
+
++ Request (application/json)
+
+    + Headers
+        
+            Authorization: Bearer [CURRENT_TOKEN]
+            
++ Response 200
+
+    + Body
+    
+            {
+                    "LearnerCode":                      "2019-1002",
+                    "LearnerId":                        1000,
+                    "KS2EngFineLevelScore":             30,
+                    "KS2MatFineLevelScore":             20,
+                    "KS2AvgFineLevelScore":             25,
+                    "KS1Attainment":                    "Medium",
+                    "KS2Attainment":                    "High",
+                    "KS2SpecialConsiderationMaths":     false,
+                    "KS2SpecialConsiderationSPAG":      false,
+                    "KS2SpecialConsiderationWriting":   false,
+            }
+
 
 # Group Exams
 
@@ -13395,7 +13470,59 @@ If no parameters are used then all events for the current Source are returned
                                     }
                                 ],
                     "WeekRangeId": 6852
-            }
+            },           [
+                {
+                    "EventId": 3360480,
+                    "Date": "2019-09-30",
+                    "DayComposition": "Day Comp",
+                    "PeriodId": 1408,
+                    "StartTime": "09:00",
+                    "FinishTime": "10:00",
+                    "Day": "MondayA",
+                    "EventType": "Cover",
+                    "Duration": 60,
+                    "NCAEventType": null,
+                    "Employees": [
+                                    {
+                                        "EventTeacherAssociationId": 2992094,
+                                        "EmployeeId": 1052,
+                                        "EmployeeCode": "RDI",
+                                        "EmployeeName": "R Dinklage",
+                                        "Title": "Mr"
+                                    }
+                                ],
+                    "CoverEmployees":[
+                                        {
+                                            "EmployeeId": 1234,
+                                            "EmployeeCode": "CGi",
+                                            "EmployeeName": "C Gobson,
+                                            "Title": "Mrs"
+                                        }
+                                    ],
+                    "Groups":   [
+                                    {
+                                        "EventLearnerGroupAssociationId": 2939928,
+                                        "GroupId": 2511,
+                                        "GroupCode": "10/Ma2",
+                                        "Type": "TeachingGroup"
+                                    }
+                                ],
+                    "Subjects": [
+                                    {
+                                        "EventSubjectAssociationId": 2989651,
+                                        "Subject": "Ma",
+                                        "SubjectName": "Mathematics"
+                                    }
+                                ],
+                    "Rooms":    [
+                                    {
+                                        "EventRoomAssociationId": 2943177,
+                                        "Room": "M03",
+                                        "RoomName": "M03"
+                                    }
+                                ],
+                    "WeekRangeId": 1043
+                }
             
             
 
