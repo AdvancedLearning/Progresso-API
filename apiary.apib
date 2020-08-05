@@ -5276,23 +5276,30 @@ Update SEN Major Needs for one to many learners
                                 }]
             }
             
-            
+
+  
 
 ## Learner Historic Year [/LearnerYear{?AcademicYearId}{?LearnerId}]
 
 + Parameters
-    + AcademicYearId(optional, integer, `1000`) ... unique Id for Academic Year
-    + LearnerId (optional, integer, `1234`) ... unique Id of Learner
 
-+ Request (application/json)
+    + AcademicYearId (optional, int, `1000`) ... unique Id for Academic Year
+    + LearnerId (optional, int, `1234`) ... unique Id of Learner
+    
+
+### Return a list of Learners historic years [GET]
+
+
++ Request
 
     + Headers
         
-            Authorization: Bearer [CURRENT_TOKEN"]
+            Authorization: Bearer [CURRENT_TOKEN]
+            
 
-+ Response 200
++ Response 200 (application/json)
 
-    + Body
+    + Body 
 
             {
                     "LearnerId":        1234,
@@ -5337,7 +5344,7 @@ If no parameters are passed then all Learner Histories will be returned
 
     + Headers
         
-            Authorization: Bearer [CURRENT_TOKEN"]
+            Authorization: Bearer [CURRENT_TOKEN]
 
 + Response 200
 
