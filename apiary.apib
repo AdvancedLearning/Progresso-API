@@ -6080,13 +6080,13 @@ Returns the default configuration for attendance
             }
             
 
-## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}{?Session}{?AttendanceMark}]
+## Learner Roll Call Attendance [/LearnerRollCallAttendance{?LearnerId}{?GroupCode}{?StartDate}{?EndDate}{?Status}{?IncludeMissingRollCall}{?Session}{?AttendanceMark}{?ShowMappedTo}]
 
 ### Retrieve Learner Roll Call Attendance [GET]
 
 *Either LearnerId or Date Range is mandatory*
 
-
+**A new parameter has been introduced ShowMappedTo to address the attendance code changes required by the DfE. By defult, where there is no parameter set or it is set to true, the sinlge character DfE codes will be returned. If set to false, than any code will be reutrned.**
 
 + Parameters
     + LearnerId (optional, int, `123465`) ... the unique identifier of the learner
@@ -6097,6 +6097,7 @@ Returns the default configuration for attendance
     + IncludeMissingRollCall (optional, boolean, `true`) ... if this is included then all roll call including missing marks will be returned
     + Session (optional, string, `AM`) ... code of Attendance session
     + AttendanceMark (optional, string, `L`) ... code of attendance mark
+    + ShowMappedTo (optional, boolean, `true`) ... show the DfE single character attendance codes when set to true. When set to false any codes created by schools or the 3 character DfE attendance codes will be returned.
 
     
 
@@ -6190,12 +6191,12 @@ Create and amend Attendance for one to many learners
             }
         
 
-## Learner Roll Call Attendance with Minutes Late and Notes [/LearnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}{?ShowMappedTo}]
+## Learner Roll Call Attendance with Minutes Late and Notes [/LearnerAttendanceRollCallLateNotes{?LearnerCode}{?Date}{?RollCallSession}{?AttendanceCode}{?MinutesLate}{?Notes}]
 This method differs from the previous one with the addtion of Notes and Minutes Late fields. Only one attendance code at a time can be passed as opposed to a string of codes in the previous method.
 
 *Either Learner Code or LearnerId can be used*
 
-**A new parameter has been introduced ShowMappedTo to address the attendance code changes required by the DfE. By defult, where there is no parameter set or it is set to true, the sinlge character DfE codes will be returned. If set to false, than any code will be reutrned.**
+
 
 + Fields
     + LearnerCode (required, string, `2015-00001`) ... the unique code of the learner
@@ -6204,7 +6205,6 @@ This method differs from the previous one with the addtion of Notes and Minutes 
     + AttendanceCode (required, string, `L`) ... attendance code for session
     + MinutesLate (optional, string, `5`) ... string of number minutes late
     + Notes (optional, string, `Lorem ipsum`) ... any notes attached to the attendance
-    + ShowMappedTo (optional, boolean, `true`) ... show the DfE single character attendance codes when set to tre. When set to false any codes created by schools or the 3 caharacter DfE attendance codes will be returned.
     
 
 ### Add Learner Roll Call with Notes and Minutes Late [POST]
@@ -6265,7 +6265,7 @@ This method differs from the previous one with the addtion of Notes and Minutes 
     + EndDate (optional, dateTime, `01-05-2014T18:00:00`) ... attendance recorded to
     + GroupCode (optional, string, `9Sc1`) ... unique Code of Group 
     + Status (optional, string, `Active`) ... Status of the learner - Active, Left, Draft
-    + ShowMappedTo (optional, boolean, `true`) ... show the DfE single character attendance codes when set to tre. When set to false any codes created by schools or the 3 caharacter DfE attendance codes will be returned.
+    + ShowMappedTo (optional, boolean, `true`) ... show the DfE single character attendance codes when set to true. When set to false any codes created by schools or the 3 character DfE attendance codes will be returned.
 
 
 + Request (application/json)
